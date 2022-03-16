@@ -46,6 +46,7 @@ public class Main extends Application {
             // start de beheersinterface
             // TODO aanvullen
         } else {
+            new Question(stage).openStage();
             // start de viewer
             // TODO aanvullen
         }

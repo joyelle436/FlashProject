@@ -2,6 +2,7 @@ package be.ugent.flash;
 
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 
@@ -15,7 +16,7 @@ public class Begin {
 
     private final Stage stage;
     private final List<String[]> questions;
-    private String DATA;
+    private final String DATA;
 
     public Begin(Stage stage, String database) {
         this.stage = stage;
@@ -23,7 +24,7 @@ public class Begin {
         questions = new ArrayList<>();
     }
 
-    public void openDatabase() {
+    public void openDatabase() throws IOException {
         try(Connection connection = DriverManager.getConnection(DATA)){
             PreparedStatement prepStatement = connection.prepareStatement(
                 "SELECT * FROM questions ORDER BY question_id;"
@@ -33,11 +34,9 @@ public class Begin {
                 addRow(result);
             }
         } catch (SQLException ex){
-            //
+            System.out.println("het lukt niet om de databank in te lezen");
         }
-        for (String[] q: questions) {
-            System.out.println(q[4]);
-        }
+        new Type(stage, questions).divideQuestions();
     }
 
     /**

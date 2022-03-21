@@ -2,6 +2,7 @@ package be.ugent.flash;
 
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public class Type {
         this.questions = questions;
     }
 
-    public void divideQuestions(){
-
+    public void divideQuestions() throws IOException {
+        new Question(questions.get(5), stage).showQuestion();
     }
 }

@@ -1,6 +1,30 @@
-Pane {
+
+.VBox {
+    -fx-background-color: #6082B6;
 }
 
-VBox {
-    -fx-background-color: #7CB9E8;
+#vbox {
+    -fx-background-color: #6082B6;
+    -fx-pref-width: 445;
+    -fx-pref-height: 550;
+}
+
+#textflow {
+    -fx-pref-width: 200;
+    -fx-text-fill: white;
+    -fx-text-alignment: LEFT;
+}
+
+#text {
+    -fx-font-weight: 200;
+    -fx-font-size: 25px;
+    -fx-fill: white;
+    -fx-text-alignment: CENTER;
+    -fx-pref-width: 180;
+}
+
+#textfield {
+    -fx-pref-height: 50;
+    -fx-max-width: 400;
+    -fx-font-size: 20px;
 }

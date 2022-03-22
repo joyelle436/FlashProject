@@ -1,18 +1,13 @@
-
-.VBox {
-    -fx-background-color: #6082B6;
-}
-
 #vbox {
     -fx-background-color: #6082B6;
-    -fx-pref-width: 445;
+    -fx-pref-width: 450;
     -fx-pref-height: 550;
 }
 
 #textflow {
+    -fx-pref-height: 200;
     -fx-pref-width: 200;
     -fx-text-fill: white;
-    -fx-text-alignment: LEFT;
 }
 
 #text {
@@ -24,7 +19,7 @@
 }
 
 #textfield {
-    -fx-pref-height: 50;
+    -fx-pref-height: 45;
     -fx-max-width: 400;
     -fx-font-size: 20px;
 }

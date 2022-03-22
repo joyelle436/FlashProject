@@ -8,8 +8,8 @@ import java.util.*;
 
 /**
  * Dit klas gaat bij het begin het databank openen, alle vragen
- * in een lijst opslaan en die lijst doorgeven naar een andere klasse: Type
- * die de volgende stap gaat doen
+ * in een lijst opslaan en die lijst doorgeven naar een andere
+ * klasse: Spreader die de volgende stap gaat doen
  */
 
 public class Begin {
@@ -33,10 +33,10 @@ public class Begin {
             while(result.next()){
                 addRow(result);
             }
+            new Spreader(stage, questions).divideQuestions();
         } catch (SQLException ex){
             System.out.println("het lukt niet om de databank in te lezen");
         }
-        new Type(stage, questions).divideQuestions();
     }
 
     /**

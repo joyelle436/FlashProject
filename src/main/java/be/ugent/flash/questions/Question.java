@@ -1,4 +1,4 @@
-package be.ugent.flash;
+package be.ugent.flash.questions;
 
 import javafx.geometry.*;
 import javafx.scene.Scene;
@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -25,18 +26,18 @@ public class Question extends VBox {
     }
 
     public void addQuestion(){
+        setAlignment(Pos.TOP_CENTER);
         TextFlow textFlow = new TextFlow();
         textFlow.setId("textflow");
         setMargin(textFlow, new Insets(130, 0, 0, 0));
-        setAlignment(Pos.TOP_CENTER);
         textFlow.setPadding(new Insets(0, 15, 15, 20));
         Text text = new Text();
         text.setId("text");
         text.setText(rows[2]);
+        textFlow.getChildren().add(text);
         TextField textField = new TextField();
         textField.setId("textfield");
         setMargin(textField, new Insets(50, 0, 0, 0));
-        textFlow.getChildren().add(text);
         getChildren().addAll(textFlow, textField);
     }
 

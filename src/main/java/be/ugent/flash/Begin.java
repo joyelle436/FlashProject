@@ -27,7 +27,8 @@ public class Begin {
     public void openDatabase() throws IOException {
         try(Connection connection = DriverManager.getConnection(DATA)){
             PreparedStatement prepStatement = connection.prepareStatement(
-                "SELECT * FROM questions ORDER BY question_id;"
+                "SELECT question_id, title, text_part, image_part, " +
+                        "question_type, correct_answer FROM questions ORDER BY question_id;"
             );
             ResultSet result = prepStatement.executeQuery();
             while(result.next()){

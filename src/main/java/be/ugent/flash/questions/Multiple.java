@@ -5,5 +5,5 @@ import javafx.scene.layout.VBox;
 /**
  * mr
  */
-public class Multi extends VBox {
+public class Multiple extends VBox {
 }

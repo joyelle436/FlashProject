@@ -2,6 +2,7 @@
     -fx-background-color: #6082B6;
     -fx-pref-width: 450;
     -fx-pref-height: 550;
+    -fx-max-height: 550;
 }
 
 #textflow {

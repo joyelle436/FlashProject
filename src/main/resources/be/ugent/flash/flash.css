@@ -1,26 +1,36 @@
-#vbox {
+#borderpane {
     -fx-background-color: #6082B6;
-    -fx-pref-width: 450;
-    -fx-pref-height: 550;
-    -fx-max-height: 550;
+    -fx-pref-width: 450px;
+    -fx-pref-height: 530px;
 }
 
 #textflow {
-    -fx-pref-height: 200;
-    -fx-pref-width: 200;
+    -fx-pref-height: 200px;
+    -fx-pref-width: 200px;
     -fx-text-fill: white;
 }
 
 #text {
-    -fx-font-weight: 200;
-    -fx-font-size: 25px;
     -fx-fill: white;
     -fx-text-alignment: CENTER;
-    -fx-pref-width: 180;
+    -fx-pref-width: 180px;
 }
 
 #textfield {
-    -fx-pref-height: 45;
-    -fx-max-width: 400;
+    -fx-pref-height: 45px;
+    -fx-max-width: 400px;
     -fx-font-size: 20px;
+}
+
+#imageview {
+    -fx-pref-width: 300px;
+    -fx-pref-height: 150px;
+}
+
+#togglebutton {
+    -fx-pref-height: 40px;
+    -fx-pref-width: 45px;
+    -fx-font-size: 15px;
+    -fx-font-weight: bolder;
+    -fx-background-color: yellow;
 }

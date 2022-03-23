@@ -1,37 +1,44 @@
 package be.ugent.flash.questions;
 
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
 
-/**
- * superklasse van alle soort vragen
- */
-public abstract class Type extends VBox {
-    protected TextFlow textFlow;
-    protected Text text;
-    protected Stage stage;
-    protected String database;
 
-    public Type(Stage stage, String database){
+
+/**
+ * superklasse van alle soort vragen. Krijg zijn id in de constructor zodat
+ * de klasse zijn antwoorden kan opvragen in de databa-nk
+ */
+public abstract class Type extends BorderPane {
+    protected final String DATA;
+    protected final TextFlow textFlow;
+    protected final Text text;
+    protected final Stage stage;
+    protected TextField answerField;
+    protected final Image pictureReference = null;
+
+    public Type(Stage stage, String DATA, String[] row){
+        this.DATA = DATA;
         this.stage = stage;
-        this.database = database;
-        getStylesheets().add(getClass().getResource("/be/ugent/flash/flash.css").toString());
-        setId("questionVbox");
-        setAlignment(Pos.TOP_CENTER);
+        setId("borderpane");
         textFlow = new TextFlow();
         textFlow.setId("textflow");
-        setMargin(textFlow, new Insets(100, 0, 0, 0));
-        textFlow.setPadding(new Insets(0, 15, 15, 20));
         text = new Text();
         text.setId("text");
+        text.setText(row[2]);
+        setTop(textFlow);
         textFlow.getChildren().add(text);
-        getChildren().addAll(textFlow);
+        getStylesheets().add(getClass().getResource("/be/ugent/flash/flash.css").toString());
     }
 
+    public void build(){
+    }
+
+    public abstract void addImage();
     public abstract void getAnswers();
     public abstract void addAnswers();
     public void showQuestion(){

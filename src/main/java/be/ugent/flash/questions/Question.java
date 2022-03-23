@@ -29,16 +29,16 @@ public class Question extends VBox {
         setAlignment(Pos.TOP_CENTER);
         TextFlow textFlow = new TextFlow();
         textFlow.setId("textflow");
-        setMargin(textFlow, new Insets(130, 0, 0, 0));
+        setMargin(textFlow, new Insets(115, 0, 0, 0));
         textFlow.setPadding(new Insets(0, 15, 15, 20));
         Text text = new Text();
         text.setId("text");
         text.setText(rows[2]);
-        textFlow.getChildren().add(text);
         TextField textField = new TextField();
         textField.setId("textfield");
         setMargin(textField, new Insets(50, 0, 0, 0));
         getChildren().addAll(textFlow, textField);
+        textFlow.getChildren().add(text);
     }
 
     public void showQuestion() throws IOException {

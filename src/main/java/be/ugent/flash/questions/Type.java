@@ -2,11 +2,10 @@ package be.ugent.flash.questions;
 
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
-
 
 
 /**
@@ -19,11 +18,13 @@ public abstract class Type extends BorderPane {
     protected final Text text;
     protected final Stage stage;
     protected TextField answerField;
-    protected final Image pictureReference = null;
+    protected final boolean hasImage;
+    protected final ImageView imageView;
 
-    public Type(Stage stage, String DATA, String[] row){
+    protected Type(Stage stage, String DATA, String[] row){
         this.DATA = DATA;
         this.stage = stage;
+        hasImage = row[4] != null;
         setId("borderpane");
         textFlow = new TextFlow();
         textFlow.setId("textflow");
@@ -32,6 +33,8 @@ public abstract class Type extends BorderPane {
         text.setText(row[2]);
         setTop(textFlow);
         textFlow.getChildren().add(text);
+        imageView = new ImageView();
+        imageView.setId("imageview");
         getStylesheets().add(getClass().getResource("/be/ugent/flash/flash.css").toString());
     }
 

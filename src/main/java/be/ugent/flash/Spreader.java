@@ -1,6 +1,7 @@
 package be.ugent.flash;
 
 import be.ugent.flash.questions.*;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 import java.io.IOException;

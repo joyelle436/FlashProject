@@ -29,8 +29,14 @@
 
 #togglebutton {
     -fx-pref-height: 40px;
-    -fx-pref-width: 45px;
     -fx-font-size: 15px;
     -fx-font-weight: bolder;
     -fx-background-color: yellow;
+    -fx-alignment: CENTER;
+}
+
+#label {
+    -fx-background-color: #6082B6;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
 }

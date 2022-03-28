@@ -34,10 +34,10 @@ public class Begin {
             while(result.next()){
                 addRow(result);
             }
-            new Spreader(stage, DATA, questions).divideQuestions();
         } catch (SQLException ex){
             System.out.println("het lukt niet om de databank in te lezen");
         }
+        new Spreader(stage, DATA, questions).divideQuestions();
     }
 
     /**

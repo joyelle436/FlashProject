@@ -11,8 +11,6 @@ import javafx.stage.Stage;
  */
 public class OpenStr extends Type {
 
-    private ImageView imageView;
-
     public OpenStr(Stage stage, String DATA, String[] row) {
         super(stage, DATA, row);
     }
@@ -20,9 +18,9 @@ public class OpenStr extends Type {
     public void build(){
         super.build();
         text.setFont(new Font(25));
-        imageView = new ImageView();
-        imageView.setId("imageview");
-        setCenter(imageView);
+        if(hasImage){
+            setCenter(imageView);
+        }
         answerField = new TextField();
         answerField.setId("textfield");
         setBottom(answerField);

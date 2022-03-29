@@ -6,14 +6,16 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.util.List;
+
 /**
  * mcc
  */
 public class Compact extends Type {
 
     private GridPane gridpane;
-    public Compact(Stage stage, String DATA, String[] row) {
-        super(stage, DATA, row);
+    public Compact(Stage stage, String DATA, String[] row, List<String[]> answers) {
+        super(stage, DATA, row, answers);
     }
 
     @Override
@@ -43,16 +45,6 @@ public class Compact extends Type {
 
     @Override
     public void addImage() {
-
-    }
-
-    @Override
-    public void getAnswers() {
-
-    }
-
-    @Override
-    public void addAnswers() {
 
     }
 }

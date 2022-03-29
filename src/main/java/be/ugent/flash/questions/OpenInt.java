@@ -6,6 +6,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.util.List;
+
 
 /**
  * openi
@@ -14,8 +16,8 @@ public class OpenInt extends Type {
 
     private ImageView imageView;
 
-    public OpenInt(Stage stage, String DATA, String[] row) {
-        super(stage, DATA, row);
+    public OpenInt(Stage stage, String DATA, String[] row, List<String[]> answers) {
+        super(stage, DATA, row, answers);
     }
 
     public void build(){
@@ -29,16 +31,6 @@ public class OpenInt extends Type {
         setMargin(textFlow, new Insets(150, 15, 0, 15));
         setMargin(answerField, new Insets(-200, 15, 0, 0));
     }
-
-    @Override
-    public void getAnswers() {
-    }
-
-    @Override
-    public void addAnswers() {
-
-    }
-
 
     @Override
     public void addImage(){

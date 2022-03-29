@@ -1,11 +1,14 @@
 package be.ugent.flash.questions;
 
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
+
+import java.util.List;
 
 
 /**
@@ -20,10 +23,16 @@ public abstract class Type extends BorderPane {
     protected TextField answerField;
     protected final boolean hasImage;
     protected final ImageView imageView;
+    protected final String[] row;
+    protected final List<String[]> answers;
+    protected int answersSize;
 
-    protected Type(Stage stage, String DATA, String[] row){
+    protected Type(Stage stage, String DATA, String[] row, List<String[]> answers){
         this.DATA = DATA;
         this.stage = stage;
+        this.answers = answers; //heeft antwoorden van die specifieke vraag
+        this.row = row; //heeft hele rij van questions tabel
+        this.answersSize = answers.size();;
         hasImage = row[4] != null;
         setId("borderpane");
         textFlow = new TextFlow();
@@ -35,6 +44,7 @@ public abstract class Type extends BorderPane {
         textFlow.getChildren().add(text);
         imageView = new ImageView();
         imageView.setId("imageview");
+        setMargin(textFlow, new Insets(0, 0, 15, 0));
         getStylesheets().add(getClass().getResource("/be/ugent/flash/flash.css").toString());
     }
 
@@ -42,8 +52,6 @@ public abstract class Type extends BorderPane {
     }
 
     public abstract void addImage();
-    public abstract void getAnswers();
-    public abstract void addAnswers();
     public void showQuestion(){
         Scene scene = new Scene(this);
         stage.setScene(scene);

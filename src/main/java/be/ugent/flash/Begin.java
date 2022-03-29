@@ -16,12 +16,14 @@ public class Begin {
 
     private final Stage stage;
     private final List<String[]> questions;
+    private final Map<String, List<String[]>> answers;
     private final String DATA;
 
     public Begin(Stage stage, String database) {
         this.stage = stage;
         DATA = "jdbc:sqlite:" + database;
         questions = new ArrayList<>();
+        answers = new HashMap<>();
     }
 
     public void openDatabase() throws IOException {
@@ -37,7 +39,22 @@ public class Begin {
         } catch (SQLException ex){
             System.out.println("het lukt niet om de databank in te lezen");
         }
-        new Spreader(stage, DATA, questions).divideQuestions();
+        getAnswers();
+        new Spreader(stage, DATA, questions, answers).divideQuestions();
+    }
+
+    private void getAnswers(){
+        try(Connection connection = DriverManager.getConnection(DATA)){
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT part_id, question_id, part FROM parts ORDER BY question_id;"
+            );
+            ResultSet result = preparedStatement.executeQuery();
+            while(result.next()){
+                answers.get(result.getString(2)).add(new String[]{result.getString(1), result.getString(3)});
+            }
+        } catch (SQLException ex){
+            System.out.println("het lukt niet om de databank in te lezen");
+        }
     }
 
     /**
@@ -47,6 +64,10 @@ public class Begin {
     public void addRow(ResultSet resultSet) throws SQLException {
         String[] row = new String[6];
         for(int r = 1; r <= 6; r++){
+            String str = resultSet.getString(r);
+            if(r == 1){
+                answers.put(str, new ArrayList<>());
+            }
             row[r-1] = resultSet.getString(r);
         }
         questions.add(row);

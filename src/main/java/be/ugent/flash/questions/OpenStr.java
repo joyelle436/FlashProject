@@ -6,13 +6,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.util.List;
+
 /**
  * open
  */
 public class OpenStr extends Type {
 
-    public OpenStr(Stage stage, String DATA, String[] row) {
-        super(stage, DATA, row);
+    public OpenStr(Stage stage, String DATA, String[] row, List<String[]> answers) {
+        super(stage, DATA, row, answers);
     }
 
     public void build(){
@@ -34,16 +36,5 @@ public class OpenStr extends Type {
      */
 
     public void addImage() {
-
-    }
-
-    @Override
-    public void getAnswers() {
-
-    }
-
-    @Override
-    public void addAnswers() {
-
     }
 }

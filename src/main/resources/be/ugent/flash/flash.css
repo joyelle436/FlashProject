@@ -40,3 +40,19 @@
     -fx-text-fill: white;
     -fx-font-size: 20px;
 }
+
+#checkbox {
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}
+
+#checkbox .box{
+    -fx-pref-height: 30px;
+    -fx-pref-width: 30px;
+    -fx-background-color: yellow;
+}
+
+#okay {
+    -fx-background-color: yellow;
+    -fx-font-size: 15px;
+}

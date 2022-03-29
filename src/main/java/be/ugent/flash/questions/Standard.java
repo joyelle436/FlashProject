@@ -15,8 +15,8 @@ public class Standard extends Type {
 
     private GridPane gridpane;
     private final Label[] labels;
-    public Standard(Stage stage, String DATA, String[] row, List<String[]> answers) {
-        super(stage, DATA, row, answers);
+    public Standard(Stage stage, String DATA, String[] row, List<String[]> answers, byte[] aByte) {
+        super(stage, DATA, row, answers, aByte);
         labels = new Label[answersSize];
     }
 
@@ -44,9 +44,5 @@ public class Standard extends Type {
         setBottom(gridpane);
         setMargin(gridpane, new Insets(0, 15, 50, 15));
         setMargin(textFlow, new Insets(50, 15, 0, 15));
-    }
-    @Override
-    public void addImage(){
-
     }
 }

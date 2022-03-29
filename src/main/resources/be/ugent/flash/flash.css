@@ -29,7 +29,7 @@
 
 #togglebutton {
     -fx-pref-height: 40px;
-    -fx-font-size: 15px;
+    -fx-font-size: 25px;
     -fx-font-weight: bolder;
     -fx-background-color: yellow;
     -fx-alignment: CENTER;

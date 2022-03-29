@@ -1,5 +1,6 @@
 package be.ugent.flash;
 
+import be.ugent.flash.questions.Compact;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,12 +19,14 @@ public class Begin {
     private final List<String[]> questions;
     private final Map<String, List<String[]>> answers;
     private final String DATA;
+    private final List<byte[]> mainImages;
 
     public Begin(Stage stage, String database) {
         this.stage = stage;
         DATA = "jdbc:sqlite:" + database;
         questions = new ArrayList<>();
         answers = new HashMap<>();
+        mainImages = new ArrayList<byte[]>();
     }
 
     public void openDatabase() throws IOException {
@@ -40,7 +43,7 @@ public class Begin {
             System.out.println("het lukt niet om de databank in te lezen");
         }
         getAnswers();
-        new Spreader(stage, DATA, questions, answers).divideQuestions();
+        new Spreader(stage, DATA, questions, answers, mainImages).divideQuestions();
     }
 
     private void getAnswers(){
@@ -63,11 +66,9 @@ public class Begin {
      */
     public void addRow(ResultSet resultSet) throws SQLException {
         String[] row = new String[6];
+        answers.put(resultSet.getString(1), new ArrayList<>());
+        mainImages.add(resultSet.getBytes(4));
         for(int r = 1; r <= 6; r++){
-            String str = resultSet.getString(r);
-            if(r == 1){
-                answers.put(str, new ArrayList<>());
-            }
             row[r-1] = resultSet.getString(r);
         }
         questions.add(row);

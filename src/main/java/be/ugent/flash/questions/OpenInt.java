@@ -16,8 +16,8 @@ public class OpenInt extends Type {
 
     private ImageView imageView;
 
-    public OpenInt(Stage stage, String DATA, String[] row, List<String[]> answers) {
-        super(stage, DATA, row, answers);
+    public OpenInt(Stage stage, String DATA, String[] row, List<String[]> answers, byte[] aByte) {
+        super(stage, DATA, row, answers, aByte);
     }
 
     public void build(){
@@ -32,8 +32,4 @@ public class OpenInt extends Type {
         setMargin(answerField, new Insets(-200, 15, 0, 0));
     }
 
-    @Override
-    public void addImage(){
-
-    }
 }

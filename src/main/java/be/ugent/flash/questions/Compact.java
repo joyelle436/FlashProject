@@ -2,10 +2,13 @@ package be.ugent.flash.questions;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 /**
@@ -13,38 +16,31 @@ import java.util.List;
  */
 public class Compact extends Type {
 
-    private GridPane gridpane;
-    public Compact(Stage stage, String DATA, String[] row, List<String[]> answers) {
-        super(stage, DATA, row, answers);
+    private final byte[] aByte;
+    public Compact(Stage stage, String DATA, String[] row, List<String[]> answers, byte[] aByte) {
+        super(stage, DATA, row, answers, aByte);
+        this.aByte = aByte;
     }
 
     @Override
     public void build() {
         super.build();
         text.setFont(new Font(22.5));
-        gridpane = new GridPane();
+        GridPane gridpane = new GridPane();
         gridpane.setId("anchorpane");
-        ToggleButton firstletter = new ToggleButton("Adfk,kdfng");
-        firstletter.setId("togglebutton");
-        ToggleButton secondletter = new ToggleButton("Bien fait");
-        secondletter.setId("togglebutton");
-        ToggleButton thirdletter = new ToggleButton("C");
-        thirdletter.setId("togglebutton");
-        gridpane.layout();
         ToggleGroup lettersGroup = new ToggleGroup();
-        lettersGroup.getToggles().addAll(firstletter, secondletter, thirdletter);
-        GridPane.setConstraints(firstletter, 0, 0);
-        GridPane.setConstraints(secondletter, 1, 0);
-        GridPane.setConstraints(thirdletter, 2, 0);
-        gridpane.getChildren().addAll(firstletter, secondletter, thirdletter);
-        gridpane.setHgap(10);
+        for(int i = 0; i < answersSize; i++){
+            ToggleButton toggleButton = new ToggleButton(answers.get(i)[1]);
+            toggleButton.setId("togglebutton");
+            GridPane.setConstraints(gridpane, i, 0);
+            GridPane.setConstraints(toggleButton, gridpane.getColumnCount()+1, 0);
+            lettersGroup.getToggles().add(toggleButton);
+            gridpane.getChildren().add(toggleButton);
+        }
+        gridpane.layout();
+        gridpane.setHgap(5);
         setBottom(gridpane);
         setMargin(gridpane, new Insets(0, 15, 50, 15));
         setMargin(textFlow, new Insets(50, 15, 0, 15));
-    }
-
-    @Override
-    public void addImage() {
-
     }
 }

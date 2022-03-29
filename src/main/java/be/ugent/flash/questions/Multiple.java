@@ -19,8 +19,8 @@ public class Multiple extends Type {
     private Button okay;
     //lijst met alle toegevoegde checkbox
     private final CheckBox[] checkBoxList;
-    public Multiple(Stage stage, String DATA, String[] row, List<String[]> answers) {
-        super(stage, DATA, row, answers);
+    public Multiple(Stage stage, String DATA, String[] row, List<String[]> answers, byte[] aByte) {
+        super(stage, DATA, row, answers, aByte);
         checkBoxList = new CheckBox[answersSize];
         gridpane = new GridPane();
         answersList = new String[answersSize];

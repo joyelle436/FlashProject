@@ -69,6 +69,7 @@ public class Begin {
         List<byte[]> row = new ArrayList<>();
         answers.put(resultSet.getInt(1), new HashMap<>());
         for(int r = 1; r <= 6; r++){
+            //getBytes omdat er verschillende types zijn
             row.add(resultSet.getBytes(r));
         }
         questions.add(row);

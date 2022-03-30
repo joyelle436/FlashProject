@@ -23,9 +23,9 @@ public class Spreader {
     }
 
     public void divideQuestions() throws IOException {
-        List<byte[]> row = questions.get(3);
+        List<byte[]> row = questions.get(2);
         String id = new String(row.get(0));
-        Type type = new Multiple(stage, row, answers.get(Integer.parseInt(id)));
+        Type type = new Picture(stage, row, answers.get(Integer.parseInt(id)));
         type.build();
         type.showQuestion();
     }

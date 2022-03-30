@@ -16,7 +16,9 @@ public class Multiple extends Type {
 
     private final GridPane gridpane;
     private final Button okay;
+    //string als key en T of F als value
     private final Map<String, Character> correctSelected;
+    private final int numberOfCorrect;
     //lijst met alle toegevoegde checkbox
     private final CheckBox[] checkBoxList;
     public Multiple(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
@@ -26,6 +28,7 @@ public class Multiple extends Type {
         okay = new Button("OK");
         okay.setId("okay");
         correctSelected = new HashMap<>();
+        numberOfCorrect = (int) new String(row.get(5)).chars().filter(ch -> ch == 'T').count();
     }
 
     @Override
@@ -50,13 +53,15 @@ public class Multiple extends Type {
         setMargin(gridpane, new Insets(0, 5, 50, 15));
 
         okay.setOnAction(actionEvent -> {
+            int counting = 0;
             for(CheckBox checkBox: checkBoxList){
                 if(checkBox.isSelected()){
+                    counting++;
                     answerFound = answerFound && correctSelected.get(checkBox.getText()) == 'T';
                 }
             }
+            answerFound = answerFound && counting == numberOfCorrect;
             Platform.exit();
         });
     }
-
 }

@@ -1,6 +1,5 @@
 package be.ugent.flash;
 
-import be.ugent.flash.questions.Compact;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,24 +15,29 @@ import java.util.*;
 public class Begin {
 
     private final Stage stage;
-    private final List<String[]> questions;
-    private final Map<String, List<String[]>> answers;
+    private final List<List<byte[]>> questions;
+    //question afgebeeld of part id die afgebeeld is op die part
+    private final Map<Integer, Map<Integer, byte[]>> answers;
     private final String DATA;
-    private final List<byte[]> mainImages;
 
     public Begin(Stage stage, String database) {
         this.stage = stage;
         DATA = "jdbc:sqlite:" + database;
         questions = new ArrayList<>();
         answers = new HashMap<>();
-        mainImages = new ArrayList<byte[]>();
     }
 
     public void openDatabase() throws IOException {
+        getQuestions();
+        getAnswers();
+        new Spreader(stage, questions, answers).divideQuestions();
+    }
+
+    private void getQuestions(){
         try(Connection connection = DriverManager.getConnection(DATA)){
             PreparedStatement prepStatement = connection.prepareStatement(
-                "SELECT question_id, title, text_part, image_part, " +
-                        "question_type, correct_answer FROM questions ORDER BY question_id;"
+                    "SELECT question_id, title, text_part, image_part, " +
+                            "question_type, correct_answer FROM questions ORDER BY question_id;"
             );
             ResultSet result = prepStatement.executeQuery();
             while(result.next()){
@@ -42,8 +46,6 @@ public class Begin {
         } catch (SQLException ex){
             System.out.println("het lukt niet om de databank in te lezen");
         }
-        getAnswers();
-        new Spreader(stage, DATA, questions, answers, mainImages).divideQuestions();
     }
 
     private void getAnswers(){
@@ -53,23 +55,21 @@ public class Begin {
             );
             ResultSet result = preparedStatement.executeQuery();
             while(result.next()){
-                answers.get(result.getString(2)).add(new String[]{result.getString(1), result.getString(3)});
+                answers.get(result.getInt(2)).put(result.getInt(1), result.getBytes(3));
             }
         } catch (SQLException ex){
             System.out.println("het lukt niet om de databank in te lezen");
         }
     }
-
     /**
      * Dit methode krijgt de Result en gaat telkens alle data van een rij
      * van een rij in een eigen array opslaan
      */
-    public void addRow(ResultSet resultSet) throws SQLException {
-        String[] row = new String[6];
-        answers.put(resultSet.getString(1), new ArrayList<>());
-        mainImages.add(resultSet.getBytes(4));
+    private void addRow(ResultSet resultSet) throws SQLException {
+        List<byte[]> row = new ArrayList<>();
+        answers.put(resultSet.getInt(1), new HashMap<>());
         for(int r = 1; r <= 6; r++){
-            row[r-1] = resultSet.getString(r);
+            row.add(resultSet.getBytes(r));
         }
         questions.add(row);
     }

@@ -6,7 +6,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * mcs
@@ -15,9 +17,9 @@ public class Standard extends Type {
 
     private GridPane gridpane;
     private final Label[] labels;
-    public Standard(Stage stage, String DATA, String[] row, List<String[]> answers, byte[] aByte) {
-        super(stage, DATA, row, answers, aByte);
-        labels = new Label[answersSize];
+    public Standard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
+        super(stage, row, answers);
+        labels = new Label[answers.size()];
     }
 
     @Override
@@ -25,12 +27,11 @@ public class Standard extends Type {
         super.build();
         text.setFont(new Font(22.5));
         gridpane = new GridPane();
-        gridpane.setId("anchorpane");
         ToggleGroup lettersGroup = new ToggleGroup();
-        for(int i = 0; i < answersSize; i++){
+        for(int i = 0; i < answers.size(); i++){
             ToggleButton toggleButton = new ToggleButton(" " + ((char) (i+65)) + " ");
             toggleButton.setId("togglebutton");
-            Label label = new Label(answers.get(i)[1]);
+            Label label = new Label(new String(answers.get(new ArrayList<>(answers.keySet()).get(i))));
             label.setId("label");
             labels[i] = label;
             GridPane.setConstraints(toggleButton, 0, i);
@@ -43,6 +44,5 @@ public class Standard extends Type {
         gridpane.setHgap(10);
         setBottom(gridpane);
         setMargin(gridpane, new Insets(0, 15, 50, 15));
-        setMargin(textFlow, new Insets(50, 15, 0, 15));
     }
 }

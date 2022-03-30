@@ -1,7 +1,6 @@
 package be.ugent.flash;
 
-import be.ugent.flash.questions.Compact;
-import be.ugent.flash.questions.Type;
+import be.ugent.flash.questions.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,22 +13,19 @@ import java.util.*;
 public class Spreader {
 
     private final Stage stage;
-    private final String DATA;
-    private final List<String[]> questions;
-    private final Map<String, List<String[]>> answers;
-    private final List<byte[]> mainImages;
+    private final List<List<byte[]>> questions;
+    private final Map<Integer, Map<Integer, byte[]>> answers;
 
-    public Spreader(Stage stage, String DATA, List<String[]> questions, Map<String, List<String[]>> answers, List<byte[]> mainImages){
+    public Spreader(Stage stage, List<List<byte[]>> questions, Map<Integer, Map<Integer, byte[]>> answers){
         this.stage = stage;
-        this.DATA = DATA;
         this.questions = questions;
         this.answers = answers;
-        this.mainImages = mainImages;
     }
 
     public void divideQuestions() throws IOException {
-        String[] row = questions.get(1);
-        Type type = new Compact(stage, DATA, row, answers.get(row[0]), mainImages.get(1));
+        List<byte[]> row = questions.get(3);
+        String id = new String(row.get(0));
+        Type type = new Multiple(stage, row, answers.get(Integer.parseInt(id)));
         type.build();
         type.showQuestion();
     }

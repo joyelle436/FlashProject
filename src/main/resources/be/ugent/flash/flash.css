@@ -1,11 +1,11 @@
 #borderpane {
+    -fx-background-radius: 15px;
     -fx-background-color: #6082B6;
     -fx-pref-width: 450px;
-    -fx-pref-height: 530px;
+    -fx-pref-height: 550px;
 }
 
 #textflow {
-    -fx-pref-height: 200px;
     -fx-pref-width: 200px;
     -fx-text-fill: white;
 }
@@ -16,11 +16,6 @@
     -fx-pref-width: 180px;
 }
 
-#textfield {
-    -fx-pref-height: 45px;
-    -fx-max-width: 400px;
-    -fx-font-size: 20px;
-}
 
 #imageview {
     -fx-pref-width: 300px;
@@ -28,8 +23,8 @@
 }
 
 #togglebutton {
-    -fx-pref-height: 40px;
-    -fx-font-size: 25px;
+    -fx-pref-height: 35px;
+    -fx-font-size: 20px;
     -fx-font-weight: bolder;
     -fx-background-color: yellow;
     -fx-alignment: CENTER;
@@ -55,4 +50,18 @@
 #okay {
     -fx-background-color: yellow;
     -fx-font-size: 15px;
+}
+
+.yellow {
+    -fx-background-color: yellow;
+}
+
+.changeBorder {
+    -fx-border-width: 3px;
+    -fx-border-color: orange;
+}
+
+.changeText {
+    -fx-text-fill: orange;
+    -fx-font-weight: bold;
 }

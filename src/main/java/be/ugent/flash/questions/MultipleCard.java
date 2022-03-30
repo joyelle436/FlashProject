@@ -12,7 +12,7 @@ import java.util.*;
 /**
  * mr
  */
-public class Multiple extends Type {
+public class MultipleCard extends Type {
 
     private final GridPane gridpane;
     private final Button okay;
@@ -21,7 +21,7 @@ public class Multiple extends Type {
     private final int numberOfCorrect;
     //lijst met alle toegevoegde checkbox
     private final CheckBox[] checkBoxList;
-    public Multiple(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
+    public MultipleCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
         super(stage, row, answers);
         checkBoxList = new CheckBox[answers.size()];
         gridpane = new GridPane();
@@ -61,6 +61,7 @@ public class Multiple extends Type {
                 }
             }
             answerFound = answerFound && counting == numberOfCorrect;
+            this.goToNext = true;
             Platform.exit();
         });
     }

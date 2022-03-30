@@ -12,12 +12,12 @@ import java.util.*;
 /**
  * mcs
  */
-public class Standard extends Type {
+public class StandardCard extends Type {
 
     private GridPane gridpane;
     private ToggleGroup lettersGroup;
     private final Label[] labels;
-    public Standard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
+    public StandardCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
         super(stage, row, answers);
         labels = new Label[answers.size()];
         lettersGroup = new ToggleGroup();
@@ -54,6 +54,7 @@ public class Standard extends Type {
                 String selectedText = selectedToggle.getText().trim();
                 char correctAnswer = (char) (Integer.parseInt(new String(row.get(5)))-1+65);
                 answerFound = correctAnswer == selectedText.charAt(0);
+                this.goToNext = true;
                 Platform.exit();
             });
         }

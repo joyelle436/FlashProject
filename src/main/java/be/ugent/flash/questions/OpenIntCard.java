@@ -1,14 +1,7 @@
 package be.ugent.flash.questions;
 
 import javafx.application.Platform;
-import javafx.geometry.Insets;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -18,9 +11,9 @@ import java.util.Map;
 /**
  * openi
  */
-public class OpenInt extends OpenQuestion {
+public class OpenIntCard extends OpenQuestion {
 
-    public OpenInt(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
+    public OpenIntCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
         super(stage, row, answers);
     }
 
@@ -33,6 +26,7 @@ public class OpenInt extends OpenQuestion {
                 try {
                     int answerInt = Integer.parseInt(answer);
                     answerFound = answerInt == Integer.parseInt(new String(row.get(5)));
+                    this.goToNext = true;
                     Platform.exit();
                 } catch (NumberFormatException ex){
                     answerField.getStyleClass().add("changeBorder");

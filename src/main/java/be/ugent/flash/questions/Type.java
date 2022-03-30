@@ -23,6 +23,7 @@ public abstract class Type extends BorderPane {
     protected final Stage stage;
     protected final List<byte[]> row;
     protected final Map<Integer, byte[]> answers;
+    protected boolean goToNext;
 
     protected Type(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers){
         this.stage = stage;
@@ -32,6 +33,7 @@ public abstract class Type extends BorderPane {
     }
 
     public void build(){
+        this.goToNext = false;
         setId("borderpane");
         addImage();
         textFlow = new TextFlow();
@@ -47,6 +49,14 @@ public abstract class Type extends BorderPane {
             setMargin(textFlow, new Insets(50, 15, 0, 15));
         }
         getStylesheets().add(getClass().getResource("/be/ugent/flash/flash.css").toString());
+    }
+
+    public boolean canGoToNext(){
+        return goToNext;
+    }
+
+    public boolean isAnswerFound(){
+        return answerFound;
     }
 
     /**

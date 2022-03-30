@@ -12,10 +12,10 @@ import java.util.*;
 /**
  * mcc
  */
-public class Compact extends Type {
+public class CompactCard extends Type {
 
     private ToggleGroup wordsgroup;
-    public Compact(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
+    public CompactCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
         super(stage, row, answers);
         this.wordsgroup = new ToggleGroup();
     }
@@ -48,6 +48,7 @@ public class Compact extends Type {
                 int key = new ArrayList<>(answers.keySet()).get((Integer.parseInt(new String(row.get(5))))-1);
                 String selectedText = selectedToggle.getText();
                 answerFound = selectedText.equals(new String(answers.get(key)));
+                this.goToNext = true;
                 Platform.exit();
             });
         }

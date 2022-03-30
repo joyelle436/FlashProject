@@ -2,14 +2,11 @@ package be.ugent.flash.questions;
 
 import javafx.application.Platform;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -19,12 +16,12 @@ import java.util.*;
 /**
  * mci
  */
-public class Picture extends Type {
+public class PictureCard extends Type {
     private final GridPane gridpane;
     private ToggleGroup picturegroup;
     //key togglebutton, value: antwoord part id
     private final Map<ToggleButton, Integer> toggleAnswers;
-    public Picture(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
+    public PictureCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
         super(stage, row, answers);
         gridpane = new GridPane();
         toggleAnswers = new HashMap<>();
@@ -67,6 +64,7 @@ public class Picture extends Type {
                 int index = Integer.parseInt(new String(row.get(5))) - 1;
                 String correct = String.valueOf(new ArrayList<>(answers.keySet()).get(index));
                 answerFound = selected.equals(correct);
+                this.goToNext = true;
                 Platform.exit();
             });
         }

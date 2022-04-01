@@ -1,13 +1,10 @@
 package be.ugent.flash.questions;
 
-import javafx.application.Platform;
+import be.ugent.flash.visitors.*;
 import javafx.geometry.Insets;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.ByteArrayInputStream;
@@ -16,13 +13,13 @@ import java.util.*;
 /**
  * mci
  */
-public class PictureCard extends Type {
+public class PictureCard extends Type implements CardItem<PictureCard> {
     private final GridPane gridpane;
     private ToggleGroup picturegroup;
     //key togglebutton, value: antwoord part id
     private final Map<ToggleButton, Integer> toggleAnswers;
-    public PictureCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
-        super(stage, row, answers);
+    public PictureCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers, Type nextCard) {
+        super(stage, row, answers, nextCard);
         gridpane = new GridPane();
         toggleAnswers = new HashMap<>();
         picturegroup = new ToggleGroup();
@@ -31,7 +28,6 @@ public class PictureCard extends Type {
     @Override
     public void build() {
         super.build();
-        text.setFont(new Font(22.5));
         int i = 0;
         for(Integer key: answers.keySet()){
             Image answerImage = new Image(new ByteArrayInputStream(answers.get(key)));
@@ -51,6 +47,7 @@ public class PictureCard extends Type {
             setMargin(gridpane, new Insets(0, 15, 50, 30));
         } else {
             setCenter(gridpane);
+            setMargin(textFlow, new Insets(175, 15, 0, 15));
             setMargin(gridpane, new Insets(25, 15, 50, 30));
         }
         handleEvents();
@@ -64,9 +61,13 @@ public class PictureCard extends Type {
                 int index = Integer.parseInt(new String(row.get(5))) - 1;
                 String correct = String.valueOf(new ArrayList<>(answers.keySet()).get(index));
                 answerFound = selected.equals(correct);
-                this.goToNext = true;
-                Platform.exit();
+                showNextCard();
             });
         }
+    }
+
+    @Override
+    public void accept(CardVisitor cardVisitor) {
+        cardVisitor.visit(this);
     }
 }

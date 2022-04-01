@@ -1,7 +1,9 @@
 package be.ugent.flash.questions;
 
-import javafx.application.Platform;
+import be.ugent.flash.visitors.CardItem;
+import be.ugent.flash.visitors.CardVisitor;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
@@ -12,13 +14,13 @@ import java.util.*;
 /**
  * mcs
  */
-public class StandardCard extends Type {
+public class StandardCard extends Type implements CardItem<StandardCard> {
 
     private GridPane gridpane;
     private ToggleGroup lettersGroup;
     private final Label[] labels;
-    public StandardCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
-        super(stage, row, answers);
+    public StandardCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers, Type nextCard) {
+        super(stage, row, answers, nextCard);
         labels = new Label[answers.size()];
         lettersGroup = new ToggleGroup();
     }
@@ -26,7 +28,6 @@ public class StandardCard extends Type {
     @Override
     public void build() {
         super.build();
-        text.setFont(new Font(22.5));
         gridpane = new GridPane();
         for(int i = 0; i < answers.size(); i++){
             ToggleButton toggleButton = new ToggleButton(" " + ((char) (i+65)) + " ");
@@ -54,9 +55,13 @@ public class StandardCard extends Type {
                 String selectedText = selectedToggle.getText().trim();
                 char correctAnswer = (char) (Integer.parseInt(new String(row.get(5)))-1+65);
                 answerFound = correctAnswer == selectedText.charAt(0);
-                this.goToNext = true;
-                Platform.exit();
+                showNextCard();
             });
         }
+    }
+
+    @Override
+    public void accept(CardVisitor cardVisitor) {
+        cardVisitor.visit(this);
     }
 }

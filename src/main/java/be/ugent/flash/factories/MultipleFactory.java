@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class MultipleFactory implements QuestionFactory {
     @Override
-    public Type makeQuiz(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
-        return new MultipleCard(stage, row, answers);
+    public Type makeQuiz(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers, Type nextCard) {
+        return new MultipleCard(stage, row, answers, nextCard);
     }
 }

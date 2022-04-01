@@ -1,15 +1,13 @@
 package be.ugent.flash.factories;
 
-import be.ugent.flash.questions.OpenIntCard;
-import be.ugent.flash.questions.Type;
+import be.ugent.flash.questions.*;
 import javafx.stage.Stage;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class OpenIntFactory implements QuestionFactory {
     @Override
-    public Type makeQuiz(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
-        return new OpenIntCard(stage, row, answers);
+    public Type makeQuiz(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers, Type nextCard) {
+        return new OpenIntCard(stage, row, answers, nextCard);
     }
 }

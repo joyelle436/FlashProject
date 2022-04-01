@@ -10,7 +10,13 @@
     -fx-text-fill: white;
 }
 
+#textfield {
+    -fx-pref-height: 40px;
+    -fx-font-size: 20px;
+}
+
 #text {
+    -fx-font-size: 20px;
     -fx-fill: white;
     -fx-text-alignment: CENTER;
     -fx-pref-width: 180px;
@@ -23,7 +29,7 @@
 }
 
 #togglebutton {
-    -fx-pref-height: 35px;
+    -fx-pref-height: 30px;
     -fx-font-size: 20px;
     -fx-font-weight: bolder;
     -fx-background-color: yellow;

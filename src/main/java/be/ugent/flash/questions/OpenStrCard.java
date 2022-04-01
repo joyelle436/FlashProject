@@ -11,8 +11,8 @@ import java.util.*;
  */
 public class OpenStrCard extends OpenQuestion {
 
-    public OpenStrCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
-        super(stage, row, answers);
+    public OpenStrCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers, Type nextCard) {
+        super(stage, row, answers, nextCard);
     }
 
     public void build(){
@@ -27,8 +27,7 @@ public class OpenStrCard extends OpenQuestion {
                 } else {
                     String answerText = answerField.getText().trim();
                     answerFound = answerText.equals(new String(row.get(5)));
-                    this.goToNext = true;
-                    Platform.exit();
+                    showNextCard();
                 }
             }
         });

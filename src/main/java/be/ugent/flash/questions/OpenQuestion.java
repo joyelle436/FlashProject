@@ -1,19 +1,30 @@
 package be.ugent.flash.questions;
 
+import be.ugent.flash.visitors.CardItem;
+import be.ugent.flash.visitors.CardVisitor;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.util.*;
 
-public class OpenQuestion extends Type {
-    protected TextField answerField;
-    protected Label foutlabel;
-    protected OpenQuestion(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
-        super(stage, row, answers);
+public class OpenQuestion extends Type implements CardItem<OpenQuestion> {
+    protected final TextField answerField;
+    protected final Label foutlabel;
+    protected OpenQuestion(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers, Type nextCard) {
+        super(stage, row, answers, nextCard);
+        this.answerField = new TextField();
+        this.foutlabel = new Label();
+    }
+
+    public TextField getAnswerField() {
+        return answerField;
+    }
+
+    public Label getFoutlabel() {
+        return foutlabel;
     }
 
     @Override
@@ -21,10 +32,7 @@ public class OpenQuestion extends Type {
         super.build();
         text.setFont(new Font(25));
         GridPane gridPane = new GridPane();
-        this.answerField = new TextField();
         answerField.setId("textfield");
-        answerField.setFont(new Font(20));
-        foutlabel = new Label();
         foutlabel.setVisible(false);
         foutlabel.setFont(new Font(17.5));
         GridPane.setConstraints(answerField, 0, 0);
@@ -37,7 +45,13 @@ public class OpenQuestion extends Type {
             setMargin(gridPane, new Insets(0, 15, 100, 20));
         } else {
             setCenter(gridPane);
-            setMargin(gridPane, new Insets(20, 0, 0, -15));
+            setMargin(textFlow, new Insets(150, 15, 0, 15));
+            setMargin(gridPane, new Insets(20, 0, 0, 25));
         }
+    }
+
+    @Override
+    public void accept(CardVisitor cardVisitor) {
+        cardVisitor.visit(this);
     }
 }

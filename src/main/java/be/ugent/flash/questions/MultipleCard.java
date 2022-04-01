@@ -1,10 +1,10 @@
 package be.ugent.flash.questions;
 
-import javafx.application.Platform;
+import be.ugent.flash.visitors.CardItem;
+import be.ugent.flash.visitors.CardVisitor;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.util.*;
@@ -12,32 +12,51 @@ import java.util.*;
 /**
  * mr
  */
-public class MultipleCard extends Type {
+public class MultipleCard extends Type implements CardItem<MultipleCard> {
 
     private final GridPane gridpane;
     private final Button okay;
     //string als key en T of F als value
-    private final Map<String, Character> correctSelected;
+    private final Map<String, Character> correspondingChar;
     private final int numberOfCorrect;
     //lijst met alle toegevoegde checkbox
     private final CheckBox[] checkBoxList;
-    public MultipleCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
-        super(stage, row, answers);
+    public MultipleCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers, Type nextCard) {
+        super(stage, row, answers, nextCard);
         checkBoxList = new CheckBox[answers.size()];
         gridpane = new GridPane();
         okay = new Button("OK");
         okay.setId("okay");
-        correctSelected = new HashMap<>();
+        correspondingChar = new HashMap<>();
         numberOfCorrect = (int) new String(row.get(5)).chars().filter(ch -> ch == 'T').count();
+    }
+
+    public GridPane getGridpane() {
+        return gridpane;
+    }
+
+    public Button getOkay() {
+        return okay;
+    }
+
+    public int getNumberOfCorrect() {
+        return numberOfCorrect;
+    }
+
+    public CheckBox[] getCheckBoxList() {
+        return checkBoxList;
+    }
+
+    public Map<String, Character> getCorrespondingChar() {
+        return correspondingChar;
     }
 
     @Override
     public void build() {
         super.build();
-        text.setFont(new Font(22.5));
         for(int i=0; i < answers.size(); i++){
             String possibility = new String(answers.get(new ArrayList<>(answers.keySet()).get(i)));//antwoord
-            correctSelected.put(possibility, new String(row.get(5)).charAt(i));
+            correspondingChar.put(possibility, new String(row.get(5)).charAt(i));
             CheckBox checkBox = new CheckBox(possibility);
             checkBox.setId("checkbox");
             checkBoxList[i] = checkBox;
@@ -57,12 +76,16 @@ public class MultipleCard extends Type {
             for(CheckBox checkBox: checkBoxList){
                 if(checkBox.isSelected()){
                     counting++;
-                    answerFound = answerFound && correctSelected.get(checkBox.getText()) == 'T';
+                    answerFound = answerFound && correspondingChar.get(checkBox.getText()) == 'T';
                 }
             }
             answerFound = answerFound && counting == numberOfCorrect;
-            this.goToNext = true;
-            Platform.exit();
+            showNextCard();
         });
+    }
+
+    @Override
+    public void accept(CardVisitor cardVisitor) {
+        cardVisitor.visit(this);
     }
 }

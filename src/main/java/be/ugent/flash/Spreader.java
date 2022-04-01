@@ -2,7 +2,11 @@ package be.ugent.flash;
 
 import be.ugent.flash.factories.*;
 import be.ugent.flash.questions.*;
+import be.ugent.flash.visitors.CompactCardVisitor;
+import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.*;
@@ -37,27 +41,19 @@ public class Spreader {
     }
 
     public void divideQuestions() throws IOException {
-        for(List<byte[]> row: questions){
+        for (List<byte[]> row : questions) {
             String questionType = new String(row.get(4));
             Integer id = Integer.parseInt(new String(row.get(0)));
-            Type quiz = factoryMap.get(questionType).makeQuiz(stage, row, answers.get(id));
+            Type quiz = factoryMap.get(questionType).makeQuiz(stage, row, answers.get(id), null);
             questionsOrder.add(quiz);
         }
-        List<Type> typelist;
-        int i = 0;
-        while (!quizDone){
-            typelist = new ArrayList<>(questionsOrder);
-            Type typeQuestion = typelist.get(i);
-            typeQuestion.build();
-            typeQuestion.showQuestion();//maakt een nieuwe scene met aan en plaats dit aan de stage
-            while(!typeQuestion.canGoToNext()){
-                //stopt als het antwoord gegeven wordt
-            }
-            if(typeQuestion.isAnswerFound()){
-                questionsOrder.remove(typeQuestion);
-            }
-            quizDone = questionsOrder.isEmpty();
-            i++;
+
+        List<Type> typelist = new ArrayList<>(questionsOrder);
+        for(int t = 0; t < typelist.size()-1; t++){
+            typelist.get(t).setNextCard(typelist.get(t+1));
         }
+        Integer id = Integer.parseInt(new String(questions.get(1).get(0)));
+        CompactCard compactCard = new CompactCard(stage, questions.get(1), answers.get(id), null);
+        compactCard.showQuestion();
     }
 }

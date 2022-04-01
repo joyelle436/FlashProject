@@ -1,10 +1,9 @@
 package be.ugent.flash.questions;
 
-import javafx.application.Platform;
+import be.ugent.flash.visitors.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.util.*;
@@ -12,33 +11,26 @@ import java.util.*;
 /**
  * mcc
  */
-public class CompactCard extends Type {
+public class CompactCard extends Type implements CardItem<CompactCard>{
 
-    private ToggleGroup wordsgroup;
-    public CompactCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers) {
-        super(stage, row, answers);
+    private final GridPane gridpane;
+    private final ToggleGroup wordsgroup;
+    public CompactCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers, Type nextCard) {
+        super(stage, row, answers, nextCard);
         this.wordsgroup = new ToggleGroup();
+        this.gridpane = new GridPane();
     }
 
-    @Override
-    public void build() {
-        super.build();
-        text.setFont(new Font(22.5));
-        GridPane gridpane = new GridPane();
-        gridpane.setId("anchorpane");
-        for(int i = 0; i < answers.size(); i++){
-            ToggleButton toggleButton = new ToggleButton(new String(answers.get(new ArrayList<>(answers.keySet()).get(i))));
-            toggleButton.setId("togglebutton");
-            GridPane.setConstraints(gridpane, i, 0);
-            GridPane.setConstraints(toggleButton, gridpane.getColumnCount()+1, 0);
-            wordsgroup.getToggles().add(toggleButton);
-            gridpane.getChildren().add(toggleButton);
-        }
-        gridpane.layout();
-        gridpane.setHgap(5);
-        setBottom(gridpane);
-        setMargin(gridpane, new Insets(0, 15, 50, 15));
-        handleEvents();
+    public GridPane getGridpane() {
+        return gridpane;
+    }
+
+    public ToggleGroup getWordsgroup() {
+        return wordsgroup;
+    }
+
+    public void addToggleButton(ToggleButton toggleButton){
+        wordsgroup.getToggles().add(toggleButton);
     }
 
     private void handleEvents() {
@@ -48,9 +40,13 @@ public class CompactCard extends Type {
                 int key = new ArrayList<>(answers.keySet()).get((Integer.parseInt(new String(row.get(5))))-1);
                 String selectedText = selectedToggle.getText();
                 answerFound = selectedText.equals(new String(answers.get(key)));
-                this.goToNext = true;
-                Platform.exit();
+                showNextCard();
             });
         }
+    }
+
+    @Override
+    public void accept(CardVisitor cardVisitor) {
+        cardVisitor.visit(this);
     }
 }

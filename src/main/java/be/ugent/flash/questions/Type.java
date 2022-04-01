@@ -1,5 +1,6 @@
 package be.ugent.flash.questions;
 
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.*;
@@ -13,8 +14,7 @@ import java.util.*;
 
 
 /**
- * superklasse van alle soort vragen. Krijg zijn id in de constructor zodat
- * de klasse zijn antwoorden kan opvragen in de databa-nk
+ * superklasse van alle soort vragen.
  */
 public abstract class Type extends BorderPane {
     protected TextFlow textFlow;
@@ -23,17 +23,20 @@ public abstract class Type extends BorderPane {
     protected final Stage stage;
     protected final List<byte[]> row;
     protected final Map<Integer, byte[]> answers;
-    protected boolean goToNext;
+    private Type nextCard;
 
-    protected Type(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers){
+    protected Type(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers, Type nextCard){
         this.stage = stage;
         this.answers = answers; //heeft antwoorden van die specifieke vraag
         this.row = row; //heeft hele rij van questions tabel
         this.answerFound = true;
+        this.nextCard = nextCard;
     }
 
+    /**
+     * Dit zijn componenten die in elke type vraag aanwezig moeten zijn
+     */
     public void build(){
-        this.goToNext = false;
         setId("borderpane");
         addImage();
         textFlow = new TextFlow();
@@ -51,8 +54,12 @@ public abstract class Type extends BorderPane {
         getStylesheets().add(getClass().getResource("/be/ugent/flash/flash.css").toString());
     }
 
-    public boolean canGoToNext(){
-        return goToNext;
+    public Map<Integer, byte[]> getAnswers() {
+        return answers;
+    }
+
+    public void setNextCard(Type next){
+        nextCard = next;
     }
 
     public boolean isAnswerFound(){
@@ -69,11 +76,27 @@ public abstract class Type extends BorderPane {
             setCenter(imageView);
         }
     }
+
+    /**
+     * voeg het kaart toe aan de stage
+     */
     public void showQuestion(){
         Scene scene = new Scene(this, Color.TRANSPARENT);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
+    }
+
+    /**
+     *
+     */
+    protected void showNextCard(){
+        if(nextCard != null){
+            nextCard.build();
+            stage.setScene(new Scene(nextCard, Color.TRANSPARENT));
+        } else {
+            Platform.exit();
+        }
     }
 }

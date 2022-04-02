@@ -13,11 +13,10 @@ public class OpenStrCard extends OpenQuestion {
 
     public OpenStrCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers, Type nextCard) {
         super(stage, row, answers, nextCard);
+        foutlabel.setText("Antwoord kan niet leeg zijn");
     }
 
-    public void build(){
-        super.build();
-        foutlabel.setText("Antwoord kan niet leeg zijn");
+    public void handleEvents(){
         setOnKeyPressed(keyEvent -> {
             if(keyEvent.getCode().equals(KeyCode.ENTER)){
                 if(answerField.getText().equals("")){
@@ -27,6 +26,7 @@ public class OpenStrCard extends OpenQuestion {
                 } else {
                     String answerText = answerField.getText().trim();
                     answerFound = answerText.equals(new String(row.get(5)));
+                    goToNext = true;
                     showNextCard();
                 }
             }

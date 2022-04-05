@@ -1,7 +1,7 @@
 package be.ugent.flash;
 
 import be.ugent.flash.factories.*;
-import be.ugent.flash.questions.*;
+import be.ugent.flash.cards.*;
 import be.ugent.flash.visitors.*;
 import javafx.stage.Stage;
 
@@ -53,5 +53,11 @@ public class Spreader {
             cardVisitor.buildCard(type);
             cardsQueue.add(type);
         }
+
+        List<Type> cards = new ArrayList<>(cardsQueue);
+        for(int i = 0; i < cards.size()-1; i++){
+            cards.get(i).setNextCard(cards.get(i+1));
+        }
+        cards.get(0).showQuestion();
     }
 }

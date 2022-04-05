@@ -1,4 +1,4 @@
-package be.ugent.flash.questions;
+package be.ugent.flash.cards;
 
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -85,7 +85,6 @@ public abstract class Type extends BorderPane {
     public boolean isAnswerFound(){
         return answerFound;
     }
-
     /**
      * foto toevoegen als dit bestaat
      */

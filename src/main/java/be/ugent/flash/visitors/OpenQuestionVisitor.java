@@ -1,6 +1,6 @@
 package be.ugent.flash.visitors;
 
-import be.ugent.flash.questions.OpenQuestion;
+import be.ugent.flash.cards.OpenQuestion;
 import javafx.geometry.Insets;
 import javafx.scene.layout.*;
 

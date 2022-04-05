@@ -1,6 +1,6 @@
 package be.ugent.flash.visitors;
 
-import be.ugent.flash.questions.CompactCard;
+import be.ugent.flash.cards.CompactCard;
 import javafx.geometry.*;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.*;

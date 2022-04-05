@@ -1,8 +1,7 @@
-package be.ugent.flash.questions;
+package be.ugent.flash.cards;
 
 
 import be.ugent.flash.visitors.*;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
@@ -10,6 +9,9 @@ import javafx.stage.Stage;
 
 import java.util.*;
 
+/**
+ * superklasse voor OpenIntCard(openi) en OpenStrCard(open)
+ */
 public class OpenQuestion extends Type implements CardItem<OpenQuestion> {
     protected final TextField answerField;
     protected final Label foutlabel;

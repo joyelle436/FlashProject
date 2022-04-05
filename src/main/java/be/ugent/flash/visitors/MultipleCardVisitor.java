@@ -1,6 +1,6 @@
 package be.ugent.flash.visitors;
 
-import be.ugent.flash.questions.MultipleCard;
+import be.ugent.flash.cards.MultipleCard;
 import javafx.geometry.Insets;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.*;

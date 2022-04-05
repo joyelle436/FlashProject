@@ -1,6 +1,6 @@
 package be.ugent.flash.factories;
 
-import be.ugent.flash.questions.*;
+import be.ugent.flash.cards.*;
 import javafx.stage.Stage;
 
 import java.util.*;

@@ -1,10 +1,9 @@
-package be.ugent.flash.questions;
+package be.ugent.flash.cards;
 
 import be.ugent.flash.visitors.CardItem;
 import be.ugent.flash.visitors.CardVisitor;
-import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.util.*;

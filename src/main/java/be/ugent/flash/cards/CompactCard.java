@@ -29,8 +29,9 @@ public class CompactCard extends Type implements CardItem<CompactCard>{
     public void handleEvents() {
         for(int t = 0; t < wordsgroup.getToggles().size(); t++){
             ToggleButton selectedToggle = (ToggleButton) wordsgroup.getToggles().get(t);
-            selectedToggle.setOnAction(actionEvent -> {
-                int key = new ArrayList<>(answers.keySet()).get((Integer.parseInt(new String(row.get(5))))-1);
+            selectedToggle.setOnMouseClicked(mouseEvent -> {
+                //index van antwoord
+                int key = new ArrayList<>(answers.keySet()).get((Integer.parseInt(new String(row.get(5)))));
                 String selectedText = selectedToggle.getText();
                 answerFound = selectedText.equals(new String(answers.get(key)));
                 goToNext = true;

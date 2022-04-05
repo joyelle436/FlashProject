@@ -17,6 +17,19 @@ public class OpenStrCard extends OpenQuestion {
     }
 
     public void handleEvents(){
-
+        setOnKeyPressed(keyEvent -> {
+            if(keyEvent.getCode().equals(KeyCode.ENTER)){
+                if(answerField.getText().equals("")){
+                    answerField.getStyleClass().add("changeBorder");
+                    foutlabel.setVisible(true);
+                    foutlabel.getStyleClass().add("changeText");
+                } else {
+                    String answerText = answerField.getText().trim();
+                    answerFound = answerText.equals(new String(row.get(5)));
+                    goToNext = true;
+                    showNextCard();
+                }
+            }
+        });
     }
 }

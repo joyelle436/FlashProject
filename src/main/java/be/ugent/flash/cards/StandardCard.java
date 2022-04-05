@@ -38,9 +38,9 @@ public class StandardCard extends Type implements CardItem<StandardCard> {
     public void handleEvents() {
         for(int t = 0; t < lettersGroup.getToggles().size(); t++){
             ToggleButton selectedToggle = (ToggleButton) lettersGroup.getToggles().get(t);
-            selectedToggle.setOnAction(actionEvent -> {
+            selectedToggle.setOnMouseClicked(mouseEvent -> {
                 String selectedText = selectedToggle.getText().trim();
-                char correctAnswer = (char) (Integer.parseInt(new String(row.get(5)))-1+65);
+                char correctAnswer = (char) (Integer.parseInt(new String(row.get(5)))+65);
                 answerFound = correctAnswer == selectedText.charAt(0);
                 goToNext = true;
                 showNextCard();

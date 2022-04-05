@@ -53,12 +53,11 @@ public class MultipleCard extends Type implements CardItem<MultipleCard> {
     }
 
     public void handleEvents() {
-        okay.setOnAction(actionEvent -> {
+        okay.setOnMouseClicked(mouseEvent -> {
             int counting = 0;
             for(CheckBox checkBox: checkBoxList){
-                if(checkBox.isSelected()){
+                if(checkBox.isSelected() && correspondingChar.get(checkBox.getText()) == 'T'){
                     counting++;
-                    answerFound = answerFound && correspondingChar.get(checkBox.getText()) == 'T';
                 }
             }
             answerFound = counting == numberOfCorrect;

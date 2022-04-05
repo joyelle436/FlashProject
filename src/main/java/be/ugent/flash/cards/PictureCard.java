@@ -35,7 +35,7 @@ public class PictureCard extends Type implements CardItem<PictureCard> {
     public void handleEvents() {
         for(int t = 0; t < picturegroup.getToggles().size(); t++){
             ToggleButton selectedToggle = (ToggleButton) picturegroup.getToggles().get(t);
-            selectedToggle.setOnAction(actionEvent -> {
+            selectedToggle.setOnMouseClicked(mouseEvent -> {
                 String selected = String.valueOf(toggleAnswers.get(selectedToggle));
                 int index = Integer.parseInt(new String(row.get(5))) - 1;
                 String correct = String.valueOf(new ArrayList<>(answers.keySet()).get(index));

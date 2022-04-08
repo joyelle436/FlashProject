@@ -1,6 +1,7 @@
 package be.ugent.flash.cards;
 
 
+import be.ugent.flash.CardModel;
 import be.ugent.flash.QuestionRow;
 import be.ugent.flash.visitors.*;
 import javafx.scene.control.*;
@@ -16,33 +17,36 @@ import java.util.*;
 public class OpenQuestion extends Type implements CardItem<OpenQuestion> {
 
     protected final TextField answerField;
-    protected final Label foutlabel;
-    protected OpenQuestion(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers, Type nextCard) {
-        super(stage, questionRow, answers, nextCard);
+    protected final Label errorlabel;
+    protected OpenQuestion(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers) {
+        super(stage, questionRow, answers);
         this.answerField = new TextField();
         answerField.setId("textfield");
         answerField.setMaxWidth(400);
-        this.foutlabel = new Label();
-        foutlabel.setVisible(false);
-        foutlabel.setFont(new Font(17.5));
+        this.errorlabel = new Label();
+        errorlabel.setVisible(false);
+        errorlabel.setFont(new Font(17.5));
         GridPane.setConstraints(answerField, 0, 0);
-        GridPane.setConstraints(foutlabel, 0, 1);
+        GridPane.setConstraints(errorlabel, 0, 1);
+    }
+
+    public void setModel(CardModel model){
     }
 
     @Override
     public void clear() {
         answerField.clear();
-        foutlabel.setVisible(false);
+        errorlabel.setVisible(false);
         answerField.getStyleClass().remove("changeBorder");
-        foutlabel.getStyleClass().remove("changeText");
+        errorlabel.getStyleClass().remove("changeText");
     }
 
     public TextField getAnswerField() {
         return answerField;
     }
 
-    public Label getFoutlabel() {
-        return foutlabel;
+    public Label getErrorlabel() {
+        return errorlabel;
     }
 
     public void handleEvents(){

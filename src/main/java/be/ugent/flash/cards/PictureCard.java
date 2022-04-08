@@ -1,7 +1,10 @@
 package be.ugent.flash.cards;
 
+import be.ugent.flash.CardModel;
 import be.ugent.flash.QuestionRow;
 import be.ugent.flash.visitors.*;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -10,12 +13,12 @@ import java.util.*;
 /**
  * mci
  */
-public class PictureCard extends Type implements CardItem<PictureCard> {
+public class PictureCard extends Type implements CardItem<PictureCard>, InvalidationListener {
     private final ToggleGroup picturegroup;
     //key togglebutton, value: antwoord part id
     private final Map<ToggleButton, Integer> toggleAnswers;
-    public PictureCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers, Type nextCard) {
-        super(stage, questionRow, answers, nextCard);
+    public PictureCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers) {
+        super(stage, questionRow, answers);
         toggleAnswers = new HashMap<>();
         picturegroup = new ToggleGroup();
     }
@@ -37,6 +40,11 @@ public class PictureCard extends Type implements CardItem<PictureCard> {
         toggleAnswers.put(toggleButton, answer);
     }
 
+    public void setModel(CardModel model){
+        this.model = model;
+        model.addListener(this);
+    }
+
     public void handleEvents() {
         for(int t = 0; t < picturegroup.getToggles().size(); t++){
             ToggleButton selectedToggle = (ToggleButton) picturegroup.getToggles().get(t);
@@ -45,8 +53,7 @@ public class PictureCard extends Type implements CardItem<PictureCard> {
                 int index = Integer.parseInt(questionRow.correctAnswer());
                 String correct = String.valueOf(new ArrayList<>(answers.keySet()).get(index));
                 answerFound = selected.equals(correct);
-                goToNext = true;
-                showNextCard();
+                System.out.println(isAnswerFound());
             });
         }
     }
@@ -54,5 +61,10 @@ public class PictureCard extends Type implements CardItem<PictureCard> {
     @Override
     public void accept(CardVisitor<PictureCard> cardVisitor) {
         cardVisitor.visit(this);
+    }
+
+    @Override
+    public void invalidated(Observable observable) {
+
     }
 }

@@ -1,6 +1,9 @@
 package be.ugent.flash.cards;
 
+import be.ugent.flash.CardModel;
 import be.ugent.flash.QuestionRow;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
@@ -9,27 +12,37 @@ import java.util.*;
 /**
  * open
  */
-public class OpenStrCard extends OpenQuestion {
+public class OpenStrCard extends OpenQuestion implements InvalidationListener {
 
-    public OpenStrCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers, Type nextCard) {
-        super(stage, questionRow, answers, nextCard);
-        foutlabel.setText("Antwoord kan niet leeg zijn");
+    public OpenStrCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers) {
+        super(stage, questionRow, answers);
+        errorlabel.setText("Antwoord kan niet leeg zijn");
     }
+
+    public void setModel(CardModel model){
+        this.model = model;
+        model.addListener(this);
+    }
+
 
     public void handleEvents(){
         setOnKeyPressed(keyEvent -> {
             if(keyEvent.getCode().equals(KeyCode.ENTER)){
                 if(answerField.getText().equals("")){
                     answerField.getStyleClass().add("changeBorder");
-                    foutlabel.getStyleClass().add("changeText");
-                    foutlabel.setVisible(true);
+                    errorlabel.getStyleClass().add("changeText");
+                    errorlabel.setVisible(true);
                 } else {
                     String answerText = answerField.getText().trim();
-                    answerFound = answerText.equals(questionRow.correctAnswer());
-                    goToNext = true;
-                    showNextCard();
+                    answerFound = answerText.equalsIgnoreCase(questionRow.correctAnswer());
+                    System.out.println(isAnswerFound());
                 }
             }
         });
+    }
+
+    @Override
+    public void invalidated(Observable observable) {
+
     }
 }

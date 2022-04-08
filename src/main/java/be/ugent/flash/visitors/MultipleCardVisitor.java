@@ -18,6 +18,7 @@ public class MultipleCardVisitor implements CardVisitor<MultipleCard>{
         multipleCard.build();
         List<byte[]> answersStrings = new ArrayList<>(multipleCard.getAnswers().values());
         String line  = new String(multipleCard.getQuestionRow().correctAnswer());// string met TF
+
         for(int i=0; i < answersStrings.size(); i++){
             String possibleAnswer = new String(answersStrings.get(i));//antwoord
             multipleCard.addCorrespondingChar(possibleAnswer, line.charAt(i));

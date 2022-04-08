@@ -46,35 +46,19 @@ public class Simulator {
 
     public void divideQuestions() throws IOException {
         LinkedList<Type> typeLinkedList = new LinkedList<>();
-        for(QuestionRow row: rows){
-            Type type = factoryMap.get(row.questionType()).makeCard(stage, row, answers.get(row.id()), null);
+        for (QuestionRow row : rows) {
+            Type type = factoryMap.get(row.questionType()).makeCard(stage, row, answers.get(row.id()));
             cardVisitorMap.get(row.questionType()).buildCard(type);
             typeLinkedList.add(type);
         }
-
+        CardModel model = new CardModel();
+        for(Type type: typeLinkedList){
+            type.setModel(model);
+        }
         for(int i = 0; i < typeLinkedList.size()-1; i++){
             typeLinkedList.get(i).setNextCard(typeLinkedList.get(i+1));
         }
+        model.setCardsList(typeLinkedList);
         typeLinkedList.getFirst().showQuestion();
-        boolean done = typeLinkedList.isEmpty();
-        while(!done){
-            Type lastCard = (Type) stage.getScene().getRoot();
-            if(lastCard == typeLinkedList.getLast()){
-                for(int i = 0; i < typeLinkedList.size()-1; i++){
-                    typeLinkedList.get(i).setNextCard(typeLinkedList.get(i+1));
-                }
-                typeLinkedList.removeIf(Type::isAnswerFound);
-                typeLinkedList.stream().filter(type -> type.canGoToNext() && !type.isAnswerFound()).forEach(type -> {
-                    /**
-                     * Hier wordt beantwoord maar het antwoord is niet juist(isAnswerFound) dus kaart opnieuw tonen
-                     */
-                    Type newType = type;
-                    typeLinkedList.remove(type);
-                    newType.setNextCard(null);
-                    typeLinkedList.offerFirst(newType);
-                });
-            }
-            done = typeLinkedList.isEmpty();
-        }
     }
 }

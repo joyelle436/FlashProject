@@ -1,5 +1,6 @@
 package be.ugent.flash.factories;
 
+import be.ugent.flash.CardModel;
 import be.ugent.flash.QuestionRow;
 import be.ugent.flash.cards.StandardCard;
 import be.ugent.flash.cards.Type;
@@ -13,7 +14,7 @@ import java.util.*;
 
 public class StandardFactory implements QuestionFactory {
     @Override
-    public Type makeCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers, Type nextCard) {
-        return new StandardCard(stage, questionRow, answers, nextCard);
+    public Type makeCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers) {
+        return new StandardCard(stage, questionRow, answers);
     }
 }

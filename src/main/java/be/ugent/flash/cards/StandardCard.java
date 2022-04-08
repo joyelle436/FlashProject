@@ -1,7 +1,10 @@
 package be.ugent.flash.cards;
 
+import be.ugent.flash.CardModel;
 import be.ugent.flash.QuestionRow;
 import be.ugent.flash.visitors.*;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -10,12 +13,12 @@ import java.util.*;
 /**
  * mcs
  */
-public class StandardCard extends Type implements CardItem<StandardCard> {
+public class StandardCard extends Type implements CardItem<StandardCard>, InvalidationListener {
 
     private final ToggleGroup lettersGroup;
     private final Label[] labels;
-    public StandardCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers, Type nextCard) {
-        super(stage, questionRow, answers, nextCard);
+    public StandardCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers) {
+        super(stage, questionRow, answers);
         labels = new Label[answers.size()];
         lettersGroup = new ToggleGroup();
     }
@@ -49,14 +52,23 @@ public class StandardCard extends Type implements CardItem<StandardCard> {
                 String selectedText = selectedToggle.getText().trim();
                 char correctAnswer = (char) (Integer.parseInt(questionRow.correctAnswer())+65);
                 answerFound = correctAnswer == selectedText.charAt(0);
-                goToNext = true;
-                showNextCard();
+                System.out.println(isAnswerFound());
             });
         }
+    }
+
+    public void setModel(CardModel model){
+        this.model = model;
+        model.addListener(this);
     }
 
     @Override
     public void accept(CardVisitor<StandardCard> cardVisitor) {
         cardVisitor.visit(this);
+    }
+
+    @Override
+    public void invalidated(Observable observable) {
+
     }
 }

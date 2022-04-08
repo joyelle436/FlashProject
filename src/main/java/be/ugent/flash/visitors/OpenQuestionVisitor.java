@@ -19,7 +19,7 @@ public class OpenQuestionVisitor implements CardVisitor<OpenQuestion>{
         QuestionRow row = openQuestion.getQuestionRow();
         GridPane gridPane = openQuestion.getGridPane();
         gridPane.getColumnConstraints().add(new ColumnConstraints(400));
-        gridPane.getChildren().addAll(openQuestion.getAnswerField(), openQuestion.getFoutlabel());
+        gridPane.getChildren().addAll(openQuestion.getAnswerField(), openQuestion.getErrorlabel());
         if(row.middleImage() != null){
             openQuestion.setBottom(gridPane);
             BorderPane.setMargin(gridPane, new Insets(0, 15, 100, 20));

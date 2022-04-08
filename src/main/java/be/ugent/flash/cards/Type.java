@@ -1,6 +1,9 @@
 package be.ugent.flash.cards;
 
+import be.ugent.flash.CardModel;
 import be.ugent.flash.QuestionRow;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.*;
@@ -14,7 +17,7 @@ import java.util.*;
 
 
 /**
- * superklasse voor alle soort vragen.
+ * superklasse voor alle soort vragen. Dient ook als view en controller
  */
 public abstract class Type extends BorderPane {
     protected TextFlow textFlow;
@@ -25,15 +28,16 @@ public abstract class Type extends BorderPane {
     protected final Map<Integer, byte[]> answers;
     protected final GridPane gridPane;
     protected boolean goToNext;
+    protected CardModel model;
     private Type nextCard;
 
-    protected Type(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers, Type nextCard){
+    protected Type(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers){
         this.stage = stage;
         this.answers = answers; //heeft antwoorden van die specifieke vraag
         this.questionRow = questionRow; //heeft hele rij van questions tabel dus een hele vraag
         this.answerFound = false;
         this.gridPane = new GridPane();
-        this.nextCard = nextCard;
+        this.nextCard = null;
         this.textFlow = new TextFlow();
         this.text = new Text();
         this.goToNext = false;
@@ -58,6 +62,8 @@ public abstract class Type extends BorderPane {
         getStylesheets().add(getClass().getResource("/be/ugent/flash/flash.css").toString());
     }
 
+    public void setModel(CardModel model){
+    }
     public QuestionRow getQuestionRow() {
         return questionRow;
     }

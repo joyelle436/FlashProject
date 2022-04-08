@@ -17,6 +17,7 @@ public class CompactCardVisitor implements CardVisitor<CompactCard>{
     public void visit(CompactCard compactCard) {
         compactCard.build();
         GridPane gridPane = compactCard.getGridPane();
+        //lijst met alle antwoorden
         List<byte[]> answersStrings = new ArrayList<>(compactCard.getAnswers().values());
         for(int i = 0; i < answersStrings.size(); i++){
             ToggleButton toggleButton = new ToggleButton(new String(answersStrings.get(i)));

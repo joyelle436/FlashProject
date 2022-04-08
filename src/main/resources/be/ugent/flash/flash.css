@@ -12,11 +12,11 @@
 
 #textfield {
     -fx-pref-height: 40px;
-    -fx-font-size: 20px;
+    -fx-font-size: 18px;
 }
 
 #text {
-    -fx-font-size: 20px;
+    -fx-font-size: 18px;
     -fx-fill: white;
     -fx-text-alignment: CENTER;
     -fx-pref-width: 180px;
@@ -38,7 +38,7 @@
 #label {
     -fx-background-color: #6082B6;
     -fx-text-fill: white;
-    -fx-font-size: 20px;
+    -fx-font-size: 17px;
 }
 
 #checkbox {
@@ -55,10 +55,6 @@
 #okay {
     -fx-background-color: yellow;
     -fx-font-size: 15px;
-}
-
-.yellow {
-    -fx-background-color: yellow;
 }
 
 .changeBorder {

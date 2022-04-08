@@ -1,7 +1,7 @@
 package be.ugent.flash.cards;
 
+import be.ugent.flash.QuestionRow;
 import be.ugent.flash.visitors.*;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -13,9 +13,14 @@ import java.util.*;
 public class CompactCard extends Type implements CardItem<CompactCard>{
 
     private final ToggleGroup wordsgroup;
-    public CompactCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers, Type nextCard) {
-        super(stage, row, answers, nextCard);
+    public CompactCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers, Type nextCard) {
+        super(stage, questionRow, answers, nextCard);
         this.wordsgroup = new ToggleGroup();
+    }
+
+    @Override
+    public void clear() {
+        wordsgroup.getToggles().forEach(toggle -> toggle.setSelected(false));
     }
 
     public ToggleGroup getWordsgroup() {
@@ -31,7 +36,7 @@ public class CompactCard extends Type implements CardItem<CompactCard>{
             ToggleButton selectedToggle = (ToggleButton) wordsgroup.getToggles().get(t);
             selectedToggle.setOnMouseClicked(mouseEvent -> {
                 //index van antwoord
-                int key = new ArrayList<>(answers.keySet()).get((Integer.parseInt(new String(row.get(5)))));
+                int key = new ArrayList<>(answers.keySet()).get((Integer.parseInt(questionRow.correctAnswer())));
                 String selectedText = selectedToggle.getText();
                 answerFound = selectedText.equals(new String(answers.get(key)));
                 goToNext = true;

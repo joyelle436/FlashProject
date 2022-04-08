@@ -1,8 +1,8 @@
 package be.ugent.flash.cards;
 
+import be.ugent.flash.QuestionRow;
 import be.ugent.flash.visitors.CardItem;
 import be.ugent.flash.visitors.CardVisitor;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -19,13 +19,18 @@ public class MultipleCard extends Type implements CardItem<MultipleCard> {
     private final int numberOfCorrect;
     //lijst met alle toegevoegde checkbox
     private final CheckBox[] checkBoxList;
-    public MultipleCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers, Type nextCard) {
-        super(stage, row, answers, nextCard);
+    public MultipleCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers, Type nextCard) {
+        super(stage, questionRow, answers, nextCard);
         checkBoxList = new CheckBox[answers.size()];
         okay = new Button("OK");
         okay.setId("okay");
         correspondingChar = new HashMap<>();
-        numberOfCorrect = (int) new String(row.get(5)).chars().filter(ch -> ch == 'T').count();
+        numberOfCorrect = (int)questionRow.correctAnswer().chars().filter(ch -> ch == 'T').count();
+    }
+
+    @Override
+    public void clear() {
+        Arrays.stream(checkBoxList).toList().forEach(checkBox -> checkBox.setSelected(false));
     }
 
     public Button getOkay() {
@@ -40,10 +45,12 @@ public class MultipleCard extends Type implements CardItem<MultipleCard> {
         return checkBoxList;
     }
 
-    public void addToChackbox(int index, CheckBox checkBox){
+    //lijst die alle chechbox bevat die als antwoord dienen
+    public void addToCheckbox(int index, CheckBox checkBox){
         checkBoxList[index] = checkBox;
     }
 
+    //komt de antwoord overeen met T of F
     public char getCorrespondingChar(String answer) {
         return correspondingChar.get(answer);
     }

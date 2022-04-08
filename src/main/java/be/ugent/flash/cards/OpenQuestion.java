@@ -1,6 +1,7 @@
 package be.ugent.flash.cards;
 
 
+import be.ugent.flash.QuestionRow;
 import be.ugent.flash.visitors.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -10,13 +11,14 @@ import javafx.stage.Stage;
 import java.util.*;
 
 /**
- * superklasse voor OpenIntCard(openi) en OpenStrCard(open)
+ * superklasse voor {@link OpenIntCard} en {@link OpenStrCard}
  */
 public class OpenQuestion extends Type implements CardItem<OpenQuestion> {
+
     protected final TextField answerField;
     protected final Label foutlabel;
-    protected OpenQuestion(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers, Type nextCard) {
-        super(stage, row, answers, nextCard);
+    protected OpenQuestion(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers, Type nextCard) {
+        super(stage, questionRow, answers, nextCard);
         this.answerField = new TextField();
         answerField.setId("textfield");
         answerField.setMaxWidth(400);
@@ -25,6 +27,14 @@ public class OpenQuestion extends Type implements CardItem<OpenQuestion> {
         foutlabel.setFont(new Font(17.5));
         GridPane.setConstraints(answerField, 0, 0);
         GridPane.setConstraints(foutlabel, 0, 1);
+    }
+
+    @Override
+    public void clear() {
+        answerField.clear();
+        foutlabel.setVisible(false);
+        answerField.getStyleClass().remove("changeBorder");
+        foutlabel.getStyleClass().remove("changeText");
     }
 
     public TextField getAnswerField() {

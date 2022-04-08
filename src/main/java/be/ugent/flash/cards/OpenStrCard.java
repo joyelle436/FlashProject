@@ -1,6 +1,6 @@
 package be.ugent.flash.cards;
 
-import javafx.scene.Scene;
+import be.ugent.flash.QuestionRow;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
@@ -11,8 +11,8 @@ import java.util.*;
  */
 public class OpenStrCard extends OpenQuestion {
 
-    public OpenStrCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers, Type nextCard) {
-        super(stage, row, answers, nextCard);
+    public OpenStrCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers, Type nextCard) {
+        super(stage, questionRow, answers, nextCard);
         foutlabel.setText("Antwoord kan niet leeg zijn");
     }
 
@@ -21,11 +21,11 @@ public class OpenStrCard extends OpenQuestion {
             if(keyEvent.getCode().equals(KeyCode.ENTER)){
                 if(answerField.getText().equals("")){
                     answerField.getStyleClass().add("changeBorder");
-                    foutlabel.setVisible(true);
                     foutlabel.getStyleClass().add("changeText");
+                    foutlabel.setVisible(true);
                 } else {
                     String answerText = answerField.getText().trim();
-                    answerFound = answerText.equals(new String(row.get(5)));
+                    answerFound = answerText.equals(questionRow.correctAnswer());
                     goToNext = true;
                     showNextCard();
                 }

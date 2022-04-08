@@ -17,13 +17,13 @@ public class MultipleCardVisitor implements CardVisitor<MultipleCard>{
     public void visit(MultipleCard multipleCard) {
         multipleCard.build();
         List<byte[]> answersStrings = new ArrayList<>(multipleCard.getAnswers().values());
-        String line  = new String(multipleCard.getRow().get(5));// string met TF
+        String line  = new String(multipleCard.getQuestionRow().correctAnswer());// string met TF
         for(int i=0; i < answersStrings.size(); i++){
             String possibleAnswer = new String(answersStrings.get(i));//antwoord
             multipleCard.addCorrespondingChar(possibleAnswer, line.charAt(i));
             CheckBox checkBox = new CheckBox(possibleAnswer);
             checkBox.setId("checkbox");
-            multipleCard.addToChackbox(i, checkBox);
+            multipleCard.addToCheckbox(i, checkBox);
             GridPane.setConstraints(checkBox, 0, i);
         }
         GridPane gridPane = multipleCard.getGridPane();

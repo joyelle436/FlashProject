@@ -1,7 +1,7 @@
 package be.ugent.flash.cards;
 
+import be.ugent.flash.QuestionRow;
 import be.ugent.flash.visitors.*;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -14,10 +14,15 @@ public class PictureCard extends Type implements CardItem<PictureCard> {
     private final ToggleGroup picturegroup;
     //key togglebutton, value: antwoord part id
     private final Map<ToggleButton, Integer> toggleAnswers;
-    public PictureCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers, Type nextCard) {
-        super(stage, row, answers, nextCard);
+    public PictureCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers, Type nextCard) {
+        super(stage, questionRow, answers, nextCard);
         toggleAnswers = new HashMap<>();
         picturegroup = new ToggleGroup();
+    }
+
+    @Override
+    public void clear() {
+        picturegroup.getToggles().forEach(toggle -> toggle.setSelected(false));
     }
 
     public ToggleGroup getPicturegroup() {
@@ -37,7 +42,7 @@ public class PictureCard extends Type implements CardItem<PictureCard> {
             ToggleButton selectedToggle = (ToggleButton) picturegroup.getToggles().get(t);
             selectedToggle.setOnMouseClicked(mouseEvent -> {
                 String selected = String.valueOf(toggleAnswers.get(selectedToggle));
-                int index = Integer.parseInt(new String(row.get(5))) - 1;
+                int index = Integer.parseInt(questionRow.correctAnswer());
                 String correct = String.valueOf(new ArrayList<>(answers.keySet()).get(index));
                 answerFound = selected.equals(correct);
                 goToNext = true;

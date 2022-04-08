@@ -1,5 +1,6 @@
 package be.ugent.flash.cards;
 
+import be.ugent.flash.QuestionRow;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
@@ -11,8 +12,8 @@ import java.util.*;
  */
 public class OpenIntCard extends OpenQuestion {
 
-    public OpenIntCard(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers, Type nextCard) {
-        super(stage, row, answers, nextCard);
+    public OpenIntCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers, Type nextCard) {
+        super(stage, questionRow, answers, nextCard);
         foutlabel.setText("Antwoord moet een geheel getal zijn");
     }
 
@@ -22,13 +23,13 @@ public class OpenIntCard extends OpenQuestion {
                 String answer = answerField.getText();
                 try {
                     int answerInt = Integer.parseInt(answer);
-                    answerFound = answerInt == Integer.parseInt(new String(row.get(5)));
+                    answerFound = answerInt == Integer.parseInt(questionRow.correctAnswer());
                     goToNext = true;
                     showNextCard();
                 } catch (NumberFormatException ex){
                     answerField.getStyleClass().add("changeBorder");
-                    foutlabel.setVisible(true);
                     foutlabel.getStyleClass().add("changeText");
+                    foutlabel.setVisible(true);
                 }
             }
         });

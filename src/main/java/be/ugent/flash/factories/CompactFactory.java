@@ -1,15 +1,17 @@
 package be.ugent.flash.factories;
 
-import be.ugent.flash.cards.CompactCard;
-import be.ugent.flash.cards.Type;
+import be.ugent.flash.QuestionRow;
+import be.ugent.flash.cards.*;
 import javafx.stage.Stage;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+/**
+ * {@link CompactCard} factory
+ */
 public class CompactFactory implements QuestionFactory {
     @Override
-    public Type makeQuiz(Stage stage, List<byte[]> row, Map<Integer, byte[]> answers, Type nextCard) {
-        return new CompactCard(stage, row, answers, nextCard);
+    public Type makeCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers, Type nextCard) {
+        return new CompactCard(stage, questionRow, answers, nextCard);
     }
 }

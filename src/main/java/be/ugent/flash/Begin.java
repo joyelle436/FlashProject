@@ -54,12 +54,11 @@ public class Begin {
     }
 
     /**
-     * Dit methode krijgt de Result en gaat telkens alle data van een rij
-     * van een rij in een eigen array opslaan
+     * Dit methode krijgt de Result en gaat telkens alle data van een rij in een vorm van een record opslaan
      */
     private void addRow(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt(1);
-        answers.put(id, new HashMap<>());
+        answers.put(id, new HashMap<>()); // elke id heeft eigen antwoorden uit de tabel parts
         String title = resultSet.getString(2);
         String text = resultSet.getString(3);
         byte[] middleImage = resultSet.getBytes(4);

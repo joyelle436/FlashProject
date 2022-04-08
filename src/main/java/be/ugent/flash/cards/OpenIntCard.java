@@ -32,6 +32,12 @@ public class OpenIntCard extends OpenQuestion implements InvalidationListener {
                 try {
                     int answerInt = Integer.parseInt(answer);
                     answerFound = answerInt == Integer.parseInt(questionRow.correctAnswer());
+                    showNextCard();
+                    if(answerFound){
+                        model.removeCard(this);
+                    } else {
+                        model.addAsFirst(this);
+                    }
                     System.out.println(isAnswerFound());
                 } catch (NumberFormatException ex){
                     answerField.getStyleClass().add("changeBorder");
@@ -44,5 +50,7 @@ public class OpenIntCard extends OpenQuestion implements InvalidationListener {
 
     @Override
     public void invalidated(Observable observable) {
+        int index = model.getAllCards().indexOf(this);
+        model.change(index);
     }
 }

@@ -52,6 +52,12 @@ public class StandardCard extends Type implements CardItem<StandardCard>, Invali
                 String selectedText = selectedToggle.getText().trim();
                 char correctAnswer = (char) (Integer.parseInt(questionRow.correctAnswer())+65);
                 answerFound = correctAnswer == selectedText.charAt(0);
+                showNextCard();
+                if(answerFound){
+                    model.removeCard(this);
+                } else {
+                    model.addAsFirst(this);
+                }
                 System.out.println(isAnswerFound());
             });
         }
@@ -69,6 +75,7 @@ public class StandardCard extends Type implements CardItem<StandardCard>, Invali
 
     @Override
     public void invalidated(Observable observable) {
-
+        int index = model.getAllCards().indexOf(this);
+        model.change(index);
     }
 }

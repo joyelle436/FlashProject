@@ -53,6 +53,12 @@ public class PictureCard extends Type implements CardItem<PictureCard>, Invalida
                 int index = Integer.parseInt(questionRow.correctAnswer());
                 String correct = String.valueOf(new ArrayList<>(answers.keySet()).get(index));
                 answerFound = selected.equals(correct);
+                showNextCard();
+                if(answerFound){
+                    model.removeCard(this);
+                } else {
+                    model.addAsFirst(this);
+                }
                 System.out.println(isAnswerFound());
             });
         }
@@ -65,6 +71,7 @@ public class PictureCard extends Type implements CardItem<PictureCard>, Invalida
 
     @Override
     public void invalidated(Observable observable) {
-
+        int index = model.getAllCards().indexOf(this);
+        model.change(index);
     }
 }

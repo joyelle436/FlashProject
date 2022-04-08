@@ -1,5 +1,6 @@
 package be.ugent.flash.cards;
 
+import be.ugent.flash.CardModel;
 import be.ugent.flash.QuestionRow;
 import be.ugent.flash.visitors.*;
 import javafx.beans.InvalidationListener;
@@ -41,16 +42,21 @@ public class CompactCard extends Type implements CardItem<CompactCard>, Invalida
                 int key = new ArrayList<>(answers.keySet()).get((Integer.parseInt(questionRow.correctAnswer())));
                 String selectedText = selectedToggle.getText();
                 answerFound = selectedText.equals(new String(answers.get(key)));
-                System.out.println(answerFound);
+                showNextCard();
                 if(answerFound){
-                    showNextCard();
                     model.removeCard(this);
                 } else {
-                    showNextCard();
                     model.addAsFirst(this);
                 }
+                System.out.println(answerFound);
             });
         }
+    }
+
+    @Override
+    public void setModel(CardModel model) {
+        this.model = model;
+        model.addListener(this);
     }
 
     @Override
@@ -60,5 +66,7 @@ public class CompactCard extends Type implements CardItem<CompactCard>, Invalida
 
     @Override
     public void invalidated(Observable observable) {
+        int index = model.getAllCards().indexOf(this);
+        model.change(index);
     }
 }

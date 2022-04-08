@@ -75,6 +75,12 @@ public class MultipleCard extends Type implements CardItem<MultipleCard>, Invali
             int selected = (int) Arrays.stream(checkBoxList).filter(CheckBox::isSelected).count();
 
             answerFound = numberOfCorrect == onlyCorrect && onlyCorrect == selected;
+            showNextCard();
+            if(answerFound){
+                model.removeCard(this);
+            } else {
+                model.addAsFirst(this);
+            }
             System.out.println(answerFound);
 
         });
@@ -92,5 +98,7 @@ public class MultipleCard extends Type implements CardItem<MultipleCard>, Invali
 
     @Override
     public void invalidated(Observable observable) {
+        int index = model.getAllCards().indexOf(this);
+        model.change(index);
     }
 }

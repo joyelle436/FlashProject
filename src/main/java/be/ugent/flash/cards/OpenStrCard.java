@@ -35,6 +35,12 @@ public class OpenStrCard extends OpenQuestion implements InvalidationListener {
                 } else {
                     String answerText = answerField.getText().trim();
                     answerFound = answerText.equalsIgnoreCase(questionRow.correctAnswer());
+                    showNextCard();
+                    if(answerFound){
+                        model.removeCard(this);
+                    } else {
+                        model.addAsFirst(this);
+                    }
                     System.out.println(isAnswerFound());
                 }
             }
@@ -43,6 +49,7 @@ public class OpenStrCard extends OpenQuestion implements InvalidationListener {
 
     @Override
     public void invalidated(Observable observable) {
-
+        int index = model.getAllCards().indexOf(this);
+        model.change(index);
     }
 }

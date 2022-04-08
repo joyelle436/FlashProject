@@ -1,6 +1,5 @@
 package be.ugent.flash.cards;
 
-import be.ugent.flash.CardModel;
 import be.ugent.flash.QuestionRow;
 import be.ugent.flash.visitors.CardItem;
 import be.ugent.flash.visitors.CardVisitor;
@@ -61,7 +60,7 @@ public class MultipleCard extends Type implements CardItem<MultipleCard>, Invali
     }
 
     public void handleEvents() {
-        okay.setOnMouseClicked(mouseEvent -> {
+        okay.setOnAction(actionEvent -> {
             int counting = 0;
             for(CheckBox checkBox: checkBoxList){
                 if(checkBox.isSelected() && correspondingChar.get(checkBox.getText()) == 'T'){
@@ -73,15 +72,12 @@ public class MultipleCard extends Type implements CardItem<MultipleCard>, Invali
                     .filter(checkBox -> correspondingChar.get(checkBox.getText()) == 'T').count();
 
             int selected = (int) Arrays.stream(checkBoxList).filter(CheckBox::isSelected).count();
-
             answerFound = numberOfCorrect == onlyCorrect && onlyCorrect == selected;
-            showNextCard();
             if(answerFound){
                 model.removeCard(this);
             } else {
-                model.addAsFirst(this);
+                model.addAsLast(this);
             }
-            System.out.println(answerFound);
 
         });
     }

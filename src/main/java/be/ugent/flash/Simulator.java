@@ -1,5 +1,6 @@
 package be.ugent.flash;
 
+import be.ugent.flash.cards.CardModel;
 import be.ugent.flash.cards.Type;
 import be.ugent.flash.factories.*;
 import be.ugent.flash.visitors.*;
@@ -10,7 +11,8 @@ import java.util.*;
 
 //vragen p2@ugent.be
 /**
- * Dit klasse verdeelt elke type vraag in een bepaalde klasse
+ * Dit klasse maakt de kaarten aan van elke type vraag en geeft een lijst ervan
+ * aan de model {@link CardModel} die de simulatie gaat doen
  */
 
 public class Simulator {
@@ -48,6 +50,7 @@ public class Simulator {
         LinkedList<Type> typeLinkedList = new LinkedList<>();
         for (QuestionRow row : rows) {
             Type type = factoryMap.get(row.questionType()).makeCard(stage, row, answers.get(row.id()));
+            //noinspection unchecked
             cardVisitorMap.get(row.questionType()).buildCard(type);
             typeLinkedList.add(type);
         }

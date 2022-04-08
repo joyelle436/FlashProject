@@ -1,6 +1,5 @@
 package be.ugent.flash.cards;
 
-import be.ugent.flash.CardModel;
 import be.ugent.flash.QuestionRow;
 import be.ugent.flash.visitors.*;
 import javafx.beans.InvalidationListener;
@@ -37,18 +36,17 @@ public class CompactCard extends Type implements CardItem<CompactCard>, Invalida
     public void handleEvents() {
         for(int t = 0; t < wordsgroup.getToggles().size(); t++){
             ToggleButton selectedToggle = (ToggleButton) wordsgroup.getToggles().get(t);
-            selectedToggle.setOnMouseClicked(mouseEvent -> {
+            selectedToggle.setOnAction(actionEvent -> {
                 //index van antwoord
                 int key = new ArrayList<>(answers.keySet()).get((Integer.parseInt(questionRow.correctAnswer())));
                 String selectedText = selectedToggle.getText();
-                answerFound = selectedText.equals(new String(answers.get(key)));
-                showNextCard();
+                String correct = new String(answers.get(key));
+                answerFound = selectedText.equals(correct);
                 if(answerFound){
                     model.removeCard(this);
                 } else {
-                    model.addAsFirst(this);
+                    model.addAsLast(this);
                 }
-                System.out.println(answerFound);
             });
         }
     }

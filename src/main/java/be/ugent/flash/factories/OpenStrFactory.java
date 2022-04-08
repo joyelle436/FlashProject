@@ -1,12 +1,10 @@
 package be.ugent.flash.factories;
 
-import be.ugent.flash.CardModel;
 import be.ugent.flash.QuestionRow;
 import be.ugent.flash.cards.OpenStrCard;
 import be.ugent.flash.cards.Type;
 import javafx.stage.Stage;
 
-import java.util.List;
 import java.util.Map;
 
 public class OpenStrFactory implements QuestionFactory {

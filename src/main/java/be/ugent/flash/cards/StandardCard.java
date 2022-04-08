@@ -1,6 +1,5 @@
 package be.ugent.flash.cards;
 
-import be.ugent.flash.CardModel;
 import be.ugent.flash.QuestionRow;
 import be.ugent.flash.visitors.*;
 import javafx.beans.InvalidationListener;
@@ -47,18 +46,16 @@ public class StandardCard extends Type implements CardItem<StandardCard>, Invali
     public void handleEvents() {
         for(int t = 0; t < lettersGroup.getToggles().size(); t++){
             ToggleButton selectedToggle = (ToggleButton) lettersGroup.getToggles().get(t);
-            selectedToggle.setOnMouseClicked(mouseEvent -> {
+            selectedToggle.setOnAction(actionEvent -> {
                 //selectedToggle.isArmed();
                 String selectedText = selectedToggle.getText().trim();
                 char correctAnswer = (char) (Integer.parseInt(questionRow.correctAnswer())+65);
                 answerFound = correctAnswer == selectedText.charAt(0);
-                showNextCard();
                 if(answerFound){
                     model.removeCard(this);
                 } else {
-                    model.addAsFirst(this);
+                    model.addAsLast(this);
                 }
-                System.out.println(isAnswerFound());
             });
         }
     }

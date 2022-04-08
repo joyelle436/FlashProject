@@ -1,6 +1,5 @@
-package be.ugent.flash;
+package be.ugent.flash.cards;
 
-import be.ugent.flash.cards.Type;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 
@@ -27,17 +26,29 @@ public class CardModel implements Observable {
         return types;
     }
 
-    public void addAsFirst(InvalidationListener listener){
+    public void addAsLast(InvalidationListener listener){
+        Type type = (Type) listener;
         types.remove((Type) listener);
         removeListener(listener);
-        Type type = (Type) listener;
         type.clear();
         types.offerLast(type);
         addListener((InvalidationListener) type);
-        fireInvalidationListener();
+        if(types.size() > 1){
+            type.showNextCard();
+            fireInvalidationListener();
+        } else {
+            type.clear();
+            type.setNextCard(type);
+            type.showNextCard();
+        }
     }
 
     public void removeCard(InvalidationListener listener){
+        Type type = (Type) listener;
+        if(types.size() <= 1){
+            type.setNextCard(null);
+        }
+        type.showNextCard();
         types.remove((Type) listener);
         removeListener(listener);
         fireInvalidationListener();
@@ -54,9 +65,7 @@ public class CardModel implements Observable {
     }
 
     public void fireInvalidationListener(){
-        for(InvalidationListener listener: listenerList){
-            listener.invalidated(this);
-        }
+        listenerList.forEach(listener -> listener.invalidated(this));
     }
 
     public void change(int index){

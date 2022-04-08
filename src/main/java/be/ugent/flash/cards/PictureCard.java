@@ -1,6 +1,5 @@
 package be.ugent.flash.cards;
 
-import be.ugent.flash.CardModel;
 import be.ugent.flash.QuestionRow;
 import be.ugent.flash.visitors.*;
 import javafx.beans.InvalidationListener;
@@ -48,18 +47,16 @@ public class PictureCard extends Type implements CardItem<PictureCard>, Invalida
     public void handleEvents() {
         for(int t = 0; t < picturegroup.getToggles().size(); t++){
             ToggleButton selectedToggle = (ToggleButton) picturegroup.getToggles().get(t);
-            selectedToggle.setOnMouseClicked(mouseEvent -> {
+            selectedToggle.setOnAction(actionEvent -> {
                 String selected = String.valueOf(toggleAnswers.get(selectedToggle));
                 int index = Integer.parseInt(questionRow.correctAnswer());
                 String correct = String.valueOf(new ArrayList<>(answers.keySet()).get(index));
                 answerFound = selected.equals(correct);
-                showNextCard();
                 if(answerFound){
                     model.removeCard(this);
                 } else {
-                    model.addAsFirst(this);
+                    model.addAsLast(this);
                 }
-                System.out.println(isAnswerFound());
             });
         }
     }

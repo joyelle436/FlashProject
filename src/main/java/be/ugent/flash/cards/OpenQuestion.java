@@ -1,7 +1,6 @@
 package be.ugent.flash.cards;
 
 
-import be.ugent.flash.CardModel;
 import be.ugent.flash.QuestionRow;
 import be.ugent.flash.visitors.*;
 import javafx.scene.control.*;

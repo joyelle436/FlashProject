@@ -8,7 +8,7 @@ import java.util.*;
 
 /**
  * Dit klas gaat bij het begin het databank openen, alle vragen in een lijst opslaan
- * en die lijst doorgeven naar een andere klasse{@link Simulator} die de kaarten gaat aantonen
+ * en die lijst doorgeven naar een andere klasse {@link Simulator} die de vragen gaat verdelen
  */
 
 public class Begin {
@@ -54,7 +54,7 @@ public class Begin {
     }
 
     /**
-     * Dit methode krijgt de Result en gaat telkens alle data van een rij in een vorm van een record opslaan
+     * Dit methode krijgt de Result en gaat telkens alle data(uit questions) een per een in een record opslaan
      */
     private void addRow(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt(1);

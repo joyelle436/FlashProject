@@ -1,6 +1,5 @@
 package be.ugent.flash.factories;
 
-import be.ugent.flash.CardModel;
 import be.ugent.flash.QuestionRow;
 import be.ugent.flash.cards.MultipleCard;
 import be.ugent.flash.cards.Type;

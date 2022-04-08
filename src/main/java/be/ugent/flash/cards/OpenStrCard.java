@@ -1,6 +1,5 @@
 package be.ugent.flash.cards;
 
-import be.ugent.flash.CardModel;
 import be.ugent.flash.QuestionRow;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -35,13 +34,11 @@ public class OpenStrCard extends OpenQuestion implements InvalidationListener {
                 } else {
                     String answerText = answerField.getText().trim();
                     answerFound = answerText.equalsIgnoreCase(questionRow.correctAnswer());
-                    showNextCard();
                     if(answerFound){
                         model.removeCard(this);
                     } else {
-                        model.addAsFirst(this);
+                        model.addAsLast(this);
                     }
-                    System.out.println(isAnswerFound());
                 }
             }
         });

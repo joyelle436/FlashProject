@@ -1,9 +1,6 @@
 package be.ugent.flash.cards;
 
-import be.ugent.flash.CardModel;
 import be.ugent.flash.QuestionRow;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.*;
@@ -83,10 +80,6 @@ public abstract class Type extends BorderPane {
         nextCard = next;
     }
 
-    public boolean canGoToNext() {
-        return goToNext;
-    }
-
     public GridPane getGridPane() {
         return gridPane;
     }
@@ -128,6 +121,9 @@ public abstract class Type extends BorderPane {
         if(nextCard != null){
             if(nextCard.getScene() != null){
                 stage.setScene(nextCard.getScene());
+                if(!stage.isShowing()){
+                    stage.show();
+                }
             } else {
                 stage.setScene(new Scene(nextCard, Color.TRANSPARENT));
             }

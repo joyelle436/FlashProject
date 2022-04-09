@@ -48,15 +48,13 @@ public class Simulator {
 
     public void divideQuestions() throws IOException {
         LinkedList<Type> typeLinkedList = new LinkedList<>();
+        CardModel model = new CardModel();
         for (QuestionRow row : rows) {
             Type type = factoryMap.get(row.questionType()).makeCard(stage, row, answers.get(row.id()));
             //noinspection unchecked
             cardVisitorMap.get(row.questionType()).buildCard(type);
-            typeLinkedList.add(type);
-        }
-        CardModel model = new CardModel();
-        for(Type type: typeLinkedList){
             type.setModel(model);
+            typeLinkedList.add(type);
         }
         for(int i = 0; i < typeLinkedList.size()-1; i++){
             typeLinkedList.get(i).setNextCard(typeLinkedList.get(i+1));

@@ -5,8 +5,11 @@
     -fx-pref-height: 550px;
 }
 
-#textflow {
+#vbox {
     -fx-pref-width: 200px;
+}
+
+#textflow {
     -fx-text-fill: white;
 }
 
@@ -65,4 +68,12 @@
 .changeText {
     -fx-text-fill: orange;
     -fx-font-weight: bold;
+}
+
+#falseAnswerLabel {
+    -fx-font-size: 20px;
+    -fx-text-fill: red;
+    -fx-pref-height: 30px;
+    -fx-pref-width: 430px;
+    -fx-background-color: white;
 }

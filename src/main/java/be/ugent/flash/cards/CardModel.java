@@ -37,7 +37,6 @@ public class CardModel implements Observable {
             type.showNextCard();
             fireInvalidationListener();
         } else {
-            type.clear();
             type.setNextCard(type);
             type.showNextCard();
         }
@@ -48,6 +47,7 @@ public class CardModel implements Observable {
         if(types.size() <= 1){
             type.setNextCard(null);
         }
+        type.clear();
         type.showNextCard();
         types.remove((Type) listener);
         removeListener(listener);

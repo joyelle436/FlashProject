@@ -3,6 +3,7 @@ package be.ugent.flash.cards;
 import be.ugent.flash.QuestionRow;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -121,11 +122,11 @@ public abstract class Type extends BorderPane {
         if(nextCard != null){
             if(nextCard.getScene() != null){
                 stage.setScene(nextCard.getScene());
-                if(!stage.isShowing()){
-                    stage.show();
-                }
             } else {
                 stage.setScene(new Scene(nextCard, Color.TRANSPARENT));
+            }
+            if(!stage.isShowing()){
+                stage.show();
             }
         } else {
             stage.close();

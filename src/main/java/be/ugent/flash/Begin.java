@@ -1,5 +1,8 @@
 package be.ugent.flash;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -49,7 +52,7 @@ public class Begin {
             }
             new Simulator(stage, rows, answers).divideQuestions();
         } catch (Exception ex){
-            System.out.println("het lukt niet om de databank in te lezen");
+            showAlert();
         }
     }
 
@@ -65,5 +68,14 @@ public class Begin {
         String questionType = resultSet.getString(5);
         String correctAnswer = resultSet.getString(6);
         rows.add(new QuestionRow(id, title, text, middleImage, questionType, correctAnswer));
+    }
+
+    private void showAlert(){
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        ButtonType buttonType = new ButtonType("OK");
+        alert.getButtonTypes().add(buttonType);
+        alert.setTitle("DATABASE ERROR");
+        alert.setContentText("Databank bestaar niet of kan niet geopend worden.");
+        alert.show();
     }
 }

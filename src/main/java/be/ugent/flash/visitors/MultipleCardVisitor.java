@@ -27,15 +27,15 @@ public class MultipleCardVisitor implements CardVisitor<MultipleCard>{
             multipleCard.addToCheckbox(i, checkBox);
             GridPane.setConstraints(checkBox, 0, i);
         }
-        GridPane gridPane = multipleCard.getGridPane();
-        gridPane.getChildren().addAll(multipleCard.getCheckBoxList());
-        gridPane.getColumnConstraints().add(new ColumnConstraints(300));
-        gridPane.getChildren().add(multipleCard.getOkay());
-        GridPane.setConstraints(multipleCard.getOkay(), gridPane.getColumnCount()+1, gridPane.getRowCount());
-        gridPane.getColumnConstraints().add(new ColumnConstraints(50));
-        gridPane.setVgap(10);
-        multipleCard.setBottom(gridPane);
-        BorderPane.setMargin(gridPane, new Insets(20));
+        GridPane answersGridPane = multipleCard.getAnswersGridPane();
+        answersGridPane.getChildren().addAll(multipleCard.getCheckBoxList());
+        answersGridPane.getColumnConstraints().add(new ColumnConstraints(300));
+        answersGridPane.getChildren().add(multipleCard.getOkay());
+        GridPane.setConstraints(multipleCard.getOkay(), answersGridPane.getColumnCount()+1, answersGridPane.getRowCount());
+        answersGridPane.getColumnConstraints().add(new ColumnConstraints(50));
+        answersGridPane.setVgap(10);
+        multipleCard.setBottom(answersGridPane);
+        BorderPane.setMargin(answersGridPane, new Insets(20));
         multipleCard.handleEvents();
     }
 }

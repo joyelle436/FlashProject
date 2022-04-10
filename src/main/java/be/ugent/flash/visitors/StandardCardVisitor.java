@@ -16,7 +16,7 @@ public class StandardCardVisitor implements CardVisitor<StandardCard>{
     @Override
     public void visit(StandardCard standardCard) {
         standardCard.build();
-        GridPane gridPane = standardCard.getGridPane();
+        GridPane answersGridPane = standardCard.getAnswersGridPane();
         List<byte[]> answersStrings = new ArrayList<>(standardCard.getAnswers().values());
         for(int i = 0; i < answersStrings.size(); i++){
             ToggleButton toggleButton = new ToggleButton(" " + ((char) (i+65)) + " ");
@@ -27,13 +27,13 @@ public class StandardCardVisitor implements CardVisitor<StandardCard>{
             GridPane.setConstraints(toggleButton, 0, i);
             GridPane.setConstraints(label, 1, i);
             standardCard.addToggle(toggleButton);
-            gridPane.getChildren().add(toggleButton);
+            answersGridPane.getChildren().add(toggleButton);
         }
-        gridPane.getChildren().addAll(standardCard.getLabels());
-        gridPane.setVgap(10);
-        gridPane.setHgap(10);
-        standardCard.setBottom(gridPane);
-        BorderPane.setMargin(gridPane, new Insets(0, 15, 50, 15));
+        answersGridPane.getChildren().addAll(standardCard.getLabels());
+        answersGridPane.setVgap(10);
+        answersGridPane.setHgap(10);
+        standardCard.setBottom(answersGridPane);
+        BorderPane.setMargin(answersGridPane, new Insets(0, 15, 50, 15));
         standardCard.handleEvents();
     }
 }

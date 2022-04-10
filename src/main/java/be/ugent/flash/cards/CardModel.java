@@ -6,7 +6,7 @@ import javafx.beans.Observable;
 import java.util.*;
 
 /**
- * Model voor {@link Type}
+ * Model voor elke {@link Type} kaart
  */
 
 public class CardModel implements Observable {
@@ -25,7 +25,9 @@ public class CardModel implements Observable {
     public LinkedList<Type> getAllCards(){
         return types;
     }
-
+    /**
+     * Antwoord werd niet gevonden
+     */
     public void addAsLast(Type card){
         types.remove(card);
         removeListener(card);
@@ -37,20 +39,27 @@ public class CardModel implements Observable {
             card.showNextCard();
             fireInvalidationListener();
         } else {
+            /*
+              Er blijt maar één kaart over
+             */
             card.setNextCard(card);
             card.setPopUpLabelVisible(true);
             card.showNextCard();
         }
     }
 
-    public void removeCard(Type listener){
+    /**
+     * Antwoord werd gevonden
+     */
+
+    public void removeCard(Type card){
         if(types.size() < 2){
-            listener.setNextCard(null);
+            card.setNextCard(null);
         }
-        listener.clear();
-        listener.showNextCard();
-        types.remove(listener);
-        removeListener(listener);
+        card.clear();
+        card.showNextCard();
+        types.remove(card);
+        removeListener(card);
         fireInvalidationListener();
     }
 
@@ -68,6 +77,9 @@ public class CardModel implements Observable {
         listenerList.forEach(listener -> listener.invalidated(this));
     }
 
+    /**
+     * Past de nextCard van {@link Type} aan
+     */
     public void change(int index){
         if(types.size() >= 2){
             if ((index == types.size() - 1)) {

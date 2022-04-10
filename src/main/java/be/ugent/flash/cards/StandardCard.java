@@ -2,8 +2,6 @@ package be.ugent.flash.cards;
 
 import be.ugent.flash.QuestionRow;
 import be.ugent.flash.visitors.*;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 

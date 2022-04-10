@@ -26,22 +26,20 @@ public class Type extends BorderPane implements InvalidationListener {
     private final Stage stage;
     protected final QuestionRow questionRow;
     protected final Map<Integer, byte[]> answers;
-    protected final GridPane gridPane;
-    protected boolean goToNext;
+    protected final GridPane answersGridpane;
     protected CardModel model;
-    protected final Label popUpLabel;
+    private final Label popUpLabel;
     private Type nextCard;
 
     protected Type(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers){
         this.stage = stage;
-        this.answers = answers; //heeft antwoorden van die specifieke vraag
-        this.questionRow = questionRow; //heeft hele rij van questions tabel dus een hele vraag
+        this.answers = answers; //bevat antwoorden van die specifieke vraag
+        this.questionRow = questionRow; //bevat hele rij van questions tabel dus een hele vraag
         this.answerFound = false;
-        this.gridPane = new GridPane();
+        this.answersGridpane = new GridPane();
         this.nextCard = null;
         this.textFlow = new TextFlow();
         this.text = new Text();
-        this.goToNext = false;
         this.popUpLabel = new Label(" Het antwoord was fout");
     }
 
@@ -53,7 +51,6 @@ public class Type extends BorderPane implements InvalidationListener {
         contentGridPane.setId("contentGridPane");
         popUpLabel.setId("popUpLabel");
         popUpLabel.setVisible(false);
-        //popUpLabel.setVisible(false);
         GridPane.setConstraints(popUpLabel, 0, 0);
         GridPane.setConstraints(textFlow, 0, 1);
         setId("borderpane");
@@ -71,7 +68,7 @@ public class Type extends BorderPane implements InvalidationListener {
 
     public void setModel(CardModel model){
         this.model = model;
-        model.addListener((InvalidationListener) this);
+        model.addListener(this);
     }
     public QuestionRow getQuestionRow() {
         return questionRow;
@@ -96,8 +93,8 @@ public class Type extends BorderPane implements InvalidationListener {
         nextCard = next;
     }
 
-    public GridPane getGridPane() {
-        return gridPane;
+    public GridPane getAnswersGridPane() {
+        return answersGridpane;
     }
 
     /**

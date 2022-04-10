@@ -1,6 +1,8 @@
 package be.ugent.flash.cards;
 
 import be.ugent.flash.QuestionRow;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
@@ -10,7 +12,7 @@ import java.util.*;
 /**
  * openi
  */
-public class OpenIntCard extends OpenQuestion {
+public class OpenIntCard extends OpenQuestion implements InvalidationListener {
 
     public OpenIntCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers) {
         super(stage, questionRow, answers);
@@ -36,5 +38,11 @@ public class OpenIntCard extends OpenQuestion {
                 }
             }
         });
+    }
+
+    @Override
+    public void invalidated(Observable observable) {
+        int index = model.getAllCards().indexOf(this);
+        model.change(index);
     }
 }

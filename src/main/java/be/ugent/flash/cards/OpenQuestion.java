@@ -29,11 +29,8 @@ public class OpenQuestion extends Type implements CardItem<OpenQuestion> {
         GridPane.setConstraints(errorlabel, 0, 1);
     }
 
-    public void setModel(CardModel model){
-    }
-
-    @Override
     public void clear() {
+        super.clear();
         answerField.clear();
         errorlabel.setVisible(false);
         answerField.getStyleClass().remove("changeBorder");
@@ -48,8 +45,6 @@ public class OpenQuestion extends Type implements CardItem<OpenQuestion> {
         return errorlabel;
     }
 
-    public void handleEvents(){
-    }
     @Override
     public void accept(CardVisitor<OpenQuestion> cardVisitor) {
         cardVisitor.visit(this);

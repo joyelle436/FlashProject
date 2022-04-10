@@ -1,10 +1,7 @@
 package be.ugent.flash.cards;
 
 import be.ugent.flash.QuestionRow;
-import be.ugent.flash.visitors.CardItem;
-import be.ugent.flash.visitors.CardVisitor;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
+import be.ugent.flash.visitors.*;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -13,7 +10,7 @@ import java.util.*;
 /**
  * mr
  */
-public class MultipleCard extends Type implements CardItem<MultipleCard>, InvalidationListener {
+public class MultipleCard extends Type implements CardItem<MultipleCard> {
 
     private final Button okay;
     private final Map<String, Character> correspondingChar;
@@ -26,11 +23,6 @@ public class MultipleCard extends Type implements CardItem<MultipleCard>, Invali
         okay.setId("okay");
         correspondingChar = new HashMap<>();
         numberOfCorrect = (int)questionRow.correctAnswer().chars().filter(ch -> ch == 'T').count();
-    }
-
-    @Override
-    public void clear() {
-        Arrays.stream(checkBoxList).toList().forEach(checkBox -> checkBox.setSelected(false));
     }
 
     public Button getOkay() {
@@ -48,25 +40,17 @@ public class MultipleCard extends Type implements CardItem<MultipleCard>, Invali
         checkBoxList[index] = checkBox;
     }
 
-    /**
-     * komt de antwoord overeen met T of F
-     */
-    public char getCorrespondingChar(String answer) {
-        return correspondingChar.get(answer);
-    }
-
     public void addCorrespondingChar(String answer, char letter){
         correspondingChar.put(answer, letter);
     }
 
+    public void clear() {
+        super.clear();
+        Arrays.stream(checkBoxList).toList().forEach(checkBox -> checkBox.setSelected(false));
+    }
+
     public void handleEvents() {
         okay.setOnAction(actionEvent -> {
-            int counting = 0;
-            for(CheckBox checkBox: checkBoxList){
-                if(checkBox.isSelected() && correspondingChar.get(checkBox.getText()) == 'T'){
-                    counting++;
-                }
-            }
             int onlyCorrect = (int) Arrays.stream(checkBoxList)
                     .filter(CheckBox::isSelected)
                     .filter(checkBox -> correspondingChar.get(checkBox.getText()) == 'T').count();
@@ -78,23 +62,11 @@ public class MultipleCard extends Type implements CardItem<MultipleCard>, Invali
             } else {
                 model.addAsLast(this);
             }
-
         });
-    }
-
-    public void setModel(CardModel model){
-        this.model = model;
-        model.addListener(this);
     }
 
     @Override
     public void accept(CardVisitor<MultipleCard> cardVisitor) {
         cardVisitor.visit(this);
-    }
-
-    @Override
-    public void invalidated(Observable observable) {
-        int index = model.getAllCards().indexOf(this);
-        model.change(index);
     }
 }

@@ -26,30 +26,30 @@ public class CardModel implements Observable {
         return types;
     }
 
-    public void addAsLast(InvalidationListener listener){
-        Type type = (Type) listener;
-        types.remove((Type) listener);
-        removeListener(listener);
-        type.clear();
-        types.offerLast(type);
-        addListener((InvalidationListener) type);
+    public void addAsLast(Type card){
+        types.remove(card);
+        removeListener(card);
+        card.clear();
+        types.offerLast(card);
+        addListener(card);
         if(types.size() > 1){
-            type.showNextCard();
+            card.getNextCard().setPopUpLabelVisible(true);
+            card.showNextCard();
             fireInvalidationListener();
         } else {
-            type.setNextCard(type);
-            type.showNextCard();
+            card.setNextCard(card);
+            card.setPopUpLabelVisible(true);
+            card.showNextCard();
         }
     }
 
-    public void removeCard(InvalidationListener listener){
-        Type type = (Type) listener;
-        if(types.size() <= 1){
-            type.setNextCard(null);
+    public void removeCard(Type listener){
+        if(types.size() < 2){
+            listener.setNextCard(null);
         }
-        type.clear();
-        type.showNextCard();
-        types.remove((Type) listener);
+        listener.clear();
+        listener.showNextCard();
+        types.remove(listener);
         removeListener(listener);
         fireInvalidationListener();
     }
@@ -70,10 +70,10 @@ public class CardModel implements Observable {
 
     public void change(int index){
         if(types.size() >= 2){
-            if(index == types.size()-1){
+            if ((index == types.size() - 1)) {
                 types.get(index).setNextCard(types.get(0));
             } else {
-                types.get(index).setNextCard(types.get(index+1));
+                types.get(index).setNextCard(types.get(index + 1));
             }
         } else {
             types.get(0).setNextCard(null);

@@ -12,7 +12,7 @@ import java.util.*;
 /**
  * mcs
  */
-public class StandardCard extends Type implements CardItem<StandardCard>, InvalidationListener {
+public class StandardCard extends Type implements CardItem<StandardCard> {
 
     private final ToggleGroup lettersGroup;
     private final Label[] labels;
@@ -20,15 +20,6 @@ public class StandardCard extends Type implements CardItem<StandardCard>, Invali
         super(stage, questionRow, answers);
         labels = new Label[answers.size()];
         lettersGroup = new ToggleGroup();
-    }
-
-    @Override
-    public void clear() {
-        lettersGroup.getToggles().forEach(toggle -> toggle.setSelected(false));
-    }
-
-    public ToggleGroup getLettersGroup() {
-        return lettersGroup;
     }
 
     public Label[] getLabels() {
@@ -41,6 +32,11 @@ public class StandardCard extends Type implements CardItem<StandardCard>, Invali
 
     public void addLabel(int index, Label label){
         labels[index] = label;
+    }
+
+    public void clear() {
+        super.clear();
+        lettersGroup.getToggles().forEach(toggle -> toggle.setSelected(false));
     }
 
     public void handleEvents() {
@@ -60,19 +56,8 @@ public class StandardCard extends Type implements CardItem<StandardCard>, Invali
         }
     }
 
-    public void setModel(CardModel model){
-        this.model = model;
-        model.addListener(this);
-    }
-
     @Override
     public void accept(CardVisitor<StandardCard> cardVisitor) {
         cardVisitor.visit(this);
-    }
-
-    @Override
-    public void invalidated(Observable observable) {
-        int index = model.getAllCards().indexOf(this);
-        model.change(index);
     }
 }

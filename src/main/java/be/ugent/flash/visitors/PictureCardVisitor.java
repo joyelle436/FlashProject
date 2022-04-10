@@ -30,16 +30,18 @@ public class PictureCardVisitor implements CardVisitor<PictureCard>{
         Map<Integer, byte[]> answers = pictureCard.getAnswers();
         QuestionRow row = pictureCard.getQuestionRow();
         int i = 0;
+        int j = 0;
         for(Integer key: answers.keySet()){
             Image answerImage = new Image(new ByteArrayInputStream(answers.get(key)));
             ToggleButton toggleButton = new ToggleButton();
             toggleButton.setGraphic(new ImageView(answerImage));
             pictureCard.addToToggleAnswer(toggleButton, key);
-            GridPane.setConstraints(toggleButton, i, 0);
+            GridPane.setConstraints(toggleButton, i, j);
             pictureCard.addToggleButton(toggleButton);
             gridPane.getChildren().add(toggleButton);
             toggleButton.setStyle("-fx-background-color: yellow");
-            i++;
+            i = (i <= 2) ? i+1 : 0;
+            j = (i <= 2) ? j : j+1; //3 per rij
         }
         gridPane.layout();
         gridPane.setHgap(5);

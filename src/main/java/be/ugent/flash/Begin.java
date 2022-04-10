@@ -27,11 +27,10 @@ public class Begin {
     }
 
     public void openDatabase() throws IOException {
-        getQuestions();
-        new Simulator(stage, rows, answers).divideQuestions();
+        getdata();
     }
 
-    private void getQuestions(){
+    private void getdata() throws IOException {
         try(Connection connection = DriverManager.getConnection(DATA)){
             try (PreparedStatement prepStatement = connection.prepareStatement(
                     "SELECT question_id, title, text_part, image_part, " +
@@ -48,7 +47,8 @@ public class Begin {
                     answers.get(answersResult.getInt(2)).put(answersResult.getInt(1), answersResult.getBytes(3));
                 }
             }
-        } catch (SQLException ex){
+            new Simulator(stage, rows, answers).divideQuestions();
+        } catch (Exception ex){
             System.out.println("het lukt niet om de databank in te lezen");
         }
     }

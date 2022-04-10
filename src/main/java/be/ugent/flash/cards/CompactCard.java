@@ -2,8 +2,6 @@ package be.ugent.flash.cards;
 
 import be.ugent.flash.QuestionRow;
 import be.ugent.flash.visitors.*;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -12,7 +10,7 @@ import java.util.*;
 /**
  * mcc
  */
-public class CompactCard extends Type implements CardItem<CompactCard>, InvalidationListener {
+public class CompactCard extends Type implements CardItem<CompactCard> {
 
     private final ToggleGroup wordsgroup;
     public CompactCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers) {
@@ -20,17 +18,13 @@ public class CompactCard extends Type implements CardItem<CompactCard>, Invalida
         this.wordsgroup = new ToggleGroup();
     }
 
-    @Override
-    public void clear() {
-        wordsgroup.getToggles().forEach(toggle -> toggle.setSelected(false));
-    }
-
-    public ToggleGroup getWordsgroup() {
-        return wordsgroup;
-    }
-
     public void addToggleButton(ToggleButton toggleButton){
         wordsgroup.getToggles().add(toggleButton);
+    }
+
+    public void clear() {
+        super.clear();
+        wordsgroup.getToggles().forEach(toggle -> toggle.setSelected(false));
     }
 
     public void handleEvents() {
@@ -52,19 +46,7 @@ public class CompactCard extends Type implements CardItem<CompactCard>, Invalida
     }
 
     @Override
-    public void setModel(CardModel model) {
-        this.model = model;
-        model.addListener(this);
-    }
-
-    @Override
     public void accept(CardVisitor<CompactCard> cardVisitor) {
         cardVisitor.visit(this);
-    }
-
-    @Override
-    public void invalidated(Observable observable) {
-        int index = model.getAllCards().indexOf(this);
-        model.change(index);
     }
 }

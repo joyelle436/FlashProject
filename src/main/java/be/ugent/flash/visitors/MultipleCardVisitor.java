@@ -17,7 +17,7 @@ public class MultipleCardVisitor implements CardVisitor<MultipleCard>{
     public void visit(MultipleCard multipleCard) {
         multipleCard.build();
         List<byte[]> answersStrings = new ArrayList<>(multipleCard.getAnswers().values());
-        String line  = new String(multipleCard.getQuestionRow().correctAnswer());// string met TF
+        String line = multipleCard.getQuestionRow().correctAnswer();// string met TF
 
         for(int i=0; i < answersStrings.size(); i++){
             String possibleAnswer = new String(answersStrings.get(i));//antwoord
@@ -35,7 +35,7 @@ public class MultipleCardVisitor implements CardVisitor<MultipleCard>{
         gridPane.getColumnConstraints().add(new ColumnConstraints(50));
         gridPane.setVgap(10);
         multipleCard.setBottom(gridPane);
-        BorderPane.setMargin(gridPane, new Insets(0, 5, 50, 15));
+        BorderPane.setMargin(gridPane, new Insets(20));
         multipleCard.handleEvents();
     }
 }

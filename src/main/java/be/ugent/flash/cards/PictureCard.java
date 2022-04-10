@@ -12,7 +12,7 @@ import java.util.*;
 /**
  * mci
  */
-public class PictureCard extends Type implements CardItem<PictureCard>, InvalidationListener {
+public class PictureCard extends Type implements CardItem<PictureCard> {
     private final ToggleGroup picturegroup;
     //key togglebutton, value: antwoord part id
     private final Map<ToggleButton, Integer> toggleAnswers;
@@ -22,13 +22,9 @@ public class PictureCard extends Type implements CardItem<PictureCard>, Invalida
         picturegroup = new ToggleGroup();
     }
 
-    @Override
     public void clear() {
+        super.clear();
         picturegroup.getToggles().forEach(toggle -> toggle.setSelected(false));
-    }
-
-    public ToggleGroup getPicturegroup() {
-        return picturegroup;
     }
 
     public void addToggleButton(ToggleButton toggleButton){
@@ -37,11 +33,6 @@ public class PictureCard extends Type implements CardItem<PictureCard>, Invalida
     // om te weten welke togglebutton correspondeert met welke antwoord nummer voor de events
     public void addToToggleAnswer(ToggleButton toggleButton, Integer answer){
         toggleAnswers.put(toggleButton, answer);
-    }
-
-    public void setModel(CardModel model){
-        this.model = model;
-        model.addListener(this);
     }
 
     public void handleEvents() {
@@ -64,11 +55,5 @@ public class PictureCard extends Type implements CardItem<PictureCard>, Invalida
     @Override
     public void accept(CardVisitor<PictureCard> cardVisitor) {
         cardVisitor.visit(this);
-    }
-
-    @Override
-    public void invalidated(Observable observable) {
-        int index = model.getAllCards().indexOf(this);
-        model.change(index);
     }
 }

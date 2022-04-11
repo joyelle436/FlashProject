@@ -46,7 +46,7 @@ public class Main extends Application {
             // start de beheersinterface
             // TODO aanvullen
         } else {
-            new Begin(stage, dbName).openDatabase(); // start de viewer aan
+            new StartViewer(stage, dbName).openDatabase(); /* start de viewer aan */
         }
     }
 

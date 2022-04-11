@@ -17,7 +17,7 @@ public class CompactCardVisitor implements CardVisitor<CompactCard>{
     public void visit(CompactCard compactCard) {
         compactCard.build();
         GridPane answersGridPane = compactCard.getAnswersGridPane();
-        //lijst met alle antwoorden
+        /* lijst met alle antwoorden */
         List<byte[]> answersStrings = new ArrayList<>(compactCard.getAnswers().values());
         int j = 0;
         for(int i = 0; i < answersStrings.size(); i++){

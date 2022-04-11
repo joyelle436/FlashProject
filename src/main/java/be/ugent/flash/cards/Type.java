@@ -33,8 +33,8 @@ public class Type extends BorderPane implements InvalidationListener {
 
     protected Type(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers){
         this.stage = stage;
-        this.answers = answers; //bevat antwoorden van die specifieke vraag
-        this.questionRow = questionRow; //bevat hele rij van questions tabel dus een hele vraag
+        this.answers = answers; /* bevat antwoorden van die specifieke vraag */
+        this.questionRow = questionRow; /* bevat hele rij van questions tabel dus een hele vraag */
         this.answerFound = false;
         this.answersGridpane = new GridPane();
         this.nextCard = null;
@@ -44,7 +44,7 @@ public class Type extends BorderPane implements InvalidationListener {
     }
 
     /**
-     * Dit zijn componenten die in elke type vraag aanwezig moeten zijn
+     * Dit zijn componenten die in elke type vraag aanwezig (moeten) zijn
      */
     public void build(){
         GridPane contentGridPane = new GridPane();
@@ -149,7 +149,9 @@ public class Type extends BorderPane implements InvalidationListener {
         int index = model.getAllCards().indexOf(this);
         model.change(index);
     }
-
-    public void handleEvents() {
+    /*
+    Dit methode is verschillend voor elke subklasse
+     */
+    public void handleEvents(){
     }
 }

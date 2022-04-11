@@ -1,7 +1,6 @@
 package be.ugent.flash;
 
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
@@ -10,19 +9,21 @@ import java.sql.*;
 import java.util.*;
 
 /**
- * Dit klas gaat bij het begin het databank openen, alle vragen in een lijst opslaan
- * en die lijst doorgeven naar een andere klasse {@link Simulator} die de vragen gaat verdelen
+ * Dit klas gaat bij het begin het databank openen, alle vragen in een record, lijst opslaan
+ * en die doorgeven naar een andere klasse {@link Simulator} die de vragen in verschillende klassen gaat verdelen
  */
 
-public class Begin {
+public class StartViewer {
 
     private final Stage stage;
     private final List<QuestionRow> rows;
-    //question afgebeeld of part id die afgebeeld is op die part
+    /*
+    question_id afgebeeld op <<part_id afgebeeld part>>
+     */
     private final Map<Integer, Map<Integer, byte[]>> answers;
     private final String DATA;
 
-    public Begin(Stage stage, String database) {
+    public StartViewer(Stage stage, String database) {
         this.stage = stage;
         DATA = "jdbc:sqlite:" + database;
         answers = new HashMap<>();
@@ -44,10 +45,10 @@ public class Begin {
                 }
             }
             try (PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT part_id, question_id, part FROM parts ORDER BY question_id;")){
+                    "SELECT question_id, part_id, part FROM parts ORDER BY question_id, part_id;")){
                 ResultSet answersResult = preparedStatement.executeQuery();
                 while(answersResult.next()){
-                    answers.get(answersResult.getInt(2)).put(answersResult.getInt(1), answersResult.getBytes(3));
+                    answers.get(answersResult.getInt(1)).put(answersResult.getInt(2), answersResult.getBytes(3));
                 }
             }
             new Simulator(stage, rows, answers).divideQuestions();
@@ -61,7 +62,7 @@ public class Begin {
      */
     private void addRow(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt(1);
-        answers.put(id, new HashMap<>()); // elke id heeft eigen antwoorden uit de tabel parts
+        answers.put(id, new HashMap<>()); /* bijna elke id heeft eigen antwoorden uit de tabel parts */
         String title = resultSet.getString(2);
         String text = resultSet.getString(3);
         byte[] middleImage = resultSet.getBytes(4);
@@ -75,7 +76,7 @@ public class Begin {
         ButtonType buttonType = new ButtonType("OK");
         alert.getButtonTypes().add(buttonType);
         alert.setTitle("DATABASE ERROR");
-        alert.setContentText("Databank bestaar niet of kan niet geopend worden.");
+        alert.setContentText("Databank bestaat niet of kan niet geopend worden.");
         alert.show();
     }
 }

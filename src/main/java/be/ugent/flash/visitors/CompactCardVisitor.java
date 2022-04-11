@@ -21,15 +21,15 @@ public class CompactCardVisitor implements CardVisitor<CompactCard>{
         List<byte[]> answersStrings = new ArrayList<>(compactCard.getAnswers().values());
         int j = 0;
         for(int i = 0; i < answersStrings.size(); i++){
+            j = (i > 0 && i % 3 == 0) ? j+1 : j; //3 per rij
             ToggleButton toggleButton = new ToggleButton(new String(answersStrings.get(i)));
             toggleButton.setId("togglebutton");
-            GridPane.setConstraints(answersGridPane, i, j);
-            GridPane.setConstraints(toggleButton, answersGridPane.getColumnCount()+1, 0);
+            GridPane.setConstraints(toggleButton, i-(3*j), j);
             compactCard.addToggleButton(toggleButton);
             answersGridPane.getChildren().add(toggleButton);
-            j = (i % 3 != 0) ? j : j+1; //3 per rij
         }
         answersGridPane.setHgap(5);
+        answersGridPane.setVgap(5);
         compactCard.setBottom(answersGridPane);
         BorderPane.setMargin(answersGridPane, new Insets(50));
         compactCard.handleEvents();

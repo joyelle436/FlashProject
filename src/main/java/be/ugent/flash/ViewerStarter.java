@@ -4,7 +4,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 
@@ -13,7 +12,7 @@ import java.util.*;
  * en die doorgeven naar een andere klasse {@link Simulator} die de vragen in verschillende klassen gaat verdelen
  */
 
-public class StartViewer {
+public class ViewerStarter {
 
     private final Stage stage;
     private final List<QuestionRow> rows;
@@ -23,18 +22,18 @@ public class StartViewer {
     private final Map<Integer, Map<Integer, byte[]>> answers;
     private final String DATA;
 
-    public StartViewer(Stage stage, String database) {
+    public ViewerStarter(Stage stage, String database) {
         this.stage = stage;
         DATA = "jdbc:sqlite:" + database;
         answers = new HashMap<>();
         rows = new ArrayList<>();
     }
 
-    public void openDatabase() throws IOException {
+    public void openDatabase(){
         getdata();
     }
 
-    private void getdata() throws IOException {
+    private void getdata(){
         try(Connection connection = DriverManager.getConnection(DATA)){
             try (PreparedStatement prepStatement = connection.prepareStatement(
                     "SELECT question_id, title, text_part, image_part, " +
@@ -52,7 +51,7 @@ public class StartViewer {
                 }
             }
             new Simulator(stage, rows, answers).divideQuestions();
-        } catch (Exception ex){
+        } catch (SQLException e) {
             showAlert();
         }
     }

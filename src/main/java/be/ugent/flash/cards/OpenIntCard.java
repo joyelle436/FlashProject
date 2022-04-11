@@ -1,12 +1,11 @@
 package be.ugent.flash.cards;
 
-import be.ugent.flash.QuestionRow;
+import be.ugent.flash.data.Question;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
-import java.util.*;
 
 
 /**
@@ -14,8 +13,8 @@ import java.util.*;
  */
 public class OpenIntCard extends OpenQuestion implements InvalidationListener {
 
-    public OpenIntCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers) {
-        super(stage, questionRow, answers);
+    public OpenIntCard(Stage stage, Question questionRow) {
+        super(stage, questionRow);
         errorlabel.setText("Antwoord moet een geheel getal zijn");
     }
 

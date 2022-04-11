@@ -1,8 +1,7 @@
 package be.ugent.flash.factories;
 
-import be.ugent.flash.QuestionRow;
-import be.ugent.flash.cards.MultipleCard;
-import be.ugent.flash.cards.Type;
+import be.ugent.flash.cards.*;
+import be.ugent.flash.data.*;
 import javafx.stage.Stage;
 
 import java.util.*;
@@ -10,9 +9,9 @@ import java.util.*;
 /**
  * {@link MultipleCard} factory
  */
-public class MultipleFactory implements QuestionFactory {
+public class MultipleFactory implements TypeFactory {
     @Override
-    public Type makeCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers) {
-        return new MultipleCard(stage, questionRow, answers);
+    public Type makeCard(Stage stage, Question questionRow) {
+        return new MultipleCard(stage, questionRow);
     }
 }

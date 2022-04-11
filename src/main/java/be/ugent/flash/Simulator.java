@@ -2,6 +2,8 @@ package be.ugent.flash;
 
 import be.ugent.flash.cards.CardModel;
 import be.ugent.flash.cards.Type;
+import be.ugent.flash.data.Part;
+import be.ugent.flash.data.Question;
 import javafx.stage.Stage;
 
 import java.util.*;
@@ -14,24 +16,36 @@ import java.util.*;
 
 public class Simulator {
 
+    private final List<Question> questionList;
+    private final List<Part> partList;
     private final Stage stage;
-    private final List<QuestionRow> rows;
-    private final Map<Integer, Map<Integer, byte[]>> answers;
 
-    public Simulator(Stage stage, List<QuestionRow> rows, Map<Integer, Map<Integer, byte[]>> answers){
+    public Simulator(Stage stage, List<Question> questionList, List<Part> partList){
+        this.questionList = questionList;
+        this.partList = partList;
         this.stage = stage;
-        this.rows = rows;
-        this.answers = answers;
     }
 
-    public void divideQuestions(){
+    public void showQuestions(){
         Maker maker = new Maker();
         LinkedList<Type> typeLinkedList = new LinkedList<>();
         CardModel model = new CardModel();
-        for (QuestionRow row : rows) {
-            Type type = maker.makeFactory((row.questionType())).makeCard(stage, row, answers.get(row.id()));
+
+        Map<Integer, List<Part>> partsMap = new HashMap<>();
+        for(Part part: partList){
+            if(!partsMap.containsKey(part.question_id())){
+                partsMap.put(part.question_id(), new ArrayList<>());
+            }
+            partsMap.get(part.question_id()).add(part);
+        }
+
+        for(Question question: questionList){
+            Type type = maker.makeFactory(question.questionType()).makeCard(stage, question);
+            if(partsMap.containsKey(type.getQuestionRow().id())){
+                type.setAnswers(partsMap.get(type.getQuestionRow().id()));
+            }
             //noinspection unchecked
-            maker.makeVisitor((row.questionType())).buildCard(type);
+            maker.makeVisitor(question.questionType()).buildCard(type);
             type.setModel(model);
             typeLinkedList.add(type);
         }

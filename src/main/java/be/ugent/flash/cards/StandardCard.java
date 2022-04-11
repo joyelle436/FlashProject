@@ -1,6 +1,7 @@
 package be.ugent.flash.cards;
 
-import be.ugent.flash.QuestionRow;
+import be.ugent.flash.data.Part;
+import be.ugent.flash.data.Question;
 import be.ugent.flash.visitors.*;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -13,10 +14,9 @@ import java.util.*;
 public class StandardCard extends Type implements CardItem<StandardCard> {
 
     private final ToggleGroup lettersGroup;
-    private final Label[] labels;
-    public StandardCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers) {
-        super(stage, questionRow, answers);
-        labels = new Label[answers.size()];
+    private Label[] labels;
+    public StandardCard(Stage stage, Question questionRow) {
+        super(stage, questionRow);
         lettersGroup = new ToggleGroup();
     }
 
@@ -52,6 +52,11 @@ public class StandardCard extends Type implements CardItem<StandardCard> {
                 }
             });
         }
+    }
+
+    public void setAnswers(List<Part> answers){
+        this.answers = answers;
+        this.labels = new Label[answers.size()];
     }
 
     @Override

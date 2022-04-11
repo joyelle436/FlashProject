@@ -1,6 +1,7 @@
 package be.ugent.flash.visitors;
 
 import be.ugent.flash.cards.StandardCard;
+import be.ugent.flash.data.Part;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -17,11 +18,11 @@ public class StandardCardVisitor implements CardVisitor<StandardCard>{
     public void visit(StandardCard standardCard) {
         standardCard.build();
         GridPane answersGridPane = standardCard.getAnswersGridPane();
-        List<byte[]> answersStrings = new ArrayList<>(standardCard.getAnswers().values());
+        List<Part> answersStrings = standardCard.getAnswers();
         for(int i = 0; i < answersStrings.size(); i++){
             ToggleButton toggleButton = new ToggleButton(" " + ((char) (i+65)) + " ");
             toggleButton.setId("togglebutton");
-            Label label = new Label(new String(answersStrings.get(i)));
+            Label label = new Label(new String(answersStrings.get(i).part()));
             label.setId("label");
             standardCard.addLabel(i, label);
             GridPane.setConstraints(toggleButton, 0, i);

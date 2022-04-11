@@ -1,14 +1,13 @@
 package be.ugent.flash.cards;
 
 
-import be.ugent.flash.QuestionRow;
+import be.ugent.flash.data.Question;
 import be.ugent.flash.visitors.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.util.*;
 
 /**
  * superklasse voor {@link OpenIntCard} en {@link OpenStrCard}
@@ -17,8 +16,8 @@ public class OpenQuestion extends Type implements CardItem<OpenQuestion> {
 
     protected final TextField answerField;
     protected final Label errorlabel;
-    protected OpenQuestion(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers) {
-        super(stage, questionRow, answers);
+    protected OpenQuestion(Stage stage, Question questionRow) {
+        super(stage, questionRow);
         this.answerField = new TextField();
         answerField.setId("textfield");
         answerField.setMaxWidth(400);

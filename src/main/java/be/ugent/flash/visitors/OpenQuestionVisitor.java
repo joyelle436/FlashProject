@@ -1,11 +1,10 @@
 package be.ugent.flash.visitors;
 
-import be.ugent.flash.QuestionRow;
 import be.ugent.flash.cards.OpenQuestion;
+import be.ugent.flash.data.Question;
 import javafx.geometry.Insets;
 import javafx.scene.layout.*;
 
-import java.util.List;
 
 public class OpenQuestionVisitor implements CardVisitor<OpenQuestion>{
 
@@ -16,7 +15,7 @@ public class OpenQuestionVisitor implements CardVisitor<OpenQuestion>{
     @Override
     public void visit(OpenQuestion openQuestion) {
         openQuestion.build();
-        QuestionRow row = openQuestion.getQuestionRow();
+        Question row = openQuestion.getQuestionRow();
         GridPane answersGridPane = openQuestion.getAnswersGridPane();
         answersGridPane.getColumnConstraints().add(new ColumnConstraints(400));
         answersGridPane.getChildren().addAll(openQuestion.getAnswerField(), openQuestion.getErrorlabel());

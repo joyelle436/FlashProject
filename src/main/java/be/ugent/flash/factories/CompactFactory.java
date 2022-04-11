@@ -1,7 +1,8 @@
 package be.ugent.flash.factories;
 
-import be.ugent.flash.QuestionRow;
 import be.ugent.flash.cards.*;
+import be.ugent.flash.data.Part;
+import be.ugent.flash.data.Question;
 import javafx.stage.Stage;
 
 import java.util.*;
@@ -9,9 +10,9 @@ import java.util.*;
 /**
  * {@link CompactCard} factory
  */
-public class CompactFactory implements QuestionFactory {
+public class CompactFactory implements TypeFactory {
     @Override
-    public Type makeCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers) {
-        return new CompactCard(stage, questionRow, answers);
+    public Type makeCard(Stage stage, Question questionRow) {
+        return new CompactCard(stage, questionRow);
     }
 }

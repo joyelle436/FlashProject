@@ -1,6 +1,7 @@
 package be.ugent.flash.cards;
 
-import be.ugent.flash.QuestionRow;
+import be.ugent.flash.data.Part;
+import be.ugent.flash.data.Question;
 import be.ugent.flash.visitors.*;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -15,10 +16,9 @@ public class MultipleCard extends Type implements CardItem<MultipleCard> {
     private final Button okay;
     private final Map<String, Character> correspondingChar;
     private final int numberOfCorrect;
-    private final CheckBox[] checkBoxList;
-    public MultipleCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers) {
-        super(stage, questionRow, answers);
-        checkBoxList = new CheckBox[answers.size()];
+    private CheckBox[] checkBoxList;
+    public MultipleCard(Stage stage, Question questionRow) {
+        super(stage, questionRow);
         okay = new Button("OK");
         okay.setId("okay");
         correspondingChar = new HashMap<>();
@@ -63,6 +63,11 @@ public class MultipleCard extends Type implements CardItem<MultipleCard> {
                 model.addAsLast(this);
             }
         });
+    }
+
+    public void setAnswers(List<Part> answers){
+        this.answers = answers;
+        checkBoxList = new CheckBox[answers.size()];
     }
 
     @Override

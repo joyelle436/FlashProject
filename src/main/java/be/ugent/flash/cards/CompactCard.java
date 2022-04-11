@@ -1,11 +1,12 @@
 package be.ugent.flash.cards;
 
-import be.ugent.flash.QuestionRow;
+import be.ugent.flash.data.*;
 import be.ugent.flash.visitors.*;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.util.*;
+import java.util.List;
+
 
 /**
  * mcc
@@ -13,8 +14,8 @@ import java.util.*;
 public class CompactCard extends Type implements CardItem<CompactCard> {
 
     private final ToggleGroup wordsgroup;
-    public CompactCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers) {
-        super(stage, questionRow, answers);
+    public CompactCard(Stage stage, Question questionRow) {
+        super(stage, questionRow);
         this.wordsgroup = new ToggleGroup();
     }
 
@@ -32,9 +33,8 @@ public class CompactCard extends Type implements CardItem<CompactCard> {
             ToggleButton selectedToggle = (ToggleButton) wordsgroup.getToggles().get(t);
             selectedToggle.setOnAction(actionEvent -> {
                 //index van antwoord
-                int key = new ArrayList<>(answers.keySet()).get((Integer.parseInt(questionRow.correctAnswer())));
+                String correct = new String(answers.get(Integer.parseInt(questionRow.correctAnswer())).part());
                 String selectedText = selectedToggle.getText();
-                String correct = new String(answers.get(key));
                 answerFound = selectedText.equals(correct);
                 if(answerFound){
                     model.removeCard(this);
@@ -43,6 +43,10 @@ public class CompactCard extends Type implements CardItem<CompactCard> {
                 }
             });
         }
+    }
+
+    public void setAnswers(List<Part> answers){
+        this.answers = answers;
     }
 
     @Override

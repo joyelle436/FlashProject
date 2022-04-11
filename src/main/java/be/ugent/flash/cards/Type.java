@@ -1,6 +1,8 @@
 package be.ugent.flash.cards;
 
 import be.ugent.flash.QuestionRow;
+import be.ugent.flash.data.Part;
+import be.ugent.flash.data.Question;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.geometry.Insets;
@@ -24,16 +26,15 @@ public class Type extends BorderPane implements InvalidationListener {
     private final Text text;
     protected boolean answerFound;
     private final Stage stage;
-    protected final QuestionRow questionRow;
-    protected final Map<Integer, byte[]> answers;
+    protected final Question questionRow;
     protected final GridPane answersGridpane;
     protected CardModel model;
+    protected List<Part> answers;
     private final Label popUpLabel;
     private Type nextCard;
 
-    protected Type(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers){
+    protected Type(Stage stage, Question questionRow){
         this.stage = stage;
-        this.answers = answers; /* bevat antwoorden van die specifieke vraag */
         this.questionRow = questionRow; /* bevat hele rij van questions tabel dus een hele vraag */
         this.answerFound = false;
         this.answersGridpane = new GridPane();
@@ -70,12 +71,8 @@ public class Type extends BorderPane implements InvalidationListener {
         this.model = model;
         model.addListener(this);
     }
-    public QuestionRow getQuestionRow() {
+    public Question getQuestionRow() {
         return questionRow;
-    }
-
-    public Map<Integer, byte[]> getAnswers() {
-        return answers;
     }
 
     public Type getNextCard(){
@@ -153,5 +150,15 @@ public class Type extends BorderPane implements InvalidationListener {
     Dit methode is verschillend voor elke subklasse
      */
     public void handleEvents(){
+    }
+
+    /*
+    Dit methode is verschillend voor elke subklasse
+     */
+    public void setAnswers(List<Part> answers){
+    }
+
+    public List<Part> getAnswers(){
+        return answers;
     }
 }

@@ -1,5 +1,6 @@
 package be.ugent.flash;
 
+import be.ugent.flash.cards.Type;
 import be.ugent.flash.factories.*;
 import be.ugent.flash.visitors.*;
 
@@ -9,7 +10,7 @@ import java.util.Map;
  * Houd Maps van types vragen bij en hun corresponderende factories, visitors, ...
  */
 public class Maker {
-    private final Map<String, QuestionFactory> factoryMap;
+    private final Map<String, TypeFactory> factoryMap;
     private final Map<String, CardVisitor> cardVisitorMap;
     public Maker(){
         this.factoryMap = Map.of(
@@ -30,7 +31,7 @@ public class Maker {
 
         );
     }
-    public QuestionFactory makeFactory(String symbol){
+    public TypeFactory makeFactory(String symbol){
         return factoryMap.get(symbol);
     }
     public CardVisitor makeVisitor(String symbol){

@@ -2,6 +2,8 @@ package be.ugent.flash.visitors;
 
 import be.ugent.flash.QuestionRow;
 import be.ugent.flash.cards.PictureCard;
+import be.ugent.flash.data.Part;
+import be.ugent.flash.data.Question;
 import javafx.geometry.Insets;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.*;
@@ -27,15 +29,15 @@ public class PictureCardVisitor implements CardVisitor<PictureCard>{
     public void visit(PictureCard pictureCard) {
         pictureCard.build();
         GridPane answersGridPane = pictureCard.getAnswersGridPane();
-        Map<Integer, byte[]> answers = pictureCard.getAnswers();
-        QuestionRow row = pictureCard.getQuestionRow();
+        List<Part> answersPictures = pictureCard.getAnswers();
+        Question row = pictureCard.getQuestionRow();
         int i = 0;
         int j = 0;
-        for(Integer key: answers.keySet()){
-            Image answerImage = new Image(new ByteArrayInputStream(answers.get(key)));
+        for(Part part: answersPictures){
+            Image answerImage = new Image(new ByteArrayInputStream(part.part()));
             ToggleButton toggleButton = new ToggleButton();
             toggleButton.setGraphic(new ImageView(answerImage));
-            pictureCard.addToToggleAnswer(toggleButton, key);
+            pictureCard.addToToggleAnswer(toggleButton, part.part_id());
             GridPane.setConstraints(toggleButton, i, j);
             pictureCard.addToggleButton(toggleButton);
             answersGridPane.getChildren().add(toggleButton);

@@ -1,9 +1,8 @@
 package be.ugent.flash.cards;
 
-import be.ugent.flash.QuestionRow;
+import be.ugent.flash.data.Part;
+import be.ugent.flash.data.Question;
 import be.ugent.flash.visitors.*;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -16,8 +15,8 @@ public class PictureCard extends Type implements CardItem<PictureCard> {
     private final ToggleGroup picturegroup;
     //key togglebutton, value: antwoord part id
     private final Map<ToggleButton, Integer> toggleAnswers;
-    public PictureCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers) {
-        super(stage, questionRow, answers);
+    public PictureCard(Stage stage, Question questionRow) {
+        super(stage, questionRow);
         toggleAnswers = new HashMap<>();
         picturegroup = new ToggleGroup();
     }
@@ -39,9 +38,10 @@ public class PictureCard extends Type implements CardItem<PictureCard> {
         for(int t = 0; t < picturegroup.getToggles().size(); t++){
             ToggleButton selectedToggle = (ToggleButton) picturegroup.getToggles().get(t);
             selectedToggle.setOnAction(actionEvent -> {
+                /* part_id die met die togglebutton overeenkomt */
                 String selected = String.valueOf(toggleAnswers.get(selectedToggle));
                 int index = Integer.parseInt(questionRow.correctAnswer());
-                String correct = String.valueOf(new ArrayList<>(answers.keySet()).get(index));
+                String correct = String.valueOf(answers.get(index).part_id());
                 answerFound = selected.equals(correct);
                 if(answerFound){
                     model.removeCard(this);
@@ -50,6 +50,10 @@ public class PictureCard extends Type implements CardItem<PictureCard> {
                 }
             });
         }
+    }
+
+    public void setAnswers(List<Part> answers){
+        this.answers = answers;
     }
 
     @Override

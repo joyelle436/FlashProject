@@ -1,18 +1,18 @@
 package be.ugent.flash.cards;
 
 import be.ugent.flash.QuestionRow;
+import be.ugent.flash.data.Question;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
-import java.util.*;
 
 /**
  * open
  */
 public class OpenStrCard extends OpenQuestion {
 
-    public OpenStrCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers) {
-        super(stage, questionRow, answers);
+    public OpenStrCard(Stage stage, Question questionRow) {
+        super(stage, questionRow);
         errorlabel.setText("Antwoord kan niet leeg zijn");
     }
 

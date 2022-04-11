@@ -1,6 +1,7 @@
 package be.ugent.flash.visitors;
 
 import be.ugent.flash.cards.MultipleCard;
+import be.ugent.flash.data.Part;
 import javafx.geometry.Insets;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.*;
@@ -16,11 +17,11 @@ public class MultipleCardVisitor implements CardVisitor<MultipleCard>{
     @Override
     public void visit(MultipleCard multipleCard) {
         multipleCard.build();
-        List<byte[]> answersStrings = new ArrayList<>(multipleCard.getAnswers().values());
+        List<Part> answersStrings = multipleCard.getAnswers();
         String line = multipleCard.getQuestionRow().correctAnswer();// string met TF
 
         for(int i=0; i < answersStrings.size(); i++){
-            String possibleAnswer = new String(answersStrings.get(i));//antwoord
+            String possibleAnswer = new String(answersStrings.get(i).part());//antwoord
             multipleCard.addCorrespondingChar(possibleAnswer, line.charAt(i));
             CheckBox checkBox = new CheckBox(possibleAnswer);
             checkBox.setId("checkbox");

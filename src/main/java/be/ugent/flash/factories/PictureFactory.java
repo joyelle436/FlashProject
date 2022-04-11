@@ -1,15 +1,13 @@
 package be.ugent.flash.factories;
 
-import be.ugent.flash.QuestionRow;
 import be.ugent.flash.cards.PictureCard;
 import be.ugent.flash.cards.Type;
+import be.ugent.flash.data.Question;
 import javafx.stage.Stage;
 
-import java.util.Map;
-
-public class PictureFactory implements QuestionFactory {
+public class PictureFactory implements TypeFactory {
     @Override
-    public Type makeCard(Stage stage, QuestionRow questionRow, Map<Integer, byte[]> answers) {
-        return new PictureCard(stage, questionRow, answers);
+    public Type makeCard(Stage stage, Question questionRow) {
+        return new PictureCard(stage, questionRow);
     }
 }

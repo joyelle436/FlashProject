@@ -3,7 +3,9 @@ package be.ugent.flash.data;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+/**
+ * Gebaseerd op code uit de cursus
+ */
 public class JDBCDataAccessProvider implements DataAccessProvider {
 
     private final String DATA;

@@ -31,8 +31,8 @@ public class OpenIntCard extends OpenQuestion implements InvalidationListener {
                         model.addAsLast(this);
                     }
                 } catch (NumberFormatException ex){
-                    answerField.getStyleClass().add("changeBorder");
-                    errorlabel.getStyleClass().add("changeText");
+                    answerField.getStyleClass().addAll("changeBorder");
+                    errorlabel.getStyleClass().addAll("changeText");
                     errorlabel.setVisible(true);
                 }
             }

@@ -31,9 +31,8 @@ public class OpenQuestion extends Type implements CardItem<OpenQuestion> {
     public void clear() {
         super.clear();
         answerField.clear();
+        answerField.getStyleClass().removeAll("changeBorder"); /* lukt niet altijd dus v */
         errorlabel.setVisible(false);
-        answerField.getStyleClass().remove("changeBorder");
-        errorlabel.getStyleClass().remove("changeText");
     }
 
     public TextField getAnswerField() {

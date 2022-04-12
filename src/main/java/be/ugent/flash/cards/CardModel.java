@@ -1,5 +1,6 @@
 package be.ugent.flash.cards;
 
+import be.ugent.flash.ErrorDisplay;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 
@@ -35,7 +36,7 @@ public class CardModel implements Observable {
         types.offerLast(card);
         addListener(card);
         if(types.size() > 1){
-            card.getNextCard().setPopUpLabelVisible(true);
+            new ErrorDisplay().showErrorLabel(card.getNextCard());
             card.showNextCard();
             fireInvalidationListener();
         } else {
@@ -43,7 +44,7 @@ public class CardModel implements Observable {
               Er blijt maar één kaart over
              */
             card.setNextCard(card);
-            card.setPopUpLabelVisible(true);
+            new ErrorDisplay().showErrorLabel(card);
             card.showNextCard();
         }
     }

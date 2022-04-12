@@ -1,17 +1,13 @@
 package be.ugent.flash;
 
-import be.ugent.flash.cards.CardModel;
-import be.ugent.flash.cards.Type;
-import be.ugent.flash.data.Part;
-import be.ugent.flash.data.Question;
+import be.ugent.flash.cards.*;
+import be.ugent.flash.data.*;
 import javafx.stage.Stage;
 
 import java.util.*;
 
-//vragen p2@ugent.be
 /**
- * Dit klasse maakt de kaarten aan van elke type vraag en geeft een lijst ervan
- * aan de model {@link CardModel} die de simulatie gaat doen
+ * Dit klasse maakt de kaarten van elke type vraag aan
  */
 
 public class Simulator {
@@ -38,7 +34,9 @@ public class Simulator {
             }
             partsMap.get(part.question_id()).add(part);
         }
-
+        /*
+        Die kaarten aanmaken en model toevoegen
+         */
         for(Question question: questionList){
             Type type = maker.makeFactory(question.questionType()).makeCard(stage, question);
             if(partsMap.containsKey(type.getQuestionRow().id())){

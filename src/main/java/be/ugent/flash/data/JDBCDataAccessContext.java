@@ -2,7 +2,9 @@ package be.ugent.flash.data;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-
+/**
+ * Gebaseerd op code uit de cursus
+ */
 public class JDBCDataAccessContext implements DataAccessContext {
 
     private final Connection connection;

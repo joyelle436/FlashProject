@@ -1,6 +1,5 @@
 package be.ugent.flash.cards;
 
-import be.ugent.flash.QuestionRow;
 import be.ugent.flash.data.Question;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
@@ -21,13 +20,12 @@ public class OpenStrCard extends OpenQuestion {
         model.addListener(this);
     }
 
-
     public void handleEvents(){
         setOnKeyPressed(keyEvent -> {
             if(keyEvent.getCode().equals(KeyCode.ENTER)){
                 if(answerField.getText().equals("")){
-                    answerField.getStyleClass().add("changeBorder");
-                    errorlabel.getStyleClass().add("changeText");
+                    answerField.getStyleClass().addAll("changeBorder");
+                    errorlabel.getStyleClass().addAll("changeText");
                     errorlabel.setVisible(true);
                 } else {
                     String answerText = answerField.getText().trim();

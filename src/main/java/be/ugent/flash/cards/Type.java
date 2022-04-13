@@ -108,6 +108,19 @@ public class Type extends BorderPane implements InvalidationListener {
         if(questionRow.middleImage() != null){
             Image mainImage = new Image(new ByteArrayInputStream(questionRow.middleImage()));
             ImageView imageView = new ImageView(mainImage);
+            double width = mainImage.getWidth();
+            double height = mainImage.getHeight();
+            /*
+            Afbeelding kan niet te groot zijn
+             */
+            while(width > 425){
+                width /= 5;
+            }
+            while(height > 325){
+                height /= 5;
+            }
+            imageView.setFitWidth(width);
+            imageView.setFitHeight(height);
             setCenter(imageView);
         }
     }
@@ -120,6 +133,7 @@ public class Type extends BorderPane implements InvalidationListener {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.initStyle(StageStyle.TRANSPARENT);
+        stage.centerOnScreen();
         stage.show();
     }
 

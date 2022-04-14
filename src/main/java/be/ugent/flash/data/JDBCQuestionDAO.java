@@ -1,11 +1,7 @@
 package be.ugent.flash.data;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
+import java.util.*;
 /**
  * Gebaseerd op code uit de cursus
  */
@@ -17,7 +13,9 @@ public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
         super(connection);
         this.questionList = new ArrayList<>();
     }
-
+    /*
+    gegevens uit de <<questions>> tabel
+     */
     @Override
     public List<Question> getQuestions() throws SQLException {
         try (PreparedStatement preparedStatement = prepare(

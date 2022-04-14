@@ -66,7 +66,7 @@ public class MultipleCard extends Type implements CardItem<MultipleCard> {
     }
 
     public void setAnswers(List<Part> answers){
-        this.answers = answers;
+        super.setAnswers(answers);
         checkBoxList = new CheckBox[answers.size()];
     }
 

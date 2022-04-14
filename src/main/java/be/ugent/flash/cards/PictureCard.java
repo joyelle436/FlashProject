@@ -52,10 +52,6 @@ public class PictureCard extends Type implements CardItem<PictureCard> {
         }
     }
 
-    public void setAnswers(List<Part> answers){
-        this.answers = answers;
-    }
-
     @Override
     public void accept(CardVisitor<PictureCard> cardVisitor) {
         cardVisitor.visit(this);

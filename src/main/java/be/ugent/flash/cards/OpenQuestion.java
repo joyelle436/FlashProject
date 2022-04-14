@@ -1,12 +1,15 @@
 package be.ugent.flash.cards;
 
 
+import be.ugent.flash.data.Part;
 import be.ugent.flash.data.Question;
 import be.ugent.flash.visitors.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
+import java.util.List;
 
 
 /**
@@ -41,6 +44,9 @@ public class OpenQuestion extends Type implements CardItem<OpenQuestion> {
 
     public Label getErrorlabel() {
         return errorlabel;
+    }
+
+    public void setAnswers(List<Part> answers){
     }
 
     @Override

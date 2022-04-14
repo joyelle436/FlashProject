@@ -1,11 +1,11 @@
 package be.ugent.flash.cards;
 
-import be.ugent.flash.QuestionRow;
 import be.ugent.flash.data.Part;
 import be.ugent.flash.data.Question;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.*;
@@ -122,6 +122,7 @@ public class Type extends BorderPane implements InvalidationListener {
             imageView.setFitWidth(width);
             imageView.setFitHeight(height);
             setCenter(imageView);
+            BorderPane.setAlignment(imageView, Pos.CENTER);
         }
     }
 
@@ -170,6 +171,7 @@ public class Type extends BorderPane implements InvalidationListener {
     Dit methode is verschillend voor elke subklasse
      */
     public void setAnswers(List<Part> answers){
+        this.answers = answers;
     }
 
     public List<Part> getAnswers(){

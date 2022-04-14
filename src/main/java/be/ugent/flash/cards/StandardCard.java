@@ -55,7 +55,7 @@ public class StandardCard extends Type implements CardItem<StandardCard> {
     }
 
     public void setAnswers(List<Part> answers){
-        this.answers = answers;
+        super.setAnswers(answers);
         this.labels = new Label[answers.size()];
     }
 

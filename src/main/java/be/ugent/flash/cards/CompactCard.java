@@ -45,10 +45,6 @@ public class CompactCard extends Type implements CardItem<CompactCard> {
         }
     }
 
-    public void setAnswers(List<Part> answers){
-        this.answers = answers;
-    }
-
     @Override
     public void accept(CardVisitor<CompactCard> cardVisitor) {
         cardVisitor.visit(this);

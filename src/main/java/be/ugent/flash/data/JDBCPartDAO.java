@@ -12,6 +12,9 @@ public class JDBCPartDAO extends JDBCAbstractDAO implements PartDAO {
         super(connection);
         this.partList = new ArrayList<>();
     }
+    /*
+    gegevens uit de <<parts>> tabel
+     */
 
     @Override
     public List<Part> getParts() throws SQLException {

@@ -1,6 +1,5 @@
 package be.ugent.flash.visitors;
 
-import be.ugent.flash.QuestionRow;
 import be.ugent.flash.cards.PictureCard;
 import be.ugent.flash.data.Part;
 import be.ugent.flash.data.Question;

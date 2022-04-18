@@ -1,5 +1,6 @@
 package be.ugent.flash;
 
+import be.ugent.flash.viewer.ViewerStarter;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -43,8 +44,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         if (dbName == null) {
-            // start de beheersinterface
-            // TODO aanvullen
+            new InterfaceStarter(stage).startTheWindow(); /* start de beheersinterface aan*/
         } else {
             new ViewerStarter(stage, dbName).openViewer(); /* start de viewer aan */
         }

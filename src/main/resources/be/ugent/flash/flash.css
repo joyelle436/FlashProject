@@ -73,3 +73,16 @@
     -fx-text-fill: orange;
     -fx-font-weight: bold;
 }
+
+#window {
+    -fx-pref-height: 750px;
+    -fx-pref-width: 1200px;
+}
+
+#startHbox {
+    -fx-pref-height: 50px;
+    -fx-pref-width: 200px;
+    -fx-alignment: CENTER;
+    -fx-spacing: 15px;
+    -fx-font-size: 15px;
+}

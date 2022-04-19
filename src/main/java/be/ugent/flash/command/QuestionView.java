@@ -1,7 +1,6 @@
-package be.ugent.flash;
+package be.ugent.flash.command;
 
-import be.ugent.flash.data.Part;
-import be.ugent.flash.data.Question;
+import be.ugent.flash.data.*;
 import javafx.stage.Stage;
 
 import java.util.List;

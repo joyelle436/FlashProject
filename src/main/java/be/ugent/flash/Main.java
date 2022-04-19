@@ -1,5 +1,6 @@
 package be.ugent.flash;
 
+import be.ugent.flash.command.InterfaceStarter;
 import be.ugent.flash.viewer.ViewerStarter;
 import javafx.application.Application;
 import javafx.application.Platform;

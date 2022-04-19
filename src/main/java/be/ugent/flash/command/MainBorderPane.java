@@ -1,4 +1,4 @@
-package be.ugent.flash;
+package be.ugent.flash.command;
 
 import javafx.application.Platform;
 import javafx.event.*;
@@ -9,14 +9,17 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
-public class StartWindow extends BorderPane {
-
-    private final MenuItem[] menuItems;
-    private final Stage stage;
-    public StartWindow(Stage stage){
-        this.stage = stage;
+/**
+ * Staat de hele tijd in de stage
+ */
+public class MainBorderPane extends BorderPane {
+    private MainBorderPane mainBorderPane; /* Object van dit klasse dat eerder gemaakt wordt */
+    private final MenuItem[] MENUITEMS;
+    private final Stage STAGE;
+    public MainBorderPane(Stage stage){
+        this.STAGE = stage;
         setId("window");
-        menuItems = new MenuItem[]{
+        MENUITEMS = new MenuItem[]{
                 new OpenDatabase("Open databank"),
                 new MakeDatabase("Maak databank aan"),
                 new CloseWindow("Sluit")};
@@ -27,10 +30,10 @@ public class StartWindow extends BorderPane {
         MenuBar menuBar = new MenuBar();
         BorderPane.setAlignment(menuBar, Pos.CENTER);
         /*
-        Bevat alle nodige MenuItems
+        Bevat alle nodige MenuItems. Staat van boven
          */
         Menu bestand = new Menu("Bestand");
-        bestand.getItems().addAll(menuItems);
+        bestand.getItems().addAll(MENUITEMS);
         menuBar.getMenus().add(bestand);
         /*
         Staat in het midden met de twee knoppen erin
@@ -48,6 +51,10 @@ public class StartWindow extends BorderPane {
         setCenter(hBox);
     }
 
+    public void setObject(MainBorderPane mainBorderPane) {
+        this.mainBorderPane = mainBorderPane;
+    }
+
     /**
      * Menu Items in eigen klassen
      */
@@ -59,10 +66,10 @@ public class StartWindow extends BorderPane {
 
         @Override
         public void handle(ActionEvent event) {
-            new DatabaseOpener(stage).getFile();
+            new DatabaseOpener(STAGE, mainBorderPane).getFile();
         }
     }
-    private static class MakeDatabase extends MenuItem implements EventHandler<ActionEvent> {
+    private  class MakeDatabase extends MenuItem implements EventHandler<ActionEvent> {
         public MakeDatabase(String text){
             super(text);
             setOnAction(this);
@@ -70,7 +77,7 @@ public class StartWindow extends BorderPane {
 
         @Override
         public void handle(ActionEvent actionEvent) {
-            new DatabaseMaker().makeDatabase();
+            new DatabaseMaker(STAGE, mainBorderPane).makeDatabase();
         }
     }
     private static class CloseWindow extends MenuItem {

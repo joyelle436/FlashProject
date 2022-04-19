@@ -1,4 +1,4 @@
-package be.ugent.flash;
+package be.ugent.flash.command;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -6,16 +6,17 @@ import javafx.stage.Stage;
 public class InterfaceStarter {
 
     private final Stage stage;
-    private final StartWindow startWindow;
+    private final MainBorderPane mainBorderPane;
 
     public InterfaceStarter(Stage stage){
         this.stage = stage;
-        this.startWindow = new StartWindow(stage);
+        this.mainBorderPane = new MainBorderPane(stage);
+        mainBorderPane.setObject(mainBorderPane);
     }
 
     public void startTheWindow(){
-        startWindow.makeComponents();
-        stage.setScene(new Scene(startWindow));
+        mainBorderPane.makeComponents();
+        stage.setScene(new Scene(mainBorderPane));
         stage.setResizable(false);
         stage.setTitle(" ".repeat(150) + "Flash: beheersinterface");
         stage.show();

@@ -1,13 +1,10 @@
-package be.ugent.flash.viewer;
+package be.ugent.flash;
 
 import be.ugent.flash.data.Part;
 import be.ugent.flash.viewer.factories.*;
 import be.ugent.flash.viewer.visitors.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Houd Maps van types vragen bij en hun corresponderende factories, visitors, ...
@@ -16,9 +13,11 @@ public class MapMaker {
     private Map<String, TypeFactory> factoryMap;
     private Map<String, CardVisitor> cardVisitorMap;
     private final Map<Integer, List<Part>> partsMap;
+    private Map<String, String> qTypeMap; /* voor de beheersinterface */
     public MapMaker(){
         this.partsMap = new HashMap<>();
     }
+
     public void makePartMap(List<Part> list){
         for(Part part: list){
             if(!partsMap.containsKey(part.question_id())){
@@ -27,7 +26,6 @@ public class MapMaker {
             partsMap.get(part.question_id()).add(part);
         }
     }
-
     public void makeFactoryMap(){
         this.factoryMap = Map.of(
                 "mcs", new StandardFactory(),
@@ -38,7 +36,6 @@ public class MapMaker {
                 "openi", new OpenIntFactory()
         );
     }
-
     public void makeVisitorMap(){
         this.cardVisitorMap = Map.of(
                 "mcs", new StandardCardVisitor(),
@@ -50,13 +47,26 @@ public class MapMaker {
 
         );
     }
-    public List<Part> getPart(Integer questionid){
-        return partsMap.get(questionid);
+    public void makeTypeMap(){
+        this.qTypeMap = Map.of(
+                "mcs", "Meerkeuze (standaard)",
+                "mcc", "Meerkeuze (compact)",
+                "mci", "Meerkeuze (afbeeldingen)",
+                "mr", "Meerantwoord",
+                "open", "Open (tekst)",
+                "openi", "Open (geheel)"
+        );
     }
-    public TypeFactory getFactory(String symbol){
-        return factoryMap.get(symbol);
+    public String getStringType(String key){
+        return qTypeMap.get(key);
     }
-    public CardVisitor getVisitor(String symbol){
-        return cardVisitorMap.get(symbol);
+    public List<Part> getPart(Integer key){
+        return partsMap.get(key);
+    }
+    public TypeFactory getFactory(String key){
+        return factoryMap.get(key);
+    }
+    public CardVisitor getVisitor(String key){
+        return cardVisitorMap.get(key);
     }
 }

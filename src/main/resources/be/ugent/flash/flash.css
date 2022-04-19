@@ -86,3 +86,8 @@
     -fx-spacing: 15px;
     -fx-font-size: 15px;
 }
+
+#column {
+    -fx-max-width: 250px;
+    -fx-pref-width: 250px;
+}

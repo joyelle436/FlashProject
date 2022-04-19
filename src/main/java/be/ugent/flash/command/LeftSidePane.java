@@ -10,10 +10,10 @@ import java.util.Objects;
 /**
  * linkerkant van de beheersinterface
  */
-public class LeftPane extends GridPane {
+public class LeftSidePane extends GridPane {
 
     private final QuestionTableView tableView;
-    public LeftPane(){
+    public LeftSidePane(){
         setMaxHeight(715);
         this.tableView = new QuestionTableView();
         HBox hBox = new HBox();

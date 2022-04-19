@@ -10,10 +10,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.*;
 
 
-public class QuestionTableView extends TableView<Pair> {
+public class QuestionTableView extends TableView<TableViewPair> {
 
-    private final TableColumn<Pair, String> title;
-    private final TableColumn<Pair, String> type;
+    private final TableColumn<TableViewPair, String> title;
+    private final TableColumn<TableViewPair, String> type;
     public QuestionTableView(){
         setMaxSize(500, 670);
         this.title = new TableColumn<>("Titel");
@@ -24,11 +24,11 @@ public class QuestionTableView extends TableView<Pair> {
     }
 
     public void addColumnsData(List<Question> questionList){
-        List<Pair> pairList = new ArrayList<>();
+        List<TableViewPair> pairList = new ArrayList<>();
         MapMaker mapMaker = new MapMaker();
         mapMaker.makeTypeMap();
         for(Question question: questionList){
-            pairList.add(new Pair(question.title(), mapMaker.getStringType(question.questionType())));
+            pairList.add(new TableViewPair(question.title(), mapMaker.getStringType(question.questionType())));
         }
         setItems(FXCollections.observableArrayList(pairList));
         title.setCellValueFactory(new PropertyValueFactory<>(pairList.get(0).titleProperty().getName()));

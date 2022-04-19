@@ -30,7 +30,7 @@ public class DatabaseOpener {
             try {
                 getFileData(databaseFile.getPath());
             } catch (Exception e) {
-                new ErrorDisplay().showAlert(e.getMessage());
+                e.printStackTrace();
             }
         }
     }
@@ -39,6 +39,6 @@ public class DatabaseOpener {
         List<Question> questionList = dataCollector.getQuestionsData(); /* alle gegevens uit questions */
         List<Part> partList = dataCollector.getPartsData(); /* alle gegevens uit parts */
         dataCollector.closeDAC();
-        new PaneOpener(startWindow, questionList, partList).showList();
+        new PaneOpener(startWindow, questionList, partList).showContent();
     }
 }

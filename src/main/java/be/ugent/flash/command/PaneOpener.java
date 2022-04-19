@@ -1,15 +1,14 @@
 package be.ugent.flash.command;
 
 import be.ugent.flash.data.*;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.ScrollPane;
 
 import java.util.List;
 
 /**
- * Verandert children van de Borderpane die op de scene staat
+ * Verandert componenten van de Borderpane die op de scene staat
  */
 public class PaneOpener {
-
     private final MainBorderPane mainBorderPane;
     private final List<Question> questionList;
     private final List<Part> partList;
@@ -19,12 +18,16 @@ public class PaneOpener {
         this.partList = partList;
     }
 
-    public void showList() {
+    public void showContent() {
         mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
         CenterSplitPane centerSplitPane = new CenterSplitPane();
-        LeftPane leftGridPane = new LeftPane();
-        leftGridPane.getTableView().addColumnsData(questionList);
-        centerSplitPane.getItems().addAll(leftGridPane, new StackPane());
+        LeftSidePane leftSidePane = new LeftSidePane();
+
+        RightSidePane rightSidePane = new RightSidePane();
+        rightSidePane.fillBorderpane();
+
+        leftSidePane.getTableView().addColumnsData(questionList);
+        centerSplitPane.getItems().addAll(leftSidePane, rightSidePane);
         mainBorderPane.setCenter(centerSplitPane);
     }
 }

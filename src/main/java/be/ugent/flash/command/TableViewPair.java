@@ -5,7 +5,7 @@ import javafx.beans.property.*;
 /**
  * Bron {@link <a href="https://openjfx.io/javadoc/17/javafx.controls/javafx/scene/control/TableView.html">...</a>}
  */
-public class Pair {
+public class TableViewPair {
 
     private StringProperty title;
     private StringProperty type;
@@ -40,7 +40,7 @@ public class Pair {
         }
         return type;
     }
-    public Pair(String title, String type){
+    public TableViewPair(String title, String type){
         setTitle(title);
         setType(type);
     }

@@ -16,7 +16,13 @@ public class PaneStarter {
         List<QuestionData> questionDataList = new ArrayList<>();
         List<PartData> partDataList = new ArrayList<>();
         for(Question q: questionList){
-            QuestionData qData = new QuestionData(q.id(), q.title(), q.text(), q.middleImage(), q.questionType(), q.correctAnswer());
+            QuestionData qData = new QuestionData(
+                    q.id(),
+                    q.title(),
+                    q.text(),
+                    q.middleImage(),
+                    q.questionType(),
+                    q.correctAnswer());
             questionDataList.add(qData);
         }
 

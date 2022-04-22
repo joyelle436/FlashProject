@@ -1,8 +1,6 @@
 package be.ugent.flash.command;
 
 import javafx.geometry.*;
-import javafx.scene.Node;
-import javafx.scene.control.*;
 
 import javafx.scene.layout.*;
 
@@ -24,17 +22,9 @@ public class TopGridpane extends GridPane {
     }
 
     public void fillGridpane(){
-        Label[] TOPLABELS = topContent.getTopLabels();
-        Node[] NODETABLE = topContent.getNodeTable();
-        getChildren().addAll(TOPLABELS);
-        getChildren().addAll(NODETABLE);
-        for(int index = 0; index < 4; index++){
-            GridPane.setConstraints(TOPLABELS[index], 0, index);
-            GridPane.setConstraints(NODETABLE[index], 1, index);
-            GridPane.setValignment(TOPLABELS[index], VPos.TOP);
-            TOPLABELS[index].setStyle("-fx-font-size: 13px");
-            NODETABLE[index].setStyle("-fx-font-size: 13px");
-        }
+        topContent.addContent();
+        getChildren().addAll(topContent.getTopLabels());
+        getChildren().addAll(topContent.getNodeTable());
         getColumnConstraints().addAll(new ColumnConstraints(80), new ColumnConstraints(575));
     }
 

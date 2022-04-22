@@ -1,4 +1,4 @@
-package be.ugent.flash.panels;
+package be.ugent.flash.cardspanes;
 
 import javafx.geometry.*;
 import javafx.scene.control.*;
@@ -9,17 +9,17 @@ public class OpenQuestionPane extends QuestionPane {
 
     private final Label label;
     private final HBox hbox;
-    private TextField correct;
+    private TextField correctTextField;
     public OpenQuestionPane(){
         this.label = new Label("Correct Antwoord");
         this.hbox = new HBox();
         hbox.setMaxHeight(50);
         hbox.setAlignment(Pos.CENTER_LEFT);
         label.setFont(new Font(13));
-        correct = new TextField();
-        correct.setFont(new Font(13));
-        correct.setPrefWidth(200);
-        hbox.getChildren().addAll(label, correct);
+        correctTextField = new TextField();
+        correctTextField.setFont(new Font(13));
+        correctTextField.setPrefWidth(200);
+        hbox.getChildren().addAll(label, correctTextField);
         HBox.setMargin(label, new Insets(0, 5, 0, 0));
         getChildren().add(hbox);
     }
@@ -27,5 +27,9 @@ public class OpenQuestionPane extends QuestionPane {
     public void fill(){
         super.fill();
         addBottomButtons();
+    }
+
+    public void setCorrectTextField(String correctString){
+        correctTextField.setText(correctString);
     }
 }

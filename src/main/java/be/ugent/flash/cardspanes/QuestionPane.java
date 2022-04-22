@@ -1,4 +1,4 @@
-package be.ugent.flash.panels;
+package be.ugent.flash.cardspanes;
 
 import be.ugent.flash.command.ButtonHBox;
 import be.ugent.flash.command.RightSidePane;
@@ -9,6 +9,7 @@ import javafx.scene.layout.VBox;
 public class QuestionPane extends VBox {
     protected RightSidePane rightSidePane;
     protected final ButtonHBox buttonHBox;
+    protected MainTitledPane titledPane;
     public QuestionPane(){
         this.buttonHBox = new ButtonHBox();
         BorderPane.setAlignment(buttonHBox, Pos.BOTTOM_RIGHT);
@@ -19,12 +20,21 @@ public class QuestionPane extends VBox {
 
     public void setRightSidePane(RightSidePane rightSidePane){
         this.rightSidePane = rightSidePane;
-        rightSidePane.getContentBorderpane().changeBottomChild(null);
+        rightSidePane.changeBottomChild(null);
+        getChildren().remove(titledPane);
     }
 
     public void addBottomButtons(){
         if(rightSidePane != null){
-            rightSidePane.getContentBorderpane().changeBottomChild(buttonHBox);
+            rightSidePane.changeBottomChild(buttonHBox);
         }
+    }
+
+    public void createTitledPane(){
+        titledPane = new MainTitledPane();
+        getChildren().add(titledPane);
+    }
+
+    public void setCorrectTextField(String correctString){
     }
 }

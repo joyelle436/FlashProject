@@ -2,7 +2,7 @@ package be.ugent.flash;
 
 import be.ugent.flash.command.PartData;
 import be.ugent.flash.data.Question;
-import be.ugent.flash.panels.*;
+import be.ugent.flash.cardspanes.*;
 
 import java.util.*;
 

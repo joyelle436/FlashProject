@@ -1,10 +1,12 @@
 package be.ugent.flash.command;
 
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 
 /**
  * Gegevens van de {@link TopGridpane}
@@ -27,7 +29,7 @@ public class TopContent {
         this.titleField = new TextField();
         this.textArea = new TextArea();
         this.typeLabel = new Label("type Question");
-        textArea.setPrefSize(575, 150);
+        textArea.setPrefSize(575, 130);
         textArea.setWrapText(true);
         this.NODETABLE = new Node[]{
                 titleField,
@@ -36,6 +38,19 @@ public class TopContent {
                 new Button("Voeg afbeelding toe...")
         };
     }
+    /*
+    Wordt in TopGridpane opgeroepen
+     */
+    public void addContent(){
+        for(int index = 0; index < 4; index++){
+            GridPane.setConstraints(TOPLABELS[index], 0, index);
+            GridPane.setConstraints(NODETABLE[index], 1, index);
+            GridPane.setValignment(TOPLABELS[index], VPos.TOP);
+            TOPLABELS[index].setStyle("-fx-font-size: 13px");
+            NODETABLE[index].setStyle("-fx-font-size: 13px");
+        }
+    }
+
     public Label[] getTopLabels() {
         return TOPLABELS;
     }
@@ -43,6 +58,7 @@ public class TopContent {
     public Node[] getNodeTable() {
         return NODETABLE;
     }
+
     public void setTitleText(String title){
         titleField.setText(title);
     }

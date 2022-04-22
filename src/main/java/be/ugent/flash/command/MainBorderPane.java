@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import java.util.Objects;
 
 /**
- * Staat de hele tijd in de stage
+ * Wordt als eerst getoond als de beheersinterface
  */
 public class MainBorderPane extends BorderPane {
     private MainBorderPane mainBorderPane; /* Object van dit klasse dat eerder gemaakt wordt */
@@ -53,6 +53,11 @@ public class MainBorderPane extends BorderPane {
         }
         setTop(menuBar);
         setCenter(hBox);
+    }
+
+    public void changeCenter(Node node){
+        getChildren().remove(getCenter());
+        setCenter(node);
     }
 
     public void setObject(MainBorderPane mainBorderPane) {

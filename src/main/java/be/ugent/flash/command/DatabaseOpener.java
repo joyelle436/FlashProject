@@ -2,7 +2,6 @@ package be.ugent.flash.command;
 
 import be.ugent.flash.DataCollector;
 import be.ugent.flash.data.*;
-import be.ugent.flash.viewer.ErrorDisplay;
 import javafx.stage.*;
 
 import java.io.File;
@@ -39,6 +38,6 @@ public class DatabaseOpener {
         List<Question> questionList = dataCollector.getQuestionsData(); /* alle gegevens uit questions */
         List<Part> partList = dataCollector.getPartsData(); /* alle gegevens uit parts */
         dataCollector.closeDAC();
-        new PaneOpener(startWindow, questionList, partList).showContent();
+        new PaneStarter(startWindow, questionList, partList);
     }
 }

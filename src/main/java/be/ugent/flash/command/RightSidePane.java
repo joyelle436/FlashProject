@@ -1,34 +1,46 @@
 package be.ugent.flash.command;
 
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * rechterkant van de beheersinterface
  */
 public class RightSidePane extends ScrollPane {
 
-    private final BorderPane contentBorderpane;
+    private final ContentBorderPane contentBorderpane;
     private final TopGridpane topGridpane;
-    public RightSidePane(){
+    private final SidePaneController controller;
+    public RightSidePane(SidePaneController controller){
+        setMaxSize(700, 730);
         this.topGridpane = new TopGridpane();
-        this.contentBorderpane = new BorderPane();
-        setMaxHeight(730);
+        contentBorderpane = new ContentBorderPane(this);
+        this.controller = controller;
         setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
         setHbarPolicy(ScrollBarPolicy.NEVER);
         getStylesheets().add(Objects.requireNonNull(getClass().getResource("/be/ugent/flash/flash.css")).toString());
     }
 
-    public void fillBorderpane(){
-        topGridpane.fillGridpane();
-        contentBorderpane.setMaxHeight(getMaxHeight());
-        contentBorderpane.setTop(topGridpane);
+    public ContentBorderPane getContentBorderpane(){
+        return contentBorderpane;
+    }
+
+    public TopGridpane getTopGridpane() {
+        return topGridpane;
+    }
+
+    public void fillRightPane(){
+        fillBorderpane();
+    }
+    /*
+    layout van gridpane die boven staat aanmaken
+     */
+    private void fillBorderpane(){
         setContent(contentBorderpane);
+        topGridpane.fillGridpane();
+        contentBorderpane.getChildren().clear();
+        topGridpane.setVisible(false);
+        contentBorderpane.setTop(topGridpane);
     }
 }

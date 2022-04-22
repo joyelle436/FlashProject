@@ -1,6 +1,7 @@
 package be.ugent.flash;
 
 import be.ugent.flash.data.Part;
+import be.ugent.flash.data.Question;
 import be.ugent.flash.viewer.factories.*;
 import be.ugent.flash.viewer.visitors.*;
 
@@ -9,12 +10,11 @@ import java.util.*;
 /**
  * Houd Maps van types vragen bij en hun corresponderende factories, visitors, ...
  */
-public class MapMaker {
+public class ViewerMapMaker {
     private Map<String, TypeFactory> factoryMap;
     private Map<String, CardVisitor> cardVisitorMap;
     private final Map<Integer, List<Part>> partsMap;
-    private Map<String, String> qTypeMap; /* voor de beheersinterface */
-    public MapMaker(){
+    public ViewerMapMaker(){
         this.partsMap = new HashMap<>();
     }
 
@@ -47,19 +47,7 @@ public class MapMaker {
 
         );
     }
-    public void makeTypeMap(){
-        this.qTypeMap = Map.of(
-                "mcs", "Meerkeuze (standaard)",
-                "mcc", "Meerkeuze (compact)",
-                "mci", "Meerkeuze (afbeeldingen)",
-                "mr", "Meerantwoord",
-                "open", "Open (tekst)",
-                "openi", "Open (geheel)"
-        );
-    }
-    public String getStringType(String key){
-        return qTypeMap.get(key);
-    }
+
     public List<Part> getPart(Integer key){
         return partsMap.get(key);
     }

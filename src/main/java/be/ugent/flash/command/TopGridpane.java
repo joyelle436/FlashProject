@@ -9,33 +9,13 @@ import javafx.scene.layout.*;
 import java.util.Objects;
 
 /**
- * Staat boven de {@link RightSidePane}
+ * Staat boven de {@link LeftSidePane} rechterkant van de beheersinterface
  */
 public class TopGridpane extends GridPane {
 
-    private final Label[] TOPLABELS;
-    private final Node[] NODETABLE;
-    private final TextField titleField;
-    private final TextArea textArea;
-    private final Label typeLabel;
+    private final TopContent topContent;
     public TopGridpane(){
-        this.TOPLABELS = new Label[]{
-                new Label("Titel"),/* -> Textfield */
-                new Label("Type"),/* -> Label */
-                new Label("Tekst"),/* -> TextField */
-                new Label("Afbeelding")
-        };
-        this.titleField = new TextField();
-        this.textArea = new TextArea();
-        this.typeLabel = new Label("type Question");
-        textArea.setPrefSize(575, 150);
-        textArea.setWrapText(true);
-        this.NODETABLE = new Node[]{
-                titleField,
-                typeLabel,
-                textArea,
-                new Button("Voeg afbeelding toe...")
-        };
+        this.topContent = new TopContent();
         setAlignment(Pos.TOP_CENTER);
         BorderPane.setMargin(this, new Insets(15));
         setVgap(7);
@@ -44,6 +24,8 @@ public class TopGridpane extends GridPane {
     }
 
     public void fillGridpane(){
+        Label[] TOPLABELS = topContent.getTopLabels();
+        Node[] NODETABLE = topContent.getNodeTable();
         getChildren().addAll(TOPLABELS);
         getChildren().addAll(NODETABLE);
         for(int index = 0; index < 4; index++){
@@ -56,15 +38,9 @@ public class TopGridpane extends GridPane {
         getColumnConstraints().addAll(new ColumnConstraints(80), new ColumnConstraints(575));
     }
 
-    public void setTitleText(String title){
-        titleField.setText(title);
-    }
-
-    public void setTypeText(String typeText){
-        typeLabel.setText(typeText);
-    }
-
-    public void setQuestionText(String questionText){
-        textArea.setText(questionText);
+    public void addToTopContent(QuestionData questionData){
+        topContent.setTitleText(questionData.getTitle());
+        topContent.setTypeText(questionData.getQuestionType());
+        topContent.setQuestionText(questionData.getText());
     }
 }

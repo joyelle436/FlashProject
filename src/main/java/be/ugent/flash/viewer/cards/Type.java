@@ -111,7 +111,7 @@ public class Type extends BorderPane implements InvalidationListener {
             double width = mainImage.getWidth();
             double height = mainImage.getHeight();
             /*
-            Afbeelding kan niet te groot zijn
+            Als afbeelding te groot is, dit verkleinen
              */
             while(width > 425){
                 width /= 5;

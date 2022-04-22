@@ -1,9 +1,14 @@
 package be.ugent.flash.cardspanes;
 
+/**
+ * mcc
+ */
+
 import be.ugent.flash.command.RightSidePane;
 
-public class PictureQuestionPane extends QuestionPane {
-    public PictureQuestionPane() {
+public class CompactCardPane extends CardPane {
+    public CompactCardPane(){
+        this.topDescriptionText = "Er zijn korte strings naast knoppen waarmee er een keuze gemaakt wordt";
     }
 
     public void setRightSidePane(RightSidePane rightSidePane){

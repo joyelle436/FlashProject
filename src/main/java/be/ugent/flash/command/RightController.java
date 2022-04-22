@@ -2,7 +2,7 @@ package be.ugent.flash.command;
 
 
 import be.ugent.flash.CommandMapMaker;
-import be.ugent.flash.cardspanes.QuestionPane;
+import be.ugent.flash.cardspanes.CardPane;
 import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
 
@@ -24,7 +24,7 @@ public class RightController {
     public void showContent(QuestionData questionData){
         rightSidePane.getTopGridpane().setVisible(true);
         rightSidePane.getTopGridpane().addToTopContent(questionData);
-        QuestionPane pane = mapMaker.getQuestionPane(questionData.getQuestionType());
+        CardPane pane = mapMaker.getQuestionPane(questionData.getQuestionType());
         pane.setRightSidePane(rightSidePane);
         pane.fill();
         pane.setCorrectTextField(questionData.getCorrectAnswer());

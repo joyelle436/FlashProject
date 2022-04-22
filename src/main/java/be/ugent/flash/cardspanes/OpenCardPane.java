@@ -5,12 +5,15 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 
-public class OpenQuestionPane extends QuestionPane {
+/**
+ * open en openi
+ */
+public class OpenCardPane extends CardPane {
 
     private final Label label;
     private final HBox hbox;
     private TextField correctTextField;
-    public OpenQuestionPane(){
+    public OpenCardPane(){
         this.label = new Label("Correct Antwoord");
         this.hbox = new HBox();
         hbox.setMaxHeight(50);

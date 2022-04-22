@@ -11,7 +11,7 @@ public class CommandMapMaker {
     private Map<String, String> qTypeMap; /* voor de beheersinterface */
     private Map<Integer, String> idTypeMap; /* voor de beheersinterface */
     private final Map<Integer, List<PartData>> partsDataMap;
-    private Map<String, QuestionPane> questionPaneMap;
+    private Map<String, CardPane> questionPaneMap;
 
     public CommandMapMaker(){
         this.partsDataMap = new HashMap<>();
@@ -46,12 +46,12 @@ public class CommandMapMaker {
 
     public void makePanesMap(){
         this.questionPaneMap = Map.of(
-                "mcs", new StandaardQuestionPane(),
-                "mcc", new CompactQuestionPane(),
-                "mci", new PictureQuestionPane(),
-                "mr", new MultipleQuestionPane(),
-                "open", new OpenQuestionPane(),
-                "openi", new OpenQuestionPane()
+                "mcs", new StandaardCardPane(),
+                "mcc", new CompactCardPane(),
+                "mci", new PictureCardPane(),
+                "mr", new MultipleCardPane(),
+                "open", new OpenCardPane(),
+                "openi", new OpenCardPane()
         );
     }
 
@@ -64,7 +64,7 @@ public class CommandMapMaker {
     public List<PartData> getPartData(int key){
         return partsDataMap.get(key);
     }
-    public QuestionPane getQuestionPane(String key){
+    public CardPane getQuestionPane(String key){
         return questionPaneMap.get(key);
     }
 }

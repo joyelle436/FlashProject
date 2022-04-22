@@ -2,8 +2,12 @@ package be.ugent.flash.cardspanes;
 
 import be.ugent.flash.command.RightSidePane;
 
-public class MultipleQuestionPane extends QuestionPane {
-    public MultipleQuestionPane(){
+/**
+ * mci
+ */
+public class PictureCardPane extends CardPane {
+    public PictureCardPane(){
+        this.topDescriptionText = "Keuzes zijn (kleine) afbeelding naast overeenkomstige antwoordknopen";
     }
 
     public void setRightSidePane(RightSidePane rightSidePane){

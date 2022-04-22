@@ -6,16 +6,18 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
-public class QuestionPane extends VBox {
+public class CardPane extends VBox {
     protected RightSidePane rightSidePane;
     protected final ButtonHBox buttonHBox;
     protected MainTitledPane titledPane;
-    public QuestionPane(){
+    protected String topDescriptionText;
+    public CardPane(){
         this.buttonHBox = new ButtonHBox();
         BorderPane.setAlignment(buttonHBox, Pos.BOTTOM_RIGHT);
     }
 
     public void fill(){
+        titledPane.setLabelText(topDescriptionText);
     }
 
     public void setRightSidePane(RightSidePane rightSidePane){

@@ -17,6 +17,7 @@ public class MultipleCardPane extends CardPane {
 
     public void fill(){
         super.fill();
+        titledPane.setLabelText(topDescriptionText);
         addBottomButtons();
     }
 }

@@ -17,7 +17,6 @@ public class InterfaceStarter {
     public void startTheWindow(){
         mainBorderPane.makeComponents();
         stage.setScene(new Scene(mainBorderPane));
-        stage.setResizable(false);
         stage.setTitle(" ".repeat(150) + "Flash: beheersinterface");
         stage.show();
     }

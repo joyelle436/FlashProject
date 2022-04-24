@@ -2,6 +2,7 @@ package be.ugent.flash.command;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 public class AnswerChoiceTextField extends HBox {
@@ -17,9 +18,17 @@ public class AnswerChoiceTextField extends HBox {
         setMargin(removeButton, new Insets(6, 0, 0, 0));
         setSpacing(7);
         getChildren().addAll(checkBox, textField, removeButton);
+        GridPane.setMargin(this, new Insets(0, 0, 0, 15));
     }
 
     public void addText(String text){
         textField.setText(text);
+    }
+
+    /*
+     Een andere vraag wordt toegevoegd of verwijderd
+    */
+    public void changeHBoxPosition(int position){
+        GridPane.setConstraints(this, 0, position);
     }
 }

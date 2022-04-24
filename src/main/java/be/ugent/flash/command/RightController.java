@@ -1,20 +1,14 @@
 package be.ugent.flash.command;
 
 
-import be.ugent.flash.CommandMapMaker;
-import be.ugent.flash.cardspanes.CardPane;
-import javafx.geometry.Insets;
-import javafx.scene.layout.BorderPane;
-
 public class RightController {
-
     private final RightSidePane rightSidePane;
-    private final CommandMapMaker mapMaker;
+    private final RightPaneContent rightPaneData;
     public RightController(SidePaneController controller){
         this.rightSidePane = new RightSidePane(controller);
         rightSidePane.fillRightPane();
-        this.mapMaker = new CommandMapMaker();
-        mapMaker.makePanesMap();
+        this.rightPaneData = new RightPaneContent();
+        rightSidePane.setRightPaneContent(rightPaneData);
     }
 
     public RightSidePane getRightSidePane() {
@@ -22,13 +16,6 @@ public class RightController {
     }
 
     public void showContent(QuestionData questionData){
-        rightSidePane.getTopGridpane().setVisible(true);
-        rightSidePane.getTopGridpane().addToTopContent(questionData);
-        CardPane pane = mapMaker.getQuestionPane(questionData.getQuestionType());
-        pane.setRightSidePane(rightSidePane);
-        pane.fill();
-        pane.setCorrectTextField(questionData.getCorrectAnswer());
-        BorderPane.setMargin(pane, new Insets(15));
-        rightSidePane.changeCenterChild(pane);
+        rightPaneData.addPartsContents(questionData);
     }
 }

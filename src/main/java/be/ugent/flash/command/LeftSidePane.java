@@ -33,7 +33,7 @@ public class LeftSidePane extends GridPane {
         getStylesheets().add(Objects.requireNonNull(getClass().getResource("/be/ugent/flash/flash.css")).toString());
     }
 
-    public void showALlParts(String title){
+    public void showQuestionInfo(String title){
         controller.showQuestionContent(title);
     }
 

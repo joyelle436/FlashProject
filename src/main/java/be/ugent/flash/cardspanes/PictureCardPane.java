@@ -7,7 +7,7 @@ import be.ugent.flash.command.RightSidePane;
  */
 public class PictureCardPane extends CardPane {
     public PictureCardPane(){
-        this.topDescriptionText = "Keuzes zijn (kleine) afbeelding naast overeenkomstige antwoordknopen";
+        this.topDescriptionText = "Keuzes zijn (kleine) afbeelding om erop te klikken";
     }
 
     public void setRightSidePane(RightSidePane rightSidePane){
@@ -17,6 +17,7 @@ public class PictureCardPane extends CardPane {
 
     public void fill(){
         super.fill();
+        titledPane.setLabelText(topDescriptionText);
         addBottomButtons();
     }
 }

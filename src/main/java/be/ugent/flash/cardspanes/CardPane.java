@@ -2,6 +2,7 @@ package be.ugent.flash.cardspanes;
 
 import be.ugent.flash.command.ButtonHBox;
 import be.ugent.flash.command.RightSidePane;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -9,15 +10,15 @@ import javafx.scene.layout.VBox;
 public class CardPane extends VBox {
     protected RightSidePane rightSidePane;
     protected final ButtonHBox buttonHBox;
-    protected MainTitledPane titledPane;
+    protected CenterTitledPane titledPane;
     protected String topDescriptionText;
     public CardPane(){
         this.buttonHBox = new ButtonHBox();
+        BorderPane.setMargin(this, new Insets(15));
         BorderPane.setAlignment(buttonHBox, Pos.BOTTOM_RIGHT);
     }
 
     public void fill(){
-        titledPane.setLabelText(topDescriptionText);
     }
 
     public void setRightSidePane(RightSidePane rightSidePane){
@@ -32,8 +33,8 @@ public class CardPane extends VBox {
         }
     }
 
-    public void createTitledPane(){
-        titledPane = new MainTitledPane();
+    public final void createTitledPane(){
+        titledPane = new CenterTitledPane();
         getChildren().add(titledPane);
     }
 

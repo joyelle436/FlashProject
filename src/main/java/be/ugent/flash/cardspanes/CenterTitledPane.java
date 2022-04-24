@@ -6,19 +6,15 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 
-public class MainTitledPane extends TitledPane {
+public class CenterTitledPane extends TitledPane {
 
     private final TopDescriptionLabel descriptionLabel; /* beschrijt hoe de antwoorden eruit gaan uitzien */
     private final TitledPaneGridpane mainGridpane;
-    public MainTitledPane(){
+    public CenterTitledPane(){
         this.descriptionLabel = new TopDescriptionLabel();
         this.mainGridpane = new TitledPaneGridpane();
         setFont(new Font(13));
-        setPrefSize(545, 400);
-        AnswerChoiceTextField textField = new AnswerChoiceTextField();
-        AnswerChoiceTextField textField1 = new AnswerChoiceTextField();
-        GridPane.setConstraints(textField, 0, 1);
-        GridPane.setConstraints(textField1, 0, 2);
+        setPrefWidth(500);
         mainGridpane.getChildren().add(descriptionLabel);
         setContent(mainGridpane);
         setText("Mogelijke antwoorden");
@@ -38,11 +34,10 @@ public class MainTitledPane extends TitledPane {
 
     private static class TopDescriptionLabel extends Label {
         public TopDescriptionLabel(){
-            super();
             setFont(new Font(11));
             setLineSpacing(2);
             setStyle("-fx-text-fill: #888888");
-            GridPane.setMargin(this, new Insets(5));
+            GridPane.setMargin(this, new Insets(10));
             GridPane.setConstraints(this, 0, 0);
         }
     }

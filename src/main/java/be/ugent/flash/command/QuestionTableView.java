@@ -43,6 +43,6 @@ public class QuestionTableView extends TableView<TableViewPair> implements Event
     @Override
     public void handle(MouseEvent mouseEvent) {
         String title = getSelectionModel().getSelectedItem().getTitle();
-        leftSidePane.showALlParts(title);
+        leftSidePane.showQuestionInfo(title);
     }
 }

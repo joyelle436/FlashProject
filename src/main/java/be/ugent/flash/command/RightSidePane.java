@@ -12,6 +12,7 @@ public class RightSidePane extends BorderPane {
 
     private final TopGridpane topGridpane;
     private final SidePaneController controller;
+    private RightPaneContent rightPaneContent;
 
     public RightSidePane(SidePaneController controller){
         setMaxSize(700, 730);
@@ -27,6 +28,11 @@ public class RightSidePane extends BorderPane {
     public void changeBottomChild(Node node){
         getChildren().remove(getBottom());
         setBottom(node);
+    }
+
+    public void setRightPaneContent(RightPaneContent rightPaneContent) {
+        this.rightPaneContent = rightPaneContent;
+        rightPaneContent.setRightSidePane(this);
     }
 
     public TopGridpane getTopGridpane() {

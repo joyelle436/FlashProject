@@ -1,18 +1,22 @@
 package be.ugent.flash.cardspanes;
 
-import be.ugent.flash.command.ButtonHBox;
-import be.ugent.flash.command.RightSidePane;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import be.ugent.flash.command.*;
+import be.ugent.flash.events.TitledPaneFiller;
+import javafx.geometry.*;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.*;
+
+import java.util.List;
 
 public class CardPane extends VBox {
     protected RightSidePane rightSidePane;
     protected final ButtonHBox buttonHBox;
     protected CenterTitledPane titledPane;
     protected String topDescriptionText;
-    public CardPane(){
+    protected List<PartData> partDataList;
+    protected String type;
+    public CardPane(String type){
+        this.type = type;
         this.buttonHBox = new ButtonHBox();
         BorderPane.setMargin(this, new Insets(15));
         BorderPane.setAlignment(buttonHBox, Pos.BOTTOM_RIGHT);
@@ -21,8 +25,9 @@ public class CardPane extends VBox {
     public void fill(){
     }
 
-    public void setRightSidePane(RightSidePane rightSidePane){
+    public void setRightSidePane(RightSidePane rightSidePane, List<PartData> partDataList){
         this.rightSidePane = rightSidePane;
+        this.partDataList = partDataList;
         rightSidePane.changeBottomChild(null);
         getChildren().remove(titledPane);
     }
@@ -36,6 +41,11 @@ public class CardPane extends VBox {
     public final void createTitledPane(){
         titledPane = new CenterTitledPane();
         getChildren().add(titledPane);
+        createPartsFiller();
+    }
+
+    public void createPartsFiller(){
+        new TitledPaneFiller(titledPane, partDataList, type).fillParts();
     }
 
     public void setCorrectTextField(String correctString){

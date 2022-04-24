@@ -14,6 +14,10 @@ public class TitledPaneGridpane extends GridPane {
         setVgap(7);
     }
 
+    public OptionButton getOptionButton() {
+        return optionButton;
+    }
+
     public void setRowIndex(int rowIndex) {
         this.rowIndex = rowIndex;
     }

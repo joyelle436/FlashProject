@@ -5,7 +5,10 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
-public class AnswerChoiceTextField extends HBox {
+/**
+ * Dit is allen voor mcs, mcc en mr vragen
+ */
+public class AnswerChoiceTextField extends HBox implements AnswerChoice {
     private final CheckBox checkBox;
     private final TextField textField;
     private final Button removeButton;
@@ -23,5 +26,17 @@ public class AnswerChoiceTextField extends HBox {
 
     public void addText(String text){
         textField.setText(text);
+    }
+
+    @Override
+    public void setPosition(int position) {
+        GridPane.setConstraints(this, 0, position);
+    }
+
+    @Override
+    public void changePosition(int position) {
+        if(position < GridPane.getRowIndex(this)){
+            GridPane.setRowIndex(this, GridPane.getRowIndex(this));
+        }
     }
 }

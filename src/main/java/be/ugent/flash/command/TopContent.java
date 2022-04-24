@@ -10,7 +10,7 @@ import javafx.scene.layout.GridPane;
  */
 public class TopContent {
 
-    private final Label[] TOPLABELS;
+    private final Label[] TOPLABELS; /* Staar bovenaan aan de rechterkant */
     private final Node[] NODETABLE;
     private final TextField titleField;
     private final TextArea textArea;

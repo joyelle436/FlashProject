@@ -13,13 +13,19 @@ public class CenterTitledPane extends TitledPane {
     public CenterTitledPane(){
         this.descriptionLabel = new TopDescriptionLabel();
         this.mainGridpane = new TitledPaneGridpane();
+        /*Bevat de mainGridpane*/
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setMaxHeight(400);
+        scrollPane.setContent(mainGridpane);
         setFont(new Font(13));
-        setPrefWidth(500);
         mainGridpane.getChildren().add(descriptionLabel);
-        setContent(mainGridpane);
+        setContent(scrollPane);
         setText("Mogelijke antwoorden");
-        setCollapsible(false);
         BorderPane.setMargin(this, new Insets(0, 5, 0, 0));
+    }
+
+    public TitledPaneGridpane getMainGridpane() {
+        return mainGridpane;
     }
 
     public void setLabelText(String labelText) {

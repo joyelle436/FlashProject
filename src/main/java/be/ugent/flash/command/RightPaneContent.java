@@ -11,6 +11,8 @@ import java.util.List;
 public class RightPaneContent {
     private final CommandMapMaker mapMaker;
     private RightSidePane rightSidePane;
+    private QuestionData questionData;
+    private List<PartData> partDataList;
     public RightPaneContent(){
         this.mapMaker = new CommandMapMaker();
         mapMaker.makePanesMap();
@@ -21,21 +23,22 @@ public class RightPaneContent {
     }
 
     public void addContents(QuestionData questionData, List<PartData> partDataList){
-        addQuestionContent(questionData);
-        addPartContent(partDataList);
+        this.questionData = questionData;
+        this.partDataList = partDataList;
+        addQuestionContent();
     }
 
-    private void addQuestionContent(QuestionData questionData){
+    private void addQuestionContent(){
         rightSidePane.getTopGridpane().setVisible(true);
         rightSidePane.getTopGridpane().addToTopContent(questionData);
         CardPane pane = mapMaker.getQuestionPane(questionData.getQuestionType());
-        pane.setRightSidePane(rightSidePane);
+        pane.setRightSidePane(rightSidePane, partDataList);
         pane.fill();
         pane.setCorrectTextField(questionData.getCorrectAnswer());
         rightSidePane.changeCenterChild(pane);
     }
 
-    private void addPartContent(List<PartData> partDataList){
+    private void addPartContent(){
 
     }
 }

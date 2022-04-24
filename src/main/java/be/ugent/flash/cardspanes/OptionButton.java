@@ -13,14 +13,18 @@ public class OptionButton extends Button implements EventHandler<ActionEvent> {
     public OptionButton(){
         super("Optie toevoegen");
         GridPane.setConstraints(this, 0, 1);
-        GridPane.setMargin(this, new Insets(0, 0, 0, 10));
+        GridPane.setMargin(this, new Insets(0, 0, 10, 10));
     }
 
     /*
      Een andere vraag wordt toegevoegd of verwijderd
     */
-    public void changeButtonPosition(int position){
-        GridPane.setConstraints(this, 0, position);
+    public void decreasePosition(){
+        GridPane.setRowIndex(this, GridPane.getRowIndex(this)-1);
+    }
+
+    public void increasePosition(){
+        GridPane.setRowIndex(this, GridPane.getRowIndex(this)+1);
     }
 
     @Override

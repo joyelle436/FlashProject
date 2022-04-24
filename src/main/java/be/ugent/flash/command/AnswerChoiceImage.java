@@ -8,7 +8,7 @@ import javafx.scene.layout.*;
 /**
  * Dit is alleen voor een mci vraag
  */
-public class AnswerChoiceImage extends HBox {
+public class AnswerChoiceImage extends HBox implements AnswerChoice {
     private final CheckBox checkBox;
     private final ToggleButton toggleButton;
     private final Button removeButton;
@@ -26,5 +26,17 @@ public class AnswerChoiceImage extends HBox {
 
     private void setToggleButtonImage(ImageView imageView){
         toggleButton.setGraphic(imageView);
+    }
+
+    @Override
+    public void setPosition(int position) {
+        GridPane.setConstraints(this, 0, position);
+    }
+
+    @Override
+    public void changePosition(int position) {
+        if(position < GridPane.getRowIndex(this)){
+            GridPane.setRowIndex(this, GridPane.getRowIndex(this));
+        }
     }
 }

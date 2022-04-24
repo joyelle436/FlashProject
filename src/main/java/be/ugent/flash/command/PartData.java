@@ -20,6 +20,10 @@ public class PartData {
         return part_id;
     }
 
+    public byte[] getPart() {
+        return null;
+    }
+
     public void setQuestion_id(int question_id) {
         this.question_id = question_id;
     }

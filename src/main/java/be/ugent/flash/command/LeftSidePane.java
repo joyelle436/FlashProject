@@ -20,7 +20,7 @@ public class LeftSidePane extends GridPane {
         this.tableView = new QuestionTableView(this);
         HBox hBox = new HBox();
         hBox.setMaxWidth(500);
-        hBox.getChildren().addAll(new AddQuestionButton(), new DeleteQuestionButton());
+        hBox.getChildren().addAll(new LeftBottomButton.AddQuestionButton(), new LeftBottomButton.DeleteQuestionButton());
         hBox.setAlignment(Pos.CENTER_RIGHT);
         setMargin(hBox, new Insets(0, 10, 0, 0));
         setMargin(tableView, new Insets(0, 0, 0, 5));
@@ -42,26 +42,4 @@ public class LeftSidePane extends GridPane {
         tableView.addColumnsData(questionDataList);
     }
 
-    private class AddQuestionButton extends Button implements EventHandler<ActionEvent> {
-        public AddQuestionButton(){
-            super("Vraag toevoegen");
-            setStyle("-fx-font-size: 12px");
-        }
-
-        @Override
-        public void handle(ActionEvent actionEvent) {
-            //pak the title van het vraag uit de column en geef het aan de controller
-        }
-    }
-
-    private class DeleteQuestionButton extends Button implements EventHandler<ActionEvent> {
-        public DeleteQuestionButton(){
-            super("Vraag verwijderen");
-            setStyle("-fx-font-size: 12px");
-        }
-
-        @Override
-        public void handle(ActionEvent actionEvent) {
-        }
-    }
 }

@@ -3,6 +3,8 @@ package be.ugent.flash.command;
 import be.ugent.flash.CommandMapMaker;
 import be.ugent.flash.cardspanes.CardPane;
 
+import java.util.List;
+
 /**
  * Gebruikt door {@link RightController} om data aan de rechterkant toe te voegen
  */
@@ -18,7 +20,12 @@ public class RightPaneContent {
         this.rightSidePane = rightSidePane;
     }
 
-    public void addPartsContents(QuestionData questionData){
+    public void addContents(QuestionData questionData, List<PartData> partDataList){
+        addQuestionContent(questionData);
+        addPartContent(partDataList);
+    }
+
+    private void addQuestionContent(QuestionData questionData){
         rightSidePane.getTopGridpane().setVisible(true);
         rightSidePane.getTopGridpane().addToTopContent(questionData);
         CardPane pane = mapMaker.getQuestionPane(questionData.getQuestionType());
@@ -26,5 +33,9 @@ public class RightPaneContent {
         pane.fill();
         pane.setCorrectTextField(questionData.getCorrectAnswer());
         rightSidePane.changeCenterChild(pane);
+    }
+
+    private void addPartContent(List<PartData> partDataList){
+
     }
 }

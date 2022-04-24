@@ -1,17 +1,16 @@
 package be.ugent.flash.command;
 
 import be.ugent.flash.CommandMapMaker;
+import be.ugent.flash.events.TableViewHandler;
 import javafx.collections.FXCollections;
-import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 
 
 import java.util.*;
 
 
-public class QuestionTableView extends TableView<TableViewPair> implements EventHandler<MouseEvent> {
+public class QuestionTableView extends TableView<TableViewPair> {
 
     private final TableColumn<TableViewPair, String> title;
     private final TableColumn<TableViewPair, String> type;
@@ -23,7 +22,7 @@ public class QuestionTableView extends TableView<TableViewPair> implements Event
         this.type = new TableColumn<>("Type");
         title.setId("column");
         type.setId("column");
-        setOnMouseClicked(this);
+        setOnMouseClicked(new TableViewHandler(leftSidePane, this));
         getStylesheets().add(Objects.requireNonNull(getClass().getResource("/be/ugent/flash/flash.css")).toString());
     }
 
@@ -38,11 +37,5 @@ public class QuestionTableView extends TableView<TableViewPair> implements Event
         title.setCellValueFactory(new PropertyValueFactory<>(pairList.get(0).titleProperty().getName()));
         type.setCellValueFactory(new PropertyValueFactory<>(pairList.get(0).typeProperty().getName()));
         getColumns().setAll(List.of(title, type));
-    }
-
-    @Override
-    public void handle(MouseEvent mouseEvent) {
-        String title = getSelectionModel().getSelectedItem().getTitle();
-        leftSidePane.showQuestionInfo(title);
     }
 }

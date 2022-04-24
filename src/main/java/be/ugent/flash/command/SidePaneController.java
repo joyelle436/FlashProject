@@ -1,5 +1,7 @@
 package be.ugent.flash.command;
 
+import be.ugent.flash.CommandMapMaker;
+
 import java.util.List;
 
 /**
@@ -12,6 +14,7 @@ public class SidePaneController {
     private final LeftController leftController;
     private final List<QuestionData> questionDataList;
     private final List<PartData> partDataList;
+    private final CommandMapMaker mapMaker;
 
     public SidePaneController(MainBorderPane mainBorderPane, List<QuestionData> questionDataList, List<PartData> partDataList) {
         this.rightController = new RightController(this);
@@ -19,6 +22,8 @@ public class SidePaneController {
         this.questionDataList = questionDataList;
         this.partDataList = partDataList;
         this.mainBorderPane = mainBorderPane;
+        this.mapMaker = new CommandMapMaker();
+        mapMaker.makePartDataMap(partDataList);
     }
 
     public void showPanes() {
@@ -37,7 +42,7 @@ public class SidePaneController {
             questionData = questionDataList.get(index);
             index += 1;
         }
-        rightController.showContent(questionData);
+        rightController.showContent(questionData, mapMaker.getPartData(questionData.getId()));
     }
     /*
     Als er op de knop <<Voeg nieuwe vraag toe>> geklikt wordt

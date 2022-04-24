@@ -24,11 +24,4 @@ public class AnswerChoiceTextField extends HBox {
     public void addText(String text){
         textField.setText(text);
     }
-
-    /*
-     Een andere vraag wordt toegevoegd of verwijderd
-    */
-    public void changeHBoxPosition(int position){
-        GridPane.setConstraints(this, 0, position);
-    }
 }

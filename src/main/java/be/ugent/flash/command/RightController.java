@@ -1,6 +1,8 @@
 package be.ugent.flash.command;
 
 
+import java.util.List;
+
 public class RightController {
     private final RightSidePane rightSidePane;
     private final RightPaneContent rightPaneData;
@@ -15,7 +17,7 @@ public class RightController {
         return rightSidePane;
     }
 
-    public void showContent(QuestionData questionData){
-        rightPaneData.addPartsContents(questionData);
+    public void showContent(QuestionData questionData, List<PartData> partDataList){
+        rightPaneData.addContents(questionData, partDataList);
     }
 }

@@ -1,8 +1,8 @@
-package be.ugent.flash.command;
+package be.ugent.flash.command.lefts;
 
-import javafx.event.*;
+import be.ugent.flash.command.QuestionData;
+import be.ugent.flash.command.SidePaneController;
 import javafx.geometry.*;
-import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 
 import java.util.*;
@@ -20,7 +20,7 @@ public class LeftSidePane extends GridPane {
         this.tableView = new QuestionTableView(this);
         HBox hBox = new HBox();
         hBox.setMaxWidth(500);
-        hBox.getChildren().addAll(new LeftBottomButton.AddQuestionButton(), new LeftBottomButton.DeleteQuestionButton());
+        hBox.getChildren().addAll(new LeftBottomButton.AddQuestionButton(this), new LeftBottomButton.DeleteQuestionButton(this));
         hBox.setAlignment(Pos.CENTER_RIGHT);
         setMargin(hBox, new Insets(0, 10, 0, 0));
         setMargin(tableView, new Insets(0, 0, 0, 5));

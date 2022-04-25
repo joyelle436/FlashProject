@@ -1,6 +1,5 @@
 package be.ugent.flash.cardspanes;
 
-import be.ugent.flash.command.AnswerChoiceTextField;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -12,7 +11,7 @@ public class CenterTitledPane extends TitledPane {
     private final TitledPaneGridpane mainGridpane;
     public CenterTitledPane(){
         this.descriptionLabel = new TopDescriptionLabel();
-        this.mainGridpane = new TitledPaneGridpane();
+        this.mainGridpane = new TitledPaneGridpane(this);
         /*Bevat de mainGridpane*/
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setMaxHeight(400);
@@ -30,12 +29,6 @@ public class CenterTitledPane extends TitledPane {
 
     public void setLabelText(String labelText) {
         descriptionLabel.setText(labelText);
-    }
-
-    public void addChoiceTextField(String text){
-        AnswerChoiceTextField choiceTextField = new AnswerChoiceTextField();
-        choiceTextField.addText(text);
-        mainGridpane.addTextField(choiceTextField);
     }
 
     private static class TopDescriptionLabel extends Label {

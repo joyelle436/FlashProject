@@ -1,5 +1,6 @@
-package be.ugent.flash.command;
+package be.ugent.flash.command.rights;
 
+import be.ugent.flash.command.rights.RightSidePane;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;

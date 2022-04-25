@@ -1,5 +1,6 @@
-package be.ugent.flash.command;
+package be.ugent.flash.command.rights;
 
+import be.ugent.flash.command.SidePaneController;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 

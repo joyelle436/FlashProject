@@ -1,14 +1,12 @@
 package be.ugent.flash.cardspanes;
 
-import be.ugent.flash.command.AnswerChoiceTextField;
 import javafx.scene.layout.GridPane;
 
 public class TitledPaneGridpane extends GridPane {
 
-    private int rowIndex;
+    private CenterTitledPane titledPane;
     private final OptionButton optionButton;
-    public TitledPaneGridpane(){
-        this.rowIndex = 1;
+    public TitledPaneGridpane(CenterTitledPane titledPane){
         this.optionButton = new OptionButton();
         getChildren().add(optionButton);
         setVgap(7);
@@ -18,11 +16,4 @@ public class TitledPaneGridpane extends GridPane {
         return optionButton;
     }
 
-    public void setRowIndex(int rowIndex) {
-        this.rowIndex = rowIndex;
-    }
-
-    public void addTextField(AnswerChoiceTextField choiceTextField) {
-        setRowIndex(rowIndex+1);
-    }
 }

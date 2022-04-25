@@ -1,9 +1,10 @@
 package be.ugent.flash.cardspanes;
 
 import be.ugent.flash.command.*;
+import be.ugent.flash.command.rights.ButtonHBox;
+import be.ugent.flash.command.rights.RightSidePane;
 import be.ugent.flash.events.TitledPaneFiller;
 import javafx.geometry.*;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 
 import java.util.List;

@@ -1,5 +1,7 @@
-package be.ugent.flash.command;
+package be.ugent.flash.command.rights;
 
+import be.ugent.flash.cardspanes.TitledPaneGridpane;
+import be.ugent.flash.command.PartData;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -38,5 +40,13 @@ public class AnswerChoiceTextField extends HBox implements AnswerChoice {
         if(position < GridPane.getRowIndex(this)){
             GridPane.setRowIndex(this, GridPane.getRowIndex(this));
         }
+    }
+
+    @Override
+    public void putInGridpane(PartData partData, TitledPaneGridpane gridpane, int position) {
+        addText(new String(partData.getPart()));
+        setPosition(position);
+        gridpane.getChildren().add(this);
+        gridpane.getOptionButton().increasePosition();
     }
 }

@@ -1,5 +1,8 @@
-package be.ugent.flash.command;
+package be.ugent.flash.command.rights;
 
+import be.ugent.flash.command.QuestionData;
+import be.ugent.flash.command.lefts.LeftSidePane;
+import be.ugent.flash.command.rights.TopContent;
 import javafx.geometry.*;
 
 import javafx.scene.layout.*;

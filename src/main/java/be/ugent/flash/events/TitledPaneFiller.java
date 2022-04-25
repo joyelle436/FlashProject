@@ -1,9 +1,9 @@
 package be.ugent.flash.events;
 
-import be.ugent.flash.cardspanes.CenterTitledPane;
-import be.ugent.flash.cardspanes.TitledPaneGridpane;
-import be.ugent.flash.command.AnswerChoiceTextField;
-import be.ugent.flash.command.PartData;
+import be.ugent.flash.cardspanes.*;
+import be.ugent.flash.command.*;
+import be.ugent.flash.command.rights.AnswerChoiceImage;
+import be.ugent.flash.command.rights.AnswerChoiceTextField;
 
 import java.util.List;
 
@@ -23,14 +23,16 @@ public class TitledPaneFiller {
 
     public void fillParts() {
         if(!questionType.equals("mci")){
-            int i = 1;
-            for(PartData partData: partDataList){
+            for(int i = 0; i < partDataList.size(); i++){
+                PartData partData = partDataList.get(i);
                 AnswerChoiceTextField choiceTextField = new AnswerChoiceTextField();
-                choiceTextField.addText(new String(partData.getPart()));
-                choiceTextField.setPosition(i);
-                titledPaneGridpane.getChildren().add(choiceTextField);
-                titledPaneGridpane.getOptionButton().increasePosition();
-                i++;
+                choiceTextField.putInGridpane(partData, titledPaneGridpane, i+1);
+            }
+        } else {
+            for(int j = 0; j < partDataList.size(); j++){
+                PartData partData = partDataList.get(j);
+                AnswerChoiceImage answerChoiceImage = new AnswerChoiceImage();
+                answerChoiceImage.putInGridpane(partData, titledPaneGridpane, j+1);
             }
         }
     }

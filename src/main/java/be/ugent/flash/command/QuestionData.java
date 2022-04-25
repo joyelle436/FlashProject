@@ -1,6 +1,5 @@
 package be.ugent.flash.command;
 
-import javafx.scene.image.Image;
 
 public class QuestionData {
 

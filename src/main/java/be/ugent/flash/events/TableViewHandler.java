@@ -1,7 +1,7 @@
 package be.ugent.flash.events;
 
-import be.ugent.flash.command.LeftSidePane;
-import be.ugent.flash.command.QuestionTableView;
+import be.ugent.flash.command.lefts.LeftSidePane;
+import be.ugent.flash.command.lefts.QuestionTableView;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 

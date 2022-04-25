@@ -1,4 +1,8 @@
-package be.ugent.flash.command;
+package be.ugent.flash.command.lefts;
+
+import be.ugent.flash.command.QuestionData;
+import be.ugent.flash.command.SidePaneController;
+import be.ugent.flash.command.lefts.LeftSidePane;
 
 import java.util.List;
 
@@ -10,6 +14,10 @@ public class LeftController {
         this.leftSidePane = new LeftSidePane(controller);
         leftSidePane.fillLeftPane(questionDataList);
         this.questionDataList = questionDataList;
+    }
+
+    public List<QuestionData> getQuestionDataList() {
+        return questionDataList;
     }
 
     public LeftSidePane getLeftSidePane() {

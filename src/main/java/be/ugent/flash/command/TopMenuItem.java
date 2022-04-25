@@ -1,0 +1,63 @@
+package be.ugent.flash.command;
+
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+
+/**
+ * MenuItems die boven de {@link MainBorderPane} staan
+ */
+public class TopMenuItem extends MenuItem{
+
+    protected final MainBorderPane mainBorderPane;
+    protected Button correspondingButton;
+    public TopMenuItem(MainBorderPane mainBorderPane, String text){
+        super(text);
+        this.mainBorderPane = mainBorderPane;
+        this.correspondingButton = new Button();
+    }
+
+    public Button getCorrespondingButton() {
+        return correspondingButton;
+    }
+
+    /**
+     * Menu Items in eigen klassen
+     */
+    public static class OpenDatabase extends TopMenuItem implements EventHandler<ActionEvent> {
+        public OpenDatabase(MainBorderPane mainBorderPane, String text){
+            super(mainBorderPane, text);
+            correspondingButton.setText("Open een bestaande databank");
+            correspondingButton.setOnAction(this);
+            setOnAction(this);
+        }
+
+        @Override
+        public void handle(ActionEvent event) {
+            new DatabaseOpener(mainBorderPane).getFile();
+        }
+    }
+    public static class MakeDatabase extends TopMenuItem implements EventHandler<ActionEvent> {
+        public MakeDatabase(MainBorderPane mainBorderPane, String text){
+            super(mainBorderPane, text);
+            correspondingButton.setText("Maak een nieuwe databank aan");
+            correspondingButton.setOnAction(this);
+            setOnAction(this);
+        }
+
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            new DatabaseMaker(mainBorderPane).makeDatabase();
+        }
+    }
+    public static class CloseWindow extends TopMenuItem {
+        public CloseWindow(MainBorderPane mainBorderPane, String text){
+            super(mainBorderPane, text);
+            setOnAction(actionEvent -> {
+                Platform.exit();
+            });
+        }
+    }
+}

@@ -9,10 +9,10 @@ import java.util.List;
 
 public class TitledPaneFiller {
 
-    private CenterTitledPane centerTitledPane;
-    private List<PartData> partDataList;
-    private TitledPaneGridpane titledPaneGridpane;
-    private String questionType;
+    private final CenterTitledPane centerTitledPane;
+    private final List<PartData> partDataList;
+    private final TitledPaneGridpane titledPaneGridpane;
+    private final String questionType;
 
     public TitledPaneFiller(CenterTitledPane centerTitledPane, List<PartData> partDataList, String questionType){
         this.centerTitledPane = centerTitledPane;

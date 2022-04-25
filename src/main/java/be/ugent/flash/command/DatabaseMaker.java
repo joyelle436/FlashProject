@@ -4,7 +4,7 @@ import javafx.stage.Stage;
 
 public class DatabaseMaker {
 
-    public DatabaseMaker(Stage stage, MainBorderPane startWindow){
+    public DatabaseMaker(MainBorderPane startWindow){
 
     }
     public void makeDatabase() {

@@ -4,8 +4,6 @@ import be.ugent.flash.CommandMapMaker;
 import be.ugent.flash.cardspanes.CardPane;
 import be.ugent.flash.command.PartData;
 import be.ugent.flash.command.QuestionData;
-import be.ugent.flash.command.rights.RightController;
-import be.ugent.flash.command.rights.RightSidePane;
 
 import java.util.List;
 
@@ -37,12 +35,7 @@ public class RightPaneContent {
         rightSidePane.getTopGridpane().addToTopContent(questionData);
         CardPane pane = mapMaker.getQuestionPane(questionData.getQuestionType());
         pane.setRightSidePane(rightSidePane, partDataList);
-        pane.fill();
         pane.setCorrectTextField(questionData.getCorrectAnswer());
         rightSidePane.changeCenterChild(pane);
-    }
-
-    private void addPartContent(){
-
     }
 }

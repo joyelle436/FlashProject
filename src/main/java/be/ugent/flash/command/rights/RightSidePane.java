@@ -1,6 +1,5 @@
 package be.ugent.flash.command.rights;
 
-import be.ugent.flash.command.SidePaneController;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 
@@ -12,13 +11,13 @@ import java.util.*;
 public class RightSidePane extends BorderPane {
 
     private final TopGridpane topGridpane;
-    private final SidePaneController controller;
+    private final RightController rightController;
     private RightPaneContent rightPaneContent;
 
-    public RightSidePane(SidePaneController controller){
+    public RightSidePane(RightController rightController){
         setMaxSize(700, 730);
         this.topGridpane = new TopGridpane();
-        this.controller = controller;
+        this.rightController = rightController;
         getStylesheets().add(Objects.requireNonNull(getClass().getResource("/be/ugent/flash/flash.css")).toString());
     }
     public void changeCenterChild(Node node){
@@ -34,6 +33,10 @@ public class RightSidePane extends BorderPane {
     public void setRightPaneContent(RightPaneContent rightPaneContent) {
         this.rightPaneContent = rightPaneContent;
         rightPaneContent.setRightSidePane(this);
+    }
+
+    public RightController getRightController() {
+        return rightController;
     }
 
     public TopGridpane getTopGridpane() {

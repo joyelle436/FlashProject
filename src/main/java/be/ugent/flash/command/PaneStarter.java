@@ -9,28 +9,22 @@ import java.util.*;
  * Start linkerkant en vervolgens rechterkant aan
  */
 public class PaneStarter {
-
     public PaneStarter(MainBorderPane startWindow, List<Question> questionList, List<Part> partList){
         CommandMapMaker mapMaker = new CommandMapMaker();
         mapMaker.makeIdMap(questionList);
         List<QuestionData> questionDataList = new ArrayList<>();
         List<PartData> partDataList = new ArrayList<>();
-        for(Question q: questionList){
-            QuestionData qData = new QuestionData(
-                    q.id(),
-                    q.title(),
-                    q.text(),
-                    q.middleImage(),
-                    q.questionType(),
-                    q.correctAnswer());
+        for(Question question: questionList){
+            QuestionData qData = new QuestionData(question.id(), question.title(), question.text(),
+                    question.middleImage(), question.questionType(), question.correctAnswer());
             questionDataList.add(qData);
         }
 
-        for(Part p: partList){
-            if(mapMaker.getIdType(p.question_id()).equals("mci")){
-                partDataList.add(new PictureCardPart(p.question_id(), p.part_id(), p.part()));
+        for(Part part: partList){
+            if(mapMaker.getIdType(part.question_id()).equals("mci")){
+                partDataList.add(new PictureCardPart(part.question_id(), part.part_id(), part.part()));
             } else {
-                partDataList.add(new CardPart(p.question_id(), p.part_id(), p.part()));
+                partDataList.add(new CardPart(part.question_id(), part.part_id(), part.part()));
             }
         }
         new SidePaneController(startWindow, questionDataList, partDataList).showPanes();

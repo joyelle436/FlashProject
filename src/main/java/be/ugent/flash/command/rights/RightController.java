@@ -11,16 +11,22 @@ import java.util.List;
 public class RightController {
     private final RightSidePane rightSidePane;
     private final RightPaneContent rightPaneData;
+    private SidePaneController mainController;
     private final List<PartData> partDataList;
     private final CommandMapMaker mapMaker;
     public RightController(SidePaneController controller, List<PartData> partDataList){
-        this.rightSidePane = new RightSidePane(controller);
+        this.mainController = controller;
+        this.rightSidePane = new RightSidePane(this);
         this.partDataList = partDataList;
         rightSidePane.fillRightPane();
         this.rightPaneData = new RightPaneContent();
         rightSidePane.setRightPaneContent(rightPaneData);
         this.mapMaker = new CommandMapMaker();
         mapMaker.makePartDataMap(partDataList);
+    }
+
+    public SidePaneController getMainController() {
+        return mainController;
     }
 
     public RightSidePane getRightSidePane() {

@@ -10,8 +10,10 @@ import javafx.scene.layout.GridPane;
  * Staat onderaan de {@link TitledPaneGridpane}
  */
 public class OptionButton extends Button implements EventHandler<ActionEvent> {
-    public OptionButton(){
+    private final CenterTitledPane centerTitledPane;
+    public OptionButton(CenterTitledPane centerTitledPane){
         super("Optie toevoegen");
+        this.centerTitledPane = centerTitledPane;
         GridPane.setConstraints(this, 0, 1);
         GridPane.setMargin(this, new Insets(0, 0, 10, 10));
     }

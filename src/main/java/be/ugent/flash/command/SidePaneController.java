@@ -1,6 +1,5 @@
 package be.ugent.flash.command;
 
-import be.ugent.flash.CommandMapMaker;
 import be.ugent.flash.command.lefts.LeftController;
 import be.ugent.flash.command.rights.RightController;
 
@@ -15,20 +14,20 @@ public class SidePaneController {
     private final RightController rightController;
     private final LeftController leftController;
     private final List<QuestionData> questionDataList;
-    private final List<PartData> partDataList;
+    private final QuestionModifier questionModifier;
 
     public SidePaneController(MainBorderPane mainBorderPane, List<QuestionData> questionDataList, List<PartData> partDataList) {
         this.rightController = new RightController(this, partDataList);
         this.leftController = new LeftController(this, questionDataList);
         this.questionDataList = questionDataList;
-        this.partDataList = partDataList;
         this.mainBorderPane = mainBorderPane;
+        this.questionModifier = new QuestionModifier(questionDataList, partDataList);
     }
 
     public void showPanes() {
         CenterSplitPane centerSplitPane = new CenterSplitPane();
         centerSplitPane.getItems().addAll(leftController.getLeftSidePane(), rightController.getRightSidePane());
-        mainBorderPane.changeCenter(centerSplitPane);
+        mainBorderPane.changeCenter(centerSplitPane); /* nu gaat de centerSplitPane definitief in de BorderPane blijven*/
     }
     /*
     Krijgt title uit de leftsidepane pane en vul gegevens aan in leftsidepane
@@ -43,9 +42,14 @@ public class SidePaneController {
         }
         rightController.showContent(questionData);
     }
+
+    public QuestionModifier getQuestionModifier() {
+        return questionModifier;
+    }
+
     /*
-    Als er op de knop <<Voeg nieuwe vraag toe>> geklikt wordt
-     */
+        Als er op de knop <<Voeg nieuwe vraag toe>> geklikt wordt
+         */
     public void addQuestion(){
     }
 

@@ -15,9 +15,9 @@ public class DatabaseOpener {
     Dit gaat de hele tijd getoond worden
      */
     private final MainBorderPane startWindow;
-    public DatabaseOpener(Stage stage, MainBorderPane startWindow){
-        this.stage = stage;
-        this.startWindow = startWindow;
+    public DatabaseOpener(MainBorderPane mainBorderPane){
+        this.stage = mainBorderPane.getSTAGE();
+        this.startWindow = mainBorderPane;
     }
     public void getFile() {
         FileChooser fileChooser = new FileChooser();

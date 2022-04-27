@@ -39,4 +39,8 @@ public class QuestionTableView extends TableView<TableViewPair> {
         type.setCellValueFactory(new PropertyValueFactory<>(pairList.get(0).typeProperty().getName()));
         getColumns().setAll(List.of(title, type));
     }
+
+    public void addRow(String questionType) {
+
+    }
 }

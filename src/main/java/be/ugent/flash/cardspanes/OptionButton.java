@@ -6,12 +6,11 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
 
 /**
  * Staat onderaan de {@link TitledPaneGridpane}
  */
-public class OptionButton extends Button implements PositionChanger, EventHandler<ActionEvent> {
+public class OptionButton extends Button implements EventHandler<ActionEvent> {
     private final TitledPaneGridpane gridpane;
 
     public OptionButton(TitledPaneGridpane gridpane) {
@@ -25,22 +24,12 @@ public class OptionButton extends Button implements PositionChanger, EventHandle
     /*
      Een andere vraag wordt toegevoegd of verwijderd
     */
-    @Override
     public void decreasePosition() {
         GridPane.setRowIndex(this, GridPane.getRowIndex(this) - 1);
     }
 
-    @Override
     public void increasePosition() {
         GridPane.setRowIndex(this, GridPane.getRowIndex(this) + 1);
-    }
-
-    @Override
-    public void changePosition(int index) {
-        //gridpane.setRowPosition(gridpane.getRowPosition() - 1);
-    }
-
-    public void addToGridpane(int position) {
     }
 
     @Override

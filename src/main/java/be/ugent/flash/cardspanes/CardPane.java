@@ -18,7 +18,7 @@ public class CardPane extends VBox {
     protected RightController rightController;
     public CardPane(String type){
         this.type = type;
-        this.buttonHBox = new ButtonHBox();
+        this.buttonHBox = new ButtonHBox(this);
         BorderPane.setMargin(this, new Insets(15));
         BorderPane.setAlignment(buttonHBox, Pos.BOTTOM_RIGHT);
     }

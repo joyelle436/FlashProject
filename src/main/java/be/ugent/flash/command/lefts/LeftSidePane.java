@@ -37,6 +37,9 @@ public class LeftSidePane extends GridPane {
         controller.showQuestionContent(title);
     }
 
+    public void addToTableView(String questionType){
+        tableView.addRow(questionType);
+    }
 
     public void fillLeftPane(List<QuestionData> questionDataList){
         tableView.addColumnsData(questionDataList);

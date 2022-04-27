@@ -2,18 +2,15 @@ package be.ugent.flash.command.rights;
 
 import be.ugent.flash.cardspanes.TitledPaneGridpane;
 import be.ugent.flash.command.PartData;
-import javafx.event.Event;
-import javafx.event.EventHandler;
+import javafx.event.*;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 
 /**
  * Subklasse van {@link AnswerChoiceTextField} en {@link AnswerChoiceImage}
  */
-public class AnswerChoiceObject extends HBox implements EventHandler {
+public class AnswerChoiceObject extends HBox implements EventHandler<ActionEvent> {
 
     protected TitledPaneGridpane gridpane;
     protected final CheckBox checkBox;
@@ -50,7 +47,7 @@ public class AnswerChoiceObject extends HBox implements EventHandler {
         GridPane.setRowIndex(this, GridPane.getRowIndex(this)+1);
     }
     @Override
-    public void handle(Event event) {
+    public void handle(ActionEvent actionEvent) {
         removeFromGridpane();
     }
 }

@@ -39,9 +39,17 @@ public class SidePaneController {
         rightController.showContent(sidePaneHandler.getQToShow(questionDataList, title));
     }
 
+    public QuestionData getTheQuestionData(int id) {
+        int index = 0;
+        while(questionDataList.get(index).getId() != id){
+            index++;
+        }
+        return questionDataList.get(index);
+    }
+
     /*
-    Er wordt op de opslaan knop geklikt
-     */
+        Er wordt op de opslaan knop geklikt
+         */
     public void updateQuestion(int questionId, QuestionData questionData){
         /* dit ook aan rightsidepane doorgeven om partDataList te updaten */
         int index = 0;

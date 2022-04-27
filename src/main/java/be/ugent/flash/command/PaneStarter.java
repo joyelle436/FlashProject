@@ -9,7 +9,7 @@ import java.util.*;
  * Start linkerkant en vervolgens rechterkant aan
  */
 public class PaneStarter {
-    public PaneStarter(MainBorderPane startWindow, List<Question> questionList, List<Part> partList){
+    public PaneStarter(MainBorderPane startWindow, List<Question> questionList, List<Part> partList, String database){
         CommandMapMaker mapMaker = new CommandMapMaker();
         mapMaker.makeIdMap(questionList);
         List<QuestionData> questionDataList = new ArrayList<>();
@@ -27,7 +27,7 @@ public class PaneStarter {
                 partDataList.add(new CardPart(part.question_id(), part.part_id(), part.part()));
             }
         }
-        new SidePaneController(startWindow, questionDataList, partDataList).showPanes();
+        new SidePaneController(startWindow, questionDataList, partDataList).showPanes(database);
     }
 
 }

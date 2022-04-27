@@ -1,4 +1,4 @@
-package be.ugent.flash.events;
+package be.ugent.flash.handlers;
 
 import be.ugent.flash.command.lefts.LeftSidePane;
 import be.ugent.flash.command.lefts.QuestionTableView;

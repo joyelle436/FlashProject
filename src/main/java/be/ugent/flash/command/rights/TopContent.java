@@ -15,8 +15,7 @@ public class TopContent {
     private final TextField titleField;
     private final TextArea textArea;
     private final Label typeLabel;
-
-    public TopContent(){
+    public TopContent(TopGridpane topGridpane){
         this.TOPLABELS = new Label[]{
                 new Label("Titel"),/* -> Textfield */
                 new Label("Type"),/* -> Label */
@@ -28,11 +27,15 @@ public class TopContent {
         this.typeLabel = new Label("type Question");
         textArea.setPrefSize(575, 130);
         textArea.setWrapText(true);
+        Button button = new Button("Voeg afbeelding toe...");
+        button.setOnAction(actionEvent -> {
+            System.out.println(topGridpane.getQuestionData().getTitle());
+        });
         this.NODETABLE = new Node[]{
                 titleField,
                 typeLabel,
                 textArea,
-                new Button("Voeg afbeelding toe...")
+                button
         };
     }
     /*
@@ -54,6 +57,14 @@ public class TopContent {
 
     public Node[] getNodeTable() {
         return NODETABLE;
+    }
+
+    public TextField getTitleField() {
+        return titleField;
+    }
+
+    public TextArea getTextArea() {
+        return textArea;
     }
 
     public void setTitleText(String title){

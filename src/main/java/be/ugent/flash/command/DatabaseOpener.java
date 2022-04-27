@@ -15,6 +15,7 @@ public class DatabaseOpener {
     Dit gaat de hele tijd getoond worden
      */
     private final MainBorderPane startWindow;
+    private String database;
     public DatabaseOpener(MainBorderPane mainBorderPane){
         this.stage = mainBorderPane.getSTAGE();
         this.startWindow = mainBorderPane;
@@ -34,10 +35,11 @@ public class DatabaseOpener {
         }
     }
     public void getFileData(String database) throws SQLException {
+        this.database = database;
         DataCollector dataCollector = new DataCollector(database);
         List<Question> questionList = dataCollector.getQuestionsData(); /* alle gegevens uit questions */
         List<Part> partList = dataCollector.getPartsData(); /* alle gegevens uit parts */
         dataCollector.closeDAC();
-        new PaneStarter(startWindow, questionList, partList);
+        new PaneStarter(startWindow, questionList, partList, database);
     }
 }

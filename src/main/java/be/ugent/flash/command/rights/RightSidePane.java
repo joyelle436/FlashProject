@@ -50,7 +50,6 @@ public class RightSidePane extends BorderPane {
     layout van gridpane die boven staat aanmaken
      */
     private void fillBorderpane(){
-        topGridpane.fillGridpane();
         getChildren().clear();
         topGridpane.setVisible(false);
         setTop(topGridpane);

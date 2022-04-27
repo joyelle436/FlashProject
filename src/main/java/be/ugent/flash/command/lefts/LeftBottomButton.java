@@ -6,8 +6,7 @@ import javafx.scene.control.Button;
 
 public class LeftBottomButton extends Button implements EventHandler<ActionEvent> {
 
-    /* nodig om toegang te kunnen krijgen tot SidePaneController*/
-    protected LeftSidePane leftSidePane;
+    protected LeftSidePane leftSidePane; /* nodig om toegang te kunnen krijgen tot SidePaneController*/
     public LeftBottomButton(LeftSidePane leftSidePane){
         this.leftSidePane = leftSidePane;
     }

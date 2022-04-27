@@ -9,9 +9,9 @@ public class CenterTitledPane extends TitledPane {
 
     private final TopDescriptionLabel descriptionLabel; /* beschrijt hoe de antwoorden eruit gaan uitzien */
     private final TitledPaneGridpane mainGridpane;
-    public CenterTitledPane(){
+    public CenterTitledPane(String questionType){
         this.descriptionLabel = new TopDescriptionLabel();
-        this.mainGridpane = new TitledPaneGridpane(this);
+        this.mainGridpane = new TitledPaneGridpane(this, questionType);
         /*Bevat de mainGridpane*/
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setMaxHeight(400);

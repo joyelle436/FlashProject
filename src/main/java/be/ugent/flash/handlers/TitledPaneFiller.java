@@ -1,7 +1,8 @@
-package be.ugent.flash.events;
+package be.ugent.flash.handlers;
 
 import be.ugent.flash.cardspanes.*;
 import be.ugent.flash.command.*;
+import be.ugent.flash.command.rights.AnswerChoice;
 import be.ugent.flash.command.rights.AnswerChoiceImage;
 import be.ugent.flash.command.rights.AnswerChoiceTextField;
 
@@ -22,18 +23,26 @@ public class TitledPaneFiller {
     }
 
     public void fillParts() {
-        if(!questionType.equals("mci")){
-            for(int i = 0; i < partDataList.size(); i++){
-                PartData partData = partDataList.get(i);
-                AnswerChoiceTextField choiceTextField = new AnswerChoiceTextField();
-                choiceTextField.putInGridpane(partData, titledPaneGridpane, i+1);
-            }
-        } else {
-            for(int j = 0; j < partDataList.size(); j++){
-                PartData partData = partDataList.get(j);
-                AnswerChoiceImage answerChoiceImage = new AnswerChoiceImage();
-                answerChoiceImage.putInGridpane(partData, titledPaneGridpane, j+1);
-            }
+        int position = centerTitledPane.getMainGridpane().getRowPosition();
+        for(PartData partData: partDataList) {
+            AnswerChoice answerChoice = getAnswerChoice();
+            answerChoice.putInGridpane(partData, position);
+            position += 1;
         }
+        centerTitledPane.getMainGridpane().setRowPosition(position);
+    }
+
+    public AnswerChoice getAnswerChoice(){
+        AnswerChoice choice;
+        if(questionType.equals("mci")){
+            choice = new AnswerChoiceImage(titledPaneGridpane);
+        } else {
+            choice = new AnswerChoiceTextField(titledPaneGridpane);
+        }
+        return choice;
+    }
+
+    public TitledPaneGridpane getTitledPaneGridpane() {
+        return titledPaneGridpane;
     }
 }

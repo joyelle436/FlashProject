@@ -2,7 +2,7 @@ package be.ugent.flash.command.lefts;
 
 import be.ugent.flash.CommandMapMaker;
 import be.ugent.flash.command.QuestionData;
-import be.ugent.flash.events.TableViewHandler;
+import be.ugent.flash.handlers.TableViewHandler;
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;

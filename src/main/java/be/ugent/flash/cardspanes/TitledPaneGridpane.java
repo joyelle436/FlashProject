@@ -11,7 +11,7 @@ public class TitledPaneGridpane extends GridPane {
     private int rowPosition;
     public TitledPaneGridpane(CenterTitledPane titledPane, String questionType){
         this.optionButton = new OptionButton(this);
-        setGridLinesVisible(true);
+        //setGridLinesVisible(true);
         this.questionType = questionType;
         getChildren().add(optionButton);
         setVgap(7);

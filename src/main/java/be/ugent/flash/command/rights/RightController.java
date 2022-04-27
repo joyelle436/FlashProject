@@ -4,17 +4,17 @@ package be.ugent.flash.command.rights;
 import be.ugent.flash.CommandMapMaker;
 import be.ugent.flash.command.PartData;
 import be.ugent.flash.command.QuestionData;
-import be.ugent.flash.command.SidePaneController;
+import be.ugent.flash.command.SidePaneConnnection;
 
 import java.util.List;
 
 public class RightController {
     private final RightSidePane rightSidePane;
     private final RightPaneContent rightPaneData;
-    private SidePaneController mainController;
+    private SidePaneConnnection mainController;
     private final List<PartData> partDataList;
     private final CommandMapMaker mapMaker;
-    public RightController(SidePaneController controller, List<PartData> partDataList){
+    public RightController(SidePaneConnnection controller, List<PartData> partDataList){
         this.mainController = controller;
         this.rightSidePane = new RightSidePane(this);
         this.partDataList = partDataList;
@@ -25,7 +25,7 @@ public class RightController {
         mapMaker.makePartDataMap(partDataList);
     }
 
-    public SidePaneController getMainController() {
+    public SidePaneConnnection getMainController() {
         return mainController;
     }
 

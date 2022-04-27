@@ -1,11 +1,8 @@
 package be.ugent.flash.command.lefts;
 
-import be.ugent.flash.CommandMapMaker;
 import be.ugent.flash.command.QuestionData;
-import be.ugent.flash.handlers.TableViewHandler;
-import javafx.collections.FXCollections;
+import be.ugent.flash.controllers.TableViewController;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 
 import java.util.*;
@@ -15,32 +12,35 @@ public class QuestionTableView extends TableView<TableViewPair> {
 
     private final TableColumn<TableViewPair, String> title;
     private final TableColumn<TableViewPair, String> type;
-    private final LeftSidePane leftSidePane;
+    private final TableViewController tableController;
     public QuestionTableView(LeftSidePane leftSidePane){
-        this.leftSidePane = leftSidePane;
+        this.tableController = new TableViewController(leftSidePane, this);
         setMaxSize(500, 670);
+        setEditable(true);
         this.title = new TableColumn<>("Titel");
         this.type = new TableColumn<>("Type");
         title.setId("column");
         type.setId("column");
-        setOnMouseClicked(new TableViewHandler(leftSidePane, this));
+        setOnMouseClicked(tableController);
         getStylesheets().add(Objects.requireNonNull(getClass().getResource("/be/ugent/flash/flash.css")).toString());
     }
 
-    public void addColumnsData(List<QuestionData> questionData){
-        List<TableViewPair> pairList = new ArrayList<>();
-        CommandMapMaker mapMaker = new CommandMapMaker();
-        mapMaker.makeTypeMap();
-        for(QuestionData question: questionData){
-            pairList.add(new TableViewPair(question.getTitle(), mapMaker.getStringType(question.getQuestionType())));
-        }
-        setItems(FXCollections.observableArrayList(pairList));
-        title.setCellValueFactory(new PropertyValueFactory<>(pairList.get(0).titleProperty().getName()));
-        type.setCellValueFactory(new PropertyValueFactory<>(pairList.get(0).typeProperty().getName()));
-        getColumns().setAll(List.of(title, type));
+    public TableColumn<TableViewPair, String> getTitle(){
+        return title;
     }
 
-    public void addRow(String questionType) {
+    public TableColumn<TableViewPair, String> getType(){
+        return type;
+    }
 
+    public void addColumnsData(List<QuestionData> questionDataList){
+        tableController.addColumns(questionDataList);
+    }
+
+    public void addRow(String questionType){
+        System.out.println("yes");
+        TableViewPair tableViewPair = new TableViewPair("kndjzenf", "kfjf");
+        getItems().add(tableViewPair);
+        //setItems(tableViewPairs);
     }
 }

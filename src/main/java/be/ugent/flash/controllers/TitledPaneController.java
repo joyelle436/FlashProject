@@ -1,4 +1,4 @@
-package be.ugent.flash.handlers;
+package be.ugent.flash.controllers;
 
 import be.ugent.flash.cardspanes.*;
 import be.ugent.flash.command.*;
@@ -6,14 +6,14 @@ import be.ugent.flash.command.rights.*;
 
 import java.util.List;
 
-public class TitledPaneFiller {
+public class TitledPaneController {
 
     private final CenterTitledPane centerTitledPane;
     private final List<PartData> partDataList;
     private final TitledPaneGridpane titledPaneGridpane;
     private final String questionType;
 
-    public TitledPaneFiller(CenterTitledPane centerTitledPane, List<PartData> partDataList, String questionType){
+    public TitledPaneController(CenterTitledPane centerTitledPane, List<PartData> partDataList, String questionType){
         this.centerTitledPane = centerTitledPane;
         this.partDataList = partDataList;
         this.titledPaneGridpane = centerTitledPane.getMainGridpane();

@@ -2,28 +2,28 @@ package be.ugent.flash.command;
 
 import be.ugent.flash.command.lefts.LeftController;
 import be.ugent.flash.command.rights.RightController;
-import be.ugent.flash.handlers.SidePaneHandler;
+import be.ugent.flash.controllers.SidePaneController;
 
 import java.util.List;
 
 /**
  * Connectie tussen linkerkant en rechterkant van de beheersinterface
  */
-public class SidePaneController {
+public class SidePaneConnnection {
 
     private final MainBorderPane mainBorderPane;
     private final RightController rightController;
     private final LeftController leftController;
     private final List<QuestionData> questionDataList;
-    private final SidePaneHandler sidePaneHandler;
+    private final SidePaneController sidePaneHandler;
     private DatabaseUpdater databaseUpdater;
 
-    public SidePaneController(MainBorderPane mainBorderPane, List<QuestionData> questionDataList, List<PartData> partDataList) {
+    public SidePaneConnnection(MainBorderPane mainBorderPane, List<QuestionData> questionDataList, List<PartData> partDataList) {
         this.rightController = new RightController(this, partDataList);
         this.leftController = new LeftController(this, questionDataList);
         this.questionDataList = questionDataList;
         this.mainBorderPane = mainBorderPane;
-        this.sidePaneHandler = new SidePaneHandler();
+        this.sidePaneHandler = new SidePaneController();
     }
 
     public void showPanes(String database) {

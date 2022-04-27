@@ -11,7 +11,7 @@ import java.util.List;
 public class PictureCardPane extends CardPane {
     public PictureCardPane(String type){
         super(type);
-        this.topDescriptionText = "Keuzes zijn (kleine) afbeelding om erop te klikken";
+        this.topDescriptionText = "Afbeeldingen worden naast elkaar getoond als knopen";
     }
 
     public void setRightSidePane(RightSidePane rightSidePane, List<PartData> partDataList){

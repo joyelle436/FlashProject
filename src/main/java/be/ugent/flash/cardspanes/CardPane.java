@@ -2,7 +2,7 @@ package be.ugent.flash.cardspanes;
 
 import be.ugent.flash.command.*;
 import be.ugent.flash.command.rights.*;
-import be.ugent.flash.handlers.TitledPaneFiller;
+import be.ugent.flash.controllers.TitledPaneController;
 import javafx.geometry.*;
 import javafx.scene.layout.*;
 
@@ -53,7 +53,7 @@ public class CardPane extends VBox {
     }
 
     public void createPartsFiller(){
-        new TitledPaneFiller(titledPane, partDataList, type).fillParts();
+        new TitledPaneController(titledPane, partDataList, type).fillParts();
     }
 
     public void setCorrectTextField(String correctString){

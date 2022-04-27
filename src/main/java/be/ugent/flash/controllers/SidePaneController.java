@@ -1,12 +1,12 @@
-package be.ugent.flash.handlers;
+package be.ugent.flash.controllers;
 
 import be.ugent.flash.command.QuestionData;
 
 import java.util.List;
 
-public class SidePaneHandler {
+public class SidePaneController {
 
-    public SidePaneHandler(){
+    public SidePaneController(){
     }
 
     /*

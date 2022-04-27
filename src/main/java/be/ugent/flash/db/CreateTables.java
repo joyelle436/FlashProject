@@ -13,7 +13,7 @@ public final class CreateTables {
         try (Statement statement = connection.createStatement()) {
             statement.execute("""
                     CREATE TABLE questions (
-                       question_id INTEGER PRIMARY KEY,
+                       question_id INTEGER PRIMARY KEY AUTOINCREMENT,
                        title TEXT,
                        text_part TEXT,
                        image_part BLOB,
@@ -32,7 +32,7 @@ public final class CreateTables {
         try (Statement statement = connection.createStatement()) {
             statement.execute("""
                     CREATE TABLE parts (
-                       part_id INTEGER PRIMARY KEY,
+                       part_id INTEGER PRIMARY KEY AUTOINCREMENT,
                        question_id INTEGER REFERENCES questions,
                        part TEXT
                     );

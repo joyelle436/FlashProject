@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 
 /**
  * Staat onderaan de {@link TitledPaneGridpane}
@@ -44,13 +45,13 @@ public class OptionButton extends Button implements PositionChanger, EventHandle
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        AnswerChoice answerChoice;
+        AnswerChoiceObject choiceObject;
         if (gridpane.getQuestionType().equals("mci")) {
-            answerChoice = new AnswerChoiceImage(gridpane);
+            choiceObject = new AnswerChoiceImage(gridpane);
         } else {
-            answerChoice = new AnswerChoiceTextField(gridpane);
+            choiceObject = new AnswerChoiceTextField(gridpane);
         }
-        answerChoice.putInGridpane(null, gridpane.getRowPosition());
+        choiceObject.putInGridpane(null, gridpane.getRowPosition());
         gridpane.setRowPosition(gridpane.getRowPosition()+1);
     }
 }

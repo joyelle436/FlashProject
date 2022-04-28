@@ -1,10 +1,14 @@
 package be.ugent.flash.command;
 
+import be.ugent.flash.DataCollector;
 import be.ugent.flash.command.lefts.LeftController;
 import be.ugent.flash.command.rights.RightController;
 import be.ugent.flash.controllers.SidePaneController;
+import be.ugent.flash.data.Part;
 
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Connectie tussen linkerkant en rechterkant van de beheersinterface
@@ -14,20 +18,24 @@ public class SidePaneConnection {
     private final MainBorderPane mainBorderPane;
     private final RightController rightController;
     private final LeftController leftController;
-    private final List<QuestionData> questionDataList;
-    private final SidePaneController sidePaneHandler;
-    private DatabaseUpdater databaseUpdater;
+    private final String database;
+    private final DatabaseConnector databaseConnector;
 
-    public SidePaneConnection(MainBorderPane mainBorderPane, List<QuestionData> questionDataList, List<PartData> partDataList) {
-        this.rightController = new RightController(this, partDataList);
-        this.leftController = new LeftController(this, questionDataList);
-        this.questionDataList = questionDataList;
+    public SidePaneConnection(MainBorderPane mainBorderPane, Map<Integer, String[]> questionMap, String database) throws SQLException {
+        this.rightController = new RightController(this);
+        this.leftController = new LeftController(this, questionMap);
         this.mainBorderPane = mainBorderPane;
-        this.sidePaneHandler = new SidePaneController();
+        this.database = database;
+        this.databaseConnector = new DatabaseConnector(database);
+        //SidePaneController sidePaneHandler = new SidePaneController();
     }
 
-    public void showPanes(String database) {
-        this.databaseUpdater = new DatabaseUpdater(database);
+    public String getDatabase() {
+        return database;
+    }
+
+    public void showPanes() {
+        //this.databaseUpdater = new DatabaseUpdater(database);
         CenterSplitPane centerSplitPane = new CenterSplitPane();
         centerSplitPane.getItems().addAll(leftController.getLeftSidePane(), rightController.getRightSidePane());
         mainBorderPane.changeCenter(centerSplitPane); /* nu gaat de centerSplitPane definitief in de BorderPane blijven*/
@@ -35,35 +43,19 @@ public class SidePaneConnection {
     /*
     Krijgt title uit de leftsidepane pane en vul gegevens aan in rightsidepane
      */
-    public void showQuestionContent(String title){
-        rightController.showContent(sidePaneHandler.getQToShow(questionDataList, title));
+    public void showQuestionContent(String title, String type){
+        rightController.showContent(databaseConnector.getQuestionContent(title), type);
     }
 
-    public QuestionData getTheQuestionData(int id) {
-        int index = 0;
-        while(questionDataList.get(index).getId() != id){
-            index++;
-        }
-        return questionDataList.get(index);
+    public List<Part> showPartsContent(int question_id){
+        return databaseConnector.getPartsContent(question_id);
     }
 
-    /*
-        Er wordt op de opslaan knop geklikt
-         */
-    public void updateQuestion(int questionId, QuestionData questionData){
-        /* dit ook aan rightsidepane doorgeven om partDataList te updaten */
-        int index = 0;
-        while(questionDataList.get(index).getId() != questionData.getId()){
-            index++;
-        }
-        questionDataList.set(index, questionData);
-        databaseUpdater.updateQuestion(questionId, questionData);
-    }
+
     /*
         Als er op de knop <<Voeg nieuwe vraag toe>> geklikt wordt
          */
     public void addQuestion(QuestionData questionData){
-        questionDataList.add(questionData);
     }
 
     /*

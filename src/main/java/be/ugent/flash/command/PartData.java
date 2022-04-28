@@ -1,6 +1,5 @@
 package be.ugent.flash.command;
 
-import javafx.scene.control.Button;
 
 /**
  * Voor de beheersinterface

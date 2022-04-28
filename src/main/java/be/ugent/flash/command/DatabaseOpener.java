@@ -6,7 +6,9 @@ import javafx.stage.*;
 
 import java.io.File;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DatabaseOpener {
 
@@ -38,8 +40,12 @@ public class DatabaseOpener {
         this.database = database;
         DataCollector dataCollector = new DataCollector(database);
         List<Question> questionList = dataCollector.getQuestionsData(); /* alle gegevens uit questions */
-        List<Part> partList = dataCollector.getPartsData(); /* alle gegevens uit parts */
+        Map<Integer, String[]> questionMap = new HashMap<>();
+        for(Question question: questionList){
+            questionMap.put(question.id(), new String[]{question.title(), question.questionType()});
+        }
+
         dataCollector.closeDAC();
-        new PaneStarter(startWindow, questionList, partList, database);
+        new PaneStarter(startWindow, questionMap, database);
     }
 }

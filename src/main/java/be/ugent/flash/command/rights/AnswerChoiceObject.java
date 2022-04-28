@@ -2,6 +2,7 @@ package be.ugent.flash.command.rights;
 
 import be.ugent.flash.cardspanes.TitledPaneGridpane;
 import be.ugent.flash.command.PartData;
+import be.ugent.flash.data.Part;
 import javafx.event.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -29,7 +30,7 @@ public class AnswerChoiceObject extends HBox implements EventHandler<ActionEvent
         GridPane.setConstraints(this, 0, position);
     }
 
-    public void putInGridpane(PartData partData, int position) {
+    public void putInGridpane(Part part, int position) {
         setPosition(position);
         gridpane.getChildren().add(this);
         gridpane.getOptionButton().increasePosition();

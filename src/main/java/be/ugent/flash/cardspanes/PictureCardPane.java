@@ -14,8 +14,8 @@ public class PictureCardPane extends CardPane {
         this.topDescriptionText = "Afbeeldingen worden naast elkaar getoond als knopen";
     }
 
-    public void setRightSidePane(RightSidePane rightSidePane, List<PartData> partDataList){
-        super.setRightSidePane(rightSidePane, partDataList);
+    public void setRightSidePane(RightSidePane rightSidePane){
+        super.setRightSidePane(rightSidePane);
         createTitledPane();
     }
 

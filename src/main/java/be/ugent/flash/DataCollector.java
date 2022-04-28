@@ -16,8 +16,12 @@ public class DataCollector {
         return dataAccessContext.getQuestionDAO().getQuestions();
     }
 
-    public List<Part> getPartsData() throws SQLException {
-      return dataAccessContext.getPartDAO().getParts();
+    public List<Part> getAllPartsData() throws SQLException {
+      return dataAccessContext.getPartDAO().getAllParts();
+    }
+
+    public List<Part> getPartsData(int question_id) throws SQLException {
+        return dataAccessContext.getPartDAO().getParts(question_id);
     }
 
     public void closeDAC() throws SQLException {

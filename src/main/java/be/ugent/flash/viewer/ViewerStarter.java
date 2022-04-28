@@ -26,7 +26,7 @@ public class ViewerStarter {
         try {
             dataCollector = new DataCollector(database);
             List<Question>questionList = dataCollector.getQuestionsData(); /* alle gegevens uit questions */
-            List<Part> partList = dataCollector.getPartsData(); /* alle gegevens uit parts */
+            List<Part> partList = dataCollector.getAllPartsData(); /* alle gegevens uit parts */
             dataCollector.closeDAC();
             new CardsSimulator(stage, questionList, partList).showQuestions();
         } catch (Exception e) {

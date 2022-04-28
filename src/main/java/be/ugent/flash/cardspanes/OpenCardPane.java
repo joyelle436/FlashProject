@@ -1,5 +1,6 @@
 package be.ugent.flash.cardspanes;
 
+import be.ugent.flash.command.rights.RightSidePane;
 import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -26,6 +27,10 @@ public class OpenCardPane extends CardPane {
         hbox.getChildren().addAll(label, correctTextField);
         HBox.setMargin(label, new Insets(0, 5, 0, 0));
         getChildren().add(hbox);
+    }
+
+    public void setRightSidePane(RightSidePane rightSidePane){
+        super.setRightSidePane(rightSidePane);
     }
 
     public void fill(){

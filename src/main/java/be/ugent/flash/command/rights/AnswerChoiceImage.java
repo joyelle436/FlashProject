@@ -2,10 +2,13 @@ package be.ugent.flash.command.rights;
 
 import be.ugent.flash.cardspanes.TitledPaneGridpane;
 import be.ugent.flash.command.*;
+import be.ugent.flash.data.Part;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
+
+import java.io.ByteArrayInputStream;
 
 /**
  * Dit is alleen voor een mci vraag
@@ -28,11 +31,11 @@ public class AnswerChoiceImage extends AnswerChoiceObject {
         graphicButton.setGraphic(imageView);
     }
 
-    public void putInGridpane(PartData partData, int position) {
-        if(partData != null){
-            Image image = ((PictureCardPart) partData).getImagePart();
+    public void putInGridpane(Part part, int position) {
+        if(part != null){
+            Image image = new Image(new ByteArrayInputStream(part.part()));
             setGraphicButtonImage(new ImageView(image));
         }
-        super.putInGridpane(partData, position);
+        super.putInGridpane(part, position);
     }
 }

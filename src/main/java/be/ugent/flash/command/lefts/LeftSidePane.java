@@ -34,8 +34,8 @@ public class LeftSidePane extends GridPane {
         getStylesheets().add(Objects.requireNonNull(getClass().getResource("/be/ugent/flash/flash.css")).toString());
     }
 
-    public void showQuestionInfo(String title){
-        controller.showQuestionContent(title);
+    public void showQuestionInfo(String title, String type){
+        controller.showQuestionContent(title, type);
     }
 
     public void addQuestionToList(QuestionData questionData){
@@ -46,8 +46,8 @@ public class LeftSidePane extends GridPane {
         return tableView;
     }
 
-    public void fillLeftPane(List<QuestionData> questionDataList){
-        tableView.addColumnsData(questionDataList);
+    public void fillLeftPane(Map<Integer, String[]> questionMap){
+        tableView.addColumnsData(questionMap);
     }
 
 }

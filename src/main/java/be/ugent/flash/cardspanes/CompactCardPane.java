@@ -15,8 +15,8 @@ public class CompactCardPane extends CardPane {
         this.topDescriptionText = "Er zijn korte strings naast knoppen waarmee er een keuze gemaakt wordt";
     }
 
-    public void setRightSidePane(RightSidePane rightSidePane, List<PartData> partDataList){
-        super.setRightSidePane(rightSidePane, partDataList);
+    public void setRightSidePane(RightSidePane rightSidePane){
+        super.setRightSidePane(rightSidePane);
         createTitledPane();
     }
 

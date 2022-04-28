@@ -14,8 +14,8 @@ public class MultipleCardPane extends CardPane {
         this.topDescriptionText = "Antwoorden worden aan of uitvinkt. Mogelijkheden: meer dan één antwoord of geen";
     }
 
-    public void setRightSidePane(RightSidePane rightSidePane, List<PartData> partDataList){
-        super.setRightSidePane(rightSidePane, partDataList);
+    public void setRightSidePane(RightSidePane rightSidePane){
+        super.setRightSidePane(rightSidePane);
         createTitledPane();
     }
 

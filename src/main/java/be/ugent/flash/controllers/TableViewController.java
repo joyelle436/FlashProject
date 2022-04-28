@@ -1,7 +1,6 @@
 package be.ugent.flash.controllers;
 
 import be.ugent.flash.CommandMapMaker;
-import be.ugent.flash.command.QuestionData;
 import be.ugent.flash.command.lefts.*;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
@@ -24,16 +23,17 @@ public class TableViewController implements EventHandler<MouseEvent> {
     public void handle(MouseEvent mouseEvent) {
         if(questionTableView.getSelectionModel().getSelectedItem() != null){
             String title = questionTableView.getSelectionModel().getSelectedItem().getTitle();
-            leftSidePane.showQuestionInfo(title);
+            String type = questionTableView.getSelectionModel().getSelectedItem().getType();
+            leftSidePane.showQuestionInfo(title, questionTableView.getMapMaker().getSwapedStringType(type));
         }
     }
 
-    public void addColumns(List<QuestionData> questionDataList) {
+    public void addColumns(Map<Integer, String[]> questionMap) {
         List<TableViewPair> pairList = new ArrayList<>();
         CommandMapMaker mapMaker = new CommandMapMaker();
         mapMaker.makeTypeMap();
-        for(QuestionData question: questionDataList){
-            pairList.add(new TableViewPair(question.getTitle(), mapMaker.getStringType(question.getQuestionType())));
+        for(int key: questionMap.keySet()){
+            pairList.add(new TableViewPair(questionMap.get(key)[0], mapMaker.getStringType(questionMap.get(key)[1])));
         }
         questionTableView.setItems(FXCollections.observableArrayList(pairList));
         questionTableView.getTitle().setCellValueFactory(new PropertyValueFactory<>(pairList.get(0).titleProperty().getName()));

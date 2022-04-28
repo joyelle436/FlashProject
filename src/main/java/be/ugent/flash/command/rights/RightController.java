@@ -2,27 +2,25 @@ package be.ugent.flash.command.rights;
 
 
 import be.ugent.flash.CommandMapMaker;
-import be.ugent.flash.command.PartData;
-import be.ugent.flash.command.QuestionData;
 import be.ugent.flash.command.SidePaneConnection;
-
-import java.util.List;
+import be.ugent.flash.data.Question;
 
 public class RightController {
     private final RightSidePane rightSidePane;
     private final RightPaneContent rightPaneData;
     private SidePaneConnection mainController;
-    private final List<PartData> partDataList;
     private final CommandMapMaker mapMaker;
-    public RightController(SidePaneConnection controller, List<PartData> partDataList){
+    public RightController(SidePaneConnection controller){
         this.mainController = controller;
         this.rightSidePane = new RightSidePane(this);
-        this.partDataList = partDataList;
         rightSidePane.fillRightPane();
         this.rightPaneData = new RightPaneContent();
         rightSidePane.setRightPaneContent(rightPaneData);
         this.mapMaker = new CommandMapMaker();
-        mapMaker.makePartDataMap(partDataList);
+    }
+
+    public String getDatabase(){
+        return mainController.getDatabase();
     }
 
     public SidePaneConnection getMainController() {
@@ -33,12 +31,8 @@ public class RightController {
         return rightSidePane;
     }
 
-    public void showContent(QuestionData questionData){
+    public void showContent(Question question, String type){
         /* questionData + lijst van PartData voor die specifieke vraag*/
-        rightPaneData.addContents(questionData, mapMaker.getPartData(questionData.getId()));
-    }
-
-    public List<PartData> getPartDataList() {
-        return partDataList;
+        rightPaneData.addContents(question, type);
     }
 }

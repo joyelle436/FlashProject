@@ -29,7 +29,7 @@ public class TopContent {
         textArea.setWrapText(true);
         Button button = new Button("Voeg afbeelding toe...");
         button.setOnAction(actionEvent -> {
-            System.out.println(topGridpane.getQuestionData().getTitle());
+            //
         });
         this.NODETABLE = new Node[]{
                 titleField,

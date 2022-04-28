@@ -1,9 +1,10 @@
 package be.ugent.flash.command.rights;
 
-import be.ugent.flash.command.QuestionData;
 import be.ugent.flash.command.lefts.LeftSidePane;
+import be.ugent.flash.data.Question;
 import javafx.geometry.*;
 
+import javafx.scene.control.Dialog;
 import javafx.scene.layout.*;
 
 import java.util.Objects;
@@ -13,7 +14,7 @@ import java.util.Objects;
  */
 public class TopGridpane extends GridPane {
 
-    private QuestionData questionData;
+    private Question question;
     private TopContent topContent;
     public TopGridpane(){
         setAlignment(Pos.TOP_CENTER);
@@ -31,23 +32,21 @@ public class TopGridpane extends GridPane {
         getColumnConstraints().addAll(new ColumnConstraints(80), new ColumnConstraints(575));
     }
 
-    public void addToTopContent(QuestionData questionData){
+    public void addToTopContent(Question question){
         clearTopGridPane();
         fillGridpaneTop(); /* nieuwe TopContent aanmaken voor elke type vraag */
-        this.questionData = questionData;
-        topContent.setTitleText(questionData.getTitle());
-        questionData.bindTitle(topContent.getTitleField());
-        topContent.setTypeText(questionData.getQuestionType());
-        topContent.setQuestionText(questionData.getText());
-        questionData.bindText(topContent.getTextArea());
-    }
-
-    public QuestionData getQuestionData() {
-        return questionData;
+        this.question = question;
+        topContent.setTitleText(question.title());
+        topContent.setTypeText(question.questionType());
+        topContent.setQuestionText(question.text());
     }
 
     public void clearTopGridPane(){
         getChildren().clear();
         getColumnConstraints().clear();
+    }
+
+    public Question getQuestion(){
+        return question;
     }
 }

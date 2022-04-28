@@ -22,10 +22,12 @@ public class TitledPaneController {
 
     public void fillParts() {
         int position = centerTitledPane.getMainGridpane().getRowPosition();
-        for(PartData partData: partDataList) {
-            AnswerChoiceObject choiceObject = getChoiceObject();
-            choiceObject.putInGridpane(partData, position);
-            position += 1;
+        if(partDataList != null){
+            for(PartData partData: partDataList) {
+                AnswerChoiceObject choiceObject = getChoiceObject();
+                choiceObject.putInGridpane(partData, position);
+                position += 1;
+            }
         }
         centerTitledPane.getMainGridpane().setRowPosition(position);
     }

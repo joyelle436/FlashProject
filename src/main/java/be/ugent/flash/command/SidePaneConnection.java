@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Connectie tussen linkerkant en rechterkant van de beheersinterface
  */
-public class SidePaneConnnection {
+public class SidePaneConnection {
 
     private final MainBorderPane mainBorderPane;
     private final RightController rightController;
@@ -18,7 +18,7 @@ public class SidePaneConnnection {
     private final SidePaneController sidePaneHandler;
     private DatabaseUpdater databaseUpdater;
 
-    public SidePaneConnnection(MainBorderPane mainBorderPane, List<QuestionData> questionDataList, List<PartData> partDataList) {
+    public SidePaneConnection(MainBorderPane mainBorderPane, List<QuestionData> questionDataList, List<PartData> partDataList) {
         this.rightController = new RightController(this, partDataList);
         this.leftController = new LeftController(this, questionDataList);
         this.questionDataList = questionDataList;
@@ -62,12 +62,13 @@ public class SidePaneConnnection {
     /*
         Als er op de knop <<Voeg nieuwe vraag toe>> geklikt wordt
          */
-    public void addQuestion(){
+    public void addQuestion(QuestionData questionData){
+        questionDataList.add(questionData);
     }
 
     /*
     Tegengestelde van addQuestion()
      */
-    public void deleteQuestion(){
+    public void deleteQuestion(QuestionData questionData){
     }
 }

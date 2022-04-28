@@ -27,7 +27,7 @@ public class PaneStarter {
                 partDataList.add(new CardPart(part.question_id(), part.part_id(), part.part()));
             }
         }
-        new SidePaneConnnection(startWindow, questionDataList, partDataList).showPanes(database);
+        new SidePaneConnection(startWindow, questionDataList, partDataList).showPanes(database);
     }
 
 }

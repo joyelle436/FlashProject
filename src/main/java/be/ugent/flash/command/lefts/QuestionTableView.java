@@ -37,10 +37,7 @@ public class QuestionTableView extends TableView<TableViewPair> {
         tableController.addColumns(questionDataList);
     }
 
-    public void addRow(String questionType){
-        System.out.println("yes");
-        TableViewPair tableViewPair = new TableViewPair("kndjzenf", "kfjf");
-        getItems().add(tableViewPair);
-        //setItems(tableViewPairs);
+    public void addRow(String questionTitle, String questionType){
+        getItems().add(new TableViewPair(questionTitle, questionType));
     }
 }

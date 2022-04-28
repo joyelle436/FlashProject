@@ -5,6 +5,7 @@ import be.ugent.flash.data.Question;
 import be.ugent.flash.cardspanes.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class CommandMapMaker {
 
@@ -12,6 +13,7 @@ public class CommandMapMaker {
     private Map<Integer, String> idTypeMap; /* voor de beheersinterface */
     private final Map<Integer, List<PartData>> partsDataMap;
     private Map<String, CardPane> questionPaneMap;
+    private Map<String, String> swapedQTypeMap;
 
     public CommandMapMaker(){
         this.partsDataMap = new HashMap<>();
@@ -35,6 +37,15 @@ public class CommandMapMaker {
                 "open", "Open (tekst)",
                 "openi", "Open (geheel)"
         );
+    }
+
+    public void makeswapedQTypeMap(){
+        makeTypeMap();
+        /*
+          Bron: {@link https://stackoverflow.com/questions/38589875/swap-keys-with-values-and-vice-versa-of-hashmap}
+         */
+        this.swapedQTypeMap = qTypeMap.entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
     }
 
     public void makeIdMap(List<Question> questionList){
@@ -66,5 +77,8 @@ public class CommandMapMaker {
     }
     public CardPane getQuestionPane(String key){
         return questionPaneMap.get(key);
+    }
+    public String getSwapedStringType(String key){
+        return swapedQTypeMap.get(key);
     }
 }

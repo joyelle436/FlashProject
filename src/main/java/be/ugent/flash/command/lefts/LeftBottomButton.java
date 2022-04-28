@@ -1,5 +1,7 @@
 package be.ugent.flash.command.lefts;
 
+import be.ugent.flash.CommandMapMaker;
+import be.ugent.flash.command.QuestionData;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -23,12 +25,19 @@ public class LeftBottomButton extends Button {
             setOnAction(this);
         }
 
+        public void addNewQuestion(String newTitle, String newType){
+            CommandMapMaker mapMaker = new CommandMapMaker();
+            mapMaker.makeswapedQTypeMap();
+            leftSidePane.getTableView().addRow(newTitle, newType);
+            leftSidePane.addQuestionToList(new QuestionData(70, newTitle, "",
+                    null, mapMaker.getSwapedStringType(newType), ""));
+            /* Dit ook in de databank toevoegen en ook lege List<PartData> toevoegen */
+        }
+
         @Override
         public void handle(ActionEvent actionEvent) {
-            leftSidePane.getTableView().addRow("mcs");
+            new AddDialogPane(this).showAndWait();
         }
-        //dit aan leftsidepane vermelden die het vraag in de lijst toevoegt
-        //pak the title van het vraag uit de column en geef het aan de controller
     }
 
     public static class DeleteQuestionButton extends LeftBottomButton implements EventHandler<ActionEvent> {

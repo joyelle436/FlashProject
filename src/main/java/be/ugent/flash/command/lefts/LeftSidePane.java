@@ -1,7 +1,7 @@
 package be.ugent.flash.command.lefts;
 
 import be.ugent.flash.command.QuestionData;
-import be.ugent.flash.command.SidePaneConnnection;
+import be.ugent.flash.command.SidePaneConnection;
 import javafx.geometry.*;
 import javafx.scene.layout.*;
 
@@ -13,8 +13,8 @@ import java.util.*;
 public class LeftSidePane extends GridPane {
 
     private final QuestionTableView tableView;
-    private final SidePaneConnnection controller;
-    public LeftSidePane(SidePaneConnnection controller){
+    private final SidePaneConnection controller;
+    public LeftSidePane(SidePaneConnection controller){
         this.controller = controller;
         setMaxHeight(715);
         this.tableView = new QuestionTableView(this);
@@ -38,12 +38,12 @@ public class LeftSidePane extends GridPane {
         controller.showQuestionContent(title);
     }
 
-    public QuestionTableView getTableView() {
-        return tableView;
+    public void addQuestionToList(QuestionData questionData){
+        controller.addQuestion(questionData);
     }
 
-    public void addToTableView(String questionType){
-        tableView.addRow(questionType);
+    public QuestionTableView getTableView() {
+        return tableView;
     }
 
     public void fillLeftPane(List<QuestionData> questionDataList){

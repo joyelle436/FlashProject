@@ -1,5 +1,6 @@
 package be.ugent.flash.command.rights;
 
+import be.ugent.flash.command.PictureButton;
 import be.ugent.flash.command.TextInputListener;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
@@ -30,15 +31,12 @@ public class TopContent implements TextInputListener {
         this.typeLabel = new Label("type Question");
         textArea.setPrefSize(575, 130);
         textArea.setWrapText(true);
-        Button button = new Button("Voeg afbeelding toe...");
-        button.setOnAction(actionEvent -> {
-            //
-        });
+        PictureButton pictureButton = new PictureButton("Voeg afbeelding toe...");
         this.NODETABLE = new Node[]{
                 titleField,
                 typeLabel,
                 textArea,
-                button
+                pictureButton
         };
     }
     /*
@@ -60,14 +58,6 @@ public class TopContent implements TextInputListener {
 
     public Node[] getNodeTable() {
         return NODETABLE;
-    }
-
-    public TextField getTitleField() {
-        return titleField;
-    }
-
-    public TextArea getTextArea() {
-        return textArea;
     }
 
     public void setTitleText(String title){

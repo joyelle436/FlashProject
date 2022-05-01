@@ -1,5 +1,6 @@
 package be.ugent.flash.cardspanes;
 
+import be.ugent.flash.command.rights.RightController;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -9,9 +10,9 @@ public class CenterTitledPane extends TitledPane {
 
     private final TopDescriptionLabel descriptionLabel; /* beschrijt hoe de antwoorden eruit gaan uitzien */
     private final TitledPaneGridpane mainGridpane;
-    public CenterTitledPane(String questionType){
+    public CenterTitledPane(String questionType, RightController rightController){
         this.descriptionLabel = new TopDescriptionLabel();
-        this.mainGridpane = new TitledPaneGridpane(this, questionType);
+        this.mainGridpane = new TitledPaneGridpane(questionType, rightController);
         /*Bevat de mainGridpane*/
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setMaxHeight(400);

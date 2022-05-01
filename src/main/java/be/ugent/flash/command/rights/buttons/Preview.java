@@ -2,7 +2,7 @@ package be.ugent.flash.command.rights.buttons;
 
 import be.ugent.flash.ViewerMapMaker;
 import be.ugent.flash.cardspanes.CardPane;
-import be.ugent.flash.command.DatabaseConnector;
+import be.ugent.flash.command.DatabaseCollector;
 import be.ugent.flash.viewer.ErrorDisplay;
 import be.ugent.flash.viewer.cards.Type;
 import javafx.event.ActionEvent;
@@ -16,7 +16,7 @@ import java.util.Objects;
 
 public class Preview extends BottomButton {
     private final ViewerMapMaker mapMaker = new ViewerMapMaker();
-    private DatabaseConnector databaseConnector;
+    private DatabaseCollector databaseConnector;
     public Preview(CardPane cardPane) {
         super(cardPane);
         this.databaseConnector = null;
@@ -50,7 +50,7 @@ public class Preview extends BottomButton {
         public QuestionPreview() throws SQLException {
             if(cardPane != null){
                 if(databaseConnector == null){
-                    databaseConnector = new DatabaseConnector(cardPane.getRightController().getDatabase());
+                    databaseConnector = new DatabaseCollector(cardPane.getRightSidePane().getRightController().getDatabase());
                 }
                 Type type = mapMaker.getFactory(cardPane.getQuestion().questionType()).makeCard(this, cardPane.getQuestion());
                 if(!(cardPane.getQuestion().questionType().equals("open") || cardPane.getQuestion().questionType().equals("openi"))){

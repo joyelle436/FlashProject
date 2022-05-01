@@ -9,8 +9,11 @@ import javafx.scene.control.Button;
 public class LeftBottomButton extends Button {
 
     protected LeftSidePane leftSidePane; /* nodig om toegang te kunnen krijgen tot SidePaneController*/
+    protected CommandMapMaker mapMaker;
     public LeftBottomButton(LeftSidePane leftSidePane){
         this.leftSidePane = leftSidePane;
+        this.mapMaker = new CommandMapMaker();
+        mapMaker.makeswapedQTypeMap();
     }
 
     public LeftSidePane getLeftSidePane() {
@@ -26,11 +29,8 @@ public class LeftBottomButton extends Button {
         }
 
         public void addNewQuestion(String newTitle, String newType){
-            CommandMapMaker mapMaker = new CommandMapMaker();
-            mapMaker.makeswapedQTypeMap();
+            leftSidePane.addQuestionToDatabase(newTitle, mapMaker.getSwapedStringType(newType));
             leftSidePane.getTableView().addRow(newTitle, newType);
-            leftSidePane.addQuestionToList(new QuestionData(70, newTitle, "",
-                    null, mapMaker.getSwapedStringType(newType), ""));
             /* Dit ook in de databank toevoegen en ook lege List<PartData> toevoegen */
         }
 
@@ -45,10 +45,12 @@ public class LeftBottomButton extends Button {
             super(leftSidePane);
             setText("Vraag verwijderen");
             setStyle("-fx-font-size: 12px");
+            setOnAction(this);
         }
 
         @Override
         public void handle(ActionEvent actionEvent) {
+            leftSidePane.getTableView().removeSelectedRow();
         }
     }
 }

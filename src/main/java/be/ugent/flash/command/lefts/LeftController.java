@@ -18,12 +18,19 @@ public class LeftController {
         return mainController.getDatabase();
     }
 
-
     public LeftSidePane getLeftSidePane() {
         return leftSidePane;
     }
 
     public void disableTable() {
         leftSidePane.getTableView().setDisable(true);
+    }
+
+    public void enableTable() {
+        leftSidePane.getTableView().setDisable(false);
+    }
+
+    public void unselectItems() {
+        leftSidePane.getTableView().getSelectionModel().clearSelection();
     }
 }

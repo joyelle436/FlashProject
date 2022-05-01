@@ -13,10 +13,8 @@ import java.util.*;
  * EventHandler voor {@link QuestionTableView}
  */
 public class TableViewController implements EventHandler<MouseEvent> {
-    private final LeftSidePane leftSidePane;
     private final QuestionTableView questionTableView;
-    public TableViewController(LeftSidePane leftSidePane, QuestionTableView questionTableView){
-        this.leftSidePane = leftSidePane;
+    public TableViewController(QuestionTableView questionTableView){
         this.questionTableView = questionTableView;
     }
     @Override
@@ -24,10 +22,12 @@ public class TableViewController implements EventHandler<MouseEvent> {
         if(questionTableView.getSelectionModel().getSelectedItem() != null){
             String title = questionTableView.getSelectionModel().getSelectedItem().getTitle();
             String type = questionTableView.getSelectionModel().getSelectedItem().getType();
-            leftSidePane.showQuestionInfo(title, questionTableView.getMapMaker().getSwapedStringType(type));
+            questionTableView.getLeftSidePane().showQuestionInfo(title, questionTableView.getMapMaker().getSwapedStringType(type));
         }
     }
-
+    /**
+     * Krijgt een Map met als key een question_id afgebeeld op zijn {title, question_type}
+     */
     public void addColumns(Map<Integer, String[]> questionMap) {
         List<TableViewPair> pairList = new ArrayList<>();
         CommandMapMaker mapMaker = new CommandMapMaker();

@@ -11,8 +11,8 @@ import javafx.scene.layout.GridPane;
  * Staat onderaan de {@link TitledPaneGridpane}
  */
 public class OptionButton extends Button implements EventHandler<ActionEvent> {
-    private final TitledPaneGridpane gridpane;
 
+    private final TitledPaneGridpane gridpane;
     public OptionButton(TitledPaneGridpane gridpane) {
         super("Optie toevoegen");
         this.gridpane = gridpane;

@@ -11,7 +11,6 @@ import java.util.*;
 public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
 
     private final List<Question> questionList;
-
     public JDBCQuestionDAO(Connection connection) {
         super(connection);
         this.questionList = new ArrayList<>();
@@ -63,27 +62,26 @@ public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
     }
 
     @Override
-    public void addQuestion(Question question) throws SQLException {
+    public void addQuestion(String title, String type) throws SQLException {
         try(PreparedStatement preparedStatement = prepare(
-                "INSERT INTO questions(question_id, title, text_part, image_part, question_type, correct_answer) " +
-                        "VALUES(?, ?, ?, ?, ?, ?)"
+                "INSERT INTO questions(title, text_part, image_part, question_type, correct_answer) " +
+                        "VALUES(?,?,NULL,?,?)"
         )){
-            preparedStatement.setInt(1, question.id());
-            preparedStatement.setString(2, question.title());
-            preparedStatement.setString(3, question.text());
-            preparedStatement.setBlob(4, (Blob) new Image(new ByteArrayInputStream(question.middleImage())));
-            preparedStatement.setString(5, question.questionType());
-            preparedStatement.setString(6, question.correctAnswer());
+            preparedStatement.setString(1, title);
+            preparedStatement.setString(2, "");
+            preparedStatement.setString(3, type);
+            preparedStatement.setString(4, "");
             preparedStatement.executeUpdate();
         }
     }
 
     @Override
-    public void deleteQuestion(int question_id) throws SQLException{
+    public void deleteQuestion(String title, String type) throws SQLException{
         try(PreparedStatement preparedStatement = prepare(
-                "DELETE FROM questions WHERE question_id=?"
+                "DELETE FROM questions WHERE title=? AND question_type=?"
         )){
-            preparedStatement.setInt(1, question_id);
+            preparedStatement.setString(1, title);
+            preparedStatement.setString(2, type);
             preparedStatement.executeUpdate();
         }
     }
@@ -94,6 +92,7 @@ public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
         )){
             preparedStatement.setString(1, title);
             preparedStatement.setInt(2, question_id);
+            preparedStatement.executeUpdate();
         }
     }
 
@@ -103,6 +102,7 @@ public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
         )){
             preparedStatement.setString(1, text);
             preparedStatement.setInt(2, question_id);
+            preparedStatement.executeUpdate();
         }
     }
 
@@ -112,6 +112,7 @@ public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
         )){
             preparedStatement.setBlob(1, (Blob) image);
             preparedStatement.setInt(2, question_id);
+            preparedStatement.executeUpdate();
         }
     }
 
@@ -121,6 +122,7 @@ public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
         )){
             preparedStatement.setString(1, correct);
             preparedStatement.setInt(2, question_id);
+            preparedStatement.executeUpdate();
         }
     }
 

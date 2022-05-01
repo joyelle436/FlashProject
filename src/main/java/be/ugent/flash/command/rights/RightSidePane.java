@@ -1,8 +1,12 @@
 package be.ugent.flash.command.rights;
 
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 
 import java.util.*;
 
@@ -17,9 +21,9 @@ public class RightSidePane extends BorderPane {
 
     public RightSidePane(RightController rightController){
         setMaxSize(700, 730);
-        this.topGridpane = new TopGridpane();
+        this.topGridpane = new TopGridpane(rightController);
         this.rightController = rightController;
-        addEventFilter(ActionEvent.ANY, event -> rightController.getMainController().disableTableView());
+        addEventFilter(ActionEvent.ACTION, event -> rightController.getMainController().disableTableView());
         getStylesheets().add(Objects.requireNonNull(getClass().getResource("/be/ugent/flash/flash.css")).toString());
     }
 
@@ -54,7 +58,6 @@ public class RightSidePane extends BorderPane {
      */
     private void fillBorderpane(){
         getChildren().clear();
-        topGridpane.setVisible(false);
         setTop(topGridpane);
     }
 }

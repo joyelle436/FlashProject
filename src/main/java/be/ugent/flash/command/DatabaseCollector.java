@@ -9,13 +9,12 @@ import be.ugent.flash.viewer.ErrorDisplay;
 import java.sql.SQLException;
 import java.util.List;
 
-public class DatabaseConnector {
+public class DatabaseCollector {
 
     private final JDBCDataAccessContext dataAccessContext;
-    public DatabaseConnector(String database) throws SQLException {
+    public DatabaseCollector(String database) throws SQLException {
         this.dataAccessContext = new JDBCDataAccessProvider(database).getDataAccessContext();;
     }
-
     public Question getQuestionContent(String title) {
         Question question = null;
         try {

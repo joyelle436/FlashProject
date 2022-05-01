@@ -43,6 +43,7 @@ public class RightPaneContent {
     }
 
     private void addPartsContent(String type){
+        /* Lijst met alle parts uit databank */
         List<Part> parts = rightSidePane.getRightController().getMainController().showPartsContent(question.id());
         int position = 1;
         for(Part part: parts){

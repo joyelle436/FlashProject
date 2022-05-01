@@ -1,6 +1,5 @@
 package be.ugent.flash.command.lefts;
 
-import be.ugent.flash.command.QuestionData;
 import be.ugent.flash.command.SidePaneConnection;
 import javafx.geometry.*;
 import javafx.scene.layout.*;
@@ -34,12 +33,17 @@ public class LeftSidePane extends GridPane {
         getStylesheets().add(Objects.requireNonNull(getClass().getResource("/be/ugent/flash/flash.css")).toString());
     }
 
+    public SidePaneConnection getMainController() {
+        return controller;
+    }
+
     public void showQuestionInfo(String title, String type){
         controller.showQuestionContent(title, type);
     }
 
-    public void addQuestionToList(QuestionData questionData){
-        controller.addQuestion(questionData);
+    /* Als er een nieuwe vraag toegevoegd wordt */
+    public void addQuestionToDatabase(String title, String type){
+        controller.addQuestion(title, type);
     }
 
     public QuestionTableView getTableView() {
@@ -50,4 +54,7 @@ public class LeftSidePane extends GridPane {
         tableView.addColumnsData(questionMap);
     }
 
+    public void deleteQuestionFromDatabase(String title, String type) {
+        controller.deleteQuestion(title, type);
+    }
 }

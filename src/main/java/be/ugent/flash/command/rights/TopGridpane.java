@@ -15,12 +15,18 @@ public class TopGridpane extends GridPane {
 
     private Question question;
     private TopContent topContent;
-    public TopGridpane(){
+    private final RightController rightController;
+    public TopGridpane(RightController rightController){
+        this.rightController = rightController;
         setAlignment(Pos.TOP_CENTER);
         BorderPane.setMargin(this, new Insets(15));
         setVgap(7);
         setHgap(15);
         getStylesheets().add(Objects.requireNonNull(getClass().getResource("/be/ugent/flash/flash.css")).toString());
+    }
+
+    public RightController getRightController() {
+        return rightController;
     }
 
     public void fillGridpaneTop(){
@@ -38,6 +44,7 @@ public class TopGridpane extends GridPane {
         topContent.setTitleText(question.title());
         topContent.setTypeText(question.questionType());
         topContent.setQuestionText(question.text());
+        topContent.addTextListener();
     }
 
     public void clearTopGridPane(){

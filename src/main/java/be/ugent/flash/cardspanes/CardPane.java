@@ -12,7 +12,6 @@ public class CardPane extends VBox {
     protected CenterTitledPane titledPane;
     protected String topDescriptionText;
     protected String type;
-    protected RightController rightController;
     protected Question question;
     public CardPane(String type){
         this.type = type;
@@ -22,14 +21,14 @@ public class CardPane extends VBox {
     public void fill(){
     }
 
-    public RightController getRightController() {
-        return rightController;
+    public RightSidePane getRightSidePane() {
+        return rightSidePane;
     }
 
     public void setRightSidePane(RightSidePane rightSidePane){
         this.rightSidePane = rightSidePane;
+        rightSidePane.fillRightPane();
         /* Om toegang te krijgen tot SidePaneController*/
-        this.rightController = rightSidePane.getRightController();
         rightSidePane.changeBottomChild(null);
         getChildren().remove(titledPane);
     }
@@ -47,13 +46,9 @@ public class CardPane extends VBox {
     }
 
     public final void createTitledPane(){
-        titledPane = new CenterTitledPane(type);
+        titledPane = new CenterTitledPane(type, getRightSidePane().getRightController());
         getChildren().add(titledPane);
-        createPartsFiller();
         fill();
-    }
-
-    public void createPartsFiller(){
     }
 
     public void setCorrectTextField(String correctString){

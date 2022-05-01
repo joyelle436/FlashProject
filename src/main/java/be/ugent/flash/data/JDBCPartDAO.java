@@ -16,7 +16,6 @@ public class JDBCPartDAO extends JDBCAbstractDAO implements PartDAO {
     /*
     gegevens uit de <<parts>> tabel
      */
-
     @Override
     public List<Part> getAllParts() throws SQLException {
         List<Part> partList = new ArrayList<>();
@@ -57,11 +56,22 @@ public class JDBCPartDAO extends JDBCAbstractDAO implements PartDAO {
             } else {
                 preparedStatement.setString(2, new String(part));
             }
+            preparedStatement.executeUpdate();
         }
     }
 
     @Override
     public void addPart(Part part) {
 
+    }
+
+    @Override
+    public void deleteParts(int question_id) throws SQLException {
+        try (PreparedStatement preparedStatement = prepare(
+          "DELETE FROM parts WHERE question_id=?"
+        )){
+           preparedStatement.setInt(1, question_id);
+           preparedStatement.executeUpdate();
+        }
     }
 }

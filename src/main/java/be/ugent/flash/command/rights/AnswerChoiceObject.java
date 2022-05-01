@@ -1,7 +1,6 @@
 package be.ugent.flash.command.rights;
 
 import be.ugent.flash.cardspanes.TitledPaneGridpane;
-import be.ugent.flash.command.PartData;
 import be.ugent.flash.data.Part;
 import javafx.event.*;
 import javafx.geometry.Insets;

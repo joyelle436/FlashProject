@@ -1,5 +1,6 @@
 package be.ugent.flash.cardspanes;
 
+import be.ugent.flash.command.TextInputListener;
 import be.ugent.flash.command.rights.RightSidePane;
 import javafx.geometry.*;
 import javafx.scene.control.*;
@@ -9,7 +10,7 @@ import javafx.scene.text.Font;
 /**
  * open en openi
  */
-public class OpenCardPane extends CardPane {
+public class OpenCardPane extends CardPane implements TextInputListener {
 
     private final Label label;
     private final HBox hbox;
@@ -31,6 +32,7 @@ public class OpenCardPane extends CardPane {
 
     public void setRightSidePane(RightSidePane rightSidePane){
         super.setRightSidePane(rightSidePane);
+        fill();
     }
 
     public void fill(){
@@ -40,5 +42,15 @@ public class OpenCardPane extends CardPane {
 
     public void setCorrectTextField(String correctString){
         correctTextField.setText(correctString);
+        addTextListener();
+    }
+
+    @Override
+    public void addTextListener() {
+        correctTextField.textProperty().addListener((observable, oldtext, newtext) -> {
+           if(!oldtext.equals("") && !newtext.equals("")){
+               getRightSidePane().getRightController().getMainController().disableTableView();
+           }
+        });
     }
 }

@@ -1,5 +1,6 @@
 package be.ugent.flash.command.rights;
 
+import be.ugent.flash.command.TextInputListener;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -8,14 +9,16 @@ import javafx.scene.layout.GridPane;
 /**
  * Gegevens van de {@link TopGridpane}
  */
-public class TopContent {
+public class TopContent implements TextInputListener {
 
     private final Label[] TOPLABELS; /* Staar bovenaan aan de rechterkant */
     private final Node[] NODETABLE;
     private final TextField titleField;
     private final TextArea textArea;
     private final Label typeLabel;
+    private final TopGridpane topGridpane;
     public TopContent(TopGridpane topGridpane){
+        this.topGridpane = topGridpane;
         this.TOPLABELS = new Label[]{
                 new Label("Titel"),/* -> Textfield */
                 new Label("Type"),/* -> Label */
@@ -77,5 +80,16 @@ public class TopContent {
 
     public void setQuestionText(String questionText){
         textArea.setText(questionText);
+    }
+
+    @Override
+    public void addTextListener(){
+        for (Node node : NODETABLE) {
+            if(node instanceof TextInputControl){
+                ((TextInputControl) node).textProperty().addListener((observable, oldtext, newtext) -> {
+                    topGridpane.getRightController().getMainController().disableTableView();
+                });
+            }
+        }
     }
 }

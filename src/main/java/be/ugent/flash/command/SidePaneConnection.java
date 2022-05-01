@@ -17,15 +17,23 @@ public class SidePaneConnection {
     private final RightController rightController;
     private final LeftController leftController;
     private final String database;
-    private final DatabaseConnector databaseConnector;
+    private final DatabaseCollector databaseCollector;
+    private final DatabaseUpdater databaseUpdater;
+    private final CenterSplitPane centerSplitPane;
 
     public SidePaneConnection(MainBorderPane mainBorderPane, Map<Integer, String[]> questionMap, String database) throws SQLException {
         this.rightController = new RightController(this);
         this.leftController = new LeftController(this, questionMap);
         this.mainBorderPane = mainBorderPane;
         this.database = database;
-        this.databaseConnector = new DatabaseConnector(database);
+        this.databaseCollector = new DatabaseCollector(database);
+        this.databaseUpdater = new DatabaseUpdater(database);
+        this.centerSplitPane = new CenterSplitPane();
         //SidePaneController sidePaneHandler = new SidePaneController();
+    }
+
+    public RightController getRightController() {
+        return rightController;
     }
 
     public String getDatabase() {
@@ -33,37 +41,39 @@ public class SidePaneConnection {
     }
 
     public void showPanes() {
-        //this.databaseUpdater = new DatabaseUpdater(database);
-        CenterSplitPane centerSplitPane = new CenterSplitPane();
         centerSplitPane.getItems().addAll(leftController.getLeftSidePane(), rightController.getRightSidePane());
         mainBorderPane.changeCenter(centerSplitPane); /* nu gaat de centerSplitPane definitief in de BorderPane blijven*/
     }
     /*
-    Krijgt title uit de leftsidepane pane en vul gegevens aan in rightsidepane
+    Krijgt title van de leftsidepane pane en vul gegevens aan in rightsidepane
      */
     public void showQuestionContent(String title, String type){
-        rightController.showContent(databaseConnector.getQuestionContent(title), type);
+        rightController.showContent(databaseCollector.getQuestionContent(title), type);
     }
 
     public List<Part> showPartsContent(int question_id){
-        return databaseConnector.getPartsContent(question_id);
+        return databaseCollector.getPartsContent(question_id);
     }
 
-
+    public void unselectInTable(){
+        leftController.unselectItems();
+    }
     public void disableTableView(){
         leftController.disableTable();
     }
 
-
+    public void enableTableView(){
+        leftController.enableTable();
+    }
     /*
-        Als er op de knop <<Voeg nieuwe vraag toe>> geklikt wordt
-         */
-    public void addQuestion(QuestionData questionData){
+    Er wordt op de knop <<Voeg nieuwe vraag toe>> geklikt
+    */
+    public void addQuestion(String title, String type){
+        databaseUpdater.addNewQuestion(title, type);
     }
 
-    /*
-    Tegengestelde van addQuestion()
-     */
-    public void deleteQuestion(QuestionData questionData){
+
+    public void deleteQuestion(String title, String type) {
+        databaseUpdater.deleteQuestion(title, type);
     }
 }

@@ -1,7 +1,7 @@
 package be.ugent.flash.command.rights;
 
 import be.ugent.flash.cardspanes.TitledPaneGridpane;
-import be.ugent.flash.command.PartData;
+import be.ugent.flash.command.TextInputListener;
 import be.ugent.flash.data.Part;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -9,7 +9,7 @@ import javafx.scene.control.*;
 /**
  * Dit is alleen voor mcs, mcc en mr vragen
  */
-public class AnswerChoiceTextField extends AnswerChoiceObject {
+public class AnswerChoiceTextField extends AnswerChoiceObject implements TextInputListener {
     private final TextField textField;
     public AnswerChoiceTextField(TitledPaneGridpane gridpane){
         super(gridpane);
@@ -28,5 +28,13 @@ public class AnswerChoiceTextField extends AnswerChoiceObject {
             addText(new String(part.part()));
         }
         super.putInGridpane(part, position);
+        addTextListener();
+    }
+
+    @Override
+    public void addTextListener() {
+        textField.textProperty().addListener((observable, oldtext, newtext) -> {
+            gridpane.getRightController().getMainController().disableTableView();
+        });
     }
 }

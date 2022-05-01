@@ -13,8 +13,8 @@ public class TopMenuBar extends MenuBar {
     private final Button makeButton;
     private final Button openButton;
     public TopMenuBar(MainBorderPane mainBorderPane){
-        TopMenuItem.OpenDatabase openDatabase = new TopMenuItem.OpenDatabase(mainBorderPane, "Open DB");
-        TopMenuItem.MakeDatabase makeDatabase = new TopMenuItem.MakeDatabase(mainBorderPane, "Maak DB aan");
+        TopMenuItem.OpenDatabase openDatabase = new TopMenuItem.OpenDatabase(mainBorderPane, "Open databank");
+        TopMenuItem.MakeDatabase makeDatabase = new TopMenuItem.MakeDatabase(mainBorderPane, "Nieuw databank");
         TopMenuItem.CloseWindow closeWindow = new TopMenuItem.CloseWindow(mainBorderPane, "Sluit");
         this.openButton = openDatabase.getCorrespondingButton();
         this.makeButton = makeDatabase.getCorrespondingButton();

@@ -20,7 +20,7 @@ public class MainBorderPane extends BorderPane {
 
     public void makeComponents(){
         /*
-        Staat in het midden met de twee knoppen erin
+        Bevat de alle nodige componenten die op de MainBorderPane moeten staan
          */
         TopMenuBar topMenuBar = new TopMenuBar(this);
         HBox hBox = new HBox();
@@ -33,7 +33,7 @@ public class MainBorderPane extends BorderPane {
         setCenter(hBox);
     }
 
-    public Stage getSTAGE() {
+    public Stage getStage() {
         return STAGE;
     }
 

@@ -1,9 +1,7 @@
 package be.ugent.flash.command;
 
-import be.ugent.flash.DataCollector;
-import be.ugent.flash.command.lefts.LeftController;
+ import be.ugent.flash.command.lefts.LeftController;
 import be.ugent.flash.command.rights.RightController;
-import be.ugent.flash.controllers.SidePaneController;
 import be.ugent.flash.data.Part;
 
 import java.sql.SQLException;
@@ -49,6 +47,11 @@ public class SidePaneConnection {
 
     public List<Part> showPartsContent(int question_id){
         return databaseConnector.getPartsContent(question_id);
+    }
+
+
+    public void disableTableView(){
+        leftController.disableTable();
     }
 
 

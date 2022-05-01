@@ -16,7 +16,6 @@ public class CardPane extends VBox {
     protected Question question;
     public CardPane(String type){
         this.type = type;
-        this.question = new Question(0, "", "", null, "", "");
         BorderPane.setMargin(this, new Insets(15));
     }
 

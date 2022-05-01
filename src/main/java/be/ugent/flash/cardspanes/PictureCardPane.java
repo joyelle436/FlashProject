@@ -1,9 +1,7 @@
 package be.ugent.flash.cardspanes;
 
-import be.ugent.flash.command.PartData;
 import be.ugent.flash.command.rights.RightSidePane;
 
-import java.util.List;
 
 /**
  * mci

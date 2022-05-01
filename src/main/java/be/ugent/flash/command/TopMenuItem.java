@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.KeyCombination;
 
 /**
  * MenuItems die boven de {@link MainBorderPane} staan
@@ -55,6 +56,7 @@ public class TopMenuItem extends MenuItem{
     public static class CloseWindow extends TopMenuItem {
         public CloseWindow(MainBorderPane mainBorderPane, String text){
             super(mainBorderPane, text);
+            setAccelerator(KeyCombination.keyCombination("Ctrl+Z"));
             setOnAction(actionEvent -> {
                 Platform.exit();
             });

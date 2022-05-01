@@ -3,10 +3,8 @@ package be.ugent.flash.command.rights.buttons;
 import be.ugent.flash.ViewerMapMaker;
 import be.ugent.flash.cardspanes.CardPane;
 import be.ugent.flash.command.DatabaseConnector;
-import be.ugent.flash.command.rights.RightController;
 import be.ugent.flash.viewer.ErrorDisplay;
 import be.ugent.flash.viewer.cards.Type;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -14,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class Preview extends BottomButton {
     private final ViewerMapMaker mapMaker = new ViewerMapMaker();
@@ -32,14 +31,13 @@ public class Preview extends BottomButton {
         }
         QuestionPreview finalQuestionPreview = questionPreview;
         setOnMousePressed(mouseEvent -> {
-            /* Thread,.. nodig om twee programmas tegelijk te runnen */
-            finalQuestionPreview.show();
+            Objects.requireNonNull(finalQuestionPreview).show();
             System.out.println("pressed");
         });
 
         setOnMouseReleased(mouseEvent -> {
             System.out.println("released");
-            finalQuestionPreview.close();
+            Objects.requireNonNull(finalQuestionPreview).close();
         });
     }
 

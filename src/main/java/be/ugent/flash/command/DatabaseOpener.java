@@ -19,7 +19,7 @@ public class DatabaseOpener {
     private final MainBorderPane startWindow;
     private String database;
     public DatabaseOpener(MainBorderPane mainBorderPane){
-        this.stage = mainBorderPane.getSTAGE();
+        this.stage = mainBorderPane.getStage();
         this.startWindow = mainBorderPane;
     }
     public void getFile() {

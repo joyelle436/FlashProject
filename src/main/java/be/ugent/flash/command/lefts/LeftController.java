@@ -23,4 +23,7 @@ public class LeftController {
         return leftSidePane;
     }
 
+    public void disableTable() {
+        leftSidePane.getTableView().setDisable(true);
+    }
 }

@@ -13,7 +13,7 @@ public class OpenCardPane extends CardPane {
 
     private final Label label;
     private final HBox hbox;
-    private TextField correctTextField;
+    private final TextField correctTextField;
     public OpenCardPane(String type){
         super(type);
         this.label = new Label("Correct Antwoord");

@@ -4,7 +4,6 @@ import be.ugent.flash.command.lefts.LeftSidePane;
 import be.ugent.flash.data.Question;
 import javafx.geometry.*;
 
-import javafx.scene.control.Dialog;
 import javafx.scene.layout.*;
 
 import java.util.Objects;

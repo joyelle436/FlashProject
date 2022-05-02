@@ -24,6 +24,9 @@ public class ErrorDisplay {
         alert.show();
     }
 
+    /*
+    Wordt getoond bij een fout antwoord in de viewer
+     */
     public void showErrorLabel(Type card){
         card.setPopUpLabelVisible(true);
         new Timeline(

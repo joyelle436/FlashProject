@@ -1,41 +1,65 @@
 package be.ugent.flash.command.rights;
 
 import be.ugent.flash.cardspanes.TitledPaneGridpane;
-import be.ugent.flash.command.*;
 import be.ugent.flash.data.Part;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.stage.FileChooser;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 
 /**
  * Dit is alleen voor een mci vraag
  */
-public class AnswerChoiceImage extends AnswerChoiceObject {
-    private final Button graphicButton;
+public class AnswerChoiceImage extends AnswerChoiceObject implements EventHandler<MouseEvent> {
+    private final ImageView middleImageView;
+    private final BorderPane borderPane;
     public AnswerChoiceImage(TitledPaneGridpane gridpane){
         super(gridpane);
         setMargin(checkBox, new Insets(28, 0, 0, 0));
-        this.graphicButton = new Button();
-        graphicButton.setPrefSize(75, 75);
+        this.middleImageView = new ImageView();
+        middleImageView.setFitWidth(90);
+        middleImageView.setFitHeight(90);
+        middleImageView.setPreserveRatio(true);
+        this.borderPane = new BorderPane();
+        borderPane.setPrefWidth(90);
+        borderPane.setPrefHeight(90);
+        borderPane.setOnMouseClicked(this);
+        borderPane.setCenter(new Label("(leeg)"));
         setMargin(removeButton, new Insets(25, 0, 0, 0));
-        getChildren().addAll(checkBox, graphicButton, removeButton);
+        getChildren().addAll(checkBox, borderPane, removeButton);
         GridPane.setMargin(this, new Insets(0, 0, 0, 15));
     }
 
-    public void setGraphicButtonImage(ImageView imageView){
-        imageView.setFitWidth(graphicButton.getPrefWidth());
-        imageView.setFitHeight(graphicButton.getPrefHeight());
-        graphicButton.setGraphic(imageView);
+    public void setAnswerImage(Image image){
+        middleImageView.setImage(image);
+        borderPane.setCenter(middleImageView);
     }
 
     public void putInGridpane(Part part, int position) {
         if(part != null){
             Image image = new Image(new ByteArrayInputStream(part.part()));
-            setGraphicButtonImage(new ImageView(image));
+            setAnswerImage(image);
         }
         super.putInGridpane(part, position);
+    }
+
+    @Override
+    public void handle(MouseEvent mouseEvent) {
+        if(mouseEvent.getClickCount() == 2){
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(
+                    "Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"
+            ));
+            File imageFile = fileChooser.showOpenDialog(gridpane.getRightController().getMainController().getMainStage());
+            if(imageFile != null){
+                setAnswerImage(new Image(imageFile.getPath()));
+            }
+        }
     }
 }

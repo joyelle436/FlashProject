@@ -10,10 +10,11 @@ import javafx.scene.input.MouseEvent;
 import java.sql.SQLException;
 
 public class Preview extends BottomButton implements EventHandler<MouseEvent> {
-    private final ViewerMapMaker mapMaker = new ViewerMapMaker();
+    private final ViewerMapMaker mapMaker;
     private DatabaseCollector databaseConnector;
     public Preview(CardPane cardPane) {
         super(cardPane);
+        this.mapMaker = new ViewerMapMaker();
         try {
             this.databaseConnector = new DatabaseCollector(cardPane.getRightSidePane().getRightController().getDatabase());
         } catch (SQLException e) {

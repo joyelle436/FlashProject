@@ -41,7 +41,7 @@ public class PictureOption extends GridPane {
 
     public void addImageToImageView(Image newImage){
         imageArea.addImage(newImage);
-        getChildren().addAll(imageArea, hBox);
+        addButtons();
     }
 
     public void addButtons(){
@@ -49,10 +49,17 @@ public class PictureOption extends GridPane {
         getChildren().addAll(imageArea, hBox);
     }
 
-    public void addButton(){
-        imageArea.setImage(null);
+    public void addSingleButton(){
         getChildren().clear();
         getChildren().add(addPicture);
+    }
+
+    public File openFileChooser(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(
+                "Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"
+        ));
+        return fileChooser.showOpenDialog(topGridpane.getRightController().getMainController().getMainStage());
     }
 
     private static class ImageArea extends ImageView {
@@ -69,21 +76,16 @@ public class PictureOption extends GridPane {
 
     private class AddPictureButton extends Button implements EventHandler<ActionEvent> {
         public AddPictureButton(){
-            super("Voef afbeelding toe");
+            super("Voeg afbeelding toe...");
             GridPane.setConstraints(this, 0, 0);
             setOnAction(this);
         }
 
         @Override
         public void handle(ActionEvent actionEvent) {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(
-                    "Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"
-            ));
-            File databaseFile = fileChooser.showOpenDialog(topGridpane.getRightController().getMainController().getMainStage());
-            if(databaseFile != null){
-                imageArea.addImage(new Image(databaseFile.getPath()));
-                addButtons();
+            File imageFile = openFileChooser();
+            if(imageFile != null){
+                addImageToImageView(new Image(imageFile.getAbsolutePath()));
             }
         }
     }
@@ -96,13 +98,9 @@ public class PictureOption extends GridPane {
 
         @Override
         public void handle(ActionEvent actionEvent) {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(
-                    "Image Files", "*.png", "*.jpeg", "*.jpg", "*.gif", "*.bmp"
-            ));
-            File databaseFile = fileChooser.showOpenDialog(topGridpane.getRightController().getMainController().getMainStage());
-            if(databaseFile != null){
-                imageArea.addImage(new Image(databaseFile.getPath()));
+            File imageFile = openFileChooser();
+            if(imageFile != null){
+                addImageToImageView(new Image(imageFile.getAbsolutePath()));
             }
         }
     }
@@ -115,8 +113,7 @@ public class PictureOption extends GridPane {
 
         @Override
         public void handle(ActionEvent actionEvent){
-            getChildren().clear();
-            addButton();
+            addSingleButton();
         }
     }
 }

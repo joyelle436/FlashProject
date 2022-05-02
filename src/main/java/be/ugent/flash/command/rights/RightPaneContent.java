@@ -38,7 +38,6 @@ public class RightPaneContent {
         this.pane = mapMaker.getQuestionPane(question.questionType());
         pane.setQuestion(question);
         pane.setRightSidePane(rightSidePane);
-        pane.setCorrectTextField(question.correctAnswer());
         rightSidePane.changeCenterChild(pane);
     }
 

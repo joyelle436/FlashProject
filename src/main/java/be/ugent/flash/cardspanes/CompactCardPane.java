@@ -1,14 +1,11 @@
 package be.ugent.flash.cardspanes;
 
+
+import be.ugent.flash.command.rights.RightSidePane;
+
 /**
  * mcc
  */
-
-import be.ugent.flash.command.PartData;
-import be.ugent.flash.command.rights.RightSidePane;
-
-import java.util.List;
-
 public class CompactCardPane extends CardPane {
     public CompactCardPane(String type){
         super(type);

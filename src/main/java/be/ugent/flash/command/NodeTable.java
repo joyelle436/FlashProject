@@ -52,15 +52,15 @@ public class NodeTable implements TextInputListener {
         typeLabel.setText(type);
         textArea.setText(text);
         if(mainImage != null){
-            Image middleImage = new Image(new ByteArrayInputStream(mainImage));
-            pictureOption.addImageToImageView(middleImage);
+            pictureOption.addImageToImageView(new Image(new ByteArrayInputStream(mainImage)));
         } else {
-            pictureOption.addButton();
+            pictureOption.addSingleButton();
         }
+        addTextListener();
     }
 
     public String[] getContent(){
-        return new String[]{titleField.getText(), typeLabel.getText(), textArea.getText()};
+        return new String[]{titleField.getText(), textArea.getText()};
     }
 
     public Image getMainImage(){

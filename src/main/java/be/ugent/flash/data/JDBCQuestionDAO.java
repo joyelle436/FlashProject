@@ -1,7 +1,5 @@
 package be.ugent.flash.data;
 
-import javafx.scene.image.Image;
-
 import java.io.ByteArrayInputStream;
 import java.sql.*;
 import java.util.*;
@@ -54,11 +52,11 @@ public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
 
 
     @Override
-    public void updateQuestion(int question_id, Question question) throws SQLException {
-        updateTitle(question_id, question.title());
-        updateText(question_id, question.text());
-        updateImage(question_id, new Image(new ByteArrayInputStream(question.middleImage())));
-        updateCorrect(question_id, question.correctAnswer());
+    public void updateQuestion(Question question) throws SQLException {
+        updateTitle(question.id(), question.title());
+        updateText(question.id(), question.text());
+        updateImage(question.id(), question.middleImage());
+        updateCorrect(question.id(), question.correctAnswer());
     }
 
     @Override
@@ -88,7 +86,7 @@ public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
 
     private void updateTitle(int question_id, String title) throws SQLException {
         try (PreparedStatement preparedStatement = prepare(
-                "UPDATE FROM questions SET title=? WHERE question_id=?"
+                "UPDATE questions SET title=? WHERE question_id=?"
         )){
             preparedStatement.setString(1, title);
             preparedStatement.setInt(2, question_id);
@@ -98,7 +96,7 @@ public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
 
     private void updateText(int question_id, String text) throws SQLException{
         try (PreparedStatement preparedStatement = prepare(
-                "UPDATE FROM questions SET text_part=? WHERE question_id=?"
+                "UPDATE questions SET text_part=? WHERE question_id=?"
         )){
             preparedStatement.setString(1, text);
             preparedStatement.setInt(2, question_id);
@@ -106,11 +104,11 @@ public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
         }
     }
 
-    private void updateImage(int question_id, Image image) throws SQLException{
+    private void updateImage(int question_id, byte[] image) throws SQLException{
         try (PreparedStatement preparedStatement = prepare(
-                "UPDATE FROM questions SET image_part=? WHERE question_id=?"
+                "UPDATE questions SET image_part=? WHERE question_id=?"
         )){
-            preparedStatement.setBlob(1, (Blob) image);
+            preparedStatement.setBytes(1,image);
             preparedStatement.setInt(2, question_id);
             preparedStatement.executeUpdate();
         }
@@ -118,7 +116,7 @@ public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
 
     private void updateCorrect(int question_id, String correct) throws SQLException {
         try (PreparedStatement preparedStatement = prepare(
-                "UPDATE FROM questions SET correct_answer=? WHERE question_id=?"
+                "UPDATE questions SET correct_answer=? WHERE question_id=?"
         )){
             preparedStatement.setString(1, correct);
             preparedStatement.setInt(2, question_id);

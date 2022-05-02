@@ -57,8 +57,4 @@ public class TopContent {
     public Image getMiddleImage(){
         return nodeTable.getMainImage();
     }
-
-    public void addListenerToTextField(){
-        nodeTable.addTextListener();
-    }
 }

@@ -20,6 +20,9 @@ public class PictureCardPart extends PartData {
         this.imagePart = new Image(new ByteArrayInputStream(part));
     }
 
+    /**
+     * Voor de viewer
+     */
     public byte[] getPart() {
         return part;
     }
@@ -27,16 +30,13 @@ public class PictureCardPart extends PartData {
     Bron: https://stackoverflow.com/questions/38095984/convert-javafx-image-object-to-byte-array
      */
     public void setPart(Image imagePart) {
-        int w = (int) imagePart.getWidth();
-        int h = (int) imagePart.getHeight();
-
-        byte[] bytePart = new byte[w*h*4];
-        imagePart.getPixelReader()
-                .getPixels(0, 0, w, h, PixelFormat.getByteBgraInstance(), bytePart, 0, w*4);
-        part = bytePart;
+        part = ImageByteConverter.imageToByte(imagePart);
         setImagePart();
     }
 
+    /**
+     * nodig in  de beheersinterface
+     */
     public Image getImagePart() {
         return imagePart;
     }

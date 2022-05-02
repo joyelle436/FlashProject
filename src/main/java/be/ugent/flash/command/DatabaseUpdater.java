@@ -2,6 +2,7 @@ package be.ugent.flash.command;
 
 import be.ugent.flash.data.JDBCDataAccessContext;
 import be.ugent.flash.data.JDBCDataAccessProvider;
+import be.ugent.flash.data.Question;
 import be.ugent.flash.viewer.ErrorDisplay;
 
 import java.sql.SQLException;
@@ -28,6 +29,11 @@ public class DatabaseUpdater {
             new ErrorDisplay().showAlert(e.getMessage());
         }
     }
-    public void updateQuestion(QuestionData questionData) {
+    public void updateQuestion(Question question) throws SQLException {
+        dataAccessContext.getQuestionDAO().updateQuestion(question);
+    }
+
+    public void close() throws SQLException{
+        dataAccessContext.close();
     }
 }

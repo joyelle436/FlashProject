@@ -13,17 +13,13 @@
     -fx-background-color: white;
 }
 
-#textflow {
-    -fx-text-fill: white;
-}
-
 #textfield {
     -fx-pref-height: 40px;
     -fx-font-size: 17px;
 }
 
 #text {
-    -fx-font-size: 17px;
+    -fx-font-size: 16px;
     -fx-fill: white;
     -fx-text-alignment: CENTER;
     -fx-pref-width: 180px;

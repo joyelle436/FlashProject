@@ -47,6 +47,10 @@ public class SidePaneConnection {
         return mainStage;
     }
 
+    public DatabaseUpdater getDatabaseUpdater() {
+        return databaseUpdater;
+    }
+
     public void showPanes() {
         centerSplitPane.getItems().addAll(leftController.getLeftSidePane(), rightController.getRightSidePane());
         mainBorderPane.changeCenter(centerSplitPane); /* nu gaat de centerSplitPane definitief in de BorderPane blijven*/

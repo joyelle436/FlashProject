@@ -23,7 +23,7 @@ public class RightSidePane extends BorderPane {
         setMaxSize(700, 730);
         this.topGridpane = new TopGridpane(rightController);
         this.rightController = rightController;
-        addEventFilter(ActionEvent.ACTION, event -> rightController.getMainController().disableTableView());
+        addEventFilter(ActionEvent.ANY, event -> rightController.getMainController().disableTableView());
         getStylesheets().add(Objects.requireNonNull(getClass().getResource("/be/ugent/flash/flash.css")).toString());
     }
 

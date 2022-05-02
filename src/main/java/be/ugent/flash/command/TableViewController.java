@@ -1,4 +1,4 @@
-package be.ugent.flash.controllers;
+package be.ugent.flash.command;
 
 import be.ugent.flash.CommandMapMaker;
 import be.ugent.flash.command.lefts.*;

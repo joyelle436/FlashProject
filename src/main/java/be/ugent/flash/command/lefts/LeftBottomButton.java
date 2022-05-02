@@ -1,7 +1,6 @@
 package be.ugent.flash.command.lefts;
 
 import be.ugent.flash.CommandMapMaker;
-import be.ugent.flash.command.QuestionData;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;

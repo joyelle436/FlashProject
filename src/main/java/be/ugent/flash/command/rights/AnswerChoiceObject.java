@@ -10,7 +10,7 @@ import javafx.scene.layout.*;
 /**
  * Subklasse van {@link AnswerChoiceTextField} en {@link AnswerChoiceImage}
  */
-public class AnswerChoiceObject extends HBox implements EventHandler<ActionEvent> {
+public class AnswerChoiceObject extends HBox {
 
     protected TitledPaneGridpane gridpane;
     protected final CheckBox checkBox;
@@ -20,7 +20,9 @@ public class AnswerChoiceObject extends HBox implements EventHandler<ActionEvent
         setSpacing(7);
         this.checkBox = new CheckBox();
         this.removeButton = new Button(" x ");
-        removeButton.setOnAction(this);
+        removeButton.setOnAction(actionEvent -> {
+            removeFromGridpane();
+        });
         setMargin(removeButton, new Insets(6, 0, 0, 0));
         GridPane.setMargin(this, new Insets(0, 0, 0, 15));
     }
@@ -45,9 +47,5 @@ public class AnswerChoiceObject extends HBox implements EventHandler<ActionEvent
 
     public void increasePosition(){
         GridPane.setRowIndex(this, GridPane.getRowIndex(this)+1);
-    }
-    @Override
-    public void handle(ActionEvent actionEvent) {
-        removeFromGridpane();
     }
 }

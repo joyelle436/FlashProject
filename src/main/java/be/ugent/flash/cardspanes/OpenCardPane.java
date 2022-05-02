@@ -1,11 +1,17 @@
 package be.ugent.flash.cardspanes;
 
+import be.ugent.flash.command.ImageByteConverter;
 import be.ugent.flash.command.TextInputListener;
 import be.ugent.flash.command.rights.RightSidePane;
+import be.ugent.flash.data.Question;
 import javafx.geometry.*;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
+
+import java.io.FileNotFoundException;
+import java.sql.SQLException;
 
 /**
  * open en openi
@@ -38,19 +44,29 @@ public class OpenCardPane extends CardPane implements TextInputListener {
     public void fill(){
         super.fill();
         addBottomButtons();
+        correctTextField.setText(question.correctAnswer());
+        //addTextListener();
     }
 
-    public void setCorrectTextField(String correctString){
-        correctTextField.setText(correctString);
-        addTextListener();
+    /**
+     * Geeft false terug als er een fout staat in de beheersinterface
+     */
+    public boolean updateQuestion() throws SQLException {
+        String[] questionTopContent = rightSidePane.getTopGridpane().getTopContent().getQuestionTopContent();
+        Image middleImage = rightSidePane.getTopGridpane().getTopContent().getMiddleImage();
+        Question updatedQuestion = new Question(question.id(), questionTopContent[0], questionTopContent[1],
+                ImageByteConverter.imageToByte(middleImage), question.questionType(),correctTextField.getText());
+        databaseUpdater.updateQuestion(updatedQuestion);
+        return super.updateQuestion();
     }
 
     @Override
     public void addTextListener() {
         correctTextField.textProperty().addListener((observable, oldtext, newtext) -> {
-           if(!oldtext.equals("") && !newtext.equals("")){
-               getRightSidePane().getRightController().getMainController().disableTableView();
-           }
+            /**
+             * TODO: Verbeteren(te vroeg)
+             */
+            getRightSidePane().getRightController().getMainController().disableTableView();
         });
     }
 }

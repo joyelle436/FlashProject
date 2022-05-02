@@ -25,6 +25,10 @@ public class TopGridpane extends GridPane {
         getStylesheets().add(Objects.requireNonNull(getClass().getResource("/be/ugent/flash/flash.css")).toString());
     }
 
+    public TopContent getTopContent() {
+        return topContent;
+    }
+
     public RightController getRightController() {
         return rightController;
     }
@@ -42,7 +46,6 @@ public class TopGridpane extends GridPane {
         fillGridpaneTop(); /* nieuwe TopContent aanmaken voor elke type vraag */
         this.question = question;
         topContent.setQuestionTopContent(question.title(), question.questionType(), question.text(), question.middleImage());
-        topContent.addListenerToTextField();
     }
 
     public void clearTopGridPane(){

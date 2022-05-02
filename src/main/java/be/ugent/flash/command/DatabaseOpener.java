@@ -46,6 +46,6 @@ public class DatabaseOpener {
         }
 
         dataCollector.closeDAC();
-        new PaneStarter(startWindow, questionMap, database);
+        new PaneStarter(startWindow, questionMap, database, stage);
     }
 }

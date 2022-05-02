@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 
 public class RightController {
     private final RightSidePane rightSidePane;
-    private final RightPaneContent rightPaneData;
+    private final RightPaneContent rightPaneContent;
     private final SidePaneConnection mainController;
     private final CommandMapMaker mapMaker;
     private final Label label;
@@ -19,13 +19,17 @@ public class RightController {
         this.label = new Label("(geen vraag geselecteerd)");
         label.setAlignment(Pos.CENTER);
         rightSidePane.changeCenterChild(label);
-        this.rightPaneData = new RightPaneContent();
-        rightSidePane.setRightPaneContent(rightPaneData);
+        this.rightPaneContent = new RightPaneContent();
+        rightSidePane.setRightPaneContent(rightPaneContent);
         this.mapMaker = new CommandMapMaker();
     }
 
     public String getDatabase(){
         return mainController.getDatabase();
+    }
+
+    public RightPaneContent getRightPaneContent() {
+        return rightPaneContent;
     }
 
     public void setLabelToCenter() {
@@ -43,6 +47,6 @@ public class RightController {
 
     public void showContent(Question question, String type){
         /* questionData + lijst van PartData voor die specifieke vraag*/
-        rightPaneData.addContents(question, type);
+        rightPaneContent.addContents(question, type);
     }
 }

@@ -13,10 +13,12 @@ import java.util.*;
  * EventHandler voor {@link QuestionTableView}
  */
 public class TableViewController implements EventHandler<MouseEvent> {
+
     private final QuestionTableView questionTableView;
     public TableViewController(QuestionTableView questionTableView){
         this.questionTableView = questionTableView;
     }
+
     @Override
     public void handle(MouseEvent mouseEvent) {
         if(questionTableView.getSelectionModel().getSelectedItem() != null){
@@ -25,6 +27,7 @@ public class TableViewController implements EventHandler<MouseEvent> {
             questionTableView.getLeftSidePane().showQuestionInfo(title, questionTableView.getMapMaker().getSwapedStringType(type));
         }
     }
+
     /**
      * Krijgt een Map met als key een question_id afgebeeld op zijn {title, question_type}
      */

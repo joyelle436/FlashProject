@@ -3,8 +3,9 @@ package be.ugent.flash.command;
  import be.ugent.flash.command.lefts.LeftController;
 import be.ugent.flash.command.rights.RightController;
 import be.ugent.flash.data.Part;
+ import javafx.stage.Stage;
 
-import java.sql.SQLException;
+ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -20,8 +21,9 @@ public class SidePaneConnection {
     private final DatabaseCollector databaseCollector;
     private final DatabaseUpdater databaseUpdater;
     private final CenterSplitPane centerSplitPane;
+    private final Stage mainStage;
 
-    public SidePaneConnection(MainBorderPane mainBorderPane, Map<Integer, String[]> questionMap, String database) throws SQLException {
+    public SidePaneConnection(MainBorderPane mainBorderPane, Map<Integer, String[]> questionMap, String database, Stage stage) throws SQLException {
         this.rightController = new RightController(this);
         this.leftController = new LeftController(this, questionMap);
         this.mainBorderPane = mainBorderPane;
@@ -29,6 +31,7 @@ public class SidePaneConnection {
         this.databaseCollector = new DatabaseCollector(database);
         this.databaseUpdater = new DatabaseUpdater(database);
         this.centerSplitPane = new CenterSplitPane();
+        this.mainStage = stage;
         //SidePaneController sidePaneHandler = new SidePaneController();
     }
 
@@ -38,6 +41,10 @@ public class SidePaneConnection {
 
     public String getDatabase() {
         return database;
+    }
+
+    public Stage getMainStage() {
+        return mainStage;
     }
 
     public void showPanes() {

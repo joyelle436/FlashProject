@@ -32,7 +32,7 @@ public class TopGridpane extends GridPane {
     public void fillGridpaneTop(){
         topContent = new TopContent(this);
         topContent.addContent();
-        getChildren().addAll(topContent.getTopLabels());
+        getChildren().addAll(topContent.getToplabels());
         getChildren().addAll(topContent.getNodeTable());
         getColumnConstraints().addAll(new ColumnConstraints(80), new ColumnConstraints(575));
     }
@@ -41,10 +41,8 @@ public class TopGridpane extends GridPane {
         clearTopGridPane();
         fillGridpaneTop(); /* nieuwe TopContent aanmaken voor elke type vraag */
         this.question = question;
-        topContent.setTitleText(question.title());
-        topContent.setTypeText(question.questionType());
-        topContent.setQuestionText(question.text());
-        topContent.addTextListener();
+        topContent.setQuestionTopContent(question.title(), question.questionType(), question.text(), question.middleImage());
+        topContent.addListenerToTextField();
     }
 
     public void clearTopGridPane(){

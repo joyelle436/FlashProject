@@ -1,10 +1,22 @@
 package be.ugent.flash.command.rights.buttons;
 
 import be.ugent.flash.cardspanes.CardPane;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
-public class Undo extends BottomButton {
+public class Undo extends BottomButton implements EventHandler<ActionEvent> {
     public Undo(CardPane cardPane) {
         super(cardPane);
         setText("Herstellen");
+        setOnAction(this);
+    }
+
+    @Override
+    public void handle(ActionEvent actionEvent) {
+        /*
+        Gegevens opnieuw halen uit de databank
+         */
+        cardPane.getRightSidePane().getRightController().getRightPaneContent().
+                addContents(cardPane.getQuestion(), cardPane.getQuestion().questionType());
     }
 }

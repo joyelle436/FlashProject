@@ -19,7 +19,7 @@ public class JDBCDataAccessProvider implements DataAccessProvider {
         return new JDBCDataAccessContext(getConnection());
     }
 
-    private Connection getConnection() throws SQLException {
+    public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(DATA);
     }
 }

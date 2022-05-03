@@ -39,8 +39,13 @@ public class TableViewController implements EventHandler<MouseEvent> {
             pairList.add(new TableViewPair(questionMap.get(key)[0], mapMaker.getStringType(questionMap.get(key)[1])));
         }
         questionTableView.setItems(FXCollections.observableArrayList(pairList));
-        questionTableView.getTitle().setCellValueFactory(new PropertyValueFactory<>(pairList.get(0).titleProperty().getName()));
-        questionTableView.getType().setCellValueFactory(new PropertyValueFactory<>(pairList.get(0).typeProperty().getName()));
+        if(!pairList.isEmpty()){
+            /**
+             * Iets toevoegen om de tableView te updaten
+             */
+            questionTableView.getTitle().setCellValueFactory(new PropertyValueFactory<>(pairList.get(0).titleProperty().getName()));
+            questionTableView.getType().setCellValueFactory(new PropertyValueFactory<>(pairList.get(0).typeProperty().getName()));
+        }
         questionTableView.getColumns().setAll(List.of(questionTableView.getTitle(), questionTableView.getType()));
     }
 }

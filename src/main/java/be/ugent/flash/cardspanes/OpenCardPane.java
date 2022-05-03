@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 
@@ -45,18 +46,13 @@ public class OpenCardPane extends CardPane implements TextInputListener {
         super.fill();
         addBottomButtons();
         correctTextField.setText(question.correctAnswer());
-        //addTextListener();
+        addTextListener();
     }
 
     /**
      * Geeft false terug als er een fout staat in de beheersinterface
      */
     public boolean updateQuestion() throws SQLException {
-        String[] questionTopContent = rightSidePane.getTopGridpane().getTopContent().getQuestionTopContent();
-        Image middleImage = rightSidePane.getTopGridpane().getTopContent().getMiddleImage();
-        Question updatedQuestion = new Question(question.id(), questionTopContent[0], questionTopContent[1],
-                ImageByteConverter.imageToByte(middleImage), question.questionType(),correctTextField.getText());
-        databaseUpdater.updateQuestion(updatedQuestion);
         return super.updateQuestion();
     }
 
@@ -67,6 +63,7 @@ public class OpenCardPane extends CardPane implements TextInputListener {
              * TODO: Verbeteren(te vroeg)
              */
             getRightSidePane().getRightController().getMainController().disableTableView();
+            correct = correctTextField.getText();
         });
     }
 }

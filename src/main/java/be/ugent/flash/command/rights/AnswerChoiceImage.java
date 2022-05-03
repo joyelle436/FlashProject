@@ -14,7 +14,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 
 /**
- * Dit is alleen voor een mci vraag
+ * Voor mci
  */
 public class AnswerChoiceImage extends AnswerChoiceObject implements EventHandler<MouseEvent> {
     private final ImageView middleImageView;

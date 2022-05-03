@@ -1,11 +1,13 @@
 package be.ugent.flash.cardspanes;
 
 import be.ugent.flash.command.DatabaseUpdater;
+import be.ugent.flash.command.ImageByteConverter;
 import be.ugent.flash.command.rights.*;
 import be.ugent.flash.data.Question;
 import javafx.geometry.*;
 import javafx.scene.layout.*;
 
+import java.io.File;
 import java.sql.SQLException;
 
 
@@ -16,6 +18,7 @@ public class CardPane extends VBox {
     protected String topDescriptionText;
     protected String type;
     protected Question question;
+    protected String correct;
     protected DatabaseUpdater databaseUpdater;
     public CardPane(String type){
         this.type = type;
@@ -62,12 +65,23 @@ public class CardPane extends VBox {
 
     public void setQuestion(Question question) {
         this.question = question;
+        this.correct = question.correctAnswer();
     }
 
     /**
-     * Wordt opgeroepen als er op de knop {@link be.ugent.flash.command.rights.buttons.Save} geklikt wordt
+     * Wordt opgeroepen als er op de knop {@link be.ugent.flash.command.rights.buttons.Save} geklikt wordt.
+     * één checkbox aangevinkt bij een meerkeuze vraag(mcc, mcs, mci)
      */
     public boolean updateQuestion() throws SQLException {
+        String[] questionTopContent = rightSidePane.getTopGridpane().getTopContent().getQuestionTopContent();
+        byte[] middleImage = rightSidePane.getTopGridpane().getTopContent().getMiddleImage();
+        /* De afbeelding werd niet gewijzigd */
+        if(middleImage == null){
+            middleImage = question.middleImage();
+        }
+        Question updatedQuestion = new Question(question.id(), questionTopContent[0], questionTopContent[1],
+                middleImage, question.questionType(), correct);
+        databaseUpdater.updateQuestion(updatedQuestion);
         return true;
     }
 }

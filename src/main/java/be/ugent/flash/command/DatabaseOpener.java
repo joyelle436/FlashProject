@@ -17,7 +17,6 @@ public class DatabaseOpener {
     Dit gaat de hele tijd getoond worden
      */
     private final MainBorderPane startWindow;
-    private String database;
     public DatabaseOpener(MainBorderPane mainBorderPane){
         this.stage = mainBorderPane.getStage();
         this.startWindow = mainBorderPane;
@@ -37,14 +36,12 @@ public class DatabaseOpener {
         }
     }
     public void getFileData(String database) throws SQLException {
-        this.database = database;
         DataCollector dataCollector = new DataCollector(database);
         List<Question> questionList = dataCollector.getQuestionsData(); /* alle gegevens uit questions */
         Map<Integer, String[]> questionMap = new HashMap<>();
         for(Question question: questionList){
             questionMap.put(question.id(), new String[]{question.title(), question.questionType()});
         }
-
         dataCollector.closeDAC();
         new PaneStarter(startWindow, questionMap, database, stage);
     }

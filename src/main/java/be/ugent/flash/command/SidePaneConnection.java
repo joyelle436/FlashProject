@@ -3,6 +3,7 @@ package be.ugent.flash.command;
  import be.ugent.flash.command.lefts.LeftController;
 import be.ugent.flash.command.rights.RightController;
 import be.ugent.flash.data.Part;
+ import javafx.scene.image.Image;
  import javafx.stage.Stage;
 
  import java.sql.SQLException;

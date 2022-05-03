@@ -4,6 +4,7 @@ import be.ugent.flash.CommandMapMaker;
 import be.ugent.flash.command.TableViewController;
 import javafx.event.Event;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 

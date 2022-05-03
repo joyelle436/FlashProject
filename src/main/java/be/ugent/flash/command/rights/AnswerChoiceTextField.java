@@ -7,7 +7,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.*;
 
 /**
- * Dit is alleen voor mcs, mcc en mr vragen
+ * Voor mcc
  */
 public class AnswerChoiceTextField extends AnswerChoiceObject implements TextInputListener {
     private final TextField textField;

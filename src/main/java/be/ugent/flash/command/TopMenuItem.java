@@ -50,7 +50,7 @@ public class TopMenuItem extends MenuItem{
 
         @Override
         public void handle(ActionEvent actionEvent) {
-            new DatabaseMaker(mainBorderPane).makeDatabase();
+            new DatabaseMaker(mainBorderPane).createFile();
         }
     }
     public static class CloseWindow extends TopMenuItem {

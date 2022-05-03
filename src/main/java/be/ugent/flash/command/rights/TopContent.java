@@ -4,8 +4,9 @@ import be.ugent.flash.command.NodeTable;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
+
+import java.io.File;
 
 /**
  * Gegevens van de {@link TopGridpane}
@@ -54,7 +55,7 @@ public class TopContent {
         return nodeTable.getContent();
     }
 
-    public Image getMiddleImage(){
+    public byte[] getMiddleImage(){
         return nodeTable.getMainImage();
     }
 }

@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 
 /**
  * Bevat nodes die in {@link be.ugent.flash.command.rights.TopGridpane} staan
@@ -63,7 +64,7 @@ public class NodeTable implements TextInputListener {
         return new String[]{titleField.getText(), textArea.getText()};
     }
 
-    public Image getMainImage(){
+    public byte[] getMainImage(){
         return pictureOption.getImage();
     }
 

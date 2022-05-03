@@ -18,10 +18,12 @@ public class PictureOption extends GridPane {
     private final ImageArea imageArea;
     private final AddPictureButton addPicture;
     private final HBox hBox;
+    private File mainImageFile;
     public PictureOption(TopGridpane topGridpane) {
         this.topGridpane = topGridpane;
         this.imageArea = new ImageArea();
         this.addPicture = new AddPictureButton();
+        this.mainImageFile = null;
         ChangePictureButton changePicture = new ChangePictureButton();
         DeletePictureButton deletePicture = new DeletePictureButton();
         this.hBox = new HBox();
@@ -35,8 +37,11 @@ public class PictureOption extends GridPane {
      * Wordt opgeroepen in {@link be.ugent.flash.command.rights.buttons.Save}
      */
 
-    public Image getImage() {
-        return imageArea.getImage();
+    public byte[] getImage() {
+        if(mainImageFile == null){
+            return null;
+        }
+        return ImageByteConverter.fileToByte(mainImageFile);
     }
 
     public void addImageToImageView(Image newImage){
@@ -86,6 +91,7 @@ public class PictureOption extends GridPane {
             File imageFile = openFileChooser();
             if(imageFile != null){
                 addImageToImageView(new Image(imageFile.getAbsolutePath()));
+                mainImageFile = imageFile;
             }
         }
     }
@@ -101,6 +107,7 @@ public class PictureOption extends GridPane {
             File imageFile = openFileChooser();
             if(imageFile != null){
                 addImageToImageView(new Image(imageFile.getAbsolutePath()));
+                mainImageFile = imageFile;
             }
         }
     }

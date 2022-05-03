@@ -26,18 +26,16 @@ public class PictureCardPart extends PartData {
     public byte[] getPart() {
         return part;
     }
-    /*
-    Bron: https://stackoverflow.com/questions/38095984/convert-javafx-image-object-to-byte-array
-     */
+
     public void setPart(Image imagePart) {
         part = ImageByteConverter.imageToByte(imagePart);
         setImagePart();
     }
 
     /**
-     * nodig in  de beheersinterface
+     * Voor de beheersinterface
      */
-    public Image getImagePart() {
+    public Image getImagePart(){
         return imagePart;
     }
 

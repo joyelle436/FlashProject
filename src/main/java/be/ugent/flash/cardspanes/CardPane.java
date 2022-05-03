@@ -1,13 +1,12 @@
 package be.ugent.flash.cardspanes;
 
 import be.ugent.flash.command.DatabaseUpdater;
-import be.ugent.flash.command.ImageByteConverter;
+import be.ugent.flash.command.RedPopUp;
 import be.ugent.flash.command.rights.*;
 import be.ugent.flash.data.Question;
 import javafx.geometry.*;
 import javafx.scene.layout.*;
 
-import java.io.File;
 import java.sql.SQLException;
 
 
@@ -26,6 +25,7 @@ public class CardPane extends VBox {
     }
 
     public void fill(){
+        addBottomButtons();
     }
 
     public RightSidePane getRightSidePane() {
@@ -36,12 +36,11 @@ public class CardPane extends VBox {
         this.rightSidePane = rightSidePane;
         this.databaseUpdater = rightSidePane.getRightController().getMainController().getDatabaseUpdater();
         rightSidePane.fillRightPane();
-        /* Om toegang te krijgen tot SidePaneController*/
         rightSidePane.changeBottomChild(null);
         getChildren().remove(titledPane);
     }
 
-    public void addBottomButtons(){
+    private void addBottomButtons(){
         this.buttonHBox = new ButtonHBox(this);
         BorderPane.setAlignment(buttonHBox, Pos.BOTTOM_RIGHT);
         if(rightSidePane != null){
@@ -56,6 +55,7 @@ public class CardPane extends VBox {
     public final void createTitledPane(){
         titledPane = new CenterTitledPane(type, getRightSidePane().getRightController());
         getChildren().add(titledPane);
+        titledPane.setLabelText(topDescriptionText);
         fill();
     }
 
@@ -78,6 +78,10 @@ public class CardPane extends VBox {
         /* De afbeelding werd niet gewijzigd */
         if(middleImage == null){
             middleImage = question.middleImage();
+        }
+        if(questionTopContent[0].equals("") || questionTopContent[1].equals("")){
+            new RedPopUp("Titel en/of tekst is leeg");
+            return false;
         }
         Question updatedQuestion = new Question(question.id(), questionTopContent[0], questionTopContent[1],
                 middleImage, question.questionType(), correct);

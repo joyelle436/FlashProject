@@ -30,7 +30,7 @@ public class ViewerStarter {
             dataCollector.closeDAC();
             new CardsSimulator(stage, questionList, partList).showQuestions();
         } catch (Exception e) {
-            new ErrorDisplay().showAlert(e.getMessage());
+            ErrorDisplay.showAlert(e.getMessage());
         }
     }
 }

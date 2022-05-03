@@ -5,7 +5,7 @@ import javafx.scene.layout.GridPane;
 
 /**
  * Staat in de {@link CenterTitledPane} en bevat {@link OptionButton} en
- * {@link be.ugent.flash.command.rights.AnswerChoiceObject}'s
+ * {@link be.ugent.flash.command.rights.AnswerChoiceObject}
  */
 
 public class TitledPaneGridpane extends GridPane {

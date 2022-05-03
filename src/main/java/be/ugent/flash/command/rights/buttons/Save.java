@@ -1,6 +1,7 @@
 package be.ugent.flash.command.rights.buttons;
 
 import be.ugent.flash.cardspanes.CardPane;
+import be.ugent.flash.viewer.ErrorDisplay;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -23,7 +24,7 @@ public class Save extends BottomButton implements EventHandler<ActionEvent> {
                 cardPane.getRightSidePane().getRightController().getMainController().unselectInTable();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            ErrorDisplay.showAlert(e.getMessage());
         }
     }
 }

@@ -14,15 +14,15 @@ public class Preview extends BottomButton implements EventHandler<MouseEvent> {
     private DatabaseCollector databaseConnector;
     public Preview(CardPane cardPane) {
         super(cardPane);
+        setText("Preview");
         this.mapMaker = new ViewerMapMaker();
         try {
             this.databaseConnector = new DatabaseCollector(cardPane.getRightSidePane().getRightController().getDatabase());
         } catch (SQLException e) {
-            new ErrorDisplay().showAlert(e.getMessage());
+            ErrorDisplay.showAlert(e.getMessage());
         }
         this.mapMaker.makeFactoryMap();
         this.mapMaker.makeVisitorMap();
-        setText("Preview");
     }
 
     @Override

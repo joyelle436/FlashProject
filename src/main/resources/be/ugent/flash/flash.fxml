@@ -1,80 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<BorderPane prefHeight="87.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="350.0" style="-fx-background-color: BC3F4A;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <Label text="!" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+         <BorderPane.margin>
+            <Insets left="20.0" />
+         </BorderPane.margin>
+         <font>
+            <Font size="70.0" />
+         </font>
+      </Label>
+   </left>
+   <bottom>
+      <Button mnemonicParsing="false" text="OK" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets bottom="10.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
    <center>
-      <SplitPane dividerPositions="0.4" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
-            <ScrollPane hbarPolicy="NEVER" prefHeight="650.0" prefWidth="669.0">
-               <content>
-                  <BorderPane prefHeight="650.0" prefWidth="669.0">
-                     <center>
-                        <TitledPane collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="550.0" text="Mogelijke antwoorden" BorderPane.alignment="CENTER">
-                           <content>
-                              <GridPane maxHeight="690.0" prefHeight="690.0">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <HBox maxHeight="500.0" maxWidth="600.0">
-                                       <children>
-                                          <CheckBox mnemonicParsing="false" />
-                                          <TextField prefWidth="350.0" />
-                                          <Button mnemonicParsing="false" text=" x " />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </GridPane>
-                           </content>
-                        </TitledPane>
-                     </center>
-                  </BorderPane>
-               </content>
-            </ScrollPane>
-        </items>
-      </SplitPane>
+      <TextFlow maxHeight="120.0" maxWidth="250.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text fill="#fffdfd" strokeType="OUTSIDE" strokeWidth="0.0" text="Er moet precies één antwoord zijn aangevinkt" wrappingWidth="235.69952392578125">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+         </children>
+         <BorderPane.margin>
+            <Insets right="20.0" top="35.0" />
+         </BorderPane.margin>
+      </TextFlow>
    </center>
 </BorderPane>

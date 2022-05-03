@@ -26,7 +26,7 @@ public class NodeTable implements TextInputListener {
         this.titleField = new TextField();
         this.textArea = new TextArea();
         this.typeLabel = new Label("");
-        textArea.setPrefSize(575, 130);
+        textArea.setPrefSize(575, 100);
         textArea.setWrapText(true);
         this.pictureOption = new PictureOption(topGridpane);
         this.table = new Node[]{

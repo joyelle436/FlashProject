@@ -36,7 +36,7 @@ public class CardModel implements Observable {
         types.offerLast(card);
         addListener(card);
         if(types.size() > 1){
-            new ErrorDisplay().showErrorLabel(card.getNextCard());
+            ErrorDisplay.showErrorLabel(card.getNextCard());
             card.showNextCard();
             fireInvalidationListener();
         } else {
@@ -44,7 +44,7 @@ public class CardModel implements Observable {
               Er blijt maar één kaart over
              */
             card.setNextCard(card);
-            new ErrorDisplay().showErrorLabel(card);
+            ErrorDisplay.showErrorLabel(card);
             card.showNextCard();
         }
     }

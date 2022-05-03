@@ -14,7 +14,7 @@ public class Undo extends BottomButton implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         /*
-        Gegevens opnieuw halen uit de databank
+         * Alle gegevens opnieuw halen uit de databank en tonen
          */
         cardPane.getRightSidePane().getRightController().getRightPaneContent().
                 addContents(cardPane.getQuestion(), cardPane.getQuestion().questionType());

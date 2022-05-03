@@ -11,5 +11,4 @@ public class BottomButton extends Button {
     public BottomButton(CardPane cardPane){
         this.cardPane = cardPane;
     }
-
 }

@@ -57,10 +57,10 @@ public class CommandMapMaker {
 
     public void makePanesMap(){
         this.questionPaneMap = Map.of(
-                "mcs", new StandaardCardPane("mcs"),
-                "mcc", new CompactCardPane("mcc"),
-                "mci", new PictureCardPane("mci"),
-                "mr", new MultipleCardPane("mr"),
+                "mcs", new SingleAnswerCardPane("mcs"),
+                "mcc", new SingleAnswerCardPane("mcc"),
+                "mci", new SingleAnswerCardPane("mci"),
+                "mr", new MultipleAnswerCardPane("mr"),
                 "open", new OpenCardPane("open"),
                 "openi", new OpenCardPane("openi")
         );

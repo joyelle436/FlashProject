@@ -2,10 +2,11 @@ package be.ugent.flash.cardspanes;
 
 import be.ugent.flash.command.rights.AnswerChoiceObject;
 import be.ugent.flash.command.rights.RightController;
+import be.ugent.flash.data.Question;
 import javafx.scene.layout.GridPane;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayDeque;
+import java.util.Queue;
 
 /**
  * Staat in de {@link CenterTitledPane} en bevat {@link OptionButton} en
@@ -17,29 +18,29 @@ public class TitledPaneGridpane extends GridPane {
     private final OptionButton optionButton;
     private final String questionType;
     private int rowPosition;
-    private final Set<AnswerChoiceObject> choiceObjectSet;
+    private final ArrayDeque<AnswerChoiceObject> choiceObjectQueue;
     private final RightController rightController;
     public TitledPaneGridpane(String questionType, RightController rightController){
         this.optionButton = new OptionButton(this);
         this.rightController = rightController;
         this.questionType = questionType;
         this.rowPosition = 1;
-        this.choiceObjectSet = new HashSet<>();
+        this.choiceObjectQueue = new ArrayDeque<>();
         getChildren().add(optionButton);
         setVgap(7);
     }
 
 
-    public void putInSet(AnswerChoiceObject choiceObject){
-        choiceObjectSet.add(choiceObject);
+    public void putInQueue(AnswerChoiceObject choiceObject){
+        choiceObjectQueue.offerLast(choiceObject);
     }
 
-    public void removeFromSet(AnswerChoiceObject choiceObject){
-        choiceObjectSet.remove(choiceObject);
+    public void removeFromQueue(AnswerChoiceObject choiceObject){
+        choiceObjectQueue.remove(choiceObject);
     }
 
-    public Set<AnswerChoiceObject> getChoiceObjectSet() {
-        return choiceObjectSet;
+    public Queue<AnswerChoiceObject> getChoiceObjectQueue() {
+        return choiceObjectQueue;
     }
 
     public RightController getRightController() {
@@ -63,10 +64,22 @@ public class TitledPaneGridpane extends GridPane {
     }
 
     public void changeChildrenPosition(Integer rowIndex){
-        for(AnswerChoiceObject choiceObject: choiceObjectSet){
+        for(AnswerChoiceObject choiceObject: choiceObjectQueue){
             if(GridPane.getRowIndex(choiceObject) > rowIndex){
                 choiceObject.decreasePosition();
             }
+        }
+    }
+
+    public void select(Question question) {
+        int index = 0;
+        for(AnswerChoiceObject choiceObject: choiceObjectQueue){
+            if(question.correctAnswer().length() == 1 && index == Integer.parseInt(question.correctAnswer())){
+                choiceObject.selectChoiceBox();
+            } else if(question.correctAnswer().length() > 1 && question.correctAnswer().charAt(index) == 'T') {
+                choiceObject.selectChoiceBox();
+            }
+            index++;
         }
     }
 }

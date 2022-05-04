@@ -1,6 +1,7 @@
 package be.ugent.flash.command.rights;
 
 import be.ugent.flash.cardspanes.TitledPaneGridpane;
+import be.ugent.flash.command.ImageByteConverter;
 import be.ugent.flash.data.Part;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -19,10 +20,10 @@ import java.io.File;
 public class AnswerChoiceImage extends AnswerChoiceObject implements EventHandler<MouseEvent> {
     private final ImageView middleImageView;
     private final BorderPane borderPane;
-    private String imagePath;
+    private File newImageFile;
     public AnswerChoiceImage(TitledPaneGridpane gridpane){
         super(gridpane);
-        this.imagePath = null; // imagePath is null als de afbeelding niet veranderd wordt
+        this.newImageFile = null; // imagePath is null als de afbeelding niet veranderd werd
         setMargin(checkBox, new Insets(28, 0, 0, 0));
         this.middleImageView = new ImageView();
         middleImageView.setFitWidth(90);
@@ -36,6 +37,13 @@ public class AnswerChoiceImage extends AnswerChoiceObject implements EventHandle
         setMargin(removeButton, new Insets(25, 0, 0, 0));
         getChildren().addAll(checkBox, borderPane, removeButton);
         GridPane.setMargin(this, new Insets(0, 0, 0, 15));
+    }
+
+    public byte[] getImagePath() {
+        if(newImageFile == null){
+            return null;
+        }
+        return ImageByteConverter.fileToByte(newImageFile);
     }
 
     public void setAnswerImage(Image image){
@@ -61,7 +69,7 @@ public class AnswerChoiceImage extends AnswerChoiceObject implements EventHandle
             File imageFile = fileChooser.showOpenDialog(gridpane.getRightController().getMainController().getMainStage());
             if(imageFile != null){
                 setAnswerImage(new Image(imageFile.getPath()));
-                imagePath = imageFile.getPath();
+                newImageFile = imageFile;
             }
         }
     }

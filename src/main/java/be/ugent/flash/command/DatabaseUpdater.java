@@ -1,8 +1,6 @@
 package be.ugent.flash.command;
 
-import be.ugent.flash.data.JDBCDataAccessContext;
-import be.ugent.flash.data.JDBCDataAccessProvider;
-import be.ugent.flash.data.Question;
+import be.ugent.flash.data.*;
 import be.ugent.flash.viewer.ErrorDisplay;
 
 import java.sql.SQLException;
@@ -34,6 +32,15 @@ public class DatabaseUpdater {
     public void updateQuestion(Question question) throws SQLException {
         dataAccessContext.getQuestionDAO().updateQuestion(question);
     }
+
+    public void addNewPart(int question_id, byte[] part) throws SQLException{
+        dataAccessContext.getPartDAO().addPart(question_id, part);
+    }
+
+    public void updatePart(int question_id, int part_id, byte[] part) throws SQLException{
+        dataAccessContext.getPartDAO().updatePart(question_id, part_id, part);
+    }
+
 
     public void close() throws SQLException{
         dataAccessContext.close();

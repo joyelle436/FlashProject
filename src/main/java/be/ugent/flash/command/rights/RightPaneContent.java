@@ -58,5 +58,8 @@ public class RightPaneContent {
             answerChoiceObject.gridpane.setRowPosition(position+1);
             position += 1;
         }
+        if(question.correctAnswer().length() >= 1){
+            pane.getTitledPane().getMainGridpane().select(question);
+        }
     }
 }

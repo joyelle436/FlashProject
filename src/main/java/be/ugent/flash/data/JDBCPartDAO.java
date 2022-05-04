@@ -1,8 +1,6 @@
 package be.ugent.flash.data;
 
-import javafx.scene.image.Image;
 
-import java.io.ByteArrayInputStream;
 import java.sql.*;
 import java.util.*;
 /**
@@ -46,23 +44,26 @@ public class JDBCPartDAO extends JDBCAbstractDAO implements PartDAO {
     }
 
     @Override
-    public void updatePart(int part_id, byte[] part, String question_type) throws SQLException{
+    public void updatePart(int question_id, int part_id, byte[] part) throws SQLException{
         try (PreparedStatement preparedStatement = prepare(
-                "UPDATE FROM parts SET part=? WHERE part_id=?"
+                "UPDATE parts SET part=? WHERE question_id=? AND part_id=?"
         )){
-            preparedStatement.setInt(1, part_id);
-            if(question_type.equals("mci")){
-                preparedStatement.setBlob(2, (Blob) new Image(new ByteArrayInputStream(part)));
-            } else {
-                preparedStatement.setString(2, new String(part));
-            }
+            preparedStatement.setBytes(1, part);
+            preparedStatement.setInt(2, question_id);
+            preparedStatement.setInt(3, part_id);
             preparedStatement.executeUpdate();
         }
     }
 
     @Override
-    public void addPart(Part part) {
-
+    public void addPart(int question_id, byte[] part) throws SQLException {
+        try (PreparedStatement preparedStatement = prepare(
+                "INSERT INTO parts(question_id, part) VALUES(?,?)"
+        )){
+            preparedStatement.setInt(1, question_id);
+            preparedStatement.setBytes(2, part);
+            preparedStatement.executeUpdate();
+        }
     }
 
     @Override

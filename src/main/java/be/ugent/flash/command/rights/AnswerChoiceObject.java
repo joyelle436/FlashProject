@@ -6,6 +6,8 @@ import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
+import java.nio.charset.StandardCharsets;
+
 /**
  * Subklasse van {@link AnswerChoiceTextField}, {@link AnswerChoiceTextArea} en {@link AnswerChoiceImage}
  */
@@ -28,12 +30,20 @@ public class AnswerChoiceObject extends HBox {
         GridPane.setMargin(this, new Insets(0, 0, 0, 15));
     }
 
+    public void selectChoiceBox(){
+        checkBox.setSelected(true);
+    }
+
     public boolean isSelected(){
         return checkBox.isSelected();
     }
 
-    public String getStringPart(){
-        return "";
+    public int getIdPart() {
+        return part_id;
+    }
+
+    public byte[] getStringPart(){
+        return "".getBytes(StandardCharsets.UTF_8);
     }
 
     public void setPosition(int position) {
@@ -41,10 +51,12 @@ public class AnswerChoiceObject extends HBox {
     }
 
     public void putInGridpane(Part part, int position) {
-        this.part_id = part.part_id();
+        if(part != null){
+            this.part_id = part.part_id();
+        }
         setPosition(position);
         gridpane.getChildren().add(this);
-        gridpane.putInSet(this);
+        gridpane.putInQueue(this);
         gridpane.getOptionButton().increasePosition();
     }
 
@@ -52,7 +64,7 @@ public class AnswerChoiceObject extends HBox {
         gridpane.getOptionButton().decreasePosition();
         gridpane.changeChildrenPosition(GridPane.getRowIndex(this));
         gridpane.setRowPosition(gridpane.getRowPosition()-1);
-        gridpane.removeFromSet(this);
+        gridpane.removeFromQueue(this);
         gridpane.getChildren().remove(this);
     }
 

@@ -6,6 +6,7 @@ import be.ugent.flash.command.rights.RightSidePane;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Queue;
 import java.util.Set;
 
 /**
@@ -29,12 +30,13 @@ public class SingleAnswerCardPane extends CardPane {
     }
 
     public boolean updateQuestion() throws SQLException {
-        Set<AnswerChoiceObject> choiceObjectSet = titledPane.getMainGridpane().getChoiceObjectSet();
-        if(choiceObjectSet.isEmpty()){
-            new RedPopUp("Er moet minstens één antwoord toegevoegd worden");
+        correct = "";
+        Queue<AnswerChoiceObject> choiceObjectQueue = titledPane.getMainGridpane().getChoiceObjectQueue();
+        if(choiceObjectQueue.isEmpty()){
+            new RedPopUp("Er moet minstens één mogelijk antwoord toegevoegd worden");
             return false;
         }
-        List<AnswerChoiceObject> selectedObject = choiceObjectSet.stream()
+        List<AnswerChoiceObject> selectedObject = choiceObjectQueue.stream()
                 .filter(AnswerChoiceObject::isSelected).toList();
         if(selectedObject.size() != 1){
             new RedPopUp("Er moet precies één antwoord zijn aangevinkt");

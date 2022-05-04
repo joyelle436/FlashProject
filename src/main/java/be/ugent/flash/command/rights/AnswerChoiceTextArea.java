@@ -6,6 +6,8 @@ import be.ugent.flash.data.Part;
 import javafx.geometry.Insets;
 import javafx.scene.control.TextArea;
 
+import java.nio.charset.StandardCharsets;
+
 /**
  * Voor mcs en mr
  */
@@ -23,8 +25,8 @@ public class AnswerChoiceTextArea extends AnswerChoiceObject implements TextInpu
         textArea.setText(text);
     }
 
-    public String getStringPart(){
-        return textArea.getText();
+    public byte[] getStringPart(){
+        return textArea.getText().getBytes(StandardCharsets.UTF_8);
     }
 
     public void putInGridpane(Part part, int position) {

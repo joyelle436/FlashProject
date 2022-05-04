@@ -5,6 +5,7 @@ import be.ugent.flash.command.rights.AnswerChoiceObject;
 import be.ugent.flash.command.rights.RightSidePane;
 
 import java.sql.SQLException;
+import java.util.Queue;
 import java.util.Set;
 
 
@@ -23,12 +24,14 @@ public class MultipleAnswerCardPane extends CardPane {
     }
 
     public boolean updateQuestion() throws SQLException {
-        Set<AnswerChoiceObject> choiceObjectSet = titledPane.getMainGridpane().getChoiceObjectSet();
-        if(choiceObjectSet.isEmpty()){
-            new RedPopUp("Er moet minstens één antwoord toegevoegd worden");
+        correct = "";
+        Queue<AnswerChoiceObject> choiceObjectQueue = titledPane.getMainGridpane().getChoiceObjectQueue();
+        if(choiceObjectQueue.isEmpty()){
+            new RedPopUp("Er moet minstens één mogelijk antwoord toegevoegd worden");
             return false;
         }
-        for(AnswerChoiceObject choiceObject: titledPane.getMainGridpane().getChoiceObjectSet()){
+        System.out.println(titledPane.getMainGridpane().getChoiceObjectQueue());
+        for(AnswerChoiceObject choiceObject: titledPane.getMainGridpane().getChoiceObjectQueue()){
             if(choiceObject.isSelected()){
                 correct += "T";
             } else {

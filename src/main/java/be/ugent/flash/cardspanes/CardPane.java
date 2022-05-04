@@ -8,23 +8,26 @@ import javafx.geometry.*;
 import javafx.scene.layout.*;
 
 import java.sql.SQLException;
+import java.util.Queue;
+import java.util.Set;
 
 
 public class CardPane extends VBox {
     protected RightSidePane rightSidePane;
-    protected  ButtonHBox buttonHBox;
+    protected ButtonHBox buttonHBox;
     protected CenterTitledPane titledPane;
     protected String topDescriptionText;
     protected String type;
     protected Question question;
     protected String correct;
     protected DatabaseUpdater databaseUpdater;
-    public CardPane(String type){
+
+    public CardPane(String type) {
         this.type = type;
         BorderPane.setMargin(this, new Insets(15));
     }
 
-    public void fillCardPane(){
+    public void fillCardPane() {
         addBottomButtons();
     }
 
@@ -32,7 +35,7 @@ public class CardPane extends VBox {
         return rightSidePane;
     }
 
-    public void setRightSidePane(RightSidePane rightSidePane){
+    public void setRightSidePane(RightSidePane rightSidePane) {
         this.rightSidePane = rightSidePane;
         this.databaseUpdater = rightSidePane.getRightController().getMainController().getDatabaseUpdater();
         rightSidePane.fillRightPane();
@@ -40,10 +43,10 @@ public class CardPane extends VBox {
         getChildren().remove(titledPane);
     }
 
-    private void addBottomButtons(){
+    private void addBottomButtons() {
         this.buttonHBox = new ButtonHBox(this);
         BorderPane.setAlignment(buttonHBox, Pos.BOTTOM_RIGHT);
-        if(rightSidePane != null){
+        if (rightSidePane != null) {
             rightSidePane.changeBottomChild(buttonHBox);
         }
     }
@@ -52,7 +55,7 @@ public class CardPane extends VBox {
         return titledPane;
     }
 
-    public final void createTitledPane(){
+    public final void createTitledPane() {
         titledPane = new CenterTitledPane(type, getRightSidePane().getRightController());
         getChildren().add(titledPane);
         titledPane.setLabelText(topDescriptionText);
@@ -65,7 +68,7 @@ public class CardPane extends VBox {
 
     public void setQuestion(Question question) {
         this.question = question;
-        this.correct = "";
+        this.correct = question.correctAnswer();
     }
 
     /**
@@ -76,19 +79,51 @@ public class CardPane extends VBox {
         String[] questionTopContent = rightSidePane.getTopGridpane().getTopContent().getQuestionTopContent();
         byte[] middleImage = rightSidePane.getTopGridpane().getTopContent().getMiddleImage();
         /* De afbeelding werd niet gewijzigd */
-        if(middleImage == null){
+        if (middleImage == null) {
             middleImage = question.middleImage();
         }
-        if(questionTopContent[0].equals("") || questionTopContent[1].equals("")){
+        if (questionTopContent[0].equals("") || questionTopContent[1].equals("")) {
             new RedPopUp("Titel en/of tekst is leeg");
             return false;
         }
         Question updatedQuestion = new Question(question.id(), questionTopContent[0], questionTopContent[1],
                 middleImage, question.questionType(), correct);
+        this.question = updatedQuestion;
         databaseUpdater.updateQuestion(updatedQuestion);
+        System.out.println(correct);
+        if (!type.equals("open") && !type.equals("openi")) {
+            updateParts();
+        }
         return true;
     }
 
-    public void updateParts(){
+    private void updateParts() throws SQLException{
+        Queue<AnswerChoiceObject> choiceObjectQueue = titledPane.getMainGridpane().getChoiceObjectQueue();
+        if (type.equals("mci")) {
+            updateImageParts(choiceObjectQueue);
+        } else {
+            updateStringParts(choiceObjectQueue);
+        }
+    }
+
+    private void updateStringParts(Queue<AnswerChoiceObject> choiceObjectQueue) throws SQLException{
+        for (AnswerChoiceObject choiceObject : choiceObjectQueue) {
+            if (choiceObject.getIdPart() < Integer.MAX_VALUE) {
+                databaseUpdater.updatePart(question.id(), choiceObject.getIdPart(), choiceObject.getStringPart());
+            } else {
+                databaseUpdater.addNewPart(question.id(), choiceObject.getStringPart());
+            }
+        }
+    }
+
+    private void updateImageParts(Queue<AnswerChoiceObject> choiceObjectQueue) throws SQLException {
+        for (AnswerChoiceObject choiceObject : choiceObjectQueue) {
+            AnswerChoiceImage choiceImage = (AnswerChoiceImage) choiceObject;
+            if (choiceImage.getIdPart() < Integer.MAX_VALUE && choiceImage.getImagePath() != null) {
+                databaseUpdater.updatePart(question.id(), choiceImage.getIdPart(), choiceImage.getImagePath());
+            } else {
+                databaseUpdater.addNewPart(question.id(), choiceImage.getImagePath());
+            }
+        }
     }
 }

@@ -32,7 +32,7 @@ public class JDBCPartDAO extends JDBCAbstractDAO implements PartDAO {
     public List<Part> getParts(int question_id) throws SQLException {
         List<Part> questionPartsList = new ArrayList<>();
         try (PreparedStatement preparedStatement = prepare(
-                "SELECT part_id, question_id, part FROM parts WHERE question_id=? ORDER BY question_id, part_id;")){
+                "SELECT question_id, part_id, part FROM parts WHERE question_id=? ORDER BY question_id, part_id;")){
             preparedStatement.setInt(1, question_id);
             ResultSet answersResult = preparedStatement.executeQuery();
             while(answersResult.next()){
@@ -62,6 +62,16 @@ public class JDBCPartDAO extends JDBCAbstractDAO implements PartDAO {
         )){
             preparedStatement.setInt(1, question_id);
             preparedStatement.setBytes(2, part);
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    @Override
+    public void deletePart(int part_id) throws SQLException {
+        try (PreparedStatement preparedStatement = prepare(
+                "DELETE FROM parts WHERE part_id=?"
+        )){
+            preparedStatement.setInt(1, part_id);
             preparedStatement.executeUpdate();
         }
     }

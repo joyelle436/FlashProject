@@ -10,5 +10,6 @@ public interface PartDAO {
     List<Part> getParts(int question_id) throws SQLException;
     void updatePart(int question_id, int part_id, byte[] part) throws SQLException;
     void addPart(int question_id, byte[] part) throws SQLException;
+    void deletePart(int part_id) throws SQLException;
     void deleteParts(int question_id) throws SQLException;
 }

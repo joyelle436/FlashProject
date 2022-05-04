@@ -109,7 +109,7 @@ public class Type extends BorderPane implements InvalidationListener {
             Image mainImage = new Image(new ByteArrayInputStream(questionRow.middleImage()));
             ImageView imageView = new ImageView(mainImage);
             imageView.setFitWidth(400);
-            imageView.setFitHeight(230);
+            imageView.setFitHeight(200);
             imageView.setPreserveRatio(true);
             setCenter(imageView);
             BorderPane.setAlignment(imageView, Pos.CENTER);

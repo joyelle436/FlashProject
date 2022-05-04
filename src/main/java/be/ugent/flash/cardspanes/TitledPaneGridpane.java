@@ -1,10 +1,13 @@
 package be.ugent.flash.cardspanes;
 
+import be.ugent.flash.command.DatabaseUpdater;
 import be.ugent.flash.command.rights.AnswerChoiceObject;
 import be.ugent.flash.command.rights.RightController;
 import be.ugent.flash.data.Question;
+import be.ugent.flash.viewer.ErrorDisplay;
 import javafx.scene.layout.GridPane;
 
+import java.sql.SQLException;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
@@ -36,6 +39,13 @@ public class TitledPaneGridpane extends GridPane {
     }
 
     public void removeFromQueue(AnswerChoiceObject choiceObject){
+        if(choiceObject.getIdPart() < Integer.MAX_VALUE){
+            try {
+                rightController.getMainController().getDatabaseUpdater().deletePart(choiceObject.getIdPart());
+            } catch (SQLException e) {
+                ErrorDisplay.showAlert(e.getMessage());
+            }
+        }
         choiceObjectQueue.remove(choiceObject);
     }
 

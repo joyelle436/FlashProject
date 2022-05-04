@@ -42,6 +42,10 @@ public class DatabaseUpdater {
     }
 
 
+    public void deletePart(int part_id) throws SQLException{
+        dataAccessContext.getPartDAO().deletePart(part_id);
+    }
+
     public void close() throws SQLException{
         dataAccessContext.close();
     }

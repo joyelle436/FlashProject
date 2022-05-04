@@ -13,7 +13,7 @@ import javafx.scene.layout.GridPane;
 public class OptionButton extends Button implements EventHandler<ActionEvent> {
 
     private final TitledPaneGridpane gridpane;
-    public OptionButton(TitledPaneGridpane gridpane) {
+    public OptionButton(TitledPaneGridpane gridpane){
         super("Optie toevoegen");
         this.gridpane = gridpane;
         GridPane.setConstraints(this, 0, 1);
@@ -25,11 +25,11 @@ public class OptionButton extends Button implements EventHandler<ActionEvent> {
      Een andere vraag wordt toegevoegd of verwijderd
     */
     public void decreasePosition() {
-        GridPane.setRowIndex(this, GridPane.getRowIndex(this) - 1);
+        GridPane.setRowIndex(this, GridPane.getRowIndex(this)-1);
     }
 
     public void increasePosition() {
-        GridPane.setRowIndex(this, GridPane.getRowIndex(this) + 1);
+        GridPane.setRowIndex(this, GridPane.getRowIndex(this)+1);
     }
 
     @Override

@@ -55,7 +55,6 @@ public class RightPaneContent {
                 answerChoiceObject = new AnswerChoiceTextArea(pane.getTitledPane().getMainGridpane());
             }
             answerChoiceObject.putInGridpane(part, position);
-            answerChoiceObject.gridpane.getOptionButton().increasePosition();
             answerChoiceObject.gridpane.setRowPosition(position+1);
             position += 1;
         }

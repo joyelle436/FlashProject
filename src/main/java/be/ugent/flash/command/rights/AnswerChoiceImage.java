@@ -19,8 +19,10 @@ import java.io.File;
 public class AnswerChoiceImage extends AnswerChoiceObject implements EventHandler<MouseEvent> {
     private final ImageView middleImageView;
     private final BorderPane borderPane;
+    private String imagePath;
     public AnswerChoiceImage(TitledPaneGridpane gridpane){
         super(gridpane);
+        this.imagePath = null; // imagePath is null als de afbeelding niet veranderd wordt
         setMargin(checkBox, new Insets(28, 0, 0, 0));
         this.middleImageView = new ImageView();
         middleImageView.setFitWidth(90);
@@ -59,6 +61,7 @@ public class AnswerChoiceImage extends AnswerChoiceObject implements EventHandle
             File imageFile = fileChooser.showOpenDialog(gridpane.getRightController().getMainController().getMainStage());
             if(imageFile != null){
                 setAnswerImage(new Image(imageFile.getPath()));
+                imagePath = imageFile.getPath();
             }
         }
     }

@@ -24,7 +24,7 @@ public class CardPane extends VBox {
         BorderPane.setMargin(this, new Insets(15));
     }
 
-    public void fill(){
+    public void fillCardPane(){
         addBottomButtons();
     }
 
@@ -56,7 +56,7 @@ public class CardPane extends VBox {
         titledPane = new CenterTitledPane(type, getRightSidePane().getRightController());
         getChildren().add(titledPane);
         titledPane.setLabelText(topDescriptionText);
-        fill();
+        fillCardPane();
     }
 
     public Question getQuestion() {
@@ -65,7 +65,7 @@ public class CardPane extends VBox {
 
     public void setQuestion(Question question) {
         this.question = question;
-        this.correct = question.correctAnswer();
+        this.correct = "";
     }
 
     /**
@@ -87,5 +87,8 @@ public class CardPane extends VBox {
                 middleImage, question.questionType(), correct);
         databaseUpdater.updateQuestion(updatedQuestion);
         return true;
+    }
+
+    public void updateParts(){
     }
 }

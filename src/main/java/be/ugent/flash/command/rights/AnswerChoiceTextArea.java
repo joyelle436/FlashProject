@@ -23,6 +23,10 @@ public class AnswerChoiceTextArea extends AnswerChoiceObject implements TextInpu
         textArea.setText(text);
     }
 
+    public String getStringPart(){
+        return textArea.getText();
+    }
+
     public void putInGridpane(Part part, int position) {
         if(part != null){
             addText(new String(part.part()));

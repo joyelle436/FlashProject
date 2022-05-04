@@ -1,8 +1,12 @@
 package be.ugent.flash.cardspanes;
 
+import be.ugent.flash.command.RedPopUp;
+import be.ugent.flash.command.rights.AnswerChoiceObject;
 import be.ugent.flash.command.rights.RightSidePane;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Set;
 
 /**
  * mcs, mcc en mci
@@ -11,7 +15,7 @@ public class SingleAnswerCardPane extends CardPane {
     public SingleAnswerCardPane(String type) {
         super(type);
         if(type.equals("mcc")){
-            this.topDescriptionText = "Keuzes zijn strings op knopen waarop je kan opklikken";
+            this.topDescriptionText = "Keuzes zijn strings op knopen waarop je kan opklikken om te antwoorden";
         } else if(type.equals("mcs")){
             this.topDescriptionText = "Keuzes worden onder elkaar getoond - met knopen A, B, C...";
         } else {
@@ -25,8 +29,18 @@ public class SingleAnswerCardPane extends CardPane {
     }
 
     public boolean updateQuestion() throws SQLException {
-        System.out.println(titledPane.getMainGridpane().getChildren());
-
+        Set<AnswerChoiceObject> choiceObjectSet = titledPane.getMainGridpane().getChoiceObjectSet();
+        if(choiceObjectSet.isEmpty()){
+            new RedPopUp("Er moet minstens één antwoord toegevoegd worden");
+            return false;
+        }
+        List<AnswerChoiceObject> selectedObject = choiceObjectSet.stream()
+                .filter(AnswerChoiceObject::isSelected).toList();
+        if(selectedObject.size() != 1){
+            new RedPopUp("Er moet precies één antwoord zijn aangevinkt");
+            return false;
+        }
+        correct = "" + (titledPane.getMainGridpane().getChildren().indexOf(selectedObject.get(0))-2);
         return super.updateQuestion();
     }
 }

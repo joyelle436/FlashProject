@@ -23,6 +23,10 @@ public class AnswerChoiceTextField extends AnswerChoiceObject implements TextInp
         textField.setText(text);
     }
 
+    public String getStringPart(){
+        return textField.getText();
+    }
+
     public void putInGridpane(Part part, int position) {
         if(part != null){
             addText(new String(part.part()));

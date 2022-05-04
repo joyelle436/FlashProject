@@ -18,15 +18,17 @@ public class DatabaseUpdater {
         try {
             dataAccessContext.getQuestionDAO().addQuestion(title, type);
         } catch (SQLException e) {
-            new ErrorDisplay().showAlert(e.getMessage());
+            ErrorDisplay.showAlert(e.getMessage());
         }
     }
 
     public void deleteQuestion(String title, String type){
         try {
+            int question_id = dataAccessContext.getQuestionDAO().getQuestion(title).id();
+            dataAccessContext.getPartDAO().deleteParts(question_id);
             dataAccessContext.getQuestionDAO().deleteQuestion(title, type);
         } catch (SQLException e) {
-            new ErrorDisplay().showAlert(e.getMessage());
+            ErrorDisplay.showAlert(e.getMessage());
         }
     }
     public void updateQuestion(Question question) throws SQLException {

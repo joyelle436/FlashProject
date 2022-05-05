@@ -1,10 +1,8 @@
-package be.ugent.flash.command;
+package be.ugent.flash.command.left;
 
 import be.ugent.flash.CommandMapMaker;
-import be.ugent.flash.command.lefts.*;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.util.*;
@@ -15,13 +13,14 @@ import java.util.*;
 public class TableViewController implements EventHandler<MouseEvent> {
 
     private final QuestionTableView questionTableView;
-    public TableViewController(QuestionTableView questionTableView){
+
+    public TableViewController(QuestionTableView questionTableView) {
         this.questionTableView = questionTableView;
     }
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-        if(questionTableView.getSelectionModel().getSelectedItem() != null){
+        if (questionTableView.getSelectionModel().getSelectedItem() != null) {
             String title = questionTableView.getSelectionModel().getSelectedItem().getTitle();
             String type = questionTableView.getSelectionModel().getSelectedItem().getType();
             questionTableView.getLeftSidePane().showQuestionInfo(title, questionTableView.getMapMaker().getSwapedStringType(type));
@@ -35,17 +34,9 @@ public class TableViewController implements EventHandler<MouseEvent> {
         List<TableViewPair> pairList = new ArrayList<>();
         CommandMapMaker mapMaker = new CommandMapMaker();
         mapMaker.makeTypeMap();
-        for(int key: questionMap.keySet()){
+        for (int key : questionMap.keySet()) {
             pairList.add(new TableViewPair(questionMap.get(key)[0], mapMaker.getStringType(questionMap.get(key)[1])));
         }
         questionTableView.setItems(FXCollections.observableArrayList(pairList));
-        if(!pairList.isEmpty()){
-            /**
-             * Iets toevoegen om de tableView te updaten
-             */
-            questionTableView.getTitle().setCellValueFactory(new PropertyValueFactory<>(pairList.get(0).titleProperty().getName()));
-            questionTableView.getType().setCellValueFactory(new PropertyValueFactory<>(pairList.get(0).typeProperty().getName()));
-        }
-        questionTableView.getColumns().setAll(List.of(questionTableView.getTitle(), questionTableView.getType()));
     }
 }

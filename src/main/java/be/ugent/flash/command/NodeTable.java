@@ -1,17 +1,18 @@
 package be.ugent.flash.command;
 
 
-import be.ugent.flash.command.rights.TopGridpane;
+import be.ugent.flash.command.right.PictureOption;
+import be.ugent.flash.command.right.TextInputListener;
+import be.ugent.flash.command.right.TopGridpane;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
 
 /**
- * Bevat nodes die in {@link be.ugent.flash.command.rights.TopGridpane} staan
+ * Bevat nodes die in {@link be.ugent.flash.command.right.TopGridpane} staan
  */
 public class NodeTable implements TextInputListener {
 

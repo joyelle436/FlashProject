@@ -2,14 +2,14 @@ package be.ugent.flash.cardspanes;
 
 import be.ugent.flash.command.DatabaseUpdater;
 import be.ugent.flash.command.RedPopUp;
-import be.ugent.flash.command.rights.*;
+import be.ugent.flash.command.right.*;
 import be.ugent.flash.data.Question;
 import javafx.geometry.*;
 import javafx.scene.layout.*;
 
+import java.io.ByteArrayInputStream;
 import java.sql.SQLException;
 import java.util.Queue;
-import java.util.Set;
 
 
 public class CardPane extends VBox {
@@ -72,14 +72,14 @@ public class CardPane extends VBox {
     }
 
     /**
-     * Wordt opgeroepen als er op de knop {@link be.ugent.flash.command.rights.buttons.Save} geklikt wordt.
+     * Wordt opgeroepen als er op de knop {@link be.ugent.flash.command.right.buttons.Save} geklikt wordt.
      * één checkbox aangevinkt bij een meerkeuze vraag(mcc, mcs, mci)
      */
     public boolean updateQuestion() throws SQLException {
         String[] questionTopContent = rightSidePane.getTopGridpane().getTopContent().getQuestionTopContent();
         byte[] middleImage = rightSidePane.getTopGridpane().getTopContent().getMiddleImage();
         /* De afbeelding werd niet gewijzigd */
-        if (middleImage == null) {
+        if (middleImage != null && middleImage.length == 0) {
             middleImage = question.middleImage();
         }
         if (questionTopContent[0].equals("") || questionTopContent[1].equals("")) {
@@ -90,7 +90,6 @@ public class CardPane extends VBox {
                 middleImage, question.questionType(), correct);
         this.question = updatedQuestion;
         databaseUpdater.updateQuestion(updatedQuestion);
-        System.out.println(correct);
         if (!type.equals("open") && !type.equals("openi")) {
             updateParts();
         }
@@ -101,6 +100,7 @@ public class CardPane extends VBox {
         Queue<AnswerChoiceObject> choiceObjectQueue = titledPane.getMainGridpane().getChoiceObjectQueue();
         if (type.equals("mci")) {
             updateImageParts(choiceObjectQueue);
+            System.out.println();
         } else {
             updateStringParts(choiceObjectQueue);
         }

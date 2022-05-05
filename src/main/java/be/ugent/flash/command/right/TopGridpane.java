@@ -1,6 +1,6 @@
-package be.ugent.flash.command.rights;
+package be.ugent.flash.command.right;
 
-import be.ugent.flash.command.lefts.LeftSidePane;
+import be.ugent.flash.command.left.LeftSidePane;
 import be.ugent.flash.data.Question;
 import javafx.geometry.*;
 

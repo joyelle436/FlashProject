@@ -1,4 +1,4 @@
-package be.ugent.flash.command.lefts;
+package be.ugent.flash.command.left;
 
 import be.ugent.flash.command.SidePaneConnection;
 import javafx.geometry.*;
@@ -13,14 +13,17 @@ public class LeftSidePane extends GridPane {
 
     private final QuestionTableView tableView;
     private final SidePaneConnection controller;
+    private final LeftBottomButton.AddQuestionButton addQuestionButton;
+    private final LeftBottomButton.DeleteQuestionButton deleteQuestionButton;
     public LeftSidePane(SidePaneConnection controller){
         this.controller = controller;
         setMaxHeight(715);
         this.tableView = new QuestionTableView(this);
+        this.addQuestionButton = new LeftBottomButton.AddQuestionButton(this);
+        this.deleteQuestionButton = new LeftBottomButton.DeleteQuestionButton(this);
         HBox hBox = new HBox();
         hBox.setMaxWidth(500);
-        hBox.getChildren().addAll(new LeftBottomButton.AddQuestionButton(this),
-                new LeftBottomButton.DeleteQuestionButton(this));
+        hBox.getChildren().addAll(addQuestionButton, deleteQuestionButton);
         hBox.setAlignment(Pos.CENTER_RIGHT);
         setMargin(hBox, new Insets(0, 10, 0, 0));
         setMargin(tableView, new Insets(0, 0, 0, 5));
@@ -35,6 +38,14 @@ public class LeftSidePane extends GridPane {
 
     public SidePaneConnection getMainController() {
         return controller;
+    }
+
+    public LeftBottomButton.AddQuestionButton getAddQuestionButton() {
+        return addQuestionButton;
+    }
+
+    public LeftBottomButton.DeleteQuestionButton getDeleteQuestionButton() {
+        return deleteQuestionButton;
     }
 
     public void showQuestionInfo(String title, String type){

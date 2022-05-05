@@ -1,10 +1,8 @@
-package be.ugent.flash.command.lefts;
+package be.ugent.flash.command.left;
 
 import be.ugent.flash.CommandMapMaker;
-import be.ugent.flash.command.TableViewController;
 import javafx.event.Event;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
@@ -28,9 +26,12 @@ public class QuestionTableView extends TableView<TableViewPair> {
         setMaxSize(500, 670);
         setEditable(true);
         this.title = new TableColumn<>("Titel");
+        title.setCellValueFactory(pairString -> pairString.getValue().titleProperty());
         this.type = new TableColumn<>("Type");
+        type.setCellValueFactory(pairString -> pairString.getValue().typeProperty());
         title.setId("column");
         type.setId("column");
+        getColumns().setAll(List.of(title, type));
         setOnMouseClicked(tableController);
         this.mapMaker = new CommandMapMaker();
         mapMaker.makeTypeMap();
@@ -46,13 +47,6 @@ public class QuestionTableView extends TableView<TableViewPair> {
         return mapMaker;
     }
 
-    public TableColumn<TableViewPair, String> getTitle(){
-        return title;
-    }
-
-    public TableColumn<TableViewPair, String> getType(){
-        return type;
-    }
 
     public void addColumnsData(Map<Integer, String[]> questionMap){
         tableController.addColumns(questionMap);
@@ -65,6 +59,7 @@ public class QuestionTableView extends TableView<TableViewPair> {
         getSelectionModel().select(pair);
         getFocusModel().focus(getItems().indexOf(pair));
         /*
+        Vraag die zojuist toegevoegd is wordt dan direct geselecteerd
         Bron: https://stackoverflow.com/questions/11552176/generating-a-mouseevent-in-javafx
         */
         Event.fireEvent(this, new MouseEvent(MouseEvent.MOUSE_CLICKED, 0,

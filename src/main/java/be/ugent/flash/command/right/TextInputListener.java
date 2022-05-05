@@ -1,4 +1,4 @@
-package be.ugent.flash.command;
+package be.ugent.flash.command.right;
 
 
 public interface TextInputListener {

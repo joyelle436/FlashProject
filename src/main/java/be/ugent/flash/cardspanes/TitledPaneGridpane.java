@@ -1,8 +1,7 @@
 package be.ugent.flash.cardspanes;
 
-import be.ugent.flash.command.DatabaseUpdater;
-import be.ugent.flash.command.rights.AnswerChoiceObject;
-import be.ugent.flash.command.rights.RightController;
+import be.ugent.flash.command.right.AnswerChoiceObject;
+import be.ugent.flash.command.right.RightController;
 import be.ugent.flash.data.Question;
 import be.ugent.flash.viewer.ErrorDisplay;
 import javafx.scene.layout.GridPane;
@@ -13,7 +12,7 @@ import java.util.Queue;
 
 /**
  * Staat in de {@link CenterTitledPane} en bevat {@link OptionButton} en
- * {@link be.ugent.flash.command.rights.AnswerChoiceObject}
+ * {@link be.ugent.flash.command.right.AnswerChoiceObject}
  */
 
 public class TitledPaneGridpane extends GridPane {

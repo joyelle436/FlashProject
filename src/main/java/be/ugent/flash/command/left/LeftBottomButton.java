@@ -1,9 +1,10 @@
-package be.ugent.flash.command.lefts;
+package be.ugent.flash.command.left;
 
 import be.ugent.flash.CommandMapMaker;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.text.Font;
 
 public class LeftBottomButton extends Button {
 
@@ -15,15 +16,11 @@ public class LeftBottomButton extends Button {
         mapMaker.makeswapedQTypeMap();
     }
 
-    public LeftSidePane getLeftSidePane() {
-        return leftSidePane;
-    }
-
     public static class AddQuestionButton extends LeftBottomButton implements EventHandler<ActionEvent>{
         public AddQuestionButton(LeftSidePane leftSidePane){
             super(leftSidePane);
             setText("Vraag toevoegen");
-            setStyle("-fx-font-size: 12px");
+            setFont(new Font(12));
             setOnAction(this);
         }
 
@@ -43,7 +40,7 @@ public class LeftBottomButton extends Button {
         public DeleteQuestionButton(LeftSidePane leftSidePane){
             super(leftSidePane);
             setText("Vraag verwijderen");
-            setStyle("-fx-font-size: 12px");
+            setFont(new Font(12));
             setOnAction(this);
         }
 

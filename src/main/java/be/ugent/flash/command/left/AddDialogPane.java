@@ -1,4 +1,4 @@
-package be.ugent.flash.command.lefts;
+package be.ugent.flash.command.left;
 
 import javafx.event.*;
 import javafx.geometry.Insets;
@@ -12,7 +12,7 @@ import javafx.stage.StageStyle;
 
 
 /**
- * Wordt opgeroept door {@link be.ugent.flash.command.lefts.LeftBottomButton.AddQuestionButton}
+ * Wordt opgeroept door {@link be.ugent.flash.command.left.LeftBottomButton.AddQuestionButton}
  */
 public class AddDialogPane extends Stage implements EventHandler<ActionEvent> {
 

@@ -1,4 +1,4 @@
-package be.ugent.flash.command.lefts;
+package be.ugent.flash.command.left;
 
 import javafx.beans.property.*;
 

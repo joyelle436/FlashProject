@@ -1,12 +1,11 @@
 package be.ugent.flash.cardspanes;
 
 import be.ugent.flash.command.RedPopUp;
-import be.ugent.flash.command.rights.AnswerChoiceObject;
-import be.ugent.flash.command.rights.RightSidePane;
+import be.ugent.flash.command.right.AnswerChoiceObject;
+import be.ugent.flash.command.right.RightSidePane;
 
 import java.sql.SQLException;
 import java.util.Queue;
-import java.util.Set;
 
 
 /**
@@ -30,7 +29,6 @@ public class MultipleAnswerCardPane extends CardPane {
             new RedPopUp("Er moet minstens één mogelijk antwoord toegevoegd worden");
             return false;
         }
-        System.out.println(titledPane.getMainGridpane().getChoiceObjectQueue());
         for(AnswerChoiceObject choiceObject: titledPane.getMainGridpane().getChoiceObjectQueue()){
             if(choiceObject.isSelected()){
                 correct += "T";

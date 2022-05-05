@@ -1,13 +1,12 @@
 package be.ugent.flash.cardspanes;
 
 import be.ugent.flash.command.RedPopUp;
-import be.ugent.flash.command.rights.AnswerChoiceObject;
-import be.ugent.flash.command.rights.RightSidePane;
+import be.ugent.flash.command.right.AnswerChoiceObject;
+import be.ugent.flash.command.right.RightSidePane;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Queue;
-import java.util.Set;
 
 /**
  * mcs, mcc en mci

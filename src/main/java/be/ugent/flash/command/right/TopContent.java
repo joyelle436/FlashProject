@@ -1,12 +1,10 @@
-package be.ugent.flash.command.rights;
+package be.ugent.flash.command.right;
 
 import be.ugent.flash.command.NodeTable;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-
-import java.io.File;
 
 /**
  * Gegevens van de {@link TopGridpane}

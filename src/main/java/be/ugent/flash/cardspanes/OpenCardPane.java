@@ -1,8 +1,8 @@
 package be.ugent.flash.cardspanes;
 
 import be.ugent.flash.command.RedPopUp;
-import be.ugent.flash.command.TextInputListener;
-import be.ugent.flash.command.rights.RightSidePane;
+import be.ugent.flash.command.right.TextInputListener;
+import be.ugent.flash.command.right.RightSidePane;
 import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;

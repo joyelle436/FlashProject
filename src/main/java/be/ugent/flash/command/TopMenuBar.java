@@ -9,7 +9,6 @@ import javafx.scene.layout.BorderPane;
  */
 public class TopMenuBar extends MenuBar {
 
-    private final MenuItem[] MENUITEMS;
     private final Button makeButton;
     private final Button openButton;
     public TopMenuBar(MainBorderPane mainBorderPane){
@@ -18,7 +17,7 @@ public class TopMenuBar extends MenuBar {
         TopMenuItem.CloseWindow closeWindow = new TopMenuItem.CloseWindow(mainBorderPane, "Sluit");
         this.openButton = openDatabase.getCorrespondingButton();
         this.makeButton = makeDatabase.getCorrespondingButton();
-        MENUITEMS = new TopMenuItem[]{openDatabase, makeDatabase, closeWindow};
+        MenuItem[] MENUITEMS = new TopMenuItem[]{openDatabase, makeDatabase, closeWindow};
         BorderPane.setAlignment(this, Pos.CENTER);
         /*
         Bevat alle nodige MenuItems. Staat van boven

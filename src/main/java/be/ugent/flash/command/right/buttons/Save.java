@@ -1,4 +1,4 @@
-package be.ugent.flash.command.rights.buttons;
+package be.ugent.flash.command.right.buttons;
 
 import be.ugent.flash.cardspanes.CardPane;
 import be.ugent.flash.viewer.ErrorDisplay;

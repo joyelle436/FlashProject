@@ -1,12 +1,8 @@
-package be.ugent.flash.command.rights;
+package be.ugent.flash.command.right;
 
 import javafx.event.ActionEvent;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 
 import java.util.*;
 

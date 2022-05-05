@@ -1,12 +1,11 @@
 package be.ugent.flash.command;
 
- import be.ugent.flash.command.lefts.LeftController;
-import be.ugent.flash.command.rights.RightController;
+import be.ugent.flash.command.left.LeftController;
+import be.ugent.flash.command.right.RightController;
 import be.ugent.flash.data.Part;
- import javafx.scene.image.Image;
- import javafx.stage.Stage;
+import javafx.stage.Stage;
 
- import java.sql.SQLException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +32,6 @@ public class SidePaneConnection {
         this.databaseUpdater = new DatabaseUpdater(database);
         this.centerSplitPane = new CenterSplitPane();
         this.mainStage = stage;
-        //SidePaneController sidePaneHandler = new SidePaneController();
     }
 
     public RightController getRightController() {
@@ -57,7 +55,7 @@ public class SidePaneConnection {
         mainBorderPane.changeCenter(centerSplitPane); /* nu gaat de centerSplitPane definitief in de BorderPane blijven*/
     }
     /*
-    Krijgt title van de leftsidepane pane en vul gegevens aan in rightsidepane
+    Krijgt title van de LeftSidePane pane en vul gegevens aan in RightSidePane
      */
     public void showQuestionContent(String title, String type){
         rightController.showContent(databaseCollector.getQuestionContent(title), type);
@@ -70,6 +68,7 @@ public class SidePaneConnection {
     public void unselectInTable(){
         leftController.unselectItems();
     }
+
     public void disableTableView(){
         leftController.disableTable();
     }
@@ -77,13 +76,12 @@ public class SidePaneConnection {
     public void enableTableView(){
         leftController.enableTable();
     }
-    /*
-    Er wordt op de knop <<Voeg nieuwe vraag toe>> geklikt
-    */
+    /**
+     * Er wordt op de knop {@link be.ugent.flash.command.left.LeftBottomButton.AddQuestionButton} geklikt
+     */
     public void addQuestion(String title, String type){
         databaseUpdater.addNewQuestion(title, type);
     }
-
 
     public void deleteQuestion(String title, String type) {
         databaseUpdater.deleteQuestion(title, type);

@@ -1,4 +1,4 @@
-package be.ugent.flash.command.rights;
+package be.ugent.flash.command.right;
 
 
 import be.ugent.flash.CommandMapMaker;

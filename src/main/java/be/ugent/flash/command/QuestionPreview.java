@@ -1,10 +1,10 @@
 package be.ugent.flash.command;
 
-import be.ugent.flash.command.rights.buttons.Preview;
+import be.ugent.flash.command.right.buttons.Preview;
 import javafx.stage.Stage;
 
 /**
- * Gemaakt bij {@link Preview} als er opgeklikt wordt
+ * Gemaakt in {@link Preview} als er opgeklikt wordt
  */
 public class QuestionPreview extends Stage {
     DatabaseCollector databaseCollector;

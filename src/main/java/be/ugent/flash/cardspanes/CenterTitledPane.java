@@ -1,6 +1,6 @@
 package be.ugent.flash.cardspanes;
 
-import be.ugent.flash.command.rights.RightController;
+import be.ugent.flash.command.right.RightController;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;

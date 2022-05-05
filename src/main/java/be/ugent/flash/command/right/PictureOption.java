@@ -1,6 +1,7 @@
-package be.ugent.flash.command;
+package be.ugent.flash.command.right;
 
-import be.ugent.flash.command.rights.TopGridpane;
+import be.ugent.flash.command.ImageByteConverter;
+import be.ugent.flash.command.right.TopGridpane;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -11,7 +12,7 @@ import javafx.stage.FileChooser;
 import java.io.File;
 
 /**
- * Staat in {@link be.ugent.flash.command.rights.TopGridpane}
+ * Staat in {@link be.ugent.flash.command.right.TopGridpane}
  */
 public class PictureOption extends GridPane {
     private final TopGridpane topGridpane;
@@ -23,7 +24,7 @@ public class PictureOption extends GridPane {
         this.topGridpane = topGridpane;
         this.imageArea = new ImageArea();
         this.addPicture = new AddPictureButton();
-        this.mainImageFile = null;
+        this.mainImageFile = new File("");
         ChangePictureButton changePicture = new ChangePictureButton();
         DeletePictureButton deletePicture = new DeletePictureButton();
         this.hBox = new HBox();
@@ -34,12 +35,14 @@ public class PictureOption extends GridPane {
     }
 
     /**
-     * Wordt opgeroepen in {@link be.ugent.flash.command.rights.buttons.Save}
+     * Wordt opgeroepen in {@link be.ugent.flash.command.right.buttons.Save}
      */
 
     public byte[] getImage() {
         if(mainImageFile == null){
             return null;
+        } else if(mainImageFile.getPath().equals("")){
+            return new byte[0];
         }
         return ImageByteConverter.fileToByte(mainImageFile);
     }
@@ -120,6 +123,7 @@ public class PictureOption extends GridPane {
 
         @Override
         public void handle(ActionEvent actionEvent){
+            mainImageFile = null;
             addSingleButton();
         }
     }

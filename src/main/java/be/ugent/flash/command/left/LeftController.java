@@ -1,4 +1,4 @@
-package be.ugent.flash.command.lefts;
+package be.ugent.flash.command.left;
 
 import be.ugent.flash.command.SidePaneConnection;
 
@@ -7,15 +7,9 @@ import java.util.Map;
 public class LeftController {
 
     private final LeftSidePane leftSidePane;
-    private final SidePaneConnection mainController;
     public LeftController(SidePaneConnection controller, Map<Integer, String[]> questionMap){
-        this.mainController = controller;
         this.leftSidePane = new LeftSidePane(controller);
         leftSidePane.fillLeftPane(questionMap);
-    }
-
-    public String getDatabase(){
-        return mainController.getDatabase();
     }
 
     public LeftSidePane getLeftSidePane() {
@@ -24,10 +18,14 @@ public class LeftController {
 
     public void disableTable() {
         leftSidePane.getTableView().setDisable(true);
+        leftSidePane.getAddQuestionButton().setDisable(true);
+        leftSidePane.getDeleteQuestionButton().setDisable(true);
     }
 
     public void enableTable() {
         leftSidePane.getTableView().setDisable(false);
+        leftSidePane.getAddQuestionButton().setDisable(false);
+        leftSidePane.getDeleteQuestionButton().setDisable(false);
     }
 
     public void unselectItems() {

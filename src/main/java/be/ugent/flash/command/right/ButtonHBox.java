@@ -1,7 +1,7 @@
-package be.ugent.flash.command.rights;
+package be.ugent.flash.command.right;
 
 import be.ugent.flash.cardspanes.CardPane;
-import be.ugent.flash.command.rights.buttons.*;
+import be.ugent.flash.command.right.buttons.*;
 import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;

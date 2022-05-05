@@ -45,7 +45,7 @@ public class OpenCardPane extends CardPane implements TextInputListener {
     /**
      * Geeft false terug als er een fout staat in de beheersinterface
      */
-    public boolean updateQuestion() throws SQLException {
+    public boolean updateQuestion(boolean preview) throws SQLException {
         if(type.equals("openi")){
             try {
                 Integer.parseInt(correct);
@@ -54,7 +54,7 @@ public class OpenCardPane extends CardPane implements TextInputListener {
                 return false;
             }
         }
-        return super.updateQuestion();
+        return super.updateQuestion(preview);
     }
 
     @Override

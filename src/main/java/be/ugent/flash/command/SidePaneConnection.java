@@ -30,7 +30,7 @@ public class SidePaneConnection {
         this.database = database;
         this.databaseCollector = new DatabaseCollector(database);
         this.databaseUpdater = new DatabaseUpdater(database);
-        this.centerSplitPane = new CenterSplitPane();
+        this.centerSplitPane = new CenterSplitPane(mainBorderPane, leftController.getLeftSidePane(), rightController.getRightSidePane());
         this.mainStage = stage;
     }
 
@@ -51,7 +51,6 @@ public class SidePaneConnection {
     }
 
     public void showPanes() {
-        centerSplitPane.getItems().addAll(leftController.getLeftSidePane(), rightController.getRightSidePane());
         mainBorderPane.changeCenter(centerSplitPane); /* nu gaat de centerSplitPane definitief in de BorderPane blijven*/
     }
     /*
@@ -71,6 +70,7 @@ public class SidePaneConnection {
 
     public void disableTableView(){
         leftController.disableTable();
+        rightController.disableUndoAndSave(false);
     }
 
     public void enableTableView(){

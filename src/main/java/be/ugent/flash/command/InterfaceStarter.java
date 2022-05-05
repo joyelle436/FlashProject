@@ -10,14 +10,15 @@ public class InterfaceStarter {
 
     public InterfaceStarter(Stage stage){
         this.stage = stage;
+        stage.setTitle(" ".repeat(150) + "Flash: beheersinterface");
         this.mainBorderPane = new MainBorderPane(stage);
-        mainBorderPane.setObject(mainBorderPane);
     }
 
     public void startTheWindow(){
         mainBorderPane.makeComponents();
-        stage.setScene(new Scene(mainBorderPane));
-        stage.setTitle(" ".repeat(150) + "Flash: beheersinterface");
+        Scene scene = new Scene(mainBorderPane);
+        stage.setScene(scene);
+        stage.sizeToScene();
         stage.show();
     }
 }

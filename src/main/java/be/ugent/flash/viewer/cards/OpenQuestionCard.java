@@ -15,11 +15,11 @@ import java.util.List;
 /**
  * superklasse voor {@link OpenIntCard} en {@link OpenStrCard}
  */
-public class OpenQuestion extends Type implements CardItem<OpenQuestion> {
+public class OpenQuestionCard extends Type implements CardItem<OpenQuestionCard> {
 
     protected final TextField answerField;
     protected final Label errorlabel;
-    protected OpenQuestion(Stage stage, Question questionRow) {
+    protected OpenQuestionCard(Stage stage, Question questionRow) {
         super(stage, questionRow);
         this.answerField = new TextField();
         answerField.setId("textfield");
@@ -50,7 +50,7 @@ public class OpenQuestion extends Type implements CardItem<OpenQuestion> {
     }
 
     @Override
-    public void accept(CardVisitor<OpenQuestion> cardVisitor) {
+    public void accept(CardVisitor<OpenQuestionCard> cardVisitor) {
         cardVisitor.visit(this);
     }
 }

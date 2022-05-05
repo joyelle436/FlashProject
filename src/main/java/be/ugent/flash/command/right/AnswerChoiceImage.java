@@ -20,18 +20,18 @@ import java.io.File;
 public class AnswerChoiceImage extends AnswerChoiceObject implements EventHandler<MouseEvent> {
     private final ImageView middleImageView;
     private final BorderPane borderPane;
-    private File newImageFile;
+    private byte[] newImagePart;
     public AnswerChoiceImage(TitledPaneGridpane gridpane){
         super(gridpane);
-        this.newImageFile = null; // imagePath is null als de afbeelding niet veranderd werd
+        this.newImagePart = null; // imagePath is null als de afbeelding niet veranderd werd
         setMargin(checkBox, new Insets(28, 0, 0, 0));
         this.middleImageView = new ImageView();
-        middleImageView.setFitWidth(90);
-        middleImageView.setFitHeight(90);
+        middleImageView.setFitWidth(100);
+        middleImageView.setFitHeight(100);
         middleImageView.setPreserveRatio(true);
         this.borderPane = new BorderPane();
-        borderPane.setPrefWidth(90);
-        borderPane.setPrefHeight(90);
+        borderPane.setPrefWidth(100);
+        borderPane.setPrefHeight(100);
         borderPane.setOnMouseClicked(this);
         borderPane.setCenter(new Label("(leeg)"));
         setMargin(removeButton, new Insets(25, 0, 0, 0));
@@ -40,10 +40,11 @@ public class AnswerChoiceImage extends AnswerChoiceObject implements EventHandle
     }
 
     public byte[] getImagePath() {
-        if(newImageFile == null){
-            return null;
-        }
-        return ImageByteConverter.fileToByte(newImageFile);
+        return newImagePart;
+    }
+
+    public void setNewImagePart(byte[] newImagePart) {
+        this.newImagePart = newImagePart;
     }
 
     public void setAnswerImage(Image image){
@@ -69,7 +70,7 @@ public class AnswerChoiceImage extends AnswerChoiceObject implements EventHandle
             File imageFile = fileChooser.showOpenDialog(gridpane.getRightController().getMainController().getMainStage());
             if(imageFile != null){
                 setAnswerImage(new Image(imageFile.getPath()));
-                newImageFile = imageFile;
+                newImagePart = ImageByteConverter.fileToByte(imageFile);
             }
         }
     }

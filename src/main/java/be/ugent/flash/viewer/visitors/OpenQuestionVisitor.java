@@ -1,19 +1,19 @@
 package be.ugent.flash.viewer.visitors;
 
-import be.ugent.flash.viewer.cards.OpenQuestion;
+import be.ugent.flash.viewer.cards.OpenQuestionCard;
 import be.ugent.flash.data.Question;
 import javafx.geometry.Insets;
 import javafx.scene.layout.*;
 
 
-public class OpenQuestionVisitor implements CardVisitor<OpenQuestion>{
+public class OpenQuestionVisitor implements CardVisitor<OpenQuestionCard>{
 
     @Override
-    public void buildCard(OpenQuestion openQuestion){
+    public void buildCard(OpenQuestionCard openQuestion){
         openQuestion.accept(new OpenQuestionVisitor());
     }
     @Override
-    public void visit(OpenQuestion openQuestion) {
+    public void visit(OpenQuestionCard openQuestion) {
         openQuestion.build();
         Question row = openQuestion.getQuestionRow();
         GridPane answersGridPane = openQuestion.getAnswersGridPane();

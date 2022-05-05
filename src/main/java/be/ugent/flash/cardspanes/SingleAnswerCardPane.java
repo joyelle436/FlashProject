@@ -28,7 +28,7 @@ public class SingleAnswerCardPane extends CardPane {
         createTitledPane();
     }
 
-    public boolean updateQuestion() throws SQLException {
+    public boolean updateQuestion(boolean preview) throws SQLException {
         correct = "";
         Queue<AnswerChoiceObject> choiceObjectQueue = titledPane.getMainGridpane().getChoiceObjectQueue();
         if(choiceObjectQueue.isEmpty()){
@@ -42,6 +42,6 @@ public class SingleAnswerCardPane extends CardPane {
             return false;
         }
         correct = "" + (titledPane.getMainGridpane().getChildren().indexOf(selectedObject.get(0))-2);
-        return super.updateQuestion();
+        return super.updateQuestion(preview);
     }
 }

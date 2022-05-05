@@ -11,14 +11,16 @@ import java.sql.SQLException;
 public class Save extends BottomButton implements EventHandler<ActionEvent> {
     public Save(CardPane cardPane){
         super(cardPane);
+        cardPane.getRightSidePane().getRightController().setSave(this);
         setText("Opslaan");
+        setDisable(true);
         setOnAction(this);
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
         try {
-            if(cardPane.updateQuestion()){
+            if(cardPane.updateQuestion(false)){
                 cardPane.getRightSidePane().getRightController().getMainController().enableTableView();
                 cardPane.getRightSidePane().getRightController().setLabelToCenter();
                 cardPane.getRightSidePane().getRightController().getMainController().unselectInTable();

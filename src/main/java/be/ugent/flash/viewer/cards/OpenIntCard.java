@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 /**
  * openi
  */
-public class OpenIntCard extends OpenQuestion implements InvalidationListener {
+public class OpenIntCard extends OpenQuestionCard implements InvalidationListener {
 
     public OpenIntCard(Stage stage, Question questionRow) {
         super(stage, questionRow);

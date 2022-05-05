@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 /**
  * open
  */
-public class OpenStrCard extends OpenQuestion {
+public class OpenStrCard extends OpenQuestionCard {
 
     public OpenStrCard(Stage stage, Question questionRow) {
         super(stage, questionRow);

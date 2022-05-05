@@ -7,7 +7,7 @@ import java.io.File;
 import java.nio.file.Files;
 
 /**
- * Gebruik door {@link be.ugent.flash.cardspanes.OpenCardPane} en {@link PictureCardPart}
+ * Gebruik door {@link be.ugent.flash.cardspanes.OpenCardPane}
  */
 public class ImageByteConverter {
 

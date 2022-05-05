@@ -30,6 +30,9 @@ public class AnswerChoiceObject extends HBox {
         GridPane.setMargin(this, new Insets(0, 0, 0, 15));
     }
 
+    public void setNewImagePart(byte[] newImagePart) {
+    }
+
     public void selectChoiceBox(){
         checkBox.setSelected(true);
     }

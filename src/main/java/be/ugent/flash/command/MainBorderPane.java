@@ -10,7 +10,6 @@ import java.util.Objects;
  * Wordt als eerst getoond als de beheersinterface
  */
 public class MainBorderPane extends BorderPane {
-    private MainBorderPane mainBorderPane; /* Object van dit klasse dat eerder gemaakt wordt */
     private final Stage STAGE;
     public MainBorderPane(Stage stage){
         this.STAGE = stage;
@@ -40,9 +39,5 @@ public class MainBorderPane extends BorderPane {
     public void changeCenter(Node node){
         getChildren().remove(getCenter());
         setCenter(node);
-    }
-
-    public void setObject(MainBorderPane mainBorderPane) {
-        this.mainBorderPane = mainBorderPane;
     }
 }

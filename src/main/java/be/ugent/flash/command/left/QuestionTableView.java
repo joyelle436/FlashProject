@@ -15,8 +15,6 @@ import java.util.*;
 
 public class QuestionTableView extends TableView<TableViewPair> {
 
-    private final TableColumn<TableViewPair, String> title;
-    private final TableColumn<TableViewPair, String> type;
     private final TableViewController tableController;
     private final CommandMapMaker mapMaker;
     private final LeftSidePane leftSidePane;
@@ -25,9 +23,9 @@ public class QuestionTableView extends TableView<TableViewPair> {
         this.leftSidePane = leftSidePane;
         setMaxSize(500, 670);
         setEditable(true);
-        this.title = new TableColumn<>("Titel");
+        TableColumn<TableViewPair, String> title = new TableColumn<>("Titel");
         title.setCellValueFactory(pairString -> pairString.getValue().titleProperty());
-        this.type = new TableColumn<>("Type");
+        TableColumn<TableViewPair, String> type = new TableColumn<>("Type");
         type.setCellValueFactory(pairString -> pairString.getValue().typeProperty());
         title.setId("column");
         type.setId("column");
@@ -68,9 +66,11 @@ public class QuestionTableView extends TableView<TableViewPair> {
     }
 
     public void removeSelectedRow() {
-        leftSidePane.deleteQuestionFromDatabase(getSelectionModel().getSelectedItem().getTitle(),
-                mapMaker.getSwapedStringType(getSelectionModel().getSelectedItem().getType()));
-        getItems().remove(getSelectionModel().getSelectedItem());
-        leftSidePane.getMainController().getRightController().setLabelToCenter();
+        if(getSelectionModel().getSelectedItem() != null){
+            leftSidePane.deleteQuestionFromDatabase(getSelectionModel().getSelectedItem().getTitle(),
+                    mapMaker.getSwapedStringType(getSelectionModel().getSelectedItem().getType()));
+            getItems().remove(getSelectionModel().getSelectedItem());
+            leftSidePane.getMainController().getRightController().setLabelToCenter();
+        }
     }
 }

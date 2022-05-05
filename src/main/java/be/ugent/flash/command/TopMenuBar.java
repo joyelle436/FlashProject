@@ -20,7 +20,7 @@ public class TopMenuBar extends MenuBar {
         MenuItem[] MENUITEMS = new TopMenuItem[]{openDatabase, makeDatabase, closeWindow};
         BorderPane.setAlignment(this, Pos.CENTER);
         /*
-        Bevat alle nodige MenuItems. Staat van boven
+        Bevat alle nodige MenuItems. Staat van boven op de borderpane
          */
         Menu bestand = new Menu("Bestand");
         bestand.getItems().addAll(MENUITEMS);

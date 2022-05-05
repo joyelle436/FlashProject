@@ -49,6 +49,7 @@ public class RightPaneContent {
             AnswerChoiceObject answerChoiceObject;
             if(type.equals("mci")){
                 answerChoiceObject = new AnswerChoiceImage(pane.getTitledPane().getMainGridpane());
+                answerChoiceObject.setNewImagePart(part.part());
             } else if(type.equals("mcc")){
                 answerChoiceObject = new AnswerChoiceTextField(pane.getTitledPane().getMainGridpane());
             } else {

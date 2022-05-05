@@ -24,10 +24,10 @@ public class CardsSimulator {
     }
 
     public void showQuestions(){
-        ViewerMapMaker maker = new ViewerMapMaker();
-        maker.makeFactoryMap();
-        maker.makeVisitorMap();
-        maker.makePartMap(partList);
+        ViewerMapMaker viewerMapMaker = new ViewerMapMaker();
+        viewerMapMaker.makeFactoryMap();
+        viewerMapMaker.makeVisitorMap();
+        viewerMapMaker.makePartMap(partList);
         LinkedList<Type> typeLinkedList = new LinkedList<>();
         CardModel model = new CardModel();
 
@@ -35,13 +35,12 @@ public class CardsSimulator {
         De kaarten aanmaken en model toevoegen
          */
         for(Question question: questionList){
-            Type type = maker.getFactory(question.questionType()).makeCard(stage, question);
-            List<Part> parts = maker.getPart(type.getQuestionRow().id());
-            if(parts != null){
-                type.setAnswers(parts);
-            }
+            Type type = viewerMapMaker.getFactory(question.questionType()).makeCard(stage, question);
+            List<Part> parts = viewerMapMaker.getPart(type.getQuestionRow().id());
+            parts.removeIf(part -> part.part() == null);
+            type.setAnswers(parts);
             //noinspection unchecked
-            maker.getVisitor(question.questionType()).buildCard(type);
+            viewerMapMaker.getVisitor(question.questionType()).buildCard(type);
             type.setModel(model);
             typeLinkedList.add(type);
         }

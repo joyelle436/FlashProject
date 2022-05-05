@@ -22,7 +22,7 @@ public class MultipleAnswerCardPane extends CardPane {
         createTitledPane();
     }
 
-    public boolean updateQuestion() throws SQLException {
+    public boolean updateQuestion(boolean preview) throws SQLException {
         correct = "";
         Queue<AnswerChoiceObject> choiceObjectQueue = titledPane.getMainGridpane().getChoiceObjectQueue();
         if(choiceObjectQueue.isEmpty()){
@@ -36,6 +36,6 @@ public class MultipleAnswerCardPane extends CardPane {
                 correct += "F";
             }
         }
-        return super.updateQuestion();
+        return super.updateQuestion(preview);
     }
 }

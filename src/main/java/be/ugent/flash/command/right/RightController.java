@@ -1,8 +1,9 @@
 package be.ugent.flash.command.right;
 
 
-import be.ugent.flash.CommandMapMaker;
 import be.ugent.flash.command.SidePaneConnection;
+import be.ugent.flash.command.right.buttons.Save;
+import be.ugent.flash.command.right.buttons.Undo;
 import be.ugent.flash.data.Question;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -11,8 +12,9 @@ public class RightController {
     private final RightSidePane rightSidePane;
     private final RightPaneContent rightPaneContent;
     private final SidePaneConnection mainController;
-    private final CommandMapMaker mapMaker;
     private final Label label;
+    private Save save;
+    private Undo undo;
     public RightController(SidePaneConnection controller){
         this.mainController = controller;
         this.rightSidePane = new RightSidePane(this);
@@ -21,8 +23,21 @@ public class RightController {
         rightSidePane.changeCenterChild(label);
         this.rightPaneContent = new RightPaneContent();
         rightSidePane.setRightPaneContent(rightPaneContent);
-        this.mapMaker = new CommandMapMaker();
     }
+
+    public void setSave(Save save) {
+        this.save = save;
+    }
+
+    public void setUndo(Undo undo) {
+        this.undo = undo;
+    }
+
+    public void disableUndoAndSave(boolean disable){
+        save.setDisable(disable);
+        undo.setDisable(disable);
+    }
+
 
     public String getDatabase(){
         return mainController.getDatabase();

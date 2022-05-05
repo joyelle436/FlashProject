@@ -1,7 +1,6 @@
 package be.ugent.flash.command.right;
 
 import be.ugent.flash.command.ImageByteConverter;
-import be.ugent.flash.command.right.TopGridpane;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -62,12 +61,16 @@ public class PictureOption extends GridPane {
         getChildren().add(addPicture);
     }
 
-    public File openFileChooser(){
+    public void openFileChooser(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(
                 "Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"
         ));
-        return fileChooser.showOpenDialog(topGridpane.getRightController().getMainController().getMainStage());
+        File imageFile = fileChooser.showOpenDialog(topGridpane.getRightController().getMainController().getMainStage());
+        if(imageFile != null){
+            addImageToImageView(new Image(imageFile.getAbsolutePath()));
+            mainImageFile = imageFile;
+        }
     }
 
     private static class ImageArea extends ImageView {
@@ -91,11 +94,7 @@ public class PictureOption extends GridPane {
 
         @Override
         public void handle(ActionEvent actionEvent) {
-            File imageFile = openFileChooser();
-            if(imageFile != null){
-                addImageToImageView(new Image(imageFile.getAbsolutePath()));
-                mainImageFile = imageFile;
-            }
+            openFileChooser();
         }
     }
 
@@ -107,11 +106,7 @@ public class PictureOption extends GridPane {
 
         @Override
         public void handle(ActionEvent actionEvent) {
-            File imageFile = openFileChooser();
-            if(imageFile != null){
-                addImageToImageView(new Image(imageFile.getAbsolutePath()));
-                mainImageFile = imageFile;
-            }
+            openFileChooser();
         }
     }
 

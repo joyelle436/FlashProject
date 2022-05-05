@@ -1,9 +1,6 @@
 package be.ugent.flash.command;
 
-import be.ugent.flash.data.JDBCDataAccessContext;
-import be.ugent.flash.data.JDBCDataAccessProvider;
-import be.ugent.flash.data.Part;
-import be.ugent.flash.data.Question;
+import be.ugent.flash.data.*;
 import be.ugent.flash.viewer.ErrorDisplay;
 
 import java.sql.SQLException;
@@ -20,7 +17,7 @@ public class DatabaseCollector {
         try {
             question = dataAccessContext.getQuestionDAO().getQuestion(title);
         } catch (SQLException e) {
-            new ErrorDisplay().showAlert(e.getMessage());
+            ErrorDisplay.showAlert(e.getMessage());
         }
         return question;
     }
@@ -30,7 +27,7 @@ public class DatabaseCollector {
         try {
             parts = dataAccessContext.getPartDAO().getParts(question_id);
         } catch (SQLException e){
-            new ErrorDisplay().showAlert(e.getMessage());
+            ErrorDisplay.showAlert(e.getMessage());
         }
         return parts;
     }
@@ -39,7 +36,7 @@ public class DatabaseCollector {
         try {
             dataAccessContext.close();
         } catch (SQLException e) {
-            new ErrorDisplay().showAlert(e.getMessage());
+            ErrorDisplay.showAlert(e.getMessage());
         }
     }
 }

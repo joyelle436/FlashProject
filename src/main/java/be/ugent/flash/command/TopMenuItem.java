@@ -1,10 +1,8 @@
 package be.ugent.flash.command;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
+import javafx.event.*;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
 
 /**
@@ -25,7 +23,7 @@ public class TopMenuItem extends MenuItem{
     }
 
     /**
-     * Menu Items in eigen klassen
+     * Menu Items
      */
     public static class OpenDatabase extends TopMenuItem implements EventHandler<ActionEvent> {
         public OpenDatabase(MainBorderPane mainBorderPane, String text){

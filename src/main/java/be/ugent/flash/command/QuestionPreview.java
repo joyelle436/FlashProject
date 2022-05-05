@@ -31,8 +31,10 @@ public class QuestionPreview extends Stage {
             Question updatedQuestion = cardUpdater.getUpdatedQuestion(true);
             List<Part> partList = cardUpdater.getPartList();
             Type type = viewerMapMaker.getFactory(updatedQuestion.questionType()).makeCard(this, updatedQuestion);
-            partList.removeIf(part -> part.part() == null);
-            type.setAnswers(partList);
+            if(partList != null){
+                partList.removeIf(part -> part.part() == null);
+                type.setAnswers(partList);
+            }
             //noinspection unchecked
             viewerMapMaker.getVisitor(updatedQuestion.questionType()).buildCard(type);
             type.showQuestion();

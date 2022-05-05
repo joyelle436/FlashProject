@@ -37,8 +37,10 @@ public class CardsSimulator {
         for(Question question: questionList){
             Type type = viewerMapMaker.getFactory(question.questionType()).makeCard(stage, question);
             List<Part> parts = viewerMapMaker.getPart(type.getQuestionRow().id());
-            parts.removeIf(part -> part.part() == null);
-            type.setAnswers(parts);
+            if(parts != null){
+                parts.removeIf(part -> part.part() == null);
+                type.setAnswers(parts);
+            }
             //noinspection unchecked
             viewerMapMaker.getVisitor(question.questionType()).buildCard(type);
             type.setModel(model);

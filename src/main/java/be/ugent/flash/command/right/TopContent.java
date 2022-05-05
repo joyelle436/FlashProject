@@ -5,6 +5,7 @@ import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 
 /**
  * Gegevens van de {@link TopGridpane}
@@ -21,8 +22,8 @@ public class TopContent {
         this.toplabels = new Label[]{
                 new Label("Titel"),/* -> Textfield */
                 new Label("Type"),/* -> Label */
-                new Label("Tekst"),/* -> TextField */
-                new Label("Afbeelding")
+                new Label("Tekst"),/* -> TextArea */
+                new Label("Afbeelding")/* -> PictureOption*/
         };
     }
     /*
@@ -33,7 +34,7 @@ public class TopContent {
         for(int index = 0; index < 4; index++){
             GridPane.setConstraints(toplabels[index], 0, index);
             GridPane.setValignment(toplabels[index], VPos.TOP);
-            toplabels[index].setStyle("-fx-font-size: 13px");
+            toplabels[index].setFont(new Font(13));
         }
     }
 

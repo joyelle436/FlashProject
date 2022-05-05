@@ -21,6 +21,7 @@ public class Save extends BottomButton implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         try {
             if(cardPane.updateQuestion(false)){
+                cardPane.getRightSidePane().getRightController().getMainController().updateTableView(cardPane.getQuestion().title());
                 cardPane.getRightSidePane().getRightController().getMainController().enableTableView();
                 cardPane.getRightSidePane().getRightController().setLabelToCenter();
                 cardPane.getRightSidePane().getRightController().getMainController().unselectInTable();

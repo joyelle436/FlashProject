@@ -24,10 +24,6 @@ public class CardPane extends VBox {
         BorderPane.setMargin(this, new Insets(15));
     }
 
-    public void fillCardPane() {
-        addBottomButtons();
-    }
-
     public RightSidePane getRightSidePane() {
         return rightSidePane;
     }
@@ -40,7 +36,7 @@ public class CardPane extends VBox {
         getChildren().remove(titledPane);
     }
 
-    private void addBottomButtons() {
+    public void addBottomButtons() {
         this.buttonHBox = new ButtonHBox(this);
         BorderPane.setAlignment(buttonHBox, Pos.BOTTOM_RIGHT);
         if (rightSidePane != null) {
@@ -60,7 +56,7 @@ public class CardPane extends VBox {
         titledPane = new CenterTitledPane(type, getRightSidePane().getRightController());
         getChildren().add(titledPane);
         titledPane.setLabelText(topDescriptionText);
-        fillCardPane();
+        addBottomButtons();
     }
 
     public Question getQuestion() {

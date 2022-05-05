@@ -5,6 +5,7 @@ import javafx.event.Event;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 
 import java.util.*;
@@ -19,6 +20,10 @@ public class QuestionTableView extends TableView<TableViewPair> {
     private final CommandMapMaker mapMaker;
     private final LeftSidePane leftSidePane;
     public QuestionTableView(LeftSidePane leftSidePane){
+        AnchorPane.setLeftAnchor(this, 0.0);
+        AnchorPane.setRightAnchor(this, 0.0);
+        AnchorPane.setTopAnchor(this, 0.0);
+        AnchorPane.setBottomAnchor(this, 0.0);
         this.tableController = new TableViewController(this);
         this.leftSidePane = leftSidePane;
         setMaxSize(500, 670);
@@ -72,5 +77,13 @@ public class QuestionTableView extends TableView<TableViewPair> {
             getItems().remove(getSelectionModel().getSelectedItem());
             leftSidePane.getMainController().getRightController().setLabelToCenter();
         }
+    }
+
+    /**
+     * Als de titel aan de rechterkant veranderd wordt die dan meteen in de tableView aangepast
+     */
+    public void updateTableTitle(String title) {
+        TableViewPair updatedPair = new TableViewPair(title, getSelectionModel().getSelectedItem().getType());
+        getItems().set(getSelectionModel().getSelectedIndex(), updatedPair);
     }
 }

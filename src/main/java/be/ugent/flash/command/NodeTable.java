@@ -4,10 +4,13 @@ package be.ugent.flash.command;
 import be.ugent.flash.command.right.PictureOption;
 import be.ugent.flash.command.right.TextInputListener;
 import be.ugent.flash.command.right.TopGridpane;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
+import javafx.util.Duration;
 
 import java.io.ByteArrayInputStream;
 
@@ -71,12 +74,13 @@ public class NodeTable implements TextInputListener {
 
     @Override
     public void addTextListener() {
-        for (Node node : getTable()) {
-            if(node instanceof TextInputControl){
-                ((TextInputControl) node).textProperty().addListener((observable, oldtext, newtext) -> {
-                    topGridpane.getRightController().getMainController().disableTableView();
-                });
-            }
-        }
+        addSingleTextListener(titleField);
+        addSingleTextListener(textArea);
+    }
+
+    private void addSingleTextListener(TextInputControl textInputControl){
+        textInputControl.textProperty().addListener((observable, oldtext, newtext) -> {
+            topGridpane.getRightController().getMainController().disableTableView();
+        });
     }
 }

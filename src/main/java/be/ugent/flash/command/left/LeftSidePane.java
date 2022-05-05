@@ -16,6 +16,10 @@ public class LeftSidePane extends GridPane {
     private final LeftBottomButton.AddQuestionButton addQuestionButton;
     private final LeftBottomButton.DeleteQuestionButton deleteQuestionButton;
     public LeftSidePane(SidePaneConnection controller){
+        AnchorPane.setLeftAnchor(this, 0.0);
+        AnchorPane.setRightAnchor(this, 0.0);
+        AnchorPane.setTopAnchor(this, 0.0);
+        AnchorPane.setBottomAnchor(this, 0.0);
         this.controller = controller;
         setMaxHeight(715);
         this.tableView = new QuestionTableView(this);

@@ -51,7 +51,7 @@ public class SidePaneConnection {
     }
 
     public void showPanes() {
-        mainBorderPane.changeCenter(centerSplitPane); /* nu gaat de centerSplitPane definitief in de BorderPane blijven*/
+        mainBorderPane.changeCenter(centerSplitPane);
     }
     /*
     Krijgt title van de LeftSidePane pane en vul gegevens aan in RightSidePane
@@ -85,5 +85,9 @@ public class SidePaneConnection {
 
     public void deleteQuestion(String title, String type) {
         databaseUpdater.deleteQuestion(title, type);
+    }
+
+    public void updateTableView(String title) {
+        leftController.getLeftSidePane().getTableView().updateTableTitle(title);
     }
 }

@@ -3,10 +3,13 @@ package be.ugent.flash.cardspanes;
 import be.ugent.flash.command.RedPopUp;
 import be.ugent.flash.command.right.TextInputListener;
 import be.ugent.flash.command.right.RightSidePane;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 
 import java.sql.SQLException;
 
@@ -33,13 +36,9 @@ public class OpenCardPane extends CardPane implements TextInputListener {
 
     public void setRightSidePane(RightSidePane rightSidePane){
         super.setRightSidePane(rightSidePane);
-        fillCardPane();
-    }
-
-    public void fillCardPane(){
-        super.fillCardPane();
+        addBottomButtons();
         correctTextField.setText(question.correctAnswer());
-        addTextListener();
+        //addTextListener();
     }
 
     /**
@@ -60,9 +59,6 @@ public class OpenCardPane extends CardPane implements TextInputListener {
     @Override
     public void addTextListener() {
         correctTextField.textProperty().addListener((observable, oldtext, newtext) -> {
-            /**
-             * TODO: Verbeteren(te vroeg)
-             */
             getRightSidePane().getRightController().getMainController().disableTableView();
             correct = correctTextField.getText();
         });

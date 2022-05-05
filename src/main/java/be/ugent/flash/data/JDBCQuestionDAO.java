@@ -3,16 +3,19 @@ package be.ugent.flash.data;
 import java.io.ByteArrayInputStream;
 import java.sql.*;
 import java.util.*;
+
 /**
  * Gebaseerd op code uit de cursus
  */
 public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
 
     private final List<Question> questionList;
+
     public JDBCQuestionDAO(Connection connection) {
         super(connection);
         this.questionList = new ArrayList<>();
     }
+
     /*
     gegevens uit de <<questions>> tabel
      */
@@ -20,10 +23,10 @@ public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
     public List<Question> getQuestions() throws SQLException {
         try (PreparedStatement preparedStatement = prepare(
                 "SELECT question_id, title, text_part, image_part, " +
-                        "question_type, correct_answer FROM questions ORDER BY question_id")){
+                        "question_type, correct_answer FROM questions ORDER BY question_id")) {
 
             ResultSet questionsResult = preparedStatement.executeQuery();
-            while(questionsResult.next()){
+            while (questionsResult.next()) {
                 addRow(questionsResult);
             }
 
@@ -32,15 +35,15 @@ public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
     }
 
     @Override
-    public Question getQuestion(String title) throws SQLException{
+    public Question getQuestion(String title) throws SQLException {
         Question question = null;
         try (PreparedStatement preparedStatement = prepare(
                 "SELECT question_id, title, text_part, image_part, " +
-                        "question_type, correct_answer FROM questions WHERE title=?")){
+                        "question_type, correct_answer FROM questions WHERE title=?")) {
 
             preparedStatement.setString(1, title);
             ResultSet questionsResult = preparedStatement.executeQuery();
-            while(questionsResult.next()){
+            while (questionsResult.next()) {
                 question = new Question(questionsResult.getInt(1), questionsResult.getString(2)
                         , questionsResult.getString(3), questionsResult.getBytes(4),
                         questionsResult.getString(5), questionsResult.getString(6));
@@ -61,10 +64,10 @@ public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
 
     @Override
     public void addQuestion(String title, String type) throws SQLException {
-        try(PreparedStatement preparedStatement = prepare(
+        try (PreparedStatement preparedStatement = prepare(
                 "INSERT INTO questions(title, text_part, image_part, question_type, correct_answer) " +
                         "VALUES(?,?,NULL,?,?)"
-        )){
+        )) {
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, "");
             preparedStatement.setString(3, type);
@@ -74,10 +77,10 @@ public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
     }
 
     @Override
-    public void deleteQuestion(String title, String type) throws SQLException{
-        try(PreparedStatement preparedStatement = prepare(
+    public void deleteQuestion(String title, String type) throws SQLException {
+        try (PreparedStatement preparedStatement = prepare(
                 "DELETE FROM questions WHERE title=? AND question_type=?"
-        )){
+        )) {
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, type);
             preparedStatement.executeUpdate();
@@ -87,28 +90,28 @@ public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
     private void updateTitle(int question_id, String title) throws SQLException {
         try (PreparedStatement preparedStatement = prepare(
                 "UPDATE questions SET title=? WHERE question_id=?"
-        )){
+        )) {
             preparedStatement.setString(1, title);
             preparedStatement.setInt(2, question_id);
             preparedStatement.executeUpdate();
         }
     }
 
-    private void updateText(int question_id, String text) throws SQLException{
+    private void updateText(int question_id, String text) throws SQLException {
         try (PreparedStatement preparedStatement = prepare(
                 "UPDATE questions SET text_part=? WHERE question_id=?"
-        )){
+        )) {
             preparedStatement.setString(1, text);
             preparedStatement.setInt(2, question_id);
             preparedStatement.executeUpdate();
         }
     }
 
-    private void updateImage(int question_id, byte[] image) throws SQLException{
+    private void updateImage(int question_id, byte[] image) throws SQLException {
         try (PreparedStatement preparedStatement = prepare(
                 "UPDATE questions SET image_part=? WHERE question_id=?"
-        )){
-            preparedStatement.setBytes(1,image);
+        )) {
+            preparedStatement.setBytes(1, image);
             preparedStatement.setInt(2, question_id);
             preparedStatement.executeUpdate();
         }
@@ -117,7 +120,7 @@ public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
     private void updateCorrect(int question_id, String correct) throws SQLException {
         try (PreparedStatement preparedStatement = prepare(
                 "UPDATE questions SET correct_answer=? WHERE question_id=?"
-        )){
+        )) {
             preparedStatement.setString(1, correct);
             preparedStatement.setInt(2, question_id);
             preparedStatement.executeUpdate();
@@ -128,8 +131,11 @@ public class JDBCQuestionDAO extends JDBCAbstractDAO implements QuestionDAO {
      * Krijgt een Result en gaat alle data(uit questions) één per één als {@link Question} opslaan
      */
     private void addRow(ResultSet resultSet) throws SQLException {
-        questionList.add(new Question(resultSet.getInt(1), resultSet.getString(2)
+        Question question = new Question(resultSet.getInt(1), resultSet.getString(2)
                 , resultSet.getString(3), resultSet.getBytes(4),
-                resultSet.getString(5), resultSet.getString(6)));
+                resultSet.getString(5), resultSet.getString(6));
+        if(question.correctAnswer().length() >= 1){ //als correct_answer niet leeg is
+            questionList.add(question);
+        }
     }
 }

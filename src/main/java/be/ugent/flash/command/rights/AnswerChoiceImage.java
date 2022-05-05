@@ -52,7 +52,7 @@ public class AnswerChoiceImage extends AnswerChoiceObject implements EventHandle
     }
 
     public void putInGridpane(Part part, int position) {
-        if(part != null){
+        if(part != null && part.part() != null){
             Image image = new Image(new ByteArrayInputStream(part.part()));
             setAnswerImage(image);
         }

@@ -24,7 +24,7 @@ public class DatabaseMaker {
                 "Text Files", "*.sqlite"
         ));
         File databaseFile = fileChooser.showSaveDialog(stage);
-        if(databaseFile.getName().endsWith(".sqlite")){
+        if(databaseFile != null && databaseFile.getName().endsWith(".sqlite")){
             addTables(databaseFile.getPath());
         }
     }

@@ -35,7 +35,11 @@ public class PictureCardVisitor implements CardVisitor<PictureCard>{
         for(Part part: answersPictures){
             Image answerImage = new Image(new ByteArrayInputStream(part.part()));
             ToggleButton toggleButton = new ToggleButton();
-            toggleButton.setGraphic(new ImageView(answerImage));
+            ImageView imageView = new ImageView(answerImage);
+            imageView.setFitHeight(115);
+            imageView.setFitWidth(115);
+            imageView.setPreserveRatio(true);
+            toggleButton.setGraphic(imageView);
             pictureCard.addToToggleAnswer(toggleButton, part.part_id());
             GridPane.setConstraints(toggleButton, i, j);
             pictureCard.addToggleButton(toggleButton);

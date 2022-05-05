@@ -119,8 +119,10 @@ public class CardPane extends VBox {
     private void updateImageParts(Queue<AnswerChoiceObject> choiceObjectQueue) throws SQLException {
         for (AnswerChoiceObject choiceObject : choiceObjectQueue) {
             AnswerChoiceImage choiceImage = (AnswerChoiceImage) choiceObject;
-            if (choiceImage.getIdPart() < Integer.MAX_VALUE && choiceImage.getImagePath() != null) {
-                databaseUpdater.updatePart(question.id(), choiceImage.getIdPart(), choiceImage.getImagePath());
+            if (choiceImage.getIdPart() < Integer.MAX_VALUE) {
+                if(choiceImage.getImagePath() != null){
+                    databaseUpdater.updatePart(question.id(), choiceImage.getIdPart(), choiceImage.getImagePath());
+                }
             } else {
                 databaseUpdater.addNewPart(question.id(), choiceImage.getImagePath());
             }

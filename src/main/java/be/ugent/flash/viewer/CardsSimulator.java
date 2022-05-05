@@ -32,7 +32,7 @@ public class CardsSimulator {
         CardModel model = new CardModel();
 
         /*
-        Die kaarten aanmaken en model toevoegen
+        De kaarten aanmaken en model toevoegen
          */
         for(Question question: questionList){
             Type type = maker.getFactory(question.questionType()).makeCard(stage, question);

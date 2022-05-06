@@ -38,7 +38,7 @@ public class OpenCardPane extends CardPane implements TextInputListener {
         super.setRightSidePane(rightSidePane);
         addBottomButtons();
         correctTextField.setText(question.correctAnswer());
-        //addTextListener();
+        addTextListener();
     }
 
     /**

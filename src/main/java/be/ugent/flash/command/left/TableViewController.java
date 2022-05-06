@@ -1,6 +1,6 @@
 package be.ugent.flash.command.left;
 
-import be.ugent.flash.CommandMapMaker;
+import be.ugent.flash.command.CommandMapMaker;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -23,7 +23,7 @@ public class TableViewController implements EventHandler<MouseEvent> {
         if (questionTableView.getSelectionModel().getSelectedItem() != null) {
             String title = questionTableView.getSelectionModel().getSelectedItem().getTitle();
             String type = questionTableView.getSelectionModel().getSelectedItem().getType();
-            questionTableView.getLeftSidePane().showQuestionInfo(title, questionTableView.getMapMaker().getSwapedStringType(type));
+            questionTableView.getLeftSidePane().showQuestionInfo(title, questionTableView.getCommandMapMaker().getSwapedStringType(type));
         }
     }
 

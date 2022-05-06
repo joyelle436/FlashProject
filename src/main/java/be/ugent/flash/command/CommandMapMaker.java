@@ -1,4 +1,4 @@
-package be.ugent.flash;
+package be.ugent.flash.command;
 
 import be.ugent.flash.cardspanes.*;
 

@@ -1,4 +1,4 @@
-package be.ugent.flash.command.right.buttons;
+package be.ugent.flash.command.right.bottom;
 
 import be.ugent.flash.cardspanes.CardPane;
 import be.ugent.flash.viewer.ErrorDisplay;
@@ -27,7 +27,7 @@ public class Save extends BottomButton implements EventHandler<ActionEvent> {
                 cardPane.getRightSidePane().getRightController().getMainController().unselectInTable();
             }
         } catch (SQLException e) {
-            ErrorDisplay.showAlert(e.getMessage());
+            ErrorDisplay.showAlert("Probleem met het updaten van de databank: " + e.getMessage());
         }
     }
 }

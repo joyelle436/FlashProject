@@ -5,6 +5,9 @@ import be.ugent.flash.data.*;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Geeft alle gegevens uit questions en alle gegevens uit parts terug
+ */
 public class DataCollector {
 
     private final JDBCDataAccessContext dataAccessContext;

@@ -24,7 +24,7 @@ public class AnswerChoiceImage extends AnswerChoiceObject implements EventHandle
     public AnswerChoiceImage(TitledPaneGridpane gridpane){
         super(gridpane);
         this.newImagePart = null; // imagePath is null als de afbeelding niet veranderd werd
-        setMargin(checkBox, new Insets(28, 0, 0, 0));
+        setMargin(checkBox, new Insets(39, 0, 0, 0));
         this.middleImageView = new ImageView();
         middleImageView.setFitWidth(100);
         middleImageView.setFitHeight(100);
@@ -34,7 +34,7 @@ public class AnswerChoiceImage extends AnswerChoiceObject implements EventHandle
         borderPane.setPrefHeight(100);
         borderPane.setOnMouseClicked(this);
         borderPane.setCenter(new Label("(leeg)"));
-        setMargin(removeButton, new Insets(25, 0, 0, 0));
+        setMargin(removeButton, new Insets(35, 0, 0, 0));
         getChildren().addAll(checkBox, borderPane, removeButton);
         GridPane.setMargin(this, new Insets(0, 0, 0, 15));
     }

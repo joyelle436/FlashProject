@@ -1,5 +1,7 @@
-package be.ugent.flash.command;
+package be.ugent.flash.command.databaseTools;
 
+import be.ugent.flash.command.FileDataCollector;
+import be.ugent.flash.command.MainBorderPane;
 import be.ugent.flash.viewer.ErrorDisplay;
 import javafx.stage.*;
 

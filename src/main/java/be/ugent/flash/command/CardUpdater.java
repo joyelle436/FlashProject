@@ -49,13 +49,14 @@ public class CardUpdater {
 
     private void updateStringParts(Queue<AnswerChoiceObject> choiceObjectQueue, boolean preview) throws SQLException {
         for (AnswerChoiceObject choiceObject : choiceObjectQueue) {
-            if (choiceObject.getIdPart() < Integer.MAX_VALUE) {
-                cardPane.getDatabaseUpdater().updatePart(cardPane.getQuestion().id(), choiceObject.getIdPart(), choiceObject.getStringPart());
-            } else {
-                cardPane.getDatabaseUpdater().addNewPart(cardPane.getQuestion().id(), choiceObject.getStringPart());
-            }
             if (preview) {
                 partList.add(new Part(cardPane.getQuestion().id(), RD.nextInt(10), choiceObject.getStringPart()));
+            } else {
+                if (choiceObject.getIdPart() < Integer.MAX_VALUE) {
+                    cardPane.getDatabaseUpdater().updatePart(cardPane.getQuestion().id(), choiceObject.getIdPart(), choiceObject.getStringPart());
+                } else {
+                    cardPane.getDatabaseUpdater().addNewPart(cardPane.getQuestion().id(), choiceObject.getStringPart());
+                }
             }
         }
     }
@@ -63,13 +64,14 @@ public class CardUpdater {
     private void updateImageParts(Queue<AnswerChoiceObject> choiceObjectQueue, boolean preview) throws SQLException {
         for (AnswerChoiceObject choiceObject : choiceObjectQueue) {
             AnswerChoiceImage choiceImage = (AnswerChoiceImage) choiceObject;
-            if (choiceImage.getIdPart() < Integer.MAX_VALUE) {
-                cardPane.getDatabaseUpdater().updatePart(cardPane.getQuestion().id(), choiceImage.getIdPart(), choiceImage.getImagePath());
-            } else {
-                cardPane.getDatabaseUpdater().addNewPart(cardPane.getQuestion().id(), choiceImage.getImagePath());
-            }
             if (preview) {
                 partList.add(new Part(cardPane.getQuestion().id(), RD.nextInt(10), choiceImage.getImagePath()));
+            } else {
+                if (choiceImage.getIdPart() < Integer.MAX_VALUE) {
+                    cardPane.getDatabaseUpdater().updatePart(cardPane.getQuestion().id(), choiceImage.getIdPart(), choiceImage.getImagePath());
+                } else {
+                    cardPane.getDatabaseUpdater().addNewPart(cardPane.getQuestion().id(), choiceImage.getImagePath());
+                }
             }
         }
     }

@@ -1,6 +1,5 @@
 package be.ugent.flash.viewer;
 
-import be.ugent.flash.ViewerMapMaker;
 import be.ugent.flash.viewer.cards.*;
 import be.ugent.flash.data.*;
 import javafx.stage.Stage;

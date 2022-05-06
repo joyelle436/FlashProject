@@ -1,8 +1,9 @@
-package be.ugent.flash.command;
+package be.ugent.flash.command.right.bottom;
 
-import be.ugent.flash.ViewerMapMaker;
+import be.ugent.flash.command.CardUpdater;
+import be.ugent.flash.viewer.ViewerMapMaker;
 import be.ugent.flash.cardspanes.CardPane;
-import be.ugent.flash.command.right.buttons.Preview;
+import be.ugent.flash.command.right.bottom.Preview;
 import be.ugent.flash.data.Part;
 import be.ugent.flash.data.Question;
 import be.ugent.flash.viewer.ErrorDisplay;

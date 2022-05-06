@@ -1,4 +1,4 @@
-package be.ugent.flash.command.right.buttons;
+package be.ugent.flash.command.right.bottom;
 
 import be.ugent.flash.cardspanes.CardPane;
 import javafx.event.ActionEvent;

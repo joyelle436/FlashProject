@@ -1,6 +1,5 @@
-package be.ugent.flash.command.right;
+package be.ugent.flash.command.right.top;
 
-import be.ugent.flash.command.NodeTable;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.*;

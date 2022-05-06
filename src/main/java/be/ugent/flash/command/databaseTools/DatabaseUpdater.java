@@ -1,4 +1,4 @@
-package be.ugent.flash.command;
+package be.ugent.flash.command.databaseTools;
 
 import be.ugent.flash.data.*;
 import be.ugent.flash.viewer.ErrorDisplay;
@@ -44,9 +44,5 @@ public class DatabaseUpdater {
 
     public void deletePart(int part_id) throws SQLException{
         dataAccessContext.getPartDAO().deletePart(part_id);
-    }
-
-    public void close() throws SQLException{
-        dataAccessContext.close();
     }
 }

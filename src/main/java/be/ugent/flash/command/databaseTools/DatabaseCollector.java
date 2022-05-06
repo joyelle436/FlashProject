@@ -1,4 +1,4 @@
-package be.ugent.flash.command;
+package be.ugent.flash.command.databaseTools;
 
 import be.ugent.flash.data.*;
 import be.ugent.flash.viewer.ErrorDisplay;
@@ -30,13 +30,5 @@ public class DatabaseCollector {
             ErrorDisplay.showAlert(e.getMessage());
         }
         return parts;
-    }
-
-    public void close(){
-        try {
-            dataAccessContext.close();
-        } catch (SQLException e) {
-            ErrorDisplay.showAlert(e.getMessage());
-        }
     }
 }

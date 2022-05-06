@@ -1,5 +1,7 @@
 package be.ugent.flash.command;
 
+import be.ugent.flash.command.databaseTools.DatabaseCollector;
+import be.ugent.flash.command.databaseTools.DatabaseUpdater;
 import be.ugent.flash.command.left.LeftController;
 import be.ugent.flash.command.right.RightController;
 import be.ugent.flash.data.Part;

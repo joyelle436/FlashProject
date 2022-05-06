@@ -9,34 +9,28 @@ import java.util.*;
 /**
  * linkerkant van de beheersinterface
  */
-public class LeftSidePane extends GridPane {
+public class LeftSidePane extends VBox {
 
     private final QuestionTableView tableView;
     private final SidePaneConnection controller;
     private final LeftBottomButton.AddQuestionButton addQuestionButton;
     private final LeftBottomButton.DeleteQuestionButton deleteQuestionButton;
     public LeftSidePane(SidePaneConnection controller){
-        AnchorPane.setLeftAnchor(this, 0.0);
-        AnchorPane.setRightAnchor(this, 0.0);
-        AnchorPane.setTopAnchor(this, 0.0);
-        AnchorPane.setBottomAnchor(this, 0.0);
+        setMaxSize(515, 715);
         this.controller = controller;
-        setMaxHeight(715);
         this.tableView = new QuestionTableView(this);
         this.addQuestionButton = new LeftBottomButton.AddQuestionButton(this);
         this.deleteQuestionButton = new LeftBottomButton.DeleteQuestionButton(this);
         HBox hBox = new HBox();
-        hBox.setMaxWidth(500);
+        hBox.setPrefWidth(500);
         hBox.getChildren().addAll(addQuestionButton, deleteQuestionButton);
         hBox.setAlignment(Pos.CENTER_RIGHT);
         setMargin(hBox, new Insets(0, 10, 0, 0));
         setMargin(tableView, new Insets(0, 0, 0, 5));
-        getRowConstraints().add(new RowConstraints(tableView.getMaxHeight()));
         GridPane.setConstraints(tableView, 0, 0);
         GridPane.setConstraints(hBox, 0, 1);
-        getColumnConstraints().add(new ColumnConstraints(500));
         getChildren().addAll(tableView, hBox);
-        setVgap(10);
+        setSpacing(5);
         getStylesheets().add(Objects.requireNonNull(getClass().getResource("/be/ugent/flash/flash.css")).toString());
     }
 

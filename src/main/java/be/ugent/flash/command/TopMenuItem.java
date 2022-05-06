@@ -1,5 +1,7 @@
 package be.ugent.flash.command;
 
+import be.ugent.flash.command.databaseTools.DatabaseMaker;
+import be.ugent.flash.command.databaseTools.DatabaseOpener;
 import javafx.application.Platform;
 import javafx.event.*;
 import javafx.scene.control.*;

@@ -1,5 +1,6 @@
 package be.ugent.flash.command.right;
 
+import be.ugent.flash.command.right.top.TopGridpane;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
@@ -13,10 +14,9 @@ public class RightSidePane extends BorderPane {
 
     private final TopGridpane topGridpane;
     private final RightController rightController;
-    private RightPaneContent rightPaneContent;
 
     public RightSidePane(RightController rightController){
-        setMaxSize(700, 730);
+        setMaxSize(685, 715);
         this.topGridpane = new TopGridpane(rightController);
         this.rightController = rightController;
         addEventFilter(ActionEvent.ANY, event -> rightController.getMainController().disableTableView());
@@ -34,7 +34,6 @@ public class RightSidePane extends BorderPane {
     }
 
     public void setRightPaneContent(RightPaneContent rightPaneContent) {
-        this.rightPaneContent = rightPaneContent;
         rightPaneContent.setRightSidePane(this);
     }
 
@@ -46,13 +45,10 @@ public class RightSidePane extends BorderPane {
         return topGridpane;
     }
 
-    public void fillRightPane(){
-        fillBorderpane();
-    }
     /*
     layout van gridpane die boven staat aanmaken
      */
-    private void fillBorderpane(){
+    public void fillRightPane(){
         getChildren().clear();
         setTop(topGridpane);
     }

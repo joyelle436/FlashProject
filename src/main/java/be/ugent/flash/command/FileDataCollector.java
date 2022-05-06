@@ -16,9 +16,11 @@ public class FileDataCollector {
         this.startWindow = startWindow;
     }
 
+    /* Voor DatabaseOpener */
     public void getFile(){
     }
 
+    /* Voor DatabaseMaker */
     public void createFile(){
     }
 

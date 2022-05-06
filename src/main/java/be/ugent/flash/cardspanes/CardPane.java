@@ -1,7 +1,9 @@
 package be.ugent.flash.cardspanes;
 
 import be.ugent.flash.command.*;
+import be.ugent.flash.command.databaseTools.DatabaseUpdater;
 import be.ugent.flash.command.right.*;
+import be.ugent.flash.command.right.bottom.ButtonHBox;
 import be.ugent.flash.data.Question;
 import javafx.geometry.*;
 import javafx.scene.layout.*;
@@ -73,7 +75,7 @@ public class CardPane extends VBox {
     }
 
     /**
-     * Wordt opgeroepen als er op de knop {@link be.ugent.flash.command.right.buttons.Save} geklikt wordt.
+     * Wordt opgeroepen als er op de knop {@link be.ugent.flash.command.right.bottom.Save} geklikt wordt.
      */
     public boolean updateQuestion(boolean preview) throws SQLException {
         CardUpdater cardUpdater = new CardUpdater(this);

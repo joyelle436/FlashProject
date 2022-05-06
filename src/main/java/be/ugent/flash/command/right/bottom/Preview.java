@@ -1,15 +1,8 @@
-package be.ugent.flash.command.right.buttons;
+package be.ugent.flash.command.right.bottom;
 
-import be.ugent.flash.ViewerMapMaker;
 import be.ugent.flash.cardspanes.CardPane;
-import be.ugent.flash.command.DatabaseCollector;
-import be.ugent.flash.command.QuestionPreview;
-import be.ugent.flash.data.Question;
-import be.ugent.flash.viewer.ErrorDisplay;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-
-import java.sql.SQLException;
 
 public class Preview extends BottomButton implements EventHandler<MouseEvent> {
 

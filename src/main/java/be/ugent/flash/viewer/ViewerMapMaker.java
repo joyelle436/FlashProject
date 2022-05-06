@@ -1,7 +1,6 @@
-package be.ugent.flash;
+package be.ugent.flash.viewer;
 
 import be.ugent.flash.data.Part;
-import be.ugent.flash.data.Question;
 import be.ugent.flash.viewer.factories.*;
 import be.ugent.flash.viewer.visitors.*;
 
@@ -28,12 +27,12 @@ public class ViewerMapMaker {
     }
     public void makeFactoryMap(){
         this.factoryMap = Map.of(
-                "mcs", new StandardFactory(),
-                "mcc", new CompactFactory(),
-                "mci", new PictureFactory(),
-                "mr", new MultipleFactory(),
-                "open", new OpenStrFactory(),
-                "openi", new OpenIntFactory()
+                "mcs", new CardFactory.StandardFactory(),
+                "mcc", new CardFactory.CompactFactory(),
+                "mci", new CardFactory.PictureFactory(),
+                "mr", new CardFactory.MultipleFactory(),
+                "open", new CardFactory.OpenStrFactory(),
+                "openi", new CardFactory.OpenIntFactory()
         );
     }
     public void makeVisitorMap(){

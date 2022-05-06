@@ -1,4 +1,4 @@
-package be.ugent.flash.command.right;
+package be.ugent.flash.command.right.top;
 
 import be.ugent.flash.command.ImageByteConverter;
 import javafx.event.ActionEvent;
@@ -11,7 +11,7 @@ import javafx.stage.FileChooser;
 import java.io.File;
 
 /**
- * Staat in {@link be.ugent.flash.command.right.TopGridpane}
+ * Staat in {@link TopGridpane}
  */
 public class PictureOption extends GridPane {
     private final TopGridpane topGridpane;
@@ -34,7 +34,7 @@ public class PictureOption extends GridPane {
     }
 
     /**
-     * Wordt opgeroepen in {@link be.ugent.flash.command.right.buttons.Save}
+     * Wordt opgeroepen in {@link be.ugent.flash.command.right.bottom.Save}
      */
 
     public byte[] getImage() {

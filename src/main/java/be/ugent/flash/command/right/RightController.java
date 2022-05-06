@@ -2,8 +2,8 @@ package be.ugent.flash.command.right;
 
 
 import be.ugent.flash.command.SidePaneConnection;
-import be.ugent.flash.command.right.buttons.Save;
-import be.ugent.flash.command.right.buttons.Undo;
+import be.ugent.flash.command.right.bottom.Save;
+import be.ugent.flash.command.right.bottom.Undo;
 import be.ugent.flash.data.Question;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -36,11 +36,6 @@ public class RightController {
     public void disableUndoAndSave(boolean disable){
         save.setDisable(disable);
         undo.setDisable(disable);
-    }
-
-
-    public String getDatabase(){
-        return mainController.getDatabase();
     }
 
     public RightPaneContent getRightPaneContent() {

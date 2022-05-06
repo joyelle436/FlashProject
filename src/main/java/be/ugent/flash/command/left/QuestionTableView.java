@@ -1,11 +1,10 @@
 package be.ugent.flash.command.left;
 
-import be.ugent.flash.CommandMapMaker;
+import be.ugent.flash.command.CommandMapMaker;
 import javafx.event.Event;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 
 
 import java.util.*;
@@ -17,17 +16,13 @@ import java.util.*;
 public class QuestionTableView extends TableView<TableViewPair> {
 
     private final TableViewController tableController;
-    private final CommandMapMaker mapMaker;
+    private final CommandMapMaker commandMapMaker;
     private final LeftSidePane leftSidePane;
     public QuestionTableView(LeftSidePane leftSidePane){
-        AnchorPane.setLeftAnchor(this, 0.0);
-        AnchorPane.setRightAnchor(this, 0.0);
-        AnchorPane.setTopAnchor(this, 0.0);
-        AnchorPane.setBottomAnchor(this, 0.0);
         this.tableController = new TableViewController(this);
         this.leftSidePane = leftSidePane;
-        setMaxSize(500, 670);
-        setEditable(true);
+        setPrefSize(500, 670);
+        setColumnResizePolicy(CONSTRAINED_RESIZE_POLICY);
         TableColumn<TableViewPair, String> title = new TableColumn<>("Titel");
         title.setCellValueFactory(pairString -> pairString.getValue().titleProperty());
         TableColumn<TableViewPair, String> type = new TableColumn<>("Type");
@@ -36,9 +31,9 @@ public class QuestionTableView extends TableView<TableViewPair> {
         type.setId("column");
         getColumns().setAll(List.of(title, type));
         setOnMouseClicked(tableController);
-        this.mapMaker = new CommandMapMaker();
-        mapMaker.makeTypeMap();
-        mapMaker.makeswapedQTypeMap();
+        this.commandMapMaker = new CommandMapMaker();
+        commandMapMaker.makeTypeMap();
+        commandMapMaker.makeswapedQTypeMap();
         getStylesheets().add(Objects.requireNonNull(getClass().getResource("/be/ugent/flash/flash.css")).toString());
     }
 
@@ -46,8 +41,8 @@ public class QuestionTableView extends TableView<TableViewPair> {
         return leftSidePane;
     }
 
-    public CommandMapMaker getMapMaker() {
-        return mapMaker;
+    public CommandMapMaker getCommandMapMaker() {
+        return commandMapMaker;
     }
 
 
@@ -73,7 +68,7 @@ public class QuestionTableView extends TableView<TableViewPair> {
     public void removeSelectedRow() {
         if(getSelectionModel().getSelectedItem() != null){
             leftSidePane.deleteQuestionFromDatabase(getSelectionModel().getSelectedItem().getTitle(),
-                    mapMaker.getSwapedStringType(getSelectionModel().getSelectedItem().getType()));
+                    commandMapMaker.getSwapedStringType(getSelectionModel().getSelectedItem().getType()));
             getItems().remove(getSelectionModel().getSelectedItem());
             leftSidePane.getMainController().getRightController().setLabelToCenter();
         }

@@ -1,6 +1,6 @@
 package be.ugent.flash.command.left;
 
-import be.ugent.flash.CommandMapMaker;
+import be.ugent.flash.command.CommandMapMaker;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -9,11 +9,11 @@ import javafx.scene.text.Font;
 public class LeftBottomButton extends Button {
 
     protected LeftSidePane leftSidePane; /* nodig om toegang te kunnen krijgen tot SidePaneController*/
-    protected CommandMapMaker mapMaker;
+    protected CommandMapMaker commandMapMaker;
     public LeftBottomButton(LeftSidePane leftSidePane){
         this.leftSidePane = leftSidePane;
-        this.mapMaker = new CommandMapMaker();
-        mapMaker.makeswapedQTypeMap();
+        this.commandMapMaker = new CommandMapMaker();
+        commandMapMaker.makeswapedQTypeMap();
     }
 
     public static class AddQuestionButton extends LeftBottomButton implements EventHandler<ActionEvent>{
@@ -25,7 +25,7 @@ public class LeftBottomButton extends Button {
         }
 
         public void addNewQuestion(String newTitle, String newType){
-            leftSidePane.addQuestionToDatabase(newTitle, mapMaker.getSwapedStringType(newType));
+            leftSidePane.addQuestionToDatabase(newTitle, commandMapMaker.getSwapedStringType(newType));
             leftSidePane.getTableView().addRow(newTitle, newType);
             /* Dit ook in de databank toevoegen en ook lege List<PartData> toevoegen */
         }

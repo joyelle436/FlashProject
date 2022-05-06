@@ -15,7 +15,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 
 /**
- * Voor mci
+ * mci
  */
 public class AnswerChoiceImage extends AnswerChoiceObject implements EventHandler<MouseEvent> {
     private final ImageView middleImageView;

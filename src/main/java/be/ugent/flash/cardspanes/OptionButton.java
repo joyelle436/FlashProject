@@ -40,8 +40,10 @@ public class OptionButton extends Button implements EventHandler<ActionEvent> {
         AnswerChoiceObject choiceObject;
         if (gridpane.getQuestionType().equals("mci")) {
             choiceObject = new AnswerChoiceImage(gridpane);
+        } else if(gridpane.getQuestionType().equals("mcc")){
+            choiceObject = new AnswerChoiceTextInput.AnswerChoiceTextField(gridpane);
         } else {
-            choiceObject = new AnswerChoiceTextField(gridpane);
+            choiceObject = new AnswerChoiceTextInput.AnswerChoiceTextArea(gridpane);
         }
         choiceObject.putInGridpane(null, gridpane.getRowPosition());
         gridpane.setRowPosition(gridpane.getRowPosition()+1);

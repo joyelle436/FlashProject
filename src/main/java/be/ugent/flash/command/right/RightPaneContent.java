@@ -57,9 +57,9 @@ public class RightPaneContent {
                 answerChoiceObject = new AnswerChoiceImage(pane.getTitledPane().getMainGridpane());
                 answerChoiceObject.setNewImagePart(part.part());
             } else if(type.equals("mcc")){
-                answerChoiceObject = new AnswerChoiceTextField(pane.getTitledPane().getMainGridpane());
+                answerChoiceObject = new AnswerChoiceTextInput.AnswerChoiceTextField(pane.getTitledPane().getMainGridpane());
             } else {
-                answerChoiceObject = new AnswerChoiceTextArea(pane.getTitledPane().getMainGridpane());
+                answerChoiceObject = new AnswerChoiceTextInput.AnswerChoiceTextArea(pane.getTitledPane().getMainGridpane());
             }
             answerChoiceObject.putInGridpane(part, position);
             answerChoiceObject.gridpane.setRowPosition(position+1);

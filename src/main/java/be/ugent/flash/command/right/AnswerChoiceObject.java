@@ -9,7 +9,7 @@ import javafx.scene.layout.*;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Subklasse van {@link AnswerChoiceTextField}, {@link AnswerChoiceTextArea} en {@link AnswerChoiceImage}
+ * Subklasse van {@link AnswerChoiceTextInput} en {@link AnswerChoiceImage}
  */
 public class AnswerChoiceObject extends HBox {
 

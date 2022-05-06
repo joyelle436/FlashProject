@@ -1,6 +1,6 @@
 package be.ugent.flash.command;
 
-import be.ugent.flash.DataCollector;
+import be.ugent.flash.data.DataCollector;
 import be.ugent.flash.data.Question;
 import javafx.stage.Stage;
 
@@ -28,7 +28,6 @@ public class FileDataCollector {
         DataCollector dataCollector = new DataCollector(database);
         List<Question> questionList = dataCollector.getQuestionsData(); /* alle gegevens uit questions */
         Map<Integer, String[]> questionMap = new HashMap<>();
-
         /*
           Een map met een question_id afgebeeld op zijn overeenkomstige {title, type}
          */

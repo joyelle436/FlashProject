@@ -29,7 +29,7 @@ public class AnswerChoiceTextField extends AnswerChoiceObject implements TextInp
     }
 
     public void putInGridpane(Part part, int position) {
-        if(part != null){
+        if(part != null && part.part() != null){
             addText(new String(part.part()));
         }
         super.putInGridpane(part, position);

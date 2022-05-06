@@ -1,6 +1,5 @@
-package be.ugent.flash;
+package be.ugent.flash.data;
 
-import be.ugent.flash.data.*;
 
 import java.sql.SQLException;
 import java.util.List;

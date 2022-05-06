@@ -1,5 +1,6 @@
 package be.ugent.flash.command.left;
 
+import be.ugent.flash.command.ClickEventSimulator;
 import be.ugent.flash.command.CommandMapMaker;
 import javafx.event.Event;
 import javafx.scene.control.*;
@@ -56,13 +57,8 @@ public class QuestionTableView extends TableView<TableViewPair> {
         requestFocus();
         getSelectionModel().select(pair);
         getFocusModel().focus(getItems().indexOf(pair));
-        /*
-        Vraag die zojuist toegevoegd is wordt dan direct geselecteerd
-        Bron: https://stackoverflow.com/questions/11552176/generating-a-mouseevent-in-javafx
-        */
-        Event.fireEvent(this, new MouseEvent(MouseEvent.MOUSE_CLICKED, 0,
-                0, 0, 0, MouseButton.PRIMARY, 1, true, true, true, true,
-                true, true, true, true, true, true, null));
+        /* Vraag die zojuist toegevoegd is wordt geselecteerd */
+        ClickEventSimulator.simulateClickEvent(this);
     }
 
     public void removeSelectedRow() {

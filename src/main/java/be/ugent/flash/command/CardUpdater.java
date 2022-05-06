@@ -23,6 +23,10 @@ public class CardUpdater {
         return partList;
     }
 
+    /**
+     * Als {@param preview} 'false' is dan wordt de database gewijzigd anders wordt de gegevens opgehaald
+     * omdat er op {@link be.ugent.flash.command.right.bottom.Preview} geklikt wordt
+     */
     public Question getUpdatedQuestion(boolean preview) throws SQLException {
         String[] questionTopContent = cardPane.getRightSidePane().getTopGridpane().getTopContent().getQuestionTopContent();
         byte[] middleImage = cardPane.getRightSidePane().getTopGridpane().getTopContent().getMiddleImage();

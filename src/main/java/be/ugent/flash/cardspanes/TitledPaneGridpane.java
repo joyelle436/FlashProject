@@ -1,5 +1,6 @@
 package be.ugent.flash.cardspanes;
 
+import be.ugent.flash.command.ClickEventSimulator;
 import be.ugent.flash.command.right.AnswerChoiceObject;
 import be.ugent.flash.command.right.RightController;
 import be.ugent.flash.data.Question;
@@ -31,7 +32,6 @@ public class TitledPaneGridpane extends GridPane {
         getChildren().add(optionButton);
         setVgap(7);
     }
-
 
     public void putInQueue(AnswerChoiceObject choiceObject){
         choiceObjectQueue.offerLast(choiceObject);

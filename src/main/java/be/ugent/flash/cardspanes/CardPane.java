@@ -72,6 +72,10 @@ public class CardPane extends VBox {
     public void setQuestion(Question question) {
         this.question = question;
         this.correct = question.correctAnswer();
+        /* Dit is voor de nieuwe toegevoegde vraag */
+        if(type.equals("openi") && correct.equals("")){
+            correct = "0";
+        }
     }
 
     /**

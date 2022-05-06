@@ -44,6 +44,12 @@ public class RightPaneContent {
     private void addPartsContent(String type){
         /* Lijst met alle parts uit databank */
         List<Part> parts = rightSidePane.getRightController().getMainController().showPartsContent(question.id());
+        /* Voor een nieuwe toegevoegd vraag */
+        if(parts.isEmpty()){
+            question = new Question(question.id(), question.title(), question.text(),
+                    question.middleImage(), question.questionType(), "0");
+            parts.add(new Part(question.id(), Integer.MAX_VALUE, null));
+        }
         int position = 1;
         for(Part part: parts){
             AnswerChoiceObject answerChoiceObject;

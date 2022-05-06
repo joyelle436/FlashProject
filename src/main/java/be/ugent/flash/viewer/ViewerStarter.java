@@ -1,6 +1,6 @@
 package be.ugent.flash.viewer;
 
-import be.ugent.flash.DataCollector;
+import be.ugent.flash.data.DataCollector;
 import be.ugent.flash.data.*;
 import javafx.stage.Stage;
 

@@ -2,6 +2,7 @@ package be.ugent.flash.command.databaseTools;
 
 import be.ugent.flash.command.FileDataCollector;
 import be.ugent.flash.command.MainBorderPane;
+import be.ugent.flash.db.CreateTables;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -25,6 +26,10 @@ public class DatabaseMaker extends FileDataCollector {
 
     public void addTables(String database){
         try {
+            Connection connection = DriverManager.getConnection("jdbc:sqlite:" + database);
+            CreateTables.createQuestionsTable(connection);
+            CreateTables.createPartsTable(connection);
+            connection.close();
             getFileData(database);
         } catch (SQLException e) {
             e.printStackTrace();

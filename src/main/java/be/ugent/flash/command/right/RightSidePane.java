@@ -19,6 +19,9 @@ public class RightSidePane extends BorderPane {
         setMaxSize(685, 715);
         this.topGridpane = new TopGridpane(rightController);
         this.rightController = rightController;
+        /*
+          Linkerkant wordt disabled als er op iets geklikt wordt op dit BorderPane
+         */
         addEventFilter(ActionEvent.ANY, event -> rightController.getMainController().disableTableView());
         getStylesheets().add(Objects.requireNonNull(getClass().getResource("/be/ugent/flash/flash.css")).toString());
     }

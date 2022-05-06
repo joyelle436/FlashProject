@@ -83,9 +83,10 @@ public class TitledPaneGridpane extends GridPane {
     public void select(Question question) {
         int index = 0;
         for(AnswerChoiceObject choiceObject: choiceObjectQueue){
-            if(question.correctAnswer().length() == 1 && index == Integer.parseInt(question.correctAnswer())){
+            if(question.questionType().equals("mr") && question.correctAnswer().length() >= 1 &&
+                    question.correctAnswer().charAt(index) == 'T'){
                 choiceObject.selectChoiceBox();
-            } else if(question.correctAnswer().length() > 1 && question.correctAnswer().charAt(index) == 'T') {
+            } else if(question.correctAnswer().length() == 1 && index == Integer.parseInt(question.correctAnswer())) {
                 choiceObject.selectChoiceBox();
             }
             index++;

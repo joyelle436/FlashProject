@@ -4,7 +4,7 @@ import be.ugent.flash.command.*;
 import be.ugent.flash.command.databaseTools.DatabaseUpdater;
 import be.ugent.flash.command.right.*;
 import be.ugent.flash.command.right.bottom.ButtonHBox;
-import be.ugent.flash.data.Question;
+import be.ugent.flash.db.Question;
 import javafx.geometry.*;
 import javafx.scene.layout.*;
 
@@ -76,6 +76,10 @@ public class CardPane extends VBox {
         if(type.equals("openi") && correct.equals("")){
             correct = "0";
         }
+    }
+
+    public String getType() {
+        return type;
     }
 
     /**

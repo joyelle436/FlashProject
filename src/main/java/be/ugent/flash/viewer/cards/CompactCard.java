@@ -1,6 +1,6 @@
 package be.ugent.flash.viewer.cards;
 
-import be.ugent.flash.data.*;
+import be.ugent.flash.db.Question;
 import be.ugent.flash.viewer.visitors.*;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -34,11 +34,7 @@ public class CompactCard extends Type implements CardItem<CompactCard> {
                 String correct = new String(answers.get(Integer.parseInt(questionRow.correctAnswer())).part());
                 String selectedText = selectedToggle.getText();
                 answerFound = selectedText.equals(correct);
-                if(answerFound){
-                    model.removeCard(this);
-                } else {
-                    model.addAsLast(this);
-                }
+                verifyAnswer();
             });
         }
     }

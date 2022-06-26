@@ -1,6 +1,9 @@
 package be.ugent.flash.command.databaseTools;
 
-import be.ugent.flash.data.*;
+import be.ugent.flash.db.JDBCDataAccessContext;
+import be.ugent.flash.db.JDBCDataAccessProvider;
+import be.ugent.flash.db.Part;
+import be.ugent.flash.db.Question;
 import be.ugent.flash.viewer.ErrorDisplay;
 
 import java.sql.SQLException;

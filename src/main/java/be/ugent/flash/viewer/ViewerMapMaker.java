@@ -1,6 +1,6 @@
 package be.ugent.flash.viewer;
 
-import be.ugent.flash.data.Part;
+import be.ugent.flash.db.Part;
 import be.ugent.flash.viewer.factories.*;
 import be.ugent.flash.viewer.visitors.*;
 

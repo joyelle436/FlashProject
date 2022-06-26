@@ -1,6 +1,5 @@
-package be.ugent.flash.data;
+package be.ugent.flash.db;
 
-import java.io.ByteArrayInputStream;
 import java.sql.*;
 import java.util.*;
 

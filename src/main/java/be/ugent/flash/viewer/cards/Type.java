@@ -1,7 +1,7 @@
 package be.ugent.flash.viewer.cards;
 
-import be.ugent.flash.data.Part;
-import be.ugent.flash.data.Question;
+import be.ugent.flash.db.Part;
+import be.ugent.flash.db.Question;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.geometry.Insets;
@@ -21,7 +21,7 @@ import java.util.*;
 /**
  * superklasse voor alle soort vragen. Dient ook als view en controller
  */
-public class Type extends BorderPane implements InvalidationListener {
+public abstract class Type extends BorderPane implements InvalidationListener {
     protected TextFlow textFlow;
     private final Text text;
     protected boolean answerFound;
@@ -155,6 +155,14 @@ public class Type extends BorderPane implements InvalidationListener {
     Dit methode is verschillend voor elke subklasse
      */
     public void handleEvents(){
+    }
+
+    public void verifyAnswer(){
+        if(answerFound){
+            model.removeCard(this);
+        } else {
+            model.addAsLast(this);
+        }
     }
 
     /*

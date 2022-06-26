@@ -17,13 +17,12 @@ public class TopMenuBar extends MenuBar {
         TopMenuItem.CloseWindow closeWindow = new TopMenuItem.CloseWindow(mainBorderPane, "Sluit");
         this.openButton = openDatabase.getCorrespondingButton();
         this.makeButton = makeDatabase.getCorrespondingButton();
-        MenuItem[] MENUITEMS = new TopMenuItem[]{openDatabase, makeDatabase, closeWindow};
         BorderPane.setAlignment(this, Pos.CENTER);
         /*
         Bevat alle nodige MenuItems. Staat van boven op de borderpane
          */
         Menu bestand = new Menu("Bestand");
-        bestand.getItems().addAll(MENUITEMS);
+        bestand.getItems().addAll(new TopMenuItem[]{openDatabase, makeDatabase, closeWindow});
         getMenus().add(bestand);
     }
 

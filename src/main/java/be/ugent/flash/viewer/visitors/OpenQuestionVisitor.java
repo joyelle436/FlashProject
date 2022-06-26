@@ -1,7 +1,7 @@
 package be.ugent.flash.viewer.visitors;
 
 import be.ugent.flash.viewer.cards.OpenQuestionCard;
-import be.ugent.flash.data.Question;
+import be.ugent.flash.db.Question;
 import javafx.geometry.Insets;
 import javafx.scene.layout.*;
 

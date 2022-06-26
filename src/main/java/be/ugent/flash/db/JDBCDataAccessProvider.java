@@ -1,4 +1,4 @@
-package be.ugent.flash.data;
+package be.ugent.flash.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

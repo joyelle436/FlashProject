@@ -13,7 +13,7 @@ public class CenterTitledPane extends TitledPane {
     public CenterTitledPane(String questionType, RightController rightController){
         this.descriptionLabel = new TopDescriptionLabel();
         this.mainGridpane = new TitledPaneGridpane(questionType, rightController);
-        /*Bevat de mainGridpane*/
+        /* Bevat de mainGridpane */
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setMaxHeight(400);
         scrollPane.setContent(mainGridpane);

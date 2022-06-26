@@ -1,7 +1,7 @@
 package be.ugent.flash.command.right;
 
 import be.ugent.flash.cardspanes.TitledPaneGridpane;
-import be.ugent.flash.data.Part;
+import be.ugent.flash.db.Part;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -67,7 +67,7 @@ public class AnswerChoiceObject extends HBox {
         gridpane.getOptionButton().decreasePosition();
         gridpane.changeChildrenPosition(GridPane.getRowIndex(this));
         gridpane.setRowPosition(gridpane.getRowPosition()-1);
-        gridpane.removeFromQueue(this);
+        gridpane.addtoRemove(this);
         gridpane.getChildren().remove(this);
     }
 

@@ -1,7 +1,7 @@
 package be.ugent.flash.viewer.factories;
 
 import be.ugent.flash.viewer.cards.Type;
-import be.ugent.flash.data.Question;
+import be.ugent.flash.db.Question;
 import javafx.stage.Stage;
 
 public interface TypeFactory {

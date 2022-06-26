@@ -1,6 +1,6 @@
 package be.ugent.flash.viewer.factories;
 
-import be.ugent.flash.data.Question;
+import be.ugent.flash.db.Question;
 import be.ugent.flash.viewer.cards.*;
 import javafx.stage.Stage;
 

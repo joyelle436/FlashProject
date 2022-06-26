@@ -4,7 +4,7 @@ import be.ugent.flash.command.databaseTools.DatabaseCollector;
 import be.ugent.flash.command.databaseTools.DatabaseUpdater;
 import be.ugent.flash.command.left.LeftController;
 import be.ugent.flash.command.right.RightController;
-import be.ugent.flash.data.Part;
+import be.ugent.flash.db.Part;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;

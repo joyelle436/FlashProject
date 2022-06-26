@@ -2,8 +2,8 @@ package be.ugent.flash.command.right;
 
 import be.ugent.flash.command.CommandMapMaker;
 import be.ugent.flash.cardspanes.CardPane;
-import be.ugent.flash.data.Part;
-import be.ugent.flash.data.Question;
+import be.ugent.flash.db.Part;
+import be.ugent.flash.db.Question;
 
 import java.util.*;
 

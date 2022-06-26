@@ -18,8 +18,12 @@ public class Undo extends BottomButton implements EventHandler<ActionEvent> {
         /*
          * Alle gegevens opnieuw halen uit de databank
          */
+        if(cardPane.getType().charAt(0) != 'o'){
+            cardPane.getTitledPane().getMainGridpane().reAddParts();
+        }
         cardPane.getRightSidePane().getRightController().getRightPaneContent().
                 addContents(cardPane.getQuestion(), cardPane.getQuestion().questionType());
-        cardPane.getRightSidePane().getRightController().disableUndoAndSave(false);
+        cardPane.getRightSidePane().getRightController().disableUndoAndSave(true);
+        cardPane.getRightSidePane().getRightController().getMainController().enableTableView();
     }
 }

@@ -1,7 +1,8 @@
 package be.ugent.flash.viewer;
 
-import be.ugent.flash.data.DataCollector;
-import be.ugent.flash.data.*;
+import be.ugent.flash.db.DataCollector;
+import be.ugent.flash.db.Part;
+import be.ugent.flash.db.Question;
 import javafx.stage.Stage;
 
 import java.util.*;

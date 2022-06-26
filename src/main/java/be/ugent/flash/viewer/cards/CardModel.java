@@ -3,8 +3,11 @@ package be.ugent.flash.viewer.cards;
 import be.ugent.flash.viewer.ErrorDisplay;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.beans.value.ObservableValue;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Model voor elke {@link Type} kaart

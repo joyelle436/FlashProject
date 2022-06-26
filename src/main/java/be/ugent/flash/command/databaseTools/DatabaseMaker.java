@@ -3,6 +3,7 @@ package be.ugent.flash.command.databaseTools;
 import be.ugent.flash.command.FileDataCollector;
 import be.ugent.flash.command.MainBorderPane;
 import be.ugent.flash.db.CreateTables;
+import be.ugent.flash.viewer.ErrorDisplay;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -32,7 +33,7 @@ public class DatabaseMaker extends FileDataCollector {
             connection.close();
             getFileData(database);
         } catch (SQLException e) {
-            e.printStackTrace();
+            ErrorDisplay.showAlert(e.getMessage());
         }
     }
 }

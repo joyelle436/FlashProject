@@ -1,6 +1,6 @@
 package be.ugent.flash.viewer.cards;
 
-import be.ugent.flash.data.Question;
+import be.ugent.flash.db.Question;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.scene.input.KeyCode;
@@ -25,11 +25,7 @@ public class OpenIntCard extends OpenQuestionCard implements InvalidationListene
                 try {
                     int answerInt = Integer.parseInt(answer);
                     answerFound = answerInt == Integer.parseInt(questionRow.correctAnswer());
-                    if(answerFound){
-                        model.removeCard(this);
-                    } else {
-                        model.addAsLast(this);
-                    }
+                    verifyAnswer();
                 } catch (NumberFormatException ex){
                     answerField.getStyleClass().addAll("changeBorder");
                     errorlabel.getStyleClass().addAll("changeText");

@@ -1,6 +1,6 @@
 package be.ugent.flash.viewer.cards;
 
-import be.ugent.flash.data.Question;
+import be.ugent.flash.db.Question;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
@@ -15,11 +15,6 @@ public class OpenStrCard extends OpenQuestionCard {
         errorlabel.setText("Antwoord kan niet leeg zijn");
     }
 
-    public void setModel(CardModel model){
-        this.model = model;
-        model.addListener(this);
-    }
-
     public void handleEvents(){
         setOnKeyPressed(keyEvent -> {
             if(keyEvent.getCode().equals(KeyCode.ENTER)){
@@ -30,14 +25,9 @@ public class OpenStrCard extends OpenQuestionCard {
                 } else {
                     String answerText = answerField.getText().trim();
                     answerFound = answerText.equalsIgnoreCase(questionRow.correctAnswer());
-                    if(answerFound){
-                        model.removeCard(this);
-                    } else {
-                        model.addAsLast(this);
-                    }
+                    verifyAnswer();
                 }
             }
         });
     }
-
 }

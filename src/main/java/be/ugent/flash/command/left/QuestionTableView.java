@@ -2,10 +2,7 @@ package be.ugent.flash.command.left;
 
 import be.ugent.flash.command.ClickEventSimulator;
 import be.ugent.flash.command.CommandMapMaker;
-import javafx.event.Event;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 
 
 import java.util.*;

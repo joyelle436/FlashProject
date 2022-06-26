@@ -1,7 +1,7 @@
 package be.ugent.flash.viewer.cards;
 
-import be.ugent.flash.data.Part;
-import be.ugent.flash.data.Question;
+import be.ugent.flash.db.Part;
+import be.ugent.flash.db.Question;
 import be.ugent.flash.viewer.visitors.*;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -41,15 +41,10 @@ public class StandardCard extends Type implements CardItem<StandardCard> {
         for(int t = 0; t < lettersGroup.getToggles().size(); t++){
             ToggleButton selectedToggle = (ToggleButton) lettersGroup.getToggles().get(t);
             selectedToggle.setOnAction(actionEvent -> {
-                //selectedToggle.isArmed();
                 String selectedText = selectedToggle.getText().trim();
                 char correctAnswer = (char) (Integer.parseInt(questionRow.correctAnswer())+65);
                 answerFound = correctAnswer == selectedText.charAt(0);
-                if(answerFound){
-                    model.removeCard(this);
-                } else {
-                    model.addAsLast(this);
-                }
+                verifyAnswer();
             });
         }
     }

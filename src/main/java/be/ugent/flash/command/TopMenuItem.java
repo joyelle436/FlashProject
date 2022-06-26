@@ -10,7 +10,7 @@ import javafx.scene.input.KeyCombination;
 /**
  * MenuItems die boven de {@link MainBorderPane} staan
  */
-public class TopMenuItem extends MenuItem{
+public abstract class TopMenuItem extends MenuItem {
 
     protected final MainBorderPane mainBorderPane;
     protected Button correspondingButton;
@@ -57,9 +57,7 @@ public class TopMenuItem extends MenuItem{
         public CloseWindow(MainBorderPane mainBorderPane, String text){
             super(mainBorderPane, text);
             setAccelerator(KeyCombination.keyCombination("Ctrl+Z"));
-            setOnAction(actionEvent -> {
-                Platform.exit();
-            });
+            setOnAction(actionEvent -> Platform.exit());
         }
     }
 }

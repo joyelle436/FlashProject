@@ -2,7 +2,7 @@ package be.ugent.flash.command.right;
 
 import be.ugent.flash.cardspanes.TitledPaneGridpane;
 import be.ugent.flash.command.ImageByteConverter;
-import be.ugent.flash.data.Part;
+import be.ugent.flash.db.Part;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;

@@ -1,6 +1,6 @@
 package be.ugent.flash.viewer.cards;
 
-import be.ugent.flash.data.Question;
+import be.ugent.flash.db.Question;
 import be.ugent.flash.viewer.visitors.*;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -42,11 +42,7 @@ public class PictureCard extends Type implements CardItem<PictureCard> {
                 int index = Integer.parseInt(questionRow.correctAnswer());
                 String correct = String.valueOf(answers.get(index).part_id());
                 answerFound = selected.equals(correct);
-                if(answerFound){
-                    model.removeCard(this);
-                } else {
-                    model.addAsLast(this);
-                }
+                verifyAnswer();
             });
         }
     }

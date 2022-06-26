@@ -1,7 +1,7 @@
 package be.ugent.flash.command;
 
-import be.ugent.flash.data.DataCollector;
-import be.ugent.flash.data.Question;
+import be.ugent.flash.db.DataCollector;
+import be.ugent.flash.db.Question;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;

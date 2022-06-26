@@ -2,7 +2,8 @@ package be.ugent.flash.command;
 
 import be.ugent.flash.cardspanes.CardPane;
 import be.ugent.flash.command.right.*;
-import be.ugent.flash.data.*;
+import be.ugent.flash.db.Part;
+import be.ugent.flash.db.Question;
 
 import java.sql.SQLException;
 import java.util.*;

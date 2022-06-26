@@ -2,7 +2,7 @@ package be.ugent.flash.command.right.top;
 
 import be.ugent.flash.command.left.LeftSidePane;
 import be.ugent.flash.command.right.RightController;
-import be.ugent.flash.data.Question;
+import be.ugent.flash.db.Question;
 import javafx.geometry.*;
 
 import javafx.scene.layout.*;

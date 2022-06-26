@@ -4,7 +4,7 @@ package be.ugent.flash.command.right;
 import be.ugent.flash.command.SidePaneConnection;
 import be.ugent.flash.command.right.bottom.Save;
 import be.ugent.flash.command.right.bottom.Undo;
-import be.ugent.flash.data.Question;
+import be.ugent.flash.db.Question;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 
